@@ -19,14 +19,17 @@ const Home = ({ history: { goBack }}) => (
           With individuals or organizations.
         </p>
       </Category>
-      <Category to="https://docs.google.com/forms/d/1W4Z7wwVGVBVNuf9bajq3ud0UwtkrrQ4H6AwY5F155X0/edit">
+      <External
+        href="https://docs.google.com/forms/d/1W4Z7wwVGVBVNuf9bajq3ud0UwtkrrQ4H6AwY5F155X0/edit"
+        target="_blank"
+      >
         <h2>
           Offer Housing
         </h2>
         <p>
           Help a displaced family, short term or long term
         </p>
-      </Category>
+      </External>
       <External
         href="https://docs.google.com/spreadsheets/d/1miFPjSVhG8NR-tpieEH3Tu9cusCAesCSfr6ro1Nbd88/edit#gid=427392080"
         target="_blank"
