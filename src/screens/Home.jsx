@@ -94,19 +94,19 @@ const Home = props => (
           I Want to Help
         </NavigationCard>
       </StyledLink>
-      <AuthContainer>
+      {/* <AuthContainer>
         <AuthLink to="login">
           Login
         </AuthLink>
         <AuthLink to="sign_up">
           Sign Up
         </AuthLink>
-      </AuthContainer>
+      </AuthContainer> */}
     </NavContainer>
 
-    <TranslateLink>
+    {/* <TranslateLink>
       en Español
-    </TranslateLink>
+    </TranslateLink> */}
 
     <Footer>
       <div>
