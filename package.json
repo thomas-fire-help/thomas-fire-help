@@ -5,10 +5,16 @@
   "dependencies": {
     "@procore/core-icons": "^3.0.1",
     "@procore/core-react": "^3.0.1",
+    "antd": "^3.0.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "1.0.17"
+    "react-scripts": "1.0.17",
+    "redux": "^3.7.2",
+    "redux-loop": "^4.2.4",
+    "redux-modules": "^1.1.0",
+    "styled-components": "^2.2.4"
   },
   "scripts": {
     "start": "react-scripts start",
