@@ -9,29 +9,35 @@ const Home = ({ history: { goBack }}) => (
     <Container>
       <HeaderContainer>
         <h1>
-          What kind of help?
+          What do you need?
         </h1>
       </HeaderContainer>
-      <External
-        href="https://docs.google.com/spreadsheets/d/1miFPjSVhG8NR-tpieEH3Tu9cusCAesCSfr6ro1Nbd88/edit#gid=765665098"
-        target="_blank"
-      >
-        I need food or water
-      </External>
+      <Category to="/looking_for_help/volunteers">
+        <h2>
+          Volunteers
+        </h2>
+        <p>
+          For your property, animals, family, organization, etc.
+        </p>
+      </Category>
+      <Category to="/looking_for_help/housing">
+        <h2>
+          Housing
+        </h2>
+        <p>
+          View available housing opportunities.
+        </p>
+      </Category>
       <External
         href="https://docs.google.com/spreadsheets/d/1miFPjSVhG8NR-tpieEH3Tu9cusCAesCSfr6ro1Nbd88/edit#gid=427392080"
         target="_blank"
       >
-        I want to pick up supplies
-      </External>
-      <Category to="/looking_for_help/housing">
-        I need housing
-      </Category>
-      <External
-        href="https://docs.google.com/spreadsheets/d/1miFPjSVhG8NR-tpieEH3Tu9cusCAesCSfr6ro1Nbd88/edit#gid=855993057"
-        target="_blank"
-      >
-        I need help with my animals
+        <h2>
+          Supplies
+        </h2>
+        <p>
+          For yourself, family, property, animals, etc.
+        </p>
       </External>
     </Container>
   </Layout>
