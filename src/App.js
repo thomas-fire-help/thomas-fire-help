@@ -16,7 +16,8 @@ import Home from './screens/Home'
 import LookingForHelp from './screens/LookingForHelp'
 import Helping from './screens/Helping'
 import Housing from './screens/Housing'
-import Volunteers from './screens/Volunteers'
+import LFVolunteers from './screens/looking_for_help/Volunteers'
+import Volunteers from './screens/helping/Volunteers'
 import HousingForm from './screens/HousingForm'
 import Login from './screens/Login'
 import SignUp from './screens/SignUp'
@@ -40,9 +41,10 @@ const App = props => (
         <Route exact path="/" component={Home} />
         <Route exact path="/looking_for_help" component={LookingForHelp} />
         <Route exact path="/looking_for_help/housing" component={Housing} />
-        <Route exact path="/looking_for_help/volunteers" component={Volunteers} />
+        <Route exact path="/looking_for_help/volunteers" component={LFVolunteers} />
         <Route exact path="/helping" component={Helping} />
         <Route exact path="/helping/housing" component={HousingForm} />
+        <Route exact path="/helping/volunteers" component={Volunteers} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/sign_up" component={SignUp} />
       </AppContainer>

@@ -33,6 +33,10 @@ export const Category = styled(Link)`
   &:hover {
     box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.23), 0 3px 6px 0 rgba(0, 0, 0, 0.16);
   }
+
+  p {
+    color: grey;
+  }
 `
 
 export const External = styled.a`
@@ -46,6 +50,10 @@ export const External = styled.a`
   transition: box-shadow 0.2s ease-in-out;
   &:hover {
     box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.23), 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+  }
+
+  p {
+    color: grey;
   }
 `
 
