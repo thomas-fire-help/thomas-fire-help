@@ -20,14 +20,17 @@ const Home = ({ history: { goBack }}) => (
           For your property, animals, family, organization, etc.
         </p>
       </Category>
-      <Category to="/looking_for_help/housing">
+      <External
+        href="https://docs.google.com/spreadsheets/d/1miFPjSVhG8NR-tpieEH3Tu9cusCAesCSfr6ro1Nbd88/edit#gid=1117680778"
+        target="_blank"
+      >
         <h2>
           Housing
         </h2>
         <p>
           View available housing opportunities.
         </p>
-      </Category>
+      </External>
       <External
         href="https://docs.google.com/spreadsheets/d/1miFPjSVhG8NR-tpieEH3Tu9cusCAesCSfr6ro1Nbd88/edit#gid=427392080"
         target="_blank"
