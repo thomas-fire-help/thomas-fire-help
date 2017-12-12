@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Icon } from 'antd'
 
 const Header = styled.div`
   display: flex;
@@ -18,8 +19,12 @@ const Container = styled.section`
 
 const LeftButton = styled.div`
   flex: 1;
+  display: flex;
+  align-items: center;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 `
 
 const Title = styled.div`
@@ -30,6 +35,7 @@ const Title = styled.div`
     padding: 0;
     margin: 0;
     font-size: 20px;
+    letter-spacing: 2px;
   }
 `
 
@@ -45,15 +51,21 @@ const Body = styled.div`
   padding: 0 30px;
 `
 
+const BackArrow = styled(Icon)`
+  margin-right: 10px;
+  font-size: 20px;
+`
+
 const Layout = ({ onBack, children, header }) => (
   <Container>
     <Header>
       <LeftButton onClick={onBack}>
-        {'< Back'}
+        <BackArrow type="arrow-left"/>
+        {'Back'}
       </LeftButton>
       <Title>
         <h2>
-          Thomas Fire Help
+          TFH
         </h2>
       </Title>
       <RightButton>
