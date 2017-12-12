@@ -1,7 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import MediaQuery from 'react-responsive';
+
+const fadeIn = keyframes`
+  from { opacity: 0; }
+  to { opacity: 1; }
+`
 
 const Container = styled.div`
   display: flex;
@@ -19,6 +24,8 @@ const HeaderContainer = styled.div`
   text-align: center;
   font-size: 20px;
   margin-top: 100px;
+  opacity: 0;
+  animation: ${fadeIn} 1.5s forwards;
 `
 
 const MobileHeaderContainer = styled.div`
@@ -30,6 +37,8 @@ const MobileHeaderContainer = styled.div`
   text-align: center;
   font-size: 11.5px;
   margin-top: 30px;
+  opacity: 0;
+  animation: ${fadeIn} 1.5s forwards;
 `
 
 const NavContainer = styled.nav`
@@ -38,6 +47,9 @@ const NavContainer = styled.nav`
   align-items: center;
   flex: 1.75;
   width: 100%;
+  opacity: 0;
+  animation: ${fadeIn} 1.5s forwards;
+  animation-delay: .3s;
 `
 
 const MobileNavContainer = styled.nav`
@@ -47,6 +59,9 @@ const MobileNavContainer = styled.nav`
   flex: 2.5;
   width: 100%;
   margin-bottom: 35px;
+  opacity: 0;
+  animation: ${fadeIn} 1.5s forwards;
+  animation-delay: .3s;
 `
 
 const activeClassName = 'nav-item-active'
@@ -129,6 +144,9 @@ const NotificationBar = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  opacity: 0;
+  animation: ${fadeIn} 1.5s forwards;
+  animation-delay: .7s;
 `
 
 const Footer = styled.footer`
@@ -139,6 +157,9 @@ const Footer = styled.footer`
   p {
     font-size: 11px;
   }
+  opacity: 0;
+  animation: ${fadeIn} 1.5s forwards;
+  animation-delay: .7s;
 `
 
 const MobileFooter = styled.footer`
@@ -149,6 +170,9 @@ const MobileFooter = styled.footer`
   p {
     font-size: 11px;
   }
+  opacity: 0;
+  animation: ${fadeIn} 1.5s forwards;
+  animation-delay: .8s;
 `
 
 const Home = props => (
