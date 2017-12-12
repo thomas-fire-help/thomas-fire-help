@@ -77,9 +77,11 @@ const StyledLink = styled(Link).attrs({
 `
 
 const NavigationCard = styled.section`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-top: 20px;
   padding: 30px 0px;
-  text-align: center;
   font-size: 18px;
   width: 100%;
   color: #6D6D6D;
@@ -95,10 +97,12 @@ const NavigationCard = styled.section`
 `
 
 const MobileNavigationCard = styled.section`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-top: 20px;
   padding: 30px 0px;
   border: 1px solid black;
-  text-align: center;
   font-size: 17px;
   width: 100%;
   color: #000;
