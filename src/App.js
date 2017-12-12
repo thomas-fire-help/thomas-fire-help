@@ -21,7 +21,7 @@ import Volunteers from './screens/helping/Volunteers'
 import HousingForm from './screens/HousingForm'
 import Login from './screens/Login'
 import SignUp from './screens/SignUp'
-import './app.css'
+import './App.css'
 
 const store = createStore(s => s, {}, install());
 
