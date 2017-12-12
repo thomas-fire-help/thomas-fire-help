@@ -13,7 +13,7 @@ const Home = ({ history: { goBack }}) => (
       </HeaderContainer>
       <Category to="/helping/volunteers">
         <h2>
-          Volunteer
+          🛠 Volunteer
         </h2>
         <p>
           With individuals or organizations.
@@ -24,7 +24,7 @@ const Home = ({ history: { goBack }}) => (
         target="_blank"
       >
         <h2>
-          Offer Housing
+          🏘 Offer Housing
         </h2>
         <p>
           Help a displaced family, short term or long term
@@ -35,7 +35,7 @@ const Home = ({ history: { goBack }}) => (
         target="_blank"
       >
         <h2>
-          Offer Supplies
+          🗃 Offer Supplies
         </h2>
         <p>
           Donate supplies or register a drop-off location
