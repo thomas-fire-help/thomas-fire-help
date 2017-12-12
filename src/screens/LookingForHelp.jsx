@@ -14,7 +14,7 @@ const Home = ({ history: { goBack }}) => (
       </HeaderContainer>
       <Category to="/looking_for_resources/volunteers">
         <h2>
-          Volunteers
+          🛠 Volunteers
         </h2>
         <p>
           For property assistance, events, animal care, and more.
@@ -25,7 +25,7 @@ const Home = ({ history: { goBack }}) => (
         target="_blank"
       >
         <h2>
-          Housing
+          🏘 Housing
         </h2>
         <p>
           View housing that is available now.
@@ -36,7 +36,7 @@ const Home = ({ history: { goBack }}) => (
         target="_blank"
       >
         <h2>
-          Supplies
+          🗃 Supplies
         </h2>
         <p>
           Free food, tools, housewares, animal supplies, and more.

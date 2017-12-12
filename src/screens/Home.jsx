@@ -111,14 +111,28 @@ const Footer = styled.footer`
   text-align: center;
 
   p {
-    font-size: 16px;
+    font-size: 12px;
   }
+`
+
+const NotificationBar = styled.div`
+  display: flex;
+  justify-content: space-between;
 `
 
 const Home = props => (
   <Container>
     <MediaQuery minDeviceWidth={320} maxDeviceWidth={480}>
-      <div>In event of Emergency, call 911</div>
+      <NotificationBar>
+      <div>
+        In event of Emergency, call <a href="tel:911"><Emphasis>911</Emphasis></a>
+      </div>
+      <div>
+        <a href="mailto:help@thomasfirehelp.com">
+          Send us Feedback 💌
+        </a>
+      </div>
+    </NotificationBar>
       <MobileHeaderContainer>
         <h1>Thomas Fire Help</h1>
       </MobileHeaderContainer>
@@ -137,7 +151,16 @@ const Home = props => (
     </MediaQuery>
 
     <MediaQuery minDeviceWidth={1224}>
-      <div>In event of Emergency, call 911</div>
+      <NotificationBar>
+        <div>
+          In event of Emergency, call <a href="tel:911"><Emphasis>911</Emphasis></a>
+        </div>
+        <div>
+          <a href="mailto:help@thomasfirehelp.com">
+            Send us Feedback 💌
+          </a>
+        </div>
+      </NotificationBar>
       <HeaderContainer>
         <h1>Thomas Fire Help</h1>
       </HeaderContainer>
@@ -171,7 +194,7 @@ const Home = props => (
         Part of the <Emphasis>805 Strong</Emphasis> Network
       </div>
       <p>
-        www.ThomasFireHelp.com does not warrant or guarantee any of the accuracy of the information contained herein. All information provided here originated elsewhere though voluntary submissions that have not been screened for accuracy. The authors of this website are simply acting as aggregators of reported information and do not have the resources to independently verify the data contained herein. For the most accurate, validated information from the County of Ventura, go to www.readyventuracounty.org.
+        ThomasFireHelp.com does not warrant or guarantee any of the accuracy of the information contained herein. All information provided here originated elsewhere though voluntary submissions that have not been screened for accuracy. The authors of this website are simply acting as aggregators of reported information and do not have the resources to independently verify the data contained herein. For the most accurate, validated information from the County of Ventura, go to <a href="http://www.readyventuracounty.org" target="_blank">www.readyventuracounty.org</a>.
       </p>
     </Footer>
   </Container>
