@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-
+import { Category } from '../components/atoms'
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -22,6 +22,8 @@ const HeaderContainer = styled.div`
 
 const NavContainer = styled.nav`
   flex: 4;
+  display: flex;
+  flex-direction: column;
   padding-bottom: 30px;
 `
 const activeClassName = 'nav-item-active'
@@ -36,6 +38,10 @@ const NavigationCard = styled.section`
   margin-top: 20px;
   padding: 30px 60px;
   border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
   font-size: 24px;
   color: black;
@@ -48,7 +54,7 @@ const NavigationCard = styled.section`
 `
 
 const Emphasis = styled.span`
-  color: orange;
+  background-color: orange;
 `
 
 const AuthContainer = styled.div`
@@ -93,7 +99,7 @@ const Home = props => (
   <Container>
     <NotificationBar>
       <div>
-        In event of Emergency, call <a href="tel:911"><Emphasis>911</Emphasis></a>
+        In event of Emergency, call <a href="tel:911">911</a>
       </div>
       <div>
         <a href="mailto:help@thomasfirehelp.com">
@@ -108,16 +114,18 @@ const Home = props => (
     </HeaderContainer>
 
     <NavContainer>
-      <StyledLink to="/looking_for_resources">
-        <NavigationCard>
-          Show me Resources
-        </NavigationCard>
-      </StyledLink>
-      <StyledLink to="/helping">
-        <NavigationCard>
-          I Want to Help
-        </NavigationCard>
-      </StyledLink>
+      <Category to="/looking_for_resources">
+          <h2>🏘 I'm Looking for Resources</h2>
+          <p>
+            For those affected by the Thomas Fire.
+          </p>
+      </Category>
+      <Category to="/helping">
+          <h2>🛠 I Want to Help</h2>
+          <p>
+            For those looking to help rebuild.
+          </p>
+      </Category>
       {/* <AuthContainer>
         <AuthLink to="login">
           Login
@@ -133,9 +141,6 @@ const Home = props => (
     </TranslateLink> */}
 
     <Footer>
-      <div>
-        Part of the <Emphasis>805 Strong</Emphasis> Network
-      </div>
       <p>
         ThomasFireHelp.com does not warrant or guarantee any of the accuracy of the information contained herein. All information provided here originated elsewhere though voluntary submissions that have not been screened for accuracy. The authors of this website are simply acting as aggregators of reported information and do not have the resources to independently verify the data contained herein. For the most accurate, validated information from the County of Ventura, go to <a href="http://www.readyventuracounty.org" target="_blank">www.readyventuracounty.org</a>.
       </p>
