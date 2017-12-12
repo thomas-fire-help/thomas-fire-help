@@ -16,7 +16,7 @@ import Home from './screens/Home'
 import LookingForHelp from './screens/LookingForHelp'
 import Helping from './screens/Helping'
 import Housing from './screens/Housing'
-import LFVolunteers from './screens/looking_for_help/Volunteers'
+import LFVolunteers from './screens/looking_for_resources/Volunteers'
 import Volunteers from './screens/helping/Volunteers'
 import HousingForm from './screens/HousingForm'
 import Login from './screens/Login'
@@ -39,9 +39,9 @@ const App = props => (
     <ModuleProvider store={store} combineReducers={combineReducers}>
       <AppContainer>
         <Route exact path="/" component={Home} />
-        <Route exact path="/looking_for_help" component={LookingForHelp} />
-        <Route exact path="/looking_for_help/housing" component={Housing} />
-        <Route exact path="/looking_for_help/volunteers" component={LFVolunteers} />
+        <Route exact path="/looking_for_resources" component={LookingForHelp} />
+        <Route exact path="/looking_for_resources/housing" component={Housing} />
+        <Route exact path="/looking_for_resources/volunteers" component={LFVolunteers} />
         <Route exact path="/helping" component={Helping} />
         <Route exact path="/helping/housing" component={HousingForm} />
         <Route exact path="/helping/volunteers" component={Volunteers} />
