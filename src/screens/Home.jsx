@@ -7,12 +7,12 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding: 15px 30px;
+  padding: 15px 55px;
 `
 
 const HeaderContainer = styled.div`
   align-self: flex-start;
-  flex: 1;
+  flex: .75;
   text-transform: uppercase;
   letter-spacing: 3px;
   width: 100%;
@@ -23,33 +23,49 @@ const HeaderContainer = styled.div`
 
 const MobileHeaderContainer = styled.div`
   align-self: flex-start;
-  flex: 1;
+  flex: .75;
   text-transform: uppercase;
   letter-spacing: 2px;
   width: 100%;
   text-align: center;
-  font-size: 13px;
+  font-size: 11.5px;
   margin-top: 30px;
 `
 
 const NavContainer = styled.nav`
-  flex: 4;
-  align-self: center;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1.75;
+  width: 100%;
 `
+
+const MobileNavContainer = styled.nav`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 2.5;
+  width: 100%;
+  margin-bottom: 35px;
+`
+
 const activeClassName = 'nav-item-active'
 
 const StyledLink = styled(Link).attrs({
   activeClassName
 })`
+  display: flex;
+  justify-content: center;
   text-decoration: none;
+  width: 100%;
 `
 
 const NavigationCard = styled.section`
   margin-top: 20px;
   padding: 30px 0px;
   text-align: center;
-  font-size: 18px;
+  font-size: 17px;
+  width: 100%;
   color: #6D6D6D;
   letter-spacing: 2px;
   width: 450px;
@@ -66,10 +82,10 @@ const MobileNavigationCard = styled.section`
   margin-top: 20px;
   padding: 30px 0px;
   text-align: center;
-  font-size: 15px;
+  font-size: 14px;
+  width: 100%;
   color: #6D6D6D;
   letter-spacing: 2px;
-  width: 280px;
   text-decoration: none;
   text-transform: uppercase;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 3px 0 rgba(0, 0, 0, 0.1);
@@ -109,10 +125,10 @@ const TranslateLink = styled.aside`
 
 const NotificationBar = styled.div`
   display: flex;
+  flex: 1;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  margin-bottom: 20px;
+  justify-content: center;
 `
 
 const Footer = styled.footer`
@@ -126,6 +142,7 @@ const Footer = styled.footer`
 `
 
 const MobileFooter = styled.footer`
+  flex: 1;
   font-size: 28px;
   text-align: left;
   margin: 0px 10px;
@@ -140,7 +157,7 @@ const Home = props => (
       <MobileHeaderContainer>
         <h1>Thomas Fire Help</h1>
       </MobileHeaderContainer>
-      <NavContainer>
+      <MobileNavContainer>
         <StyledLink to="/looking_for_resources">
           <MobileNavigationCard>
             Show me resources
@@ -151,7 +168,7 @@ const Home = props => (
             I want to help
           </MobileNavigationCard>
         </StyledLink>
-      </NavContainer>
+      </MobileNavContainer>
       <NotificationBar>
         <div>
           In event of Emergency, call <a href="tel:911"><Emphasis>911</Emphasis></a>
@@ -167,7 +184,7 @@ const Home = props => (
       </MobileFooter>
     </MediaQuery>
 
-    <MediaQuery minDeviceWidth={1224}>
+    <MediaQuery minDeviceWidth={481}>
       <HeaderContainer>
         <h1>Thomas Fire Help</h1>
       </HeaderContainer>
