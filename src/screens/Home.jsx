@@ -17,6 +17,7 @@ const HeaderContainer = styled.div`
   text-align: center;
   font-size: 28px;
   padding-bottom: 20px;
+  padding-top: 20px;
 `
 
 const NavContainer = styled.nav`
@@ -44,6 +45,10 @@ const NavigationCard = styled.section`
   &:hover {
     box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.23), 0 3px 6px 0 rgba(0, 0, 0, 0.16);
   }
+`
+
+const Emphasis = styled.span`
+  color: orange;
 `
 
 const AuthContainer = styled.div`
@@ -91,9 +96,9 @@ const Home = props => (
     </HeaderContainer>
 
     <NavContainer>
-      <StyledLink to="/looking_for_help">
+      <StyledLink to="/looking_for_resources">
         <NavigationCard>
-          I'm Looking for Resources
+          Show me Resources
         </NavigationCard>
       </StyledLink>
       <StyledLink to="/helping">
@@ -117,7 +122,7 @@ const Home = props => (
 
     <Footer>
       <div>
-        #venturastrong
+        Part of the <Emphasis>805 Strong</Emphasis> Network
       </div>
       <p>
         www.ThomasFireHelp.com does not warrant or guarantee any of the accuracy of the information contained herein. All information provided here originated elsewhere though voluntary submissions that have not been screened for accuracy. The authors of this website are simply acting as aggregators of reported information and do not have the resources to independently verify the data contained herein. For the most accurate, validated information from the County of Ventura, go to www.readyventuracounty.org.

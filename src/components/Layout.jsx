@@ -5,12 +5,13 @@ const Header = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-left: 30px;
-  padding-right: 30px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  padding-top: 10px;
 `
 
 const Container = styled.section`
-  padding-top: 20px;
   height: 100%;
   width: 100%;
 `
@@ -18,13 +19,18 @@ const Container = styled.section`
 const LeftButton = styled.div`
   flex: 1;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 16px;
 `
 
 const Title = styled.div`
   flex: 1;
   text-align: center;
-  font-size: 24px;
+
+  h2 {
+    padding: 0;
+    margin: 0;
+    font-size: 20px;
+  }
 `
 
 const RightButton = styled.div`
@@ -45,7 +51,7 @@ const Layout = ({ onBack, children, header }) => (
       </LeftButton>
       <Title>
         <h2>
-          TFH
+          Thomas Fire Help
         </h2>
       </Title>
       <RightButton></RightButton>
