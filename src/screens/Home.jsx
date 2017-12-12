@@ -11,7 +11,6 @@ const fadeIn = keyframes`
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100%;
   padding: 15px 55px;
 `
 
@@ -50,7 +49,7 @@ const NavContainer = styled.nav`
   opacity: 0;
   animation: ${fadeIn} 1.5s forwards;
   animation-delay: .3s;
-  padding-bottom: 20px;
+  margin-bottom: 10px;
 `
 
 const MobileNavContainer = styled.nav`
@@ -77,9 +76,11 @@ const StyledLink = styled(Link).attrs({
 `
 
 const NavigationCard = styled.section`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-top: 20px;
   padding: 30px 0px;
-  text-align: center;
   font-size: 18px;
   width: 100%;
   color: #6D6D6D;
@@ -95,10 +96,12 @@ const NavigationCard = styled.section`
 `
 
 const MobileNavigationCard = styled.section`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-top: 20px;
   padding: 30px 0px;
   border: 1px solid black;
-  text-align: center;
   font-size: 17px;
   width: 100%;
   color: #000;
@@ -149,13 +152,13 @@ const NotificationBar = styled.div`
   opacity: 0;
   animation: ${fadeIn} 1.5s forwards;
   animation-delay: .7s;
-  margin-top: 2rem;
-`
+  margin: 32px 0;
+  `
 
 const Footer = styled.footer`
   font-size: 28px;
   text-align: left;
-  margin-bottom: 100px;
+  margin-bottom: 10px;
   padding-top: 10px;
   width: 450px;
   p {
