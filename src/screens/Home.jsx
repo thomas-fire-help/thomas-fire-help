@@ -23,7 +23,7 @@ const HeaderContainer = styled.div`
   width: 100%;
   text-align: center;
   font-size: 20px;
-  margin-top: 100px;
+  margin-top: 20px;
   opacity: 0;
   animation: ${fadeIn} 1.5s forwards;
 `
@@ -159,7 +159,7 @@ const NotificationBar = styled.div`
 const Footer = styled.footer`
   font-size: 28px;
   text-align: left;
-  margin-bottom: 100px;
+  margin-bottom: 10px;
   padding-top: 10px;
   width: 450px;
   p {
