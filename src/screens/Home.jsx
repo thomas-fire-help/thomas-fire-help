@@ -80,15 +80,27 @@ const Footer = styled.footer`
   text-align: center;
 
   p {
-    font-size: 16px;
+    font-size: 12px;
   }
+`
+
+const NotificationBar = styled.div`
+  display: flex;
+  justify-content: space-between;
 `
 
 const Home = props => (
   <Container>
-    <div>
-      In event of Emergency, call 911
-    </div>
+    <NotificationBar>
+      <div>
+        In event of Emergency, call <a href="tel:911"><Emphasis>911</Emphasis></a>
+      </div>
+      <div>
+        <a href="mailto:help@thomasfirehelp.com">
+          Send us Feedback 💌
+        </a>
+      </div>
+    </NotificationBar>
     <HeaderContainer>
       <h1>
         Thomas Fire Help

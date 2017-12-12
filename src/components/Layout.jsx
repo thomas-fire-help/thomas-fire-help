@@ -35,6 +35,8 @@ const Title = styled.div`
 
 const RightButton = styled.div`
   flex: 1;
+  display: flex;
+  justify-content: flex-end;
 `
 
 const Body = styled.div`
@@ -54,7 +56,11 @@ const Layout = ({ onBack, children, header }) => (
           Thomas Fire Help
         </h2>
       </Title>
-      <RightButton></RightButton>
+      <RightButton>
+        <a href="mailto:help@thomasfirehelp.com">
+          Send us Feedback 💌
+        </a>
+      </RightButton>
     </Header>
     <Body>
       {children}
