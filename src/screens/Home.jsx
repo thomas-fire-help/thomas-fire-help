@@ -22,7 +22,7 @@ const HeaderContainer = styled.div`
   width: 100%;
   text-align: center;
   font-size: 20px;
-  margin-top: 20px;
+  margin-top: 100px;
   opacity: 0;
   animation: ${fadeIn} 1.5s forwards;
 `
@@ -49,7 +49,7 @@ const NavContainer = styled.nav`
   opacity: 0;
   animation: ${fadeIn} 1.5s forwards;
   animation-delay: .3s;
-  padding-bottom: 20px;
+  margin-bottom: 10px;
 `
 
 const MobileNavContainer = styled.nav`
@@ -152,7 +152,7 @@ const NotificationBar = styled.div`
   opacity: 0;
   animation: ${fadeIn} 1.5s forwards;
   animation-delay: .7s;
-  margin-top: 2rem;
+  margin: 2rem 0rem;
 `
 
 const Footer = styled.footer`
