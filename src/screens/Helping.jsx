@@ -8,7 +8,7 @@ const Home = ({ history: { goBack }}) => (
     <Container>
       <HeaderContainer>
         <h1>
-          I want to...
+          How do you want to help?
         </h1>
       </HeaderContainer>
       <Category to="/helping/volunteers">
@@ -24,10 +24,10 @@ const Home = ({ history: { goBack }}) => (
         target="_blank"
       >
         <h2>
-          🏘 Offer Housing
+          🏡 Offer Housing
         </h2>
         <p>
-          Help a displaced family, short term or long term
+          Help a displaced family, short term or long term.
         </p>
       </External>
       <External
@@ -38,7 +38,7 @@ const Home = ({ history: { goBack }}) => (
           🗃 Offer Supplies
         </h2>
         <p>
-          Donate supplies or register a drop-off location
+          Donate supplies or register a drop-off location.
         </p>
       </External>
     </Container>
