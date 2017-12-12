@@ -8,10 +8,11 @@ import PropTypes from 'prop-types'
 import { Route, BrowserRouter } from 'react-router-dom'
 import styled from 'styled-components'
 
-import { ModuleProvider } from 'redux-modules';
-import { createStore } from 'redux';
-import { install, combineReducers } from 'redux-loop';
+import { ModuleProvider } from 'redux-modules'
+import { createStore } from 'redux'
+import { install, combineReducers } from 'redux-loop'
 
+import { Helmet } from 'react-helmet'
 import Home from './screens/Home'
 import LookingForHelp from './screens/LookingForHelp'
 import Helping from './screens/Helping'
@@ -38,6 +39,9 @@ const App = props => (
   <BrowserRouter>
     <ModuleProvider store={store} combineReducers={combineReducers}>
       <AppContainer>
+        <Helmet>
+          <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        </Helmet>
         <Route exact path="/" component={Home} />
         <Route exact path="/looking_for_resources" component={LookingForHelp} />
         <Route exact path="/looking_for_resources/housing" component={Housing} />
