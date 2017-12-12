@@ -1,55 +1,86 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import MediaQuery from 'react-responsive';
+
+const fadeIn = keyframes`
+  from { opacity: 0; }
+  to { opacity: 1; }
+`
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding: 15px 30px;
+  padding: 15px 55px;
 `
 
 const HeaderContainer = styled.div`
   align-self: flex-start;
-  flex: 1;
+  flex: .75;
   text-transform: uppercase;
   letter-spacing: 3px;
   width: 100%;
   text-align: center;
   font-size: 20px;
   margin-top: 100px;
+  opacity: 0;
+  animation: ${fadeIn} 1.5s forwards;
 `
 
 const MobileHeaderContainer = styled.div`
   align-self: flex-start;
-  flex: 1;
+  flex: .75;
   text-transform: uppercase;
   letter-spacing: 2px;
   width: 100%;
   text-align: center;
-  font-size: 13px;
-  margin-top: 55px;
+  font-size: 11.5px;
+  margin-top: 30px;
+  opacity: 0;
+  animation: ${fadeIn} 1.5s forwards;
 `
 
 const NavContainer = styled.nav`
-  flex: 4;
-  align-self: center;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1.75;
+  width: 100%;
+  opacity: 0;
+  animation: ${fadeIn} 1.5s forwards;
+  animation-delay: .3s;
 `
+
+const MobileNavContainer = styled.nav`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 2.5;
+  width: 100%;
+  margin-bottom: 35px;
+  opacity: 0;
+  animation: ${fadeIn} 1.5s forwards;
+  animation-delay: .3s;
+`
+
 const activeClassName = 'nav-item-active'
 
 const StyledLink = styled(Link).attrs({
   activeClassName
 })`
+  display: flex;
+  justify-content: center;
   text-decoration: none;
+  width: 100%;
 `
 
 const NavigationCard = styled.section`
   margin-top: 20px;
   padding: 30px 0px;
   text-align: center;
-  font-size: 18px;
+  font-size: 17px;
+  width: 100%;
   color: #6D6D6D;
   letter-spacing: 2px;
   width: 450px;
@@ -66,10 +97,10 @@ const MobileNavigationCard = styled.section`
   margin-top: 20px;
   padding: 30px 0px;
   text-align: center;
-  font-size: 15px;
+  font-size: 14px;
+  width: 100%;
   color: #6D6D6D;
   letter-spacing: 2px;
-  width: 280px;
   text-decoration: none;
   text-transform: uppercase;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 3px 0 rgba(0, 0, 0, 0.1);
@@ -107,21 +138,41 @@ const TranslateLink = styled.aside`
   padding: 35px 15px;
 `
 
+const NotificationBar = styled.div`
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  animation: ${fadeIn} 1.5s forwards;
+  animation-delay: .7s;
+`
+
 const Footer = styled.footer`
+  font-size: 28px;
+  text-align: left;
+  margin-bottom: 100px;
+  width: 450px;
+  p {
+    font-size: 11px;
+  }
+  opacity: 0;
+  animation: ${fadeIn} 1.5s forwards;
+  animation-delay: .7s;
+`
+
+const MobileFooter = styled.footer`
+  flex: 1;
   font-size: 28px;
   text-align: left;
   margin: 0px 10px;
   p {
     font-size: 11px;
   }
-`
-
-const NotificationBar = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 20px;
+  opacity: 0;
+  animation: ${fadeIn} 1.5s forwards;
+  animation-delay: .8s;
 `
 
 const Home = props => (
@@ -130,7 +181,7 @@ const Home = props => (
       <MobileHeaderContainer>
         <h1>Thomas Fire Help</h1>
       </MobileHeaderContainer>
-      <NavContainer>
+      <MobileNavContainer>
         <StyledLink to="/looking_for_resources">
           <MobileNavigationCard>
             Show me resources
@@ -141,7 +192,7 @@ const Home = props => (
             I want to help
           </MobileNavigationCard>
         </StyledLink>
-      </NavContainer>
+      </MobileNavContainer>
       <NotificationBar>
         <div>
           In event of Emergency, call <a href="tel:911"><Emphasis>911</Emphasis></a>
@@ -150,9 +201,14 @@ const Home = props => (
           <a href="mailto:help@thomasfirehelp.com">Send us Feedback 💌</a>
         </div>
       </NotificationBar>
+      <MobileFooter>
+        <p>
+          ThomasFireHelp.com does not warrant or guarantee any of the accuracy of the information contained herein. All information provided here originated elsewhere though voluntary submissions that have not been screened for accuracy. The authors of this website are simply acting as aggregators of reported information and do not have the resources to independently verify the data contained herein. For the most accurate, validated information from the County of Ventura, go to <a href="http://www.readyventuracounty.org" target="_blank">www.readyventuracounty.org</a>.
+        </p>
+      </MobileFooter>
     </MediaQuery>
 
-    <MediaQuery minDeviceWidth={1224}>
+    <MediaQuery minDeviceWidth={481}>
       <HeaderContainer>
         <h1>Thomas Fire Help</h1>
       </HeaderContainer>
@@ -176,6 +232,11 @@ const Home = props => (
           <a href="mailto:help@thomasfirehelp.com">Send us Feedback 💌</a>
         </div>
       </NotificationBar>
+      <Footer>
+        <p>
+          ThomasFireHelp.com does not warrant or guarantee any of the accuracy of the information contained herein. All information provided here originated elsewhere though voluntary submissions that have not been screened for accuracy. The authors of this website are simply acting as aggregators of reported information and do not have the resources to independently verify the data contained herein. For the most accurate, validated information from the County of Ventura, go to <a href="http://www.readyventuracounty.org" target="_blank">www.readyventuracounty.org</a>.
+        </p>
+      </Footer>
     </MediaQuery>
       {/* <AuthContainer>
         <AuthLink to="login">
@@ -188,12 +249,6 @@ const Home = props => (
     {/* <TranslateLink>
       en Español
     </TranslateLink> */}
-
-    <Footer>
-      <p>
-        ThomasFireHelp.com does not warrant or guarantee any of the accuracy of the information contained herein. All information provided here originated elsewhere though voluntary submissions that have not been screened for accuracy. The authors of this website are simply acting as aggregators of reported information and do not have the resources to independently verify the data contained herein. For the most accurate, validated information from the County of Ventura, go to <a href="http://www.readyventuracounty.org" target="_blank">www.readyventuracounty.org</a>.
-      </p>
-    </Footer>
   </Container>
 )
 
