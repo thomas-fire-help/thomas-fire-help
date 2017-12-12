@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import MediaQuery from 'react-responsive';
 
 const Container = styled.div`
   display: flex;
@@ -13,16 +14,29 @@ const HeaderContainer = styled.div`
   align-self: flex-start;
   flex: 1;
   text-transform: uppercase;
+  letter-spacing: 3px;
   width: 100%;
   text-align: center;
-  font-size: 28px;
-  padding-bottom: 20px;
+  font-size: 20px;
+  padding-top: 20px;
+`
+
+const MobileHeaderContainer = styled.div`
+  align-self: flex-start;
+  flex: 1;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  width: 100%;
+  text-align: center;
+  font-size: 13px;
   padding-top: 20px;
 `
 
 const NavContainer = styled.nav`
   flex: 4;
+  align-self: center;
   padding-bottom: 30px;
+  text-align: center;
 `
 const activeClassName = 'nav-item-active'
 
@@ -35,10 +49,27 @@ const StyledLink = styled(Link).attrs({
 const NavigationCard = styled.section`
   margin-top: 20px;
   padding: 30px 60px;
-  border: 1px solid black;
   text-align: center;
-  font-size: 24px;
-  color: black;
+  font-size: 18px;
+  color: #6D6D6D;
+  letter-spacing: 2px;
+  width: 450px;
+  text-decoration: none;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.2s ease-in-out;
+  &:hover {
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.23), 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+  }
+`
+
+const MobileNavigationCard = styled.section`
+  margin-top: 20px;
+  padding: 30px 60px;
+  text-align: center;
+  font-size: 16px;
+  color: #6D6D6D;
+  letter-spacing: 2px;
+  width: 300px;
   text-decoration: none;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 3px 0 rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.2s ease-in-out;
@@ -86,26 +117,43 @@ const Footer = styled.footer`
 
 const Home = props => (
   <Container>
-    <div>
-      In event of Emergency, call 911
-    </div>
-    <HeaderContainer>
-      <h1>
-        Thomas Fire Help
-      </h1>
-    </HeaderContainer>
+    <MediaQuery minDeviceWidth={320} maxDeviceWidth={480}>
+      <div>In event of Emergency, call 911</div>
+      <MobileHeaderContainer>
+        <h1>Thomas Fire Help</h1>
+      </MobileHeaderContainer>
+      <NavContainer>
+        <StyledLink to="/looking_for_resources">
+          <MobileNavigationCard>
+            SHOW ME RESOURCES
+          </MobileNavigationCard>
+        </StyledLink>
+        <StyledLink to="/helping">
+          <MobileNavigationCard>
+            I WANT TO HELP
+          </MobileNavigationCard>
+        </StyledLink>
+      </NavContainer>
+    </MediaQuery>
 
-    <NavContainer>
-      <StyledLink to="/looking_for_resources">
-        <NavigationCard>
-          Show me Resources
-        </NavigationCard>
-      </StyledLink>
-      <StyledLink to="/helping">
-        <NavigationCard>
-          I Want to Help
-        </NavigationCard>
-      </StyledLink>
+    <MediaQuery minDeviceWidth={1224}>
+      <div>In event of Emergency, call 911</div>
+      <HeaderContainer>
+        <h1>Thomas Fire Help</h1>
+      </HeaderContainer>
+      <NavContainer>
+        <StyledLink to="/looking_for_resources">
+          <NavigationCard>
+            SHOW ME RESOURCES
+          </NavigationCard>
+        </StyledLink>
+        <StyledLink to="/helping">
+          <NavigationCard>
+            I WANT TO HELP
+          </NavigationCard>
+        </StyledLink>
+      </NavContainer>
+    </MediaQuery>
       {/* <AuthContainer>
         <AuthLink to="login">
           Login
@@ -114,8 +162,6 @@ const Home = props => (
           Sign Up
         </AuthLink>
       </AuthContainer> */}
-    </NavContainer>
-
     {/* <TranslateLink>
       en Español
     </TranslateLink> */}
