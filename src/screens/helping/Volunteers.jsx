@@ -19,7 +19,7 @@ const Housing = ({ loading, data, history: { goBack }}) => (
         target="_blank"
       >
         <h2>
-          An Organization
+          🏩 An Organization
         </h2>
       </External>
       <External
@@ -27,7 +27,7 @@ const Housing = ({ loading, data, history: { goBack }}) => (
         target="_blank"
       >
         <h2>
-          My Neighbors
+          🏡 My Neighbors
         </h2>
       </External>
     </Container>
