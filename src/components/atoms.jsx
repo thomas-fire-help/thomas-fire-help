@@ -9,8 +9,8 @@ export const Container = styled.div`
 export const HeaderContainer = styled.div`
   align-self: flex-start;
   flex: 1;
-  font-size: 2.25rem;
-  padding: 1.25em 0;
+  font-size: 36px;
+  padding-bottom: 30px;
 `
 
 export const NavigationCard = styled.section`
@@ -23,10 +23,10 @@ export const NavigationCard = styled.section`
 
 export const Category = styled(Link)`
   color: #000;
-  font-size: 2rem;
+  font-size: 28px;
   padding: 25px 25px;
   text-decoration: none;
-  margin-bottom: 1.5rem;
+  margin-bottom: 20px;
 
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 3px 0 rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.2s ease-in-out;
@@ -41,10 +41,10 @@ export const Category = styled(Link)`
 
 export const External = styled.a`
   color: #000;
-  font-size: 2rem;
+  font-size: 28px;
   padding: 25px 25px;
   text-decoration: none;
-  margin-bottom: 1.5rem;
+  margin-bottom: 20px;
 
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 3px 0 rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.2s ease-in-out;

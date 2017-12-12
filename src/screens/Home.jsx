@@ -13,8 +13,8 @@ const HeaderContainer = styled.div`
   align-self: flex-start;
   flex: 1;
   text-transform: uppercase;
-  font-size: 2.25rem;
-  padding-bottom: 1em;
+  font-size: 36px;
+  padding-bottom: 30px;
 `
 
 const NavContainer = styled.nav`
@@ -30,11 +30,11 @@ const StyledLink = styled(Link).attrs({
 
 const NavigationCard = styled.section`
   margin-top: 20px;
-  padding: 4rem 6em;
+  padding: 30px 60px;
   border: 1px solid black;
   text-transform: uppercase;
   text-align: center;
-  font-size: 2rem;
+  font-size: 28px;
   color: black;
   text-decoration: none;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 3px 0 rgba(0, 0, 0, 0.1);
@@ -69,11 +69,11 @@ const TranslateLink = styled.aside`
 `
 
 const Footer = styled.footer`
-  font-size: 2rem;
+  font-size: 28px;
   text-align: center;
 
   p {
-    font-size: 1rem;
+    font-size: 16px;
   }
 `
 
