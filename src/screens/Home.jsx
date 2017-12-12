@@ -13,6 +13,8 @@ const HeaderContainer = styled.div`
   align-self: flex-start;
   flex: 1;
   text-transform: uppercase;
+  width: 100%;
+  text-align: center;
   font-size: 36px;
   padding-bottom: 30px;
 `
