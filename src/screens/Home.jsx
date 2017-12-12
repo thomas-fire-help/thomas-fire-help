@@ -5,15 +5,18 @@ import styled from 'styled-components'
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  height: 90%;
+  height: 100%;
+  padding: 15px 30px;
 `
 
 const HeaderContainer = styled.div`
   align-self: flex-start;
   flex: 1;
   text-transform: uppercase;
-  font-size: 2.25rem;
-  padding-bottom: 1em;
+  width: 100%;
+  text-align: center;
+  font-size: 36px;
+  padding-bottom: 30px;
 `
 
 const NavContainer = styled.nav`
@@ -29,11 +32,11 @@ const StyledLink = styled(Link).attrs({
 
 const NavigationCard = styled.section`
   margin-top: 20px;
-  padding: 4rem 6em;
+  padding: 30px 60px;
   border: 1px solid black;
   text-transform: uppercase;
   text-align: center;
-  font-size: 2rem;
+  font-size: 28px;
   color: black;
   text-decoration: none;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 3px 0 rgba(0, 0, 0, 0.1);
@@ -68,8 +71,12 @@ const TranslateLink = styled.aside`
 `
 
 const Footer = styled.footer`
-  font-size: 2rem;
+  font-size: 28px;
   text-align: center;
+
+  p {
+    font-size: 16px;
+  }
 `
 
 const Home = props => (
@@ -86,7 +93,7 @@ const Home = props => (
     <NavContainer>
       <StyledLink to="/looking_for_help">
         <NavigationCard>
-          I Need Help
+          I'm Looking for Resources
         </NavigationCard>
       </StyledLink>
       <StyledLink to="/helping">
@@ -110,8 +117,11 @@ const Home = props => (
 
     <Footer>
       <div>
-        Built with ❤️ for and by Ventura County.
+        #venturastrong
       </div>
+      <p>
+        www.ThomasFireHelp.com does not warrant or guarantee any of the accuracy of the information contained herein. All information provided here originated elsewhere though voluntary submissions that have not been screened for accuracy. The authors of this website are simply acting as aggregators of reported information and do not have the resources to independently verify the data contained herein. For the most accurate, validated information from the County of Ventura, go to www.readyventuracounty.org.
+      </p>
     </Footer>
   </Container>
 )
