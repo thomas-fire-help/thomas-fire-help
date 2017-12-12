@@ -1,7 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import { Category } from '../components/atoms'
+import MediaQuery from 'react-responsive';
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -13,18 +14,28 @@ const HeaderContainer = styled.div`
   align-self: flex-start;
   flex: 1;
   text-transform: uppercase;
+  letter-spacing: 3px;
   width: 100%;
   text-align: center;
-  font-size: 28px;
-  padding-bottom: 20px;
-  padding-top: 20px;
+  font-size: 20px;
+  margin-top: 100px;
+`
+
+const MobileHeaderContainer = styled.div`
+  align-self: flex-start;
+  flex: 1;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  width: 100%;
+  text-align: center;
+  font-size: 13px;
+  margin-top: 55px;
 `
 
 const NavContainer = styled.nav`
   flex: 4;
-  display: flex;
-  flex-direction: column;
-  padding-bottom: 30px;
+  align-self: center;
+  text-align: center;
 `
 const activeClassName = 'nav-item-active'
 
@@ -36,16 +47,31 @@ const StyledLink = styled(Link).attrs({
 
 const NavigationCard = styled.section`
   margin-top: 20px;
-  padding: 30px 60px;
-  border: 1px solid black;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  padding: 30px 0px;
   text-align: center;
-  font-size: 24px;
-  color: black;
+  font-size: 18px;
+  color: #6D6D6D;
+  letter-spacing: 2px;
+  width: 450px;
   text-decoration: none;
+  text-transform: uppercase;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.2s ease-in-out;
+  &:hover {
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.23), 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+  }
+`
+
+const MobileNavigationCard = styled.section`
+  margin-top: 20px;
+  padding: 30px 0px;
+  text-align: center;
+  font-size: 15px;
+  color: #6D6D6D;
+  letter-spacing: 2px;
+  width: 280px;
+  text-decoration: none;
+  text-transform: uppercase;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 3px 0 rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.2s ease-in-out;
   &:hover {
@@ -54,7 +80,7 @@ const NavigationCard = styled.section`
 `
 
 const Emphasis = styled.span`
-  background-color: orange;
+  color: orange;
 `
 
 const AuthContainer = styled.div`
@@ -83,49 +109,74 @@ const TranslateLink = styled.aside`
 
 const Footer = styled.footer`
   font-size: 28px;
-  text-align: center;
-
+  text-align: left;
+  margin: 0px 10px;
   p {
-    font-size: 12px;
+    font-size: 11px;
   }
 `
 
 const NotificationBar = styled.div`
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: space-between;
+  margin-bottom: 20px;
 `
 
 const Home = props => (
   <Container>
-    <NotificationBar>
-      <div>
-        In event of Emergency, call <a href="tel:911">911</a>
-      </div>
-      <div>
-        <a href="mailto:help@thomasfirehelp.com">
-          Send us Feedback 💌
-        </a>
-      </div>
-    </NotificationBar>
-    <HeaderContainer>
-      <h1>
-        Thomas Fire Help
-      </h1>
-    </HeaderContainer>
+    <MediaQuery minDeviceWidth={320} maxDeviceWidth={480}>
+      <MobileHeaderContainer>
+        <h1>Thomas Fire Help</h1>
+      </MobileHeaderContainer>
+      <NavContainer>
+        <StyledLink to="/looking_for_resources">
+          <MobileNavigationCard>
+            Show me resources
+          </MobileNavigationCard>
+        </StyledLink>
+        <StyledLink to="/helping">
+          <MobileNavigationCard>
+            I want to help
+          </MobileNavigationCard>
+        </StyledLink>
+      </NavContainer>
+      <NotificationBar>
+        <div>
+          In event of Emergency, call <a href="tel:911"><Emphasis>911</Emphasis></a>
+        </div>
+        <div>
+          <a href="mailto:help@thomasfirehelp.com">Send us Feedback 💌</a>
+        </div>
+      </NotificationBar>
+    </MediaQuery>
 
-    <NavContainer>
-      <Category to="/looking_for_resources">
-          <h2>🏘 I'm Looking for Resources</h2>
-          <p>
-            For those affected by the Thomas Fire.
-          </p>
-      </Category>
-      <Category to="/helping">
-          <h2>🛠 I Want to Help</h2>
-          <p>
-            For those looking to help rebuild.
-          </p>
-      </Category>
+    <MediaQuery minDeviceWidth={1224}>
+      <HeaderContainer>
+        <h1>Thomas Fire Help</h1>
+      </HeaderContainer>
+      <NavContainer>
+        <StyledLink to="/looking_for_resources">
+          <NavigationCard>
+            Show me resources
+          </NavigationCard>
+        </StyledLink>
+        <StyledLink to="/helping">
+          <NavigationCard>
+            I want to help
+          </NavigationCard>
+        </StyledLink>
+      </NavContainer>
+      <NotificationBar>
+        <div>
+          In event of Emergency, call <a href="tel:911"><Emphasis>911</Emphasis></a>
+        </div>
+        <div>
+          <a href="mailto:help@thomasfirehelp.com">Send us Feedback 💌</a>
+        </div>
+      </NotificationBar>
+    </MediaQuery>
       {/* <AuthContainer>
         <AuthLink to="login">
           Login
@@ -134,8 +185,6 @@ const Home = props => (
           Sign Up
         </AuthLink>
       </AuthContainer> */}
-    </NavContainer>
-
     {/* <TranslateLink>
       en Español
     </TranslateLink> */}
