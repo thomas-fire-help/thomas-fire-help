@@ -148,7 +148,7 @@ const NotificationBar = styled.div`
   opacity: 0;
   animation: ${fadeIn} 1.5s forwards;
   animation-delay: .7s;
-  padding-top: 10 px;
+  margin-top: 2rem;
 `
 
 const Footer = styled.footer`
