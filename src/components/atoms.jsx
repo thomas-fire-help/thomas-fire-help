@@ -13,6 +13,17 @@ export const HeaderContainer = styled.div`
   padding-bottom: 20px;
 `
 
+export const MobileHeaderContainer = styled.div`
+  align-self: flex-start;
+  flex: .75;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  width: 100%;
+  text-align: center;
+  font-size: 11.5px;
+  margin-top: 30px;
+`
+
 export const NavigationCard = styled.section`
   margin-top: 20px;
   padding: 35px 15px;
@@ -23,8 +34,27 @@ export const NavigationCard = styled.section`
 
 export const Category = styled(Link)`
   color: #000;
-  font-size: 24px;
+  font-size: 20px;
   padding: 25px 25px;
+  text-decoration: none;
+  margin-bottom: 20px;
+
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.2s ease-in-out;
+  &:hover {
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.23), 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+  }
+
+  p {
+    color: grey;
+  }
+`
+
+export const MobileCategory = styled(Link)`
+  color: #000;
+  font-size: 20px;
+  padding: 15px 15px;
+  border: 1px solid black;
   text-decoration: none;
   margin-bottom: 20px;
 
@@ -41,8 +71,27 @@ export const Category = styled(Link)`
 
 export const External = styled.a`
   color: #000;
-  font-size: 24px;
+  font-size: 20px;
   padding: 25px 25px;
+  text-decoration: none;
+  margin-bottom: 20px;
+
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.2s ease-in-out;
+  &:hover {
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.23), 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+  }
+
+  p {
+    color: grey;
+  }
+`
+
+export const MobileExternal = styled.a`
+  color: #000;
+  font-size: 20px;
+  border: 1px solid black;
+  padding: 15px 15px;
   text-decoration: none;
   margin-bottom: 20px;
 

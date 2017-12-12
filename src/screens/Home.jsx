@@ -96,10 +96,11 @@ const NavigationCard = styled.section`
 const MobileNavigationCard = styled.section`
   margin-top: 20px;
   padding: 30px 0px;
+  border: 1px solid black;
   text-align: center;
   font-size: 14px;
   width: 100%;
-  color: #6D6D6D;
+  color: #000;
   letter-spacing: 2px;
   text-decoration: none;
   text-transform: uppercase;
