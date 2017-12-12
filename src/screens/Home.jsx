@@ -109,10 +109,10 @@ const TranslateLink = styled.aside`
 
 const Footer = styled.footer`
   font-size: 28px;
-  text-align: center;
-
+  text-align: left;
+  margin: 0px 10px;
   p {
-    font-size: 10px;
+    font-size: 11px;
   }
 `
 
@@ -121,6 +121,7 @@ const NotificationBar = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 20px;
 `
 
 const Home = props => (
