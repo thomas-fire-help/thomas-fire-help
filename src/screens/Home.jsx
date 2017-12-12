@@ -5,7 +5,8 @@ import styled from 'styled-components'
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  height: 90%;
+  height: 100%;
+  padding: 15px 30px;
 `
 
 const HeaderContainer = styled.div`
@@ -70,6 +71,10 @@ const TranslateLink = styled.aside`
 const Footer = styled.footer`
   font-size: 2rem;
   text-align: center;
+
+  p {
+    font-size: 1rem;
+  }
 `
 
 const Home = props => (
@@ -86,7 +91,7 @@ const Home = props => (
     <NavContainer>
       <StyledLink to="/looking_for_help">
         <NavigationCard>
-          I Need Help
+          I'm Looking for Resources
         </NavigationCard>
       </StyledLink>
       <StyledLink to="/helping">
@@ -110,8 +115,11 @@ const Home = props => (
 
     <Footer>
       <div>
-        Built with ❤️ for and by Ventura County.
+        #venturastrong
       </div>
+      <p>
+        www.ThomasFireHelp.com does not warrant or guarantee any of the accuracy of the information contained herein. All information provided here originated elsewhere though voluntary submissions that have not been screened for accuracy. The authors of this website are simply acting as aggregators of reported information and do not have the resources to independently verify the data contained herein. For the most accurate, validated information from the County of Ventura, go to www.readyventuracounty.org.
+      </p>
     </Footer>
   </Container>
 )
