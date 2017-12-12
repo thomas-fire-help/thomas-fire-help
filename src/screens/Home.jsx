@@ -18,7 +18,7 @@ const HeaderContainer = styled.div`
   width: 100%;
   text-align: center;
   font-size: 20px;
-  padding-top: 20px;
+  margin-top: 100px;
 `
 
 const MobileHeaderContainer = styled.div`
@@ -29,13 +29,12 @@ const MobileHeaderContainer = styled.div`
   width: 100%;
   text-align: center;
   font-size: 13px;
-  padding-top: 20px;
+  margin-top: 55px;
 `
 
 const NavContainer = styled.nav`
   flex: 4;
   align-self: center;
-  padding-bottom: 30px;
   text-align: center;
 `
 const activeClassName = 'nav-item-active'
@@ -48,13 +47,14 @@ const StyledLink = styled(Link).attrs({
 
 const NavigationCard = styled.section`
   margin-top: 20px;
-  padding: 30px 60px;
+  padding: 30px 0px;
   text-align: center;
   font-size: 18px;
   color: #6D6D6D;
   letter-spacing: 2px;
   width: 450px;
   text-decoration: none;
+  text-transform: uppercase;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 3px 0 rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.2s ease-in-out;
   &:hover {
@@ -64,13 +64,14 @@ const NavigationCard = styled.section`
 
 const MobileNavigationCard = styled.section`
   margin-top: 20px;
-  padding: 30px 60px;
+  padding: 30px 0px;
   text-align: center;
-  font-size: 16px;
+  font-size: 15px;
   color: #6D6D6D;
   letter-spacing: 2px;
-  width: 300px;
+  width: 280px;
   text-decoration: none;
+  text-transform: uppercase;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 3px 0 rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.2s ease-in-out;
   &:hover {
@@ -111,71 +112,69 @@ const Footer = styled.footer`
   text-align: center;
 
   p {
-    font-size: 12px;
+    font-size: 10px;
   }
 `
 
 const NotificationBar = styled.div`
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: space-between;
 `
 
 const Home = props => (
   <Container>
     <MediaQuery minDeviceWidth={320} maxDeviceWidth={480}>
-      <NotificationBar>
-      <div>
-        In event of Emergency, call <a href="tel:911"><Emphasis>911</Emphasis></a>
-      </div>
-      <div>
-        <a href="mailto:help@thomasfirehelp.com">
-          Send us Feedback 💌
-        </a>
-      </div>
-    </NotificationBar>
       <MobileHeaderContainer>
         <h1>Thomas Fire Help</h1>
       </MobileHeaderContainer>
       <NavContainer>
         <StyledLink to="/looking_for_resources">
           <MobileNavigationCard>
-            SHOW ME RESOURCES
+            Show me resources
           </MobileNavigationCard>
         </StyledLink>
         <StyledLink to="/helping">
           <MobileNavigationCard>
-            I WANT TO HELP
+            I want to help
           </MobileNavigationCard>
         </StyledLink>
       </NavContainer>
-    </MediaQuery>
-
-    <MediaQuery minDeviceWidth={1224}>
       <NotificationBar>
         <div>
           In event of Emergency, call <a href="tel:911"><Emphasis>911</Emphasis></a>
         </div>
         <div>
-          <a href="mailto:help@thomasfirehelp.com">
-            Send us Feedback 💌
-          </a>
+          <a href="mailto:help@thomasfirehelp.com">Send us Feedback 💌</a>
         </div>
       </NotificationBar>
+    </MediaQuery>
+
+    <MediaQuery minDeviceWidth={1224}>
       <HeaderContainer>
         <h1>Thomas Fire Help</h1>
       </HeaderContainer>
       <NavContainer>
         <StyledLink to="/looking_for_resources">
           <NavigationCard>
-            SHOW ME RESOURCES
+            Show me resources
           </NavigationCard>
         </StyledLink>
         <StyledLink to="/helping">
           <NavigationCard>
-            I WANT TO HELP
+            I want to help
           </NavigationCard>
         </StyledLink>
       </NavContainer>
+      <NotificationBar>
+        <div>
+          In event of Emergency, call <a href="tel:911"><Emphasis>911</Emphasis></a>
+        </div>
+        <div>
+          <a href="mailto:help@thomasfirehelp.com">Send us Feedback 💌</a>
+        </div>
+      </NotificationBar>
     </MediaQuery>
       {/* <AuthContainer>
         <AuthLink to="login">
@@ -190,9 +189,6 @@ const Home = props => (
     </TranslateLink> */}
 
     <Footer>
-      <div>
-        Part of the <Emphasis>805 Strong</Emphasis> Network
-      </div>
       <p>
         ThomasFireHelp.com does not warrant or guarantee any of the accuracy of the information contained herein. All information provided here originated elsewhere though voluntary submissions that have not been screened for accuracy. The authors of this website are simply acting as aggregators of reported information and do not have the resources to independently verify the data contained herein. For the most accurate, validated information from the County of Ventura, go to <a href="http://www.readyventuracounty.org" target="_blank">www.readyventuracounty.org</a>.
       </p>
