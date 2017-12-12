@@ -1,0 +1,27 @@
+machine:
+  environment:
+    PATH: "${PATH}:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin"
+  node:
+    version: 8.1
+
+dependencies:
+  override:
+    - yarn
+  cache_directories:
+    - ~/.cache/yarn
+
+test:
+  override:
+    - echo "test"
+
+general:
+  branches:
+    ignore:
+      - gh-pages
+
+deployment:
+  production:
+    branch: master
+    commands:
+      - yarn build
+      - aws s3 sync build/ s3://aws-website-thomasfirehelp-1sy02
