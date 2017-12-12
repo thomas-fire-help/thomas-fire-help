@@ -15,12 +15,13 @@ const HeaderContainer = styled.div`
   text-transform: uppercase;
   width: 100%;
   text-align: center;
-  font-size: 36px;
-  padding-bottom: 30px;
+  font-size: 28px;
+  padding-bottom: 20px;
 `
 
 const NavContainer = styled.nav`
   flex: 4;
+  padding-bottom: 30px;
 `
 const activeClassName = 'nav-item-active'
 
@@ -34,9 +35,8 @@ const NavigationCard = styled.section`
   margin-top: 20px;
   padding: 30px 60px;
   border: 1px solid black;
-  text-transform: uppercase;
   text-align: center;
-  font-size: 28px;
+  font-size: 24px;
   color: black;
   text-decoration: none;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 3px 0 rgba(0, 0, 0, 0.1);
