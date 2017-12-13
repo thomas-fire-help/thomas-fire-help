@@ -22,7 +22,7 @@ const LeftButton = styled.div`
   display: flex;
   align-items: center;
   cursor: pointer;
-  font-size: 15px;
+  font-size: 18px;
   text-transform: uppercase;
   letter-spacing: 2px;
 `
@@ -53,7 +53,7 @@ const Body = styled.div`
 
 const BackArrow = styled(Icon)`
   margin-right: 10px;
-  font-size: 20px;
+  font-size: 24px;
 `
 
 const Layout = ({ onBack, children, header }) => (

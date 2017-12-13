@@ -28,61 +28,39 @@ const Home = ({ history: { goBack }}) => (
           href="https://docs.google.com/spreadsheets/d/1miFPjSVhG8NR-tpieEH3Tu9cusCAesCSfr6ro1Nbd88/edit#gid=1117680778"
           target="_blank"
         >
-          <h2>
-            🏘 Housing
-          </h2>
-          <p>
-            View housing that is available now.
-          </p>
+          <h2> 🏘 Housing </h2>
+          <p> View housing that is available now. </p>
         </MobileExternal>
         <MobileExternal
           href="https://docs.google.com/spreadsheets/d/1miFPjSVhG8NR-tpieEH3Tu9cusCAesCSfr6ro1Nbd88/edit#gid=427392080"
           target="_blank"
         >
-          <h2>
-            🗃 Supplies
-          </h2>
-          <p>
-            Free food, tools, housewares, animal supplies, and more.
-          </p>
+          <h2> 🗃 Supplies </h2>
+          <p> Free food, tools, housewares, animal supplies, and more. </p>
         </MobileExternal>
       </MediaQuery>
 
       <MediaQuery minDeviceWidth={481}>
         <HeaderContainer>
-          <h1>
-            What do you need?
-          </h1>
+          <h1> What do you need? </h1>
         </HeaderContainer>
         <Category to="/looking_for_resources/volunteers">
-          <h2>
-            🛠 Volunteers
-          </h2>
-          <p>
-            For property assistance, events, animal care, and more.
-          </p>
+          <h2> 🛠 Volunteers </h2>
+          <p> For property assistance, events, animal care, and more. </p>
         </Category>
         <External
           href="https://docs.google.com/spreadsheets/d/1miFPjSVhG8NR-tpieEH3Tu9cusCAesCSfr6ro1Nbd88/edit#gid=1117680778"
           target="_blank"
         >
-          <h2>
-            🏘 Housing
-          </h2>
-          <p>
-            View housing that is available now.
-          </p>
+          <h2> 🏘 Housing </h2>
+          <p> View housing that is available now. </p>
         </External>
         <External
           href="https://docs.google.com/spreadsheets/d/1miFPjSVhG8NR-tpieEH3Tu9cusCAesCSfr6ro1Nbd88/edit#gid=427392080"
           target="_blank"
         >
-          <h2>
-            🗃 Supplies
-          </h2>
-          <p>
-            Free food, tools, housewares, animal supplies, and more.
-          </p>
+          <h2> 🗃 Supplies </h2>
+          <p> Free food, tools, housewares, animal supplies, and more. </p>
         </External>
       </MediaQuery>
     </Container>
