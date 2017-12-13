@@ -25,3 +25,8 @@ deployment:
     commands:
       - yarn build
       - aws s3 sync build/ s3://aws-website-thomasfirehelp-1sy02
+  staging:
+    branch: develop
+    commands:
+      - yarn build
+      - aws s3 sync build/ s3://aws-website-thomasfirehelpstaging-pv9z8
