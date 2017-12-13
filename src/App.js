@@ -14,14 +14,16 @@ import { install, combineReducers } from 'redux-loop'
 
 import { Helmet } from 'react-helmet'
 import Home from './screens/Home'
-import LookingForHelp from './screens/LookingForHelp'
-import Helping from './screens/Helping'
-import Housing from './screens/Housing'
-import LFVolunteers from './screens/looking_for_resources/Volunteers'
-import Volunteers from './screens/helping/Volunteers'
-import HousingForm from './screens/HousingForm'
 import Login from './screens/Login'
 import SignUp from './screens/SignUp'
+
+import LookingForHelp from './screens/looking_for_resources'
+import Housing from './screens/looking_for_resources/Housing'
+import LFVolunteers from './screens/looking_for_resources/Volunteers'
+
+import Helping from './screens/helping'
+import Volunteers from './screens/helping/Volunteers'
+import HousingForm from './screens/helping/HousingForm'
 import './App.css'
 
 const store = createStore(s => s, {}, install());

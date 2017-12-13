@@ -1,12 +1,12 @@
 import React from 'react'
 import { connectModule } from 'redux-modules'
 import { compose, withStateHandlers } from 'recompose'
-import housingModule from '../modules/housing'
-import Layout from '../components/Layout'
-import { Container, HeaderContainer } from '../components/atoms'
+import housingModule from '../../modules/housing'
+import Layout from '../../components/Layout'
+import { Container, HeaderContainer } from '../../components/atoms'
 import { Input, Radio, Checkbox, Button, Select } from 'antd'
 import styled from 'styled-components'
-import SegmentedController from '../components/SegmentedController'
+import SegmentedController from '../../components/SegmentedController'
 const RadioGroup = Radio.Group
 const Option = Select.Option
 const { TextArea } = Input

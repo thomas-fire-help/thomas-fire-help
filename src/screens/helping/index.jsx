@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import Layout from '../components/Layout'
+import Layout from '../../components/Layout'
 import MediaQuery from 'react-responsive'
 import {
   Container,
@@ -11,7 +11,7 @@ import {
   MobileCategory,
   Category,
   MobileHeaderContainer
-} from '../components/atoms'
+} from '../../components/atoms'
 
 const Home = ({ history: { goBack }}) => (
   <Layout onBack={goBack}>
