@@ -21,7 +21,7 @@ const Housing = ({ loading, data, history: { goBack }}) => (
           <h2> 🏩 Organization </h2>
         </MobileExternal>
         <MobileExternal
-          href="https://docs.google.com/forms/d/e/1FAIpQLSekXv_IcLhfSi3N3kCg__wJdDL2fcsvM9Oq2UU7pnuIcHouug/viewform"
+          href="https://drive.google.com/open?id=1TeM8zFlt_Fb_nfNuVuG0zTpS_rfrEGflaF-DZmsMa4c"
           target="_blank"
         >
           <h2> 🙋 Individual </h2>
@@ -39,7 +39,7 @@ const Housing = ({ loading, data, history: { goBack }}) => (
           <h2> 🏩 Organization </h2>
         </External>
         <External
-          href="https://docs.google.com/forms/d/e/1FAIpQLSekXv_IcLhfSi3N3kCg__wJdDL2fcsvM9Oq2UU7pnuIcHouug/viewform"
+          href="https://drive.google.com/open?id=1TeM8zFlt_Fb_nfNuVuG0zTpS_rfrEGflaF-DZmsMa4c"
           target="_blank"
         >
           <h2> 🙋 Individual </h2>
