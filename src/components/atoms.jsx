@@ -1,9 +1,16 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import { Link } from 'react-router-dom'
+
+const fadeIn = keyframes`
+  from { opacity: 0; }
+  to { opacity: 1; }
+`
 
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
+  animation: ${fadeIn} 1s forwards;
+  opacity: 0;
 `
 
 export const HeaderContainer = styled.div`
@@ -20,7 +27,9 @@ export const MobileHeaderContainer = styled.div`
   letter-spacing: 2px;
   width: 100%;
   text-align: center;
-  font-size: 11.5px;
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
   margin-top: 30px;
 `
 
@@ -58,7 +67,6 @@ export const Category = styled(Link)`
 
 export const MobileCategory = styled(Link)`
   color: #000;
-  font-size: 15px;
   padding: 15px 15px;
   border: 1px solid black;
   text-decoration: none;
@@ -73,12 +81,13 @@ export const MobileCategory = styled(Link)`
   h2 {
     text-transform: uppercase;
     letter-spacing: 2px;
+    font-size: 20px;
     margin: 0px;
   }
 
   p {
     color: grey;
-    font-size: 16px;
+    font-size: 17px;
     margin-top: 5px;
   }
 `
@@ -109,7 +118,6 @@ export const External = styled.a`
 
 export const MobileExternal = styled.a`
   color: #000;
-  font-size: 15px;
   border: 1px solid black;
   padding: 15px 15px;
   text-decoration: none;
@@ -124,12 +132,13 @@ export const MobileExternal = styled.a`
   h2 {
     text-transform: uppercase;
     letter-spacing: 2px;
+    font-size: 20px;
     margin: 0px;
   }
 
   p {
     color: grey;
-    font-size: 16px;
+    font-size: 17px;
     margin-top: 5px;
   }
 `
