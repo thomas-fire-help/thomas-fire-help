@@ -2,8 +2,15 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import Layout from '../components/Layout'
-import { HeaderContainer, Container } from '../components/atoms'
-import { fetchConfig } from '../utils/fetchConfig'
+import { Container } from '../components/atoms'
+import { fetchConfig } from '../utils/fetchUtils'
+
+const HeaderContainer = styled.div`
+  align-self: flex-start;
+  text-transform: uppercase;
+  font-size: 1.75rem;
+  letter-spacing: 2px;
+`
 
 const AuthInputContainer = styled.div`
   display: flex;
@@ -18,8 +25,9 @@ const AuthInput = styled.input`
   border-bottom: 1px solid #000;
   border-radius: 0;
   color: #000;
-  padding: 2rem 0rem .5rem 0rem;
-  font-size: 2rem;
+  padding: 2rem 0rem 1rem 0rem;
+  margin-top: 2rem;
+  font-size: 2.5rem;
   width: 100%;
   &:focus {
     caret-color: #000;

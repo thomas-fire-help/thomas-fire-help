@@ -134,17 +134,20 @@ const AuthContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  opacity: 0;
+  animation: ${fadeIn} 1.5s forwards;
+  animation-delay: .7s;
 `
 
 const AuthLink = styled(Link)`
   color: #000;
-  font-size: 2rem;
   text-decoration: none;
+  font-size: 18px;
   text-transform: uppercase;
   letter-spacing: 2px;
   font-weight: bold;
   padding: 20px;
-  margin: 4.5rem 4.5rem;
+  margin: 40px 40px;
 `
 
 const TranslateLink = styled.aside`
@@ -255,6 +258,14 @@ const Home = props => (
           </NavigationCard>
         </StyledLink>
       </NavContainer>
+      <AuthContainer>
+        <AuthLink to="login">
+          Login
+        </AuthLink>
+        <AuthLink to="sign_up">
+          Sign Up
+        </AuthLink>
+      </AuthContainer>
       <NotificationBar>
         <div>
           In event of Emergency, call <a href="tel:911"><Emphasis>911</Emphasis></a>
@@ -269,14 +280,6 @@ const Home = props => (
         </p>
       </Footer>
     </MediaQuery>
-      {/* <AuthContainer>
-        <AuthLink to="login">
-          Login
-        </AuthLink>
-        <AuthLink to="sign_up">
-          Sign Up
-        </AuthLink>
-      </AuthContainer> */}
     {/* <TranslateLink>
       en Español
     </TranslateLink> */}

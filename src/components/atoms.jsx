@@ -31,6 +31,10 @@ export const MobileHeaderContainer = styled.div`
   white-space: nowrap;
   overflow: hidden;
   margin-top: 30px;
+
+  h1 {
+    margin: 0;
+  }
 `
 
 export const NavigationCard = styled.section`
