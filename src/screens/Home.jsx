@@ -22,9 +22,13 @@ const HeaderContainer = styled.div`
   width: 100%;
   text-align: center;
   font-size: 20px;
-  margin-top: 100px;
+  margin-bottom: 30px;
   opacity: 0;
   animation: ${fadeIn} 1.5s forwards;
+
+  h1 {
+    margin: 0;
+  }
 `
 
 const MobileHeaderContainer = styled.div`
@@ -34,10 +38,17 @@ const MobileHeaderContainer = styled.div`
   letter-spacing: 2px;
   width: 100%;
   text-align: center;
-  font-size: 11.5px;
-  margin-top: 30px;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  margin-top: 40px;
+  margin-bottom: 30px;
   opacity: 0;
   animation: ${fadeIn} 1.5s forwards;
+
+  h1 {
+    margin: 0;
+  }
 `
 
 const NavContainer = styled.nav`
@@ -102,7 +113,7 @@ const MobileNavigationCard = styled.section`
   margin-top: 20px;
   padding: 30px 0px;
   border: 1px solid black;
-  font-size: 17px;
+  font-size: 16px;
   width: 100%;
   color: #000;
   letter-spacing: 2px;
@@ -143,6 +154,18 @@ const TranslateLink = styled.aside`
   padding: 35px 15px;
 `
 
+const MobileNotificationBar = styled.div`
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  animation: ${fadeIn} 1.5s forwards;
+  animation-delay: .7s;
+  margin: 30px 0px 15px 0px;
+`
+
 const NotificationBar = styled.div`
   display: flex;
   flex: 1;
@@ -152,8 +175,8 @@ const NotificationBar = styled.div`
   opacity: 0;
   animation: ${fadeIn} 1.5s forwards;
   animation-delay: .7s;
-  margin: 32px 0;
-  `
+  margin: 50px 0px 30px 0px;
+`
 
 const Footer = styled.footer`
   font-size: 28px;
@@ -201,14 +224,14 @@ const Home = props => (
           </MobileNavigationCard>
         </StyledLink>
       </MobileNavContainer>
-      <NotificationBar>
+      <MobileNotificationBar>
         <div>
           In event of Emergency, call <a href="tel:911"><Emphasis>911</Emphasis></a>
         </div>
         <div>
           <a href="mailto:help@thomasfirehelp.com">Send us Feedback 💌</a>
         </div>
-      </NotificationBar>
+      </MobileNotificationBar>
       <MobileFooter>
         <p>
           ThomasFireHelp.com does not warrant or guarantee any of the accuracy of the information contained herein. All information provided here originated elsewhere though voluntary submissions that have not been screened for accuracy. The authors of this website are simply acting as aggregators of reported information and do not have the resources to independently verify the data contained herein. For the most accurate, validated information from the County of Ventura, go to <a href="http://www.readyventuracounty.org" target="_blank">www.readyventuracounty.org</a>.
