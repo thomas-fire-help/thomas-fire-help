@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom'
 import styled, { keyframes } from 'styled-components'
 import debounce from 'lodash.debounce'
 import MediaQuery from 'react-responsive'
-import Layout from '../components/Layout'
-import { Container, HeaderContainer, MobileHeaderContainer } from '../components/atoms'
-import { fetchConfig, handleErrors } from '../utils/fetchUtils'
-import { Banner, ErrorBanner } from '@procore/core-react';
+import Layout from '../../components/Layout'
+import ErrorBanner from './AuthErrorBanner';
+import { Container, HeaderContainer, MobileHeaderContainer } from '../../components/atoms'
+import { fetchConfig, handleErrors } from '../../utils/fetchUtils'
 
 const AuthInputContainer = styled.div`
   display: flex;
@@ -74,41 +74,6 @@ const SignUpButton = styled.button`
   letter-spacing: 2px;
   text-transform: uppercase;
   margin-top: 3rem;
-`
-
-const fadeIn = keyframes`
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-`;
-
-const fadeOut = keyframes`
-0% {
-  opacity: 1;
-}
-100% {
-  opacity: 0;
-}
-`;
-
-const enlarge = keyframes`
-  0% {
-    transform: scale(.5);
-  }
-  100% {
-    transform: scale(1);
-  }
-`;
-
-const ErrorWrapper = styled.div`
-  animation: ${fadeIn} 1s, ${enlarge} .5s;
-`
-
-const ErrorMessage = styled.span`
-  animation: ${fadeIn} 1s;
 `
 
 const isValidEmail = (email) => (
@@ -192,25 +157,8 @@ class SignUp extends Component {
       <Layout onBack={goBack}>
         <Container>
           <MediaQuery minDeviceWidth={320} maxDeviceWidth={480}>
-          { hasSignupErrors(errors) &&
-              <ErrorWrapper>
-                <ErrorBanner>
-                  <Banner.Content>
-                    <Banner.Title>Error</Banner.Title>
-                    <Banner.Body>
-                    { Object.keys(errors)
-                        .filter(category => Boolean(errors[category].label))
-                        .map((category, index) => (
-                          <ErrorMessage>{`${index + 1}. ${errors[category].label}`}</ErrorMessage>
-                        ))
-                    }
-                    </Banner.Body>
-                  </Banner.Content>
-                  <Banner.Dismiss onClick={() => alert('dismiss clicked')} />
-                </ErrorBanner>
-              </ErrorWrapper>
-            }
-            <MobileHeaderContainer style={{ marginBottom: '20px', textAlign: 'left' }}>
+          { hasSignupErrors(errors) && <ErrorBanner /> }
+            <MobileHeaderContainer style={{ marginBottom: '40px', textAlign: 'left' }}>
               <h1> Sign Up </h1>
             </MobileHeaderContainer>
             <AuthInputContainer>
@@ -220,6 +168,7 @@ class SignUp extends Component {
                   this.handleEmailInput(e)
                 }}
                 placeholder="Email address"
+                style={{ marginTop: '0' }}
                 type="text"
               />
               <AuthInput
@@ -245,24 +194,7 @@ class SignUp extends Component {
           </MediaQuery>
 
           <MediaQuery minDeviceWidth={481}>
-            { hasSignupErrors(errors) &&
-              <ErrorWrapper>
-                <ErrorBanner>
-                  <Banner.Content>
-                    <Banner.Title>Error</Banner.Title>
-                    <Banner.Body>
-                    { Object.keys(errors)
-                        .filter(category => Boolean(errors[category].label))
-                        .map((category, index) => (
-                          <ErrorMessage>{`${index + 1}. ${errors[category].label}`}</ErrorMessage>
-                        ))
-                    }
-                    </Banner.Body>
-                  </Banner.Content>
-                  <Banner.Dismiss onClick={() => alert('dismiss clicked')} />
-                </ErrorBanner>
-              </ErrorWrapper>
-            }
+            { hasSignupErrors(errors) && <ErrorBanner /> }
             <HeaderContainer>
               <h1> Sign Up </h1>
             </HeaderContainer>

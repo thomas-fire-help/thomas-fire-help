@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import Layout from '../components/Layout'
-import { Container } from '../components/atoms'
-import { fetchConfig } from '../utils/fetchUtils'
+import Layout from '../../components/Layout'
+import { Container } from '../../components/atoms'
+import { fetchConfig } from '../../utils/fetchUtils'
 
 const HeaderContainer = styled.div`
   align-self: flex-start;

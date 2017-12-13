@@ -20,8 +20,8 @@ import Housing from './screens/Housing'
 import LFVolunteers from './screens/looking_for_resources/Volunteers'
 import Volunteers from './screens/helping/Volunteers'
 import HousingForm from './screens/HousingForm'
-import Login from './screens/Login'
-import SignUp from './screens/SignUp'
+import Login from './screens/auth/Login'
+import SignUp from './screens/auth/SignUp'
 import './App.css'
 
 const store = createStore(s => s, {}, install());
