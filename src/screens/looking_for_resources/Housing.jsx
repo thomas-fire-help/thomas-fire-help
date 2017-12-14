@@ -98,6 +98,30 @@ const Housing = ({ setShowDetails, showDetails, loading, data, history: { goBack
                 <Tag>Pets Accepted</Tag>
               }
             </TagList>
+            {houseListing.kid_notes &&
+              <div>
+                <b>Notes on Children</b>
+                <p>
+                  {houseListing.kid_notes}
+                </p>
+              </div>
+            }
+            {houseListing.pet_notes &&
+              <div>
+                <b>Notes on Pets</b>
+                <p>
+                  {houseListing.pet_notes}
+                </p>
+              </div>
+            }
+            {houseListing.notes &&
+              <div>
+                <b>Notes</b>
+                <p>
+                  {houseListing.notes}
+                </p>
+              </div>
+            }
           </DetailPane>
           <Footer>
             <Button
