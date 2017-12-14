@@ -109,9 +109,9 @@ class SignUp extends Component {
       errors: {},
     }
 
-    this.handleEmailInput = debounce(this.handleEmailInput, 800)
-    this.handlePhoneNumberInput = debounce(this.handlePhoneNumberInput, 800)
-    this.handlePasswordInput = debounce(this.handlePasswordInput, 800)
+    this.handleEmailInput = debounce(this.handleEmailInput, 1000)
+    this.handlePhoneNumberInput = debounce(this.handlePhoneNumberInput, 1000)
+    this.handlePasswordInput = debounce(this.handlePasswordInput, 1000)
   }
 
   handleOnClick = () => {

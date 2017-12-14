@@ -21,17 +21,17 @@ const fadeOut = keyframes`
 }
 `;
 
-const enlarge = keyframes`
+const dropIn = keyframes`
   0% {
-    transform: scale(.5);
+    transform: translateY(-100px);
   }
   100% {
-    transform: scale(1);
+    transform: translateY(20px);
   }
 `;
 
 const ErrorBannerContainer = styled(ErrorBanner)`
-  animation: ${fadeIn} 1s, ${enlarge} 1s forwards
+  animation: ${fadeIn} 1s, ${dropIn} .7s forwards;
 `
 
 const ErrorMessage = styled.span`
