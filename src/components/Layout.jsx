@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import MediaQuery from 'react-responsive'
 import { Icon } from 'antd'
 
 const Header = styled.div`
@@ -9,6 +10,15 @@ const Header = styled.div`
   padding-left: 20px;
   padding-right: 20px;
   padding-bottom: 20px;
+  padding-top: 10px;
+`
+
+const MobileHeader = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 20px;
+  padding-right: 20px;
   margin-top: 40px;
 `
 
@@ -57,25 +67,48 @@ const BackArrow = styled(Icon)`
 
 const Layout = ({ onBack, children, header }) => (
   <Container>
-    <Header>
-      <LeftButton onClick={onBack}>
-        <BackArrow type="arrow-left"/>
-        {'Back'}
-      </LeftButton>
-      <Title>
-        <h2>
-          TFH
-        </h2>
-      </Title>
-      <RightButton>
-        <a href="mailto:help@thomasfirehelp.com">
-          Send Feedback 💌
-        </a>
-      </RightButton>
-    </Header>
-    <Body>
-      {children}
-    </Body>
+    <MediaQuery minDeviceWidth={320} maxDeviceWidth={480}>
+      <MobileHeader>
+        <LeftButton onClick={onBack}>
+          <BackArrow type="arrow-left"/>
+          {'Back'}
+        </LeftButton>
+        <Title>
+          <h2>
+            TFH
+          </h2>
+        </Title>
+        <RightButton>
+          <a href="mailto:help@thomasfirehelp.com">
+            Send Feedback 💌
+          </a>
+        </RightButton>
+      </MobileHeader>
+      <Body>
+        {children}
+      </Body>
+    </MediaQuery>
+    <MediaQuery minDeviceWidth={481}>
+      <Header>
+        <LeftButton onClick={onBack}>
+          <BackArrow type="arrow-left"/>
+          {'Back'}
+        </LeftButton>
+        <Title>
+          <h2>
+            TFH
+          </h2>
+        </Title>
+        <RightButton>
+          <a href="mailto:help@thomasfirehelp.com">
+            Send Feedback 💌
+          </a>
+        </RightButton>
+      </Header>
+      <Body>
+        {children}
+      </Body>
+    </MediaQuery>
   </Container>
 )
 
