@@ -48,6 +48,7 @@ const RightButton = styled.div`
 const Body = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   padding: 0 30px;
 `
 
@@ -69,9 +70,9 @@ const Layout = ({ onBack, children, header }) => (
         </h2>
       </Title>
       <RightButton>
-        <a href="mailto:help@thomasfirehelp.com">
+        {/* <a href="mailto:help@thomasfirehelp.com">
           Send us Feedback 💌
-        </a>
+        </a> */}
       </RightButton>
     </Header>
     <Body>

@@ -4,7 +4,7 @@ import styled from 'styled-components'
 const LeftSegment = styled.button`
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
-  font-size: 1.5rem;
+  font-size: 18px;
   width: 50%;
   background-color: ${({ active }) => active && 'grey;'}
   color: ${({ active }) => active && 'white;'}
@@ -18,7 +18,7 @@ const LeftSegment = styled.button`
 const RightSegment = styled.button`
   border-top-right-radius: 4px;
   border-bottom-right-radius: 4px;
-  font-size: 1.5rem;
+  font-size: 18px;
   width: 50%;
   background-color: ${({ active }) => active && 'grey;'}
   color: ${({ active }) => active && 'white;'}

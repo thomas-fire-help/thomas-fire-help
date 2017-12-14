@@ -16,12 +16,17 @@ const RequiredIndicator = styled.em`
 `
 
 const Label = styled.div`
-  font-size: 1.5rem;
-  padding: 1rem 0;
+  font-size: 18px;
+  text-transform: uppercase;
+  padding: 15px 0;
 `
 
 const StackContainer = styled.div`
-  margin: 30px 0;
+  margin: 0 0;
+`
+
+const FormSection = styled.div`
+  padding: 30px 0;
 `
 
 const StackInput = ({ required, children, label }) => (
@@ -37,129 +42,144 @@ const StackInput = ({ required, children, label }) => (
 
 const Housing = ({ actions, update, formData, history: { goBack }}) => (
   <Layout header="Housing" onBack={goBack}>
-    <Container>
+    <Container style={{ maxWidth: '600px', display: 'flex' }}>
       <HeaderContainer>
-        Enter Housing Information
+        Housing Information
       </HeaderContainer>
-      <StackInput required label="Housing Type:">
-        <SegmentedController
-          value={formData.housingType}
-          onChange={value => update('housingType', value)}
-          options={[
-            {label: 'Entire Home', value: 'entire_home'},
-            {label: 'Private Room', value: 'private_room'}
-          ]}
-        />
-      </StackInput>
+      <FormSection>
+        <StackInput required label="Housing Type:">
+          <SegmentedController
+            value={formData.housingType}
+            onChange={value => update('housingType', value)}
+            options={[
+              {label: 'Entire Home', value: 'entire_home'},
+              {label: 'Private Room', value: 'private_room'}
+            ]}
+          />
+        </StackInput>
 
-      <StackInput required label="Beds Available:">
-        <Select
-          showSearch
-          style={{ width: '100%' }}
-          value={formData.bedsAvailable}
-          placeholder="Select number of beds available"
-          optionFilterProp="children"
-          onChange={value => update('bedsAvailable', value)}
-          filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+        <StackInput required label="Beds Available:">
+          <Select
+            showSearch
+            style={{ width: '100%' }}
+            value={formData.bedsAvailable}
+            placeholder="Select number of beds available"
+            optionFilterProp="children"
+            onChange={value => update('bedsAvailable', value)}
+            filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+          >
+            <Option value="1">1</Option>
+            <Option value="2">2</Option>
+            <Option value="3">3</Option>
+            <Option value="4">4</Option>
+            <Option value="5">5+</Option>
+          </Select>
+        </StackInput>
+      </FormSection>
+
+      <FormSection>
+        <StackInput required label="City:">
+          <Select
+            showSearch
+            style={{ width: '100%' }}
+            value={formData.city}
+            placeholder="Select a city"
+            optionFilterProp="children"
+            onChange={value => update('city', value)}
+            filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+          >
+            <Option value="goleta">Goleta</Option>
+            <Option value="ojai">Ojai</Option>
+            <Option value="santa_barbara">Santa Barbara</Option>
+            <Option value="camarillo">Camarillo</Option>
+            <Option value="ventura">Ventura</Option>
+            <Option value="thousand_oaks">Thousand Oaks</Option>
+          </Select>
+        </StackInput>
+
+        <StackInput label="Neighborhood:">
+          <Input
+            onChange={value => update('neighborhood', value)}
+          />
+        </StackInput>
+      </FormSection>
+
+      <FormSection>
+        <StackInput required label="Duration:">
+          <RadioGroup value={formData.duration} onChange={({ target }) => update('duration', target.value)}>
+            <Radio value={'short_term'}>Short-Term: one week or less</Radio>
+            <Radio value={'long_term'}>Long-Term: one month to one week </Radio>
+            <Radio value={'permanent'}>Permanent: available for rent or lease</Radio>
+          </RadioGroup>
+        </StackInput>
+      </FormSection>
+
+      <FormSection>
+        <StackInput required label="Price:">
+          <SegmentedController
+            value={formData.price}
+            onChange={value => update('price', value)}
+            options={[{ label: "Free", value: 'free' }, { label: "Paid", value: 'paid' }]}
+          />
+        </StackInput>
+
+        <StackInput label="Child Friendly:">
+          <SegmentedController
+            value={formData.childFriendly}
+            onChange={value => update('childFriendly', value)}
+            options={[{ label: "Yes", value: 'yes' }, { label: "No", value: 'no' }]}
+          />
+        </StackInput>
+
+        <StackInput label="Animals present:">
+          <SegmentedController
+            value={formData.householdHasAnimals}
+            onChange={value => update('householdHasAnimals', value)}
+            options={[{ label: "Yes", value: 'yes' }, { label: "No", value: 'no' }]}
+          />
+        </StackInput>
+
+        <StackInput label="Pets allowed:">
+          <SegmentedController
+            value={formData.petsAllowed}
+            onChange={value => update('petsAllowed', value)}
+            options={[{ label: "Yes", value: 'yes' }, { label: "No", value: 'no' }]}
+          />
+        </StackInput>
+      </FormSection>
+
+      <FormSection>
+        <StackInput label="Description of Housing:">
+          <TextArea placeholder="Additional Information" autosize={{ minRows: 2 }} />
+        </StackInput>
+      </FormSection>
+
+      <FormSection>
+        <StackInput required label="Your Name:">
+          <Input
+            onChange={value => update('name', value)}
+          />
+        </StackInput>
+
+        <StackInput required label="Phone Number:">
+          <Input
+            onChange={value => update('phoneNumber', value)}
+          />
+        </StackInput>
+
+        <StackInput required label="Email Address:">
+          <Input
+            onChange={value => update('emailAddress', value)}
+          />
+        </StackInput>
+      </FormSection>
+
+      <div style={{ padding: '30px 0' }}>
+        <Button
+          type="primary"
+          style={{ width: '100%', height: '44px' }}
+          onClick={() => actions.create(formData)}
         >
-          <Option value="1">1</Option>
-          <Option value="2">2</Option>
-          <Option value="3">3</Option>
-          <Option value="4">4</Option>
-          <Option value="5">5+</Option>
-        </Select>
-      </StackInput>
-
-      <StackInput required label="City:">
-        <Select
-          showSearch
-          style={{ width: '100%' }}
-          value={formData.city}
-          placeholder="Select a city"
-          optionFilterProp="children"
-          onChange={value => update('city', value)}
-          filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
-        >
-          <Option value="goleta">Goleta</Option>
-          <Option value="ojai">Ojai</Option>
-          <Option value="santa_barbara">Santa Barbara</Option>
-          <Option value="camarillo">Camarillo</Option>
-          <Option value="ventura">Ventura</Option>
-          <Option value="thousand_oaks">Thousand Oaks</Option>
-        </Select>
-      </StackInput>
-
-      <StackInput label="Neighborhood:">
-        <Input
-          onChange={value => update('neighborhood', value)}
-        />
-      </StackInput>
-
-      <StackInput required label="Duration:">
-        <RadioGroup value={formData.duration} onChange={({ target }) => update('duration', target.value)}>
-          <Radio value={'short_term'}>Short-Term: one week or less</Radio>
-          <Radio value={'long_term'}>Long-Term: one month to one week </Radio>
-          <Radio value={'permanent'}>Permanent: available for rent or lease</Radio>
-        </RadioGroup>
-      </StackInput>
-
-      <StackInput required label="Price:">
-        <SegmentedController
-          value={formData.price}
-          onChange={value => update('price', value)}
-          options={[{ label: "Free", value: 'free' }, { label: "Paid", value: 'paid' }]}
-        />
-      </StackInput>
-
-      <StackInput label="Child Friendly:">
-        <SegmentedController
-          value={formData.childFriendly}
-          onChange={value => update('childFriendly', value)}
-          options={[{ label: "Yes", value: 'yes' }, { label: "No", value: 'no' }]}
-        />
-      </StackInput>
-
-      <StackInput label="Household currently has animals?">
-        <SegmentedController
-          value={formData.householdHasAnimals}
-          onChange={value => update('householdHasAnimals', value)}
-          options={[{ label: "Yes", value: 'yes' }, { label: "No", value: 'no' }]}
-        />
-      </StackInput>
-
-      <StackInput label="Pets allowed:">
-        <SegmentedController
-          value={formData.petsAllowed}
-          onChange={value => update('petsAllowed', value)}
-          options={[{ label: "Yes", value: 'yes' }, { label: "No", value: 'no' }]}
-        />
-      </StackInput>
-
-
-      <StackInput label="Description of Housing:">
-        <TextArea placeholder="Additional Information" autosize={{ minRows: 2 }} />
-      </StackInput>
-
-      <StackInput required label="Your Name:">
-        <Input
-          onChange={value => update('name', value)}
-        />
-      </StackInput>
-
-      <StackInput required label="Phone Number:">
-        <Input
-          onChange={value => update('phoneNumber', value)}
-        />
-      </StackInput>
-
-      <StackInput required label="Email Address:">
-        <Input
-          onChange={value => update('emailAddress', value)}
-        />
-      </StackInput>
-
-      <div style={{ paddingTop: '1em' }}>
-        <Button onClick={() => actions.create(formData)}>
           Submit!
         </Button>
       </div>
