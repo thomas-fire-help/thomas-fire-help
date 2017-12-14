@@ -11,7 +11,7 @@ export const Container = styled.div`
   flex-direction: column;
   animation: ${fadeIn} 1s forwards;
   opacity: 0;
-  padding: 15px 55px;
+  padding: 15px 45px;
 `
 
 export const HeaderContainer = styled.div`

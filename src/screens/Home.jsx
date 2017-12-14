@@ -11,7 +11,7 @@ const fadeIn = keyframes`
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 15px 55px;
+  padding: 15px 45px;
 `
 
 const HeaderContainer = styled.div`
