@@ -47,7 +47,7 @@ const Home = ({ history: { goBack }}) => (
           target="_blank"
         >
           <h2> 👕 Donate or Deliver Supplies </h2>
-          <p> Donate or deliver collected supplies to registered drop-off locations. </p>
+          <p> View a list of locations where you can drop-off supplies.</p>
         </MobileExternal>
 
         <MobileExternal
@@ -107,7 +107,7 @@ const Home = ({ history: { goBack }}) => (
           target="_blank"
         >
           <h2> 👕 Donate or Deliver Supplies </h2>
-          <p> Donate or deliver collected supplies to registered drop-off locations. </p>
+          <p> View a list of locations where you can drop-off supplies. </p>
         </External>
 
         <External
