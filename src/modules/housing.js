@@ -6,7 +6,7 @@ const endpoint = `${getHost()}/housings`;
 
 const create = params =>
   fetch(endpoint, { method: 'POST', body: JSON.stringify(params) })
-    .then(res => res.json())
+    .then(res => res.json());
 
 const serializeForCreate = params => {
   return {
@@ -23,12 +23,31 @@ const serializeForCreate = params => {
     contact_name: params.name,
     phone_number: params.phoneNumber,
     email_address: params.emailAddress,
-  }
-}
+  };
+};
 
 const list = params =>
-  fetch(endpoint).then(res => res.json())
+  fetch(endpoint).then(res => res.json());
 
+const examplePayload = [
+  {
+    city: 'Ventura',
+    beds: 2,
+    paid: true,
+    neighborhood: 'The Avenue',
+    housing_type: 'room',
+    has_animals: true,
+    length_of_stay: 'short_term',
+    child_friendly: true,
+    kid_notes: '',
+    pets_accepted: true,
+    pet_notes: 'No gerbils',
+    contact_name: 'Marcus Bernales',
+    phone_number: '8052639559',
+    email_address: 'mboperator@gmail.com',
+    notes: '',
+  },
+]
 
 const housingModule = createModule ({
   name: 'housing',
@@ -63,7 +82,7 @@ const housingModule = createModule ({
     ],
     listSuccess: {
       reducer: (state, { payload }) =>
-        Object.assign({}, state, { loading: false, data: payload })
+        Object.assign({}, state, { loading: false, data: examplePayload })
     },
     listError: s => s,
   },

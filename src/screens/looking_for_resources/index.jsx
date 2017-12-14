@@ -24,13 +24,10 @@ const Home = ({ history: { goBack }}) => (
           <h2> 🛠 Volunteers </h2>
           <p> For property assistance, events, animal care, and more. </p>
         </MobileCategory>
-        <MobileExternal
-          href="https://docs.google.com/spreadsheets/d/1miFPjSVhG8NR-tpieEH3Tu9cusCAesCSfr6ro1Nbd88/edit#gid=1117680778"
-          target="_blank"
-        >
+        <MobileCategory to="/looking_for_resources/housing">
           <h2> 🏘 Housing </h2>
           <p> View housing that is available now. </p>
-        </MobileExternal>
+        </MobileCategory>
         <MobileExternal
           href="https://docs.google.com/spreadsheets/d/1miFPjSVhG8NR-tpieEH3Tu9cusCAesCSfr6ro1Nbd88/edit#gid=427392080"
           target="_blank"
@@ -48,13 +45,10 @@ const Home = ({ history: { goBack }}) => (
           <h2> 🛠 Volunteers </h2>
           <p> For property assistance, events, animal care, and more. </p>
         </Category>
-        <External
-          href="https://docs.google.com/spreadsheets/d/1miFPjSVhG8NR-tpieEH3Tu9cusCAesCSfr6ro1Nbd88/edit#gid=1117680778"
-          target="_blank"
-        >
+        <Category to="/looking_for_resources/housing">
           <h2> 🏘 Housing </h2>
           <p> View housing that is available now. </p>
-        </External>
+        </Category>
         <External
           href="https://docs.google.com/spreadsheets/d/1miFPjSVhG8NR-tpieEH3Tu9cusCAesCSfr6ro1Nbd88/edit#gid=427392080"
           target="_blank"

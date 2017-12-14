@@ -20,6 +20,14 @@ export const HeaderContainer = styled.div`
   padding-bottom: 20px;
 `
 
+export const Card = styled.div`
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.2s ease-in-out;
+  &:hover {
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.23), 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+  }
+`
+
 export const MobileHeaderContainer = styled.div`
   align-self: flex-start;
   flex: .75;
