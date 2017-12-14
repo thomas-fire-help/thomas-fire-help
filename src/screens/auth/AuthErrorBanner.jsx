@@ -47,7 +47,7 @@ const AuthErrorBanner = ({ hasSignUpErrors, errors }) => {
         { Object.keys(errors)
             .filter(category => Boolean(errors[category].label))
             .map((category, index) => (
-              <ErrorMessage>{`${index + 1}. ${errors[category].label}`}</ErrorMessage>
+              <ErrorMessage key={`error-${index}`}>{`${index + 1}. ${errors[category].label}`}</ErrorMessage>
             ))
         }
         </Banner.Body>
