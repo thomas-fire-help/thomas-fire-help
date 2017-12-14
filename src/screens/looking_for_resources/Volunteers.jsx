@@ -15,13 +15,13 @@ const Housing = ({ loading, data, history: { goBack }}) => (
           <h1> I am an... </h1>
         </MobileHeaderContainer>
         <MobileExternal
-          href="https://docs.google.com/forms/d/e/1FAIpQLSex42gLquN2__nkCOtO6ei_Y-kHOoSDBpVAk4bTX2TdDvLrpA/viewform"
+          href="https://drive.google.com/open?id=1UQHC1UUAOlwGiMorw8DBVUTE6j_ayTTevvqoLHQgYzg"
           target="_blank"
         >
           <h2> 🏩 Organization </h2>
         </MobileExternal>
         <MobileExternal
-          href="https://docs.google.com/forms/d/e/1FAIpQLSekXv_IcLhfSi3N3kCg__wJdDL2fcsvM9Oq2UU7pnuIcHouug/viewform"
+          href="https://drive.google.com/open?id=1ccC9ekZDZSCYxCxZbhyviwEI5yLvOYuW2HRO1DABRQU"
           target="_blank"
         >
           <h2> 🙋 Individual </h2>
@@ -33,13 +33,13 @@ const Housing = ({ loading, data, history: { goBack }}) => (
           <h1> I'm an... </h1>
         </HeaderContainer>
         <External
-          href="https://docs.google.com/forms/d/e/1FAIpQLSex42gLquN2__nkCOtO6ei_Y-kHOoSDBpVAk4bTX2TdDvLrpA/viewform"
+          href="https://drive.google.com/open?id=1UQHC1UUAOlwGiMorw8DBVUTE6j_ayTTevvqoLHQgYzg"
           target="_blank"
         >
           <h2> 🏩 Organization </h2>
         </External>
         <External
-          href="https://docs.google.com/forms/d/e/1FAIpQLSekXv_IcLhfSi3N3kCg__wJdDL2fcsvM9Oq2UU7pnuIcHouug/viewform"
+          href="https://drive.google.com/open?id=1ccC9ekZDZSCYxCxZbhyviwEI5yLvOYuW2HRO1DABRQU"
           target="_blank"
         >
           <h2> 🙋 Individual </h2>
