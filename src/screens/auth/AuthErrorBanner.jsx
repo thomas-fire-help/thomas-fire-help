@@ -1,6 +1,7 @@
 import React from 'react'
 import { Banner, ErrorBanner } from '@procore/core-react'
 import styled, { keyframes } from 'styled-components'
+import { hasSignupErrors } from '../../utils/authUtils'
 
 const fadeIn = keyframes`
 0% {
@@ -30,20 +31,16 @@ const enlarge = keyframes`
 `;
 
 const ErrorBannerContainer = styled(ErrorBanner)`
-  animation: ${fadeIn} 1s, ${enlarge} .5s;
+  animation: ${fadeIn} 1s, ${enlarge} 1s forwards
 `
 
-const ErrorMessage = styled.span`
-  animation: ${fadeIn} 1s;
+const ErrorMessage = styled.div`
+  animation: ${fadeIn} 1s forwards;
 `
 
-const hasSignupErrors = (errors) => (
-  Object.values(errors).some(error => Boolean(error.label))
-);
-
-const AuthErrorBanner = ({ errors }) => {
+const AuthErrorBanner = ({ hasSignUpErrors, errors }) => {
   return (
-    <ErrorBannerContainer>
+    <ErrorBannerContainer hasSignUpErrors={hasSignUpErrors}>
       <Banner.Content>
         <Banner.Title style={{ fontSize: '17px' }}>Error</Banner.Title>
         <Banner.Body style={{ fontSize: '15px' }}>
@@ -58,6 +55,10 @@ const AuthErrorBanner = ({ errors }) => {
       <Banner.Dismiss onClick={() => alert('dismiss clicked')} />
     </ErrorBannerContainer>
   )
+}
+
+AuthErrorBanner.defaultProps = {
+  hasSignUpErrors: false,
 }
 
 export default AuthErrorBanner;

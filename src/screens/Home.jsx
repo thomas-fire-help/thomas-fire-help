@@ -43,6 +43,7 @@ const MobileHeaderContainer = styled.div`
   overflow: hidden;
   margin-top: 40px;
   margin-bottom: 30px;
+  marginTop: 100px;
   opacity: 0;
   animation: ${fadeIn} 1.5s forwards;
 
@@ -142,12 +143,23 @@ const AuthContainer = styled.div`
 const AuthLink = styled(Link)`
   color: #000;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 20px;
   text-transform: uppercase;
   letter-spacing: 2px;
   font-weight: bold;
   padding: 20px;
   margin: 40px 40px;
+`
+
+const MobileAuthLink = styled(Link)`
+  color: #000;
+  text-decoration: none;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: bold;
+  padding: 10px;
+  margin: 0px 30px;
 `
 
 const TranslateLink = styled.aside`
@@ -166,7 +178,7 @@ const MobileNotificationBar = styled.div`
   opacity: 0;
   animation: ${fadeIn} 1.5s forwards;
   animation-delay: .7s;
-  margin: 30px 0px 15px 0px;
+  margin: 60px 0px 15px 0px;
 `
 
 const NotificationBar = styled.div`
@@ -227,6 +239,14 @@ const Home = props => (
           </MobileNavigationCard>
         </StyledLink>
       </MobileNavContainer>
+      <AuthContainer>
+        <MobileAuthLink to="login">
+          Login
+        </MobileAuthLink>
+        <MobileAuthLink to="sign_up">
+          Sign Up
+        </MobileAuthLink>
+      </AuthContainer>
       <MobileNotificationBar>
         <div>
           In event of Emergency, call <a href="tel:911"><Emphasis>911</Emphasis></a>

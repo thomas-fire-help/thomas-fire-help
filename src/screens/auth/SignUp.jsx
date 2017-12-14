@@ -4,9 +4,10 @@ import styled, { keyframes } from 'styled-components'
 import debounce from 'lodash.debounce'
 import MediaQuery from 'react-responsive'
 import Layout from '../../components/Layout'
-import ErrorBanner from './AuthErrorBanner';
+import AuthBanner from './AuthErrorBanner';
 import { Container, HeaderContainer, MobileHeaderContainer } from '../../components/atoms'
 import { fetchConfig, handleErrors } from '../../utils/fetchUtils'
+import { isValidEmail, isValidPassword, hasSignUpErrors } from '../../utils/authUtils'
 
 const AuthInputContainer = styled.div`
   display: flex;
@@ -51,42 +52,52 @@ const AuthInput = styled.input`
 const MobileSignUpButton = styled.button`
   align-self: flex-end;
   background: none;
-  border: 1px solid #000;
+  border: ${props => props.hasSignUpErrors
+    ? '1px solid #AFAFAF;'
+    : '1px solid #000;'
+  }
   border-radius: 3px;
-  cursor: pointer;
+  color: ${props => props.hasSignUpErrors
+    ? '#AFAFAF;'
+    : '#000;'
+  }
+  cursor: ${props => props.hasSignUpErrors
+    ? 'auto;'
+    : 'pointer;'
+  }
   font-size: 18px;
   height: 35px;
   width: 140px;
   letter-spacing: 2px;
   text-transform: uppercase;
   margin-top: 3rem;
+  outline: none;
 `
 
 const SignUpButton = styled.button`
   align-self: flex-end;
   background: none;
-  border: 1px solid #000;
+  border: ${props => props.hasSignUpErrors
+    ? '1px solid #AFAFAF;'
+    : '1px solid #000;'
+  }
   border-radius: 3px;
-  cursor: pointer;
-  font-size: 20px;
+  color: ${props => props.hasSignUpErrors
+    ? '#AFAFAF;'
+    : '#000;'
+  }
+  cursor: ${props => props.hasSignUpErrors
+    ? 'auto;'
+    : 'pointer;'
+  }
+  font-size: 18px;
   height: 35px;
   width: 140px;
   letter-spacing: 2px;
   text-transform: uppercase;
   margin-top: 3rem;
+  outline: none;
 `
-
-const isValidEmail = (email) => (
-  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email)
-);
-
-const isValidPassword = (password) => (
-  password.length >= 8
-);
-
-const hasSignupErrors = (errors) => (
-  Object.values(errors).some(error => Boolean(error.label))
-);
 
 class SignUp extends Component {
   constructor() {
@@ -106,7 +117,7 @@ class SignUp extends Component {
   handleOnClick = () => {
     const { email: username, phoneNumber: phone_number, password, errors } = this.state;
 
-    hasSignupErrors(errors)
+    hasSignUpErrors(errors)
       ? null
       : fetch('auth/register', {
         method: 'post',
@@ -157,7 +168,9 @@ class SignUp extends Component {
       <Layout onBack={goBack}>
         <Container>
           <MediaQuery minDeviceWidth={320} maxDeviceWidth={480}>
-          { hasSignupErrors(errors) && <ErrorBanner /> }
+            {hasSignUpErrors(errors) &&
+              <AuthBanner hasSignUpErrors={hasSignUpErrors(errors)} errors={errors} />
+            }
             <MobileHeaderContainer style={{ marginBottom: '40px', textAlign: 'left' }}>
               <h1> Sign Up </h1>
             </MobileHeaderContainer>
@@ -187,14 +200,14 @@ class SignUp extends Component {
                 placeholder="Password"
                 type="password"
               />
-              <MobileSignUpButton onClick={this.handleOnClick}>
+              <MobileSignUpButton hasSignUpErrors={hasSignUpErrors(errors)} onClick={this.handleOnClick}>
                 Sign Up
               </MobileSignUpButton>
             </AuthInputContainer>
           </MediaQuery>
 
           <MediaQuery minDeviceWidth={481}>
-            { hasSignupErrors(errors) && <ErrorBanner /> }
+            {hasSignUpErrors(errors) && <AuthBanner hasSignUpErrors={hasSignUpErrors(errors)} errors={errors} />}
             <HeaderContainer>
               <h1> Sign Up </h1>
             </HeaderContainer>
@@ -223,7 +236,7 @@ class SignUp extends Component {
                 placeholder="Password"
                 type="password"
               />
-              <SignUpButton onClick={this.handleOnClick}>
+              <SignUpButton hasSignUpErrors={hasSignUpErrors(errors)} onClick={this.handleOnClick}>
                 Sign Up
               </SignUpButton>
             </AuthInputContainer>

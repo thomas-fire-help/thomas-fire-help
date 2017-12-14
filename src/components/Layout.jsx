@@ -70,7 +70,7 @@ const Layout = ({ onBack, children, header }) => (
       </Title>
       <RightButton>
         <a href="mailto:help@thomasfirehelp.com">
-          Send us Feedback 💌
+          Send Feedback 💌
         </a>
       </RightButton>
     </Header>
