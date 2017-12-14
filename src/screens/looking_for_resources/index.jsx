@@ -22,7 +22,7 @@ const Home = ({ history: { goBack }}) => (
         </MobileHeaderContainer>
 
         <MobileExternal
-          href="https://docs.google.com/spreadsheets/d/1miFPjSVhG8NR-tpieEH3Tu9cusCAesCSfr6ro1Nbd88/edit#gid=1117680778"
+          href="https://drive.google.com/open?id=1xWoeLBQYWkgpaMcVCaBnMfEC-oY80aS2CD3sGxMHdes"
           target="_blank"
         >
           <h2> 🏘 Housing </h2>
@@ -35,7 +35,7 @@ const Home = ({ history: { goBack }}) => (
         </MobileCategory>
 
         <MobileExternal
-          href="https://drive.google.com/open?id=1hbUqWT0P2SkQtSLdfir0S-j2Iw8k1R-gNmIwXsXHlgE"
+          href="https://drive.google.com/open?id=1ARhcqiax5bf4vDfPZak7ffUEolMvqTFcGw9sp62m1qA"
           target="_blank"
         >
           <h2> 🐴 Help With Animals </h2>
@@ -43,7 +43,7 @@ const Home = ({ history: { goBack }}) => (
         </MobileExternal>
 
         <MobileExternal
-          href="https://docs.google.com/spreadsheets/d/1miFPjSVhG8NR-tpieEH3Tu9cusCAesCSfr6ro1Nbd88/edit#gid=427392080"
+          href="https://drive.google.com/open?id=1mZnMAhdfH7HcG1iJUBJBHQUSHhP2whl6g4vNT7THIi0"
           target="_blank"
         >
           <h2> 👕 Supplies </h2>
@@ -59,7 +59,7 @@ const Home = ({ history: { goBack }}) => (
         </MobileExternal>
         
         <MobileExternal
-          href="https://drive.google.com/open?id=1Oi1ij6GmdOVR9WGqL_LGycydMsSF--HKGzDQyM-7WxU"
+          href="https://drive.google.com/open?id=1nUv_bw0IA7KPy_jP5IXEGELd1GF7cfzv_LkJutN_nV4"
           target="_blank"
         >
           <h2> ⛑ Services </h2>
@@ -73,7 +73,7 @@ const Home = ({ history: { goBack }}) => (
         </HeaderContainer>
 
         <External
-          href="https://docs.google.com/spreadsheets/d/1miFPjSVhG8NR-tpieEH3Tu9cusCAesCSfr6ro1Nbd88/edit#gid=1117680778"
+          href="https://drive.google.com/open?id=1xWoeLBQYWkgpaMcVCaBnMfEC-oY80aS2CD3sGxMHdes"
           target="_blank"
         >
           <h2> 🏘 Housing </h2>
@@ -86,7 +86,7 @@ const Home = ({ history: { goBack }}) => (
         </Category>
 
         <External
-          href="https://drive.google.com/open?id=1hbUqWT0P2SkQtSLdfir0S-j2Iw8k1R-gNmIwXsXHlgE"
+          href="https://drive.google.com/open?id=1ARhcqiax5bf4vDfPZak7ffUEolMvqTFcGw9sp62m1qA"
           target="_blank"
         >
           <h2> 🐴 Help With Animals </h2>
@@ -94,7 +94,7 @@ const Home = ({ history: { goBack }}) => (
         </External>
 
         <External
-          href="https://docs.google.com/spreadsheets/d/1miFPjSVhG8NR-tpieEH3Tu9cusCAesCSfr6ro1Nbd88/edit#gid=427392080"
+          href="https://drive.google.com/open?id=1mZnMAhdfH7HcG1iJUBJBHQUSHhP2whl6g4vNT7THIi0"
           target="_blank"
         >
           <h2> 👕 Supplies </h2>
@@ -110,7 +110,7 @@ const Home = ({ history: { goBack }}) => (
         </External>
         
         <External
-          href="https://drive.google.com/open?id=1Oi1ij6GmdOVR9WGqL_LGycydMsSF--HKGzDQyM-7WxU"
+          href="https://drive.google.com/open?id=1nUv_bw0IA7KPy_jP5IXEGELd1GF7cfzv_LkJutN_nV4"
           target="_blank"
         >
           <h2> ⛑ Services </h2>
