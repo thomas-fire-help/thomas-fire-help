@@ -43,7 +43,7 @@ const Home = ({ history: { goBack }}) => (
         </MobileExternal>
 
         <MobileExternal
-          href="https://drive.google.com/open?id=1mZnMAhdfH7HcG1iJUBJBHQUSHhP2whl6g4vNT7THIi0"
+          href="https://drive.google.com/open?id=1bio9KHbv25rozXF6mV924IbS06EZHWnJhOe8sYCxVqM"
           target="_blank"
         >
           <h2> 👕 Supplies </h2>
@@ -94,7 +94,7 @@ const Home = ({ history: { goBack }}) => (
         </External>
 
         <External
-          href="https://drive.google.com/open?id=1mZnMAhdfH7HcG1iJUBJBHQUSHhP2whl6g4vNT7THIi0"
+          href="https://drive.google.com/open?id=1bio9KHbv25rozXF6mV924IbS06EZHWnJhOe8sYCxVqM"
           target="_blank"
         >
           <h2> 👕 Supplies </h2>

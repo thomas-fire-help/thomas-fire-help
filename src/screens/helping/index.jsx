@@ -43,19 +43,19 @@ const Home = ({ history: { goBack }}) => (
         </MobileCategory>
 
         <MobileExternal
-          href="https://drive.google.com/open?id=1s4R5IOZtu8_AVKZG5-fd_ood_aFOO6P04mABgI401b8"
-          target="_blank"
-        >
-          <h2> 👕 Donate or Collect Supplies </h2>
-          <p> Donate supplies or register a drop-off location. </p>
-        </MobileExternal>
-
-        <MobileExternal
           href="https://drive.google.com/open?id=1bio9KHbv25rozXF6mV924IbS06EZHWnJhOe8sYCxVqM"
           target="_blank"
         >
-          <h2> ⬇️ Drop-Off Supplies </h2>
-          <p> View registered drop-off locations. </p>
+          <h2> 👕 Donate or Deliver Supplies </h2>
+          <p> Donate or deliver collected supplies to registered drop-off locations. </p>
+        </MobileExternal>
+
+        <MobileExternal
+          href="https://drive.google.com/open?id=1s4R5IOZtu8_AVKZG5-fd_ood_aFOO6P04mABgI401b8"
+          target="_blank"
+        >
+          <h2> ⬇️ Collect Donations</h2>
+          <p> Register a new supply pick-up or drop-off location. </p>
         </MobileExternal>
 
         <MobileExternal
@@ -103,19 +103,19 @@ const Home = ({ history: { goBack }}) => (
         </Category>
 
         <External
-          href="https://drive.google.com/open?id=1s4R5IOZtu8_AVKZG5-fd_ood_aFOO6P04mABgI401b8"
-          target="_blank"
-        >
-          <h2> 👕 Donate or Collect Supplies </h2>
-          <p> Donate supplies or register a drop-off location. </p>
-        </External>
-
-        <External
           href="https://drive.google.com/open?id=1bio9KHbv25rozXF6mV924IbS06EZHWnJhOe8sYCxVqM"
           target="_blank"
         >
-          <h2> ⬇️ Drop-Off Supplies </h2>
-          <p> View registered drop-off locations. </p>
+          <h2> 👕 Donate or Deliver Supplies </h2>
+          <p> Donate or deliver collected supplies to registered drop-off locations. </p>
+        </External>
+
+        <External
+          href="https://drive.google.com/open?id=1s4R5IOZtu8_AVKZG5-fd_ood_aFOO6P04mABgI401b8"
+          target="_blank"
+        >
+          <h2> ⬇️ Collect Donations</h2>
+          <p> Register a new supply pick-up or drop-off location. </p>
         </External>
 
         <External
