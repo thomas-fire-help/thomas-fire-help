@@ -8,8 +8,12 @@ const Body = styled.div`
 `
 
 const Summary = styled.div`
-  padding-top: 15px;
-  font-size: 20px;
+  padding-left: 4px;
+  font-size: 18px;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-color: #6D6D6D;
+  letter-spacing: .03em;
 `
 
 const Location = styled.div`
@@ -17,11 +21,11 @@ const Location = styled.div`
 `
 
 const DetailPane = styled.aside`
-  padding-top: 15px;
-  max-height: ${props => props.active ? '800px' : '0px'};
+  padding-top: ${props => props.acive && '15px'};
+  max-height: ${props => props.active ? '750px' : '0px'};
   overflow: hidden;
   font-size: 14px;
-  transition: max-height 0.2s ease-in-out;
+  transition: max-height 0.25s ease-in-out;
 `
 
 const Footer = styled.section`
@@ -32,6 +36,15 @@ const Footer = styled.section`
 const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  user-select: none;
+
+  h2 {
+    cursor: pointer;
+    font-size: 36px;
+    color: #3A3A3A;
+    font-weight: 600;
+    margin-bottom: 0px;
+  }
 `
 
 const Button = styled.button`
@@ -48,11 +61,17 @@ const Button = styled.button`
 `
 
 const TagList = styled.ul`
+  margin-top: 30px;
   list-style: none;
+  display: flex;
+  flex-wrap: wrap;
 `
 
 const Tag = styled.li`
-
+  margin: 5px;
+  padding: 5px 10px;
+  border-radius: 15px;
+  border: 1px solid grey;
 `
 
 const wordMap = {
@@ -62,11 +81,11 @@ const wordMap = {
   },
   housing_type: {
     room: 'Room',
-    house: 'Entire House',
+    house: 'House',
   },
   length_of_stay: {
-    short_term: 'Short Term - 5 days',
-    long_term: 'Long Term - 1 month',
+    short_term: 'Short Term (5 days)',
+    long_term: 'Long Term (1 month)',
   },
 }
 
@@ -76,33 +95,33 @@ const prettyPrint = (key, value) => wordMap[key][value]
 const HouseCard = ({ showDetails, setShowDetails, ...houseListing }) => (
   <Card>
     <Body>
-      <HeaderContainer>
+      <HeaderContainer onClick={() => setShowDetails(!showDetails)}>
         <h2>
           {`${prettyPrint('housing_type', houseListing.housing_type)} in ${houseListing.city}`}
         </h2>
         <aside>
-          {prettyPrint('length_of_stay', houseListing.length_of_stay)}
+          {houseListing.neighborhood}
         </aside>
       </HeaderContainer>
+
       <Summary>
-        <p>
-          {`🛏 ${houseListing.beds} beds available`}
-        </p>
+        <div>
+          {`${houseListing.beds} beds - ${prettyPrint('length_of_stay', houseListing.length_of_stay)}`}
+        </div>
       </Summary>
-      <Location>
-        {`📍 ${houseListing.city}, ${houseListing.neighborhood}`}
-      </Location>
+
+      <TagList>
+        <Tag>{prettyPrint('paid', houseListing.paid)}</Tag>
+        <Tag>{prettyPrint('length_of_stay', houseListing.length_of_stay)}</Tag>
+        {houseListing.child_friendly &&
+          <Tag>Child Friendly</Tag>
+        }
+        {houseListing.pets_accepted &&
+          <Tag>Pets Accepted</Tag>
+        }
+      </TagList>
+
       <DetailPane active={showDetails}>
-        <TagList>
-          <Tag>{prettyPrint('paid', houseListing.paid)}</Tag>
-          <Tag>{prettyPrint('length_of_stay', houseListing.length_of_stay)}</Tag>
-          {houseListing.child_friendly &&
-            <Tag>Child Friendly</Tag>
-          }
-          {houseListing.pets_accepted &&
-            <Tag>Pets Accepted</Tag>
-          }
-        </TagList>
         {houseListing.kid_notes &&
           <div>
             <b>Notes on Children</b>
