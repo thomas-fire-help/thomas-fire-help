@@ -33,6 +33,11 @@ const Footer = styled.section`
   display: flex;
 `
 
+const HeaderContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
+
 const Button = styled.button`
   align-self: flex-end;
   background-color: ${props => props.active ? 'darkgray' : 'none'};
@@ -76,10 +81,15 @@ const Housing = ({ setShowDetails, showDetails, loading, data, history: { goBack
     {data.map(houseListing => (
       <Card>
         <Body>
-          <Summary>
+          <HeaderContainer>
             <h2>
               {`${prettyPrint('housing_type', houseListing.housing_type)} in ${houseListing.city}`}
             </h2>
+            <aside>
+              {prettyPrint('length_of_stay', houseListing.length_of_stay)}
+            </aside>
+          </HeaderContainer>
+          <Summary>
             <p>
               {`🛏 ${houseListing.beds} beds available`}
             </p>
