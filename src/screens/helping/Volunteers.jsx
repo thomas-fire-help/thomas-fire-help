@@ -21,13 +21,13 @@ const Housing = ({ loading, data, history: { goBack }}) => (
           <h1> I want to help... </h1>
         </MobileHeaderContainer>
         <MobileExternal
-          href="https://docs.google.com/spreadsheets/d/1miFPjSVhG8NR-tpieEH3Tu9cusCAesCSfr6ro1Nbd88/edit#gid=255593871"
+          href="https://drive.google.com/open?id=1ul5ZYbb4UUBuzpMB-nKplNFtIv3mloLD5u3iWhvEWq0"
           target="_blank"
         >
           <h2> 🏩 An Organization </h2>
         </MobileExternal>
         <MobileExternal
-          href="https://docs.google.com/spreadsheets/d/1miFPjSVhG8NR-tpieEH3Tu9cusCAesCSfr6ro1Nbd88/edit#gid=1607302293"
+          href="https://drive.google.com/open?id=1ul5ZYbb4UUBuzpMB-nKplNFtIv3mloLD5u3iWhvEWq0"
           target="_blank"
         >
           <h2> 🏡 My Neighbors </h2>
@@ -39,13 +39,13 @@ const Housing = ({ loading, data, history: { goBack }}) => (
           <h1> I want to help... </h1>
         </HeaderContainer>
         <External
-          href="https://docs.google.com/spreadsheets/d/1miFPjSVhG8NR-tpieEH3Tu9cusCAesCSfr6ro1Nbd88/edit#gid=255593871"
+          href="https://drive.google.com/open?id=1ul5ZYbb4UUBuzpMB-nKplNFtIv3mloLD5u3iWhvEWq0"
           target="_blank"
         >
           <h2> 🏩 An Organization </h2>
         </External>
         <External
-          href="https://docs.google.com/spreadsheets/d/1miFPjSVhG8NR-tpieEH3Tu9cusCAesCSfr6ro1Nbd88/edit#gid=1607302293"
+          href="https://drive.google.com/open?id=1ul5ZYbb4UUBuzpMB-nKplNFtIv3mloLD5u3iWhvEWq0"
           target="_blank"
         >
           <h2> 🏡 My Neighbors </h2>
