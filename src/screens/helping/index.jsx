@@ -24,13 +24,10 @@ const Home = ({ history: { goBack }}) => (
           <h2> 🛠 Volunteer </h2>
           <p> With individuals or organizations. </p>
         </MobileCategory>
-        <MobileExternal
-          href="https://docs.google.com/forms/d/1W4Z7wwVGVBVNuf9bajq3ud0UwtkrrQ4H6AwY5F155X0/edit"
-          target="_blank"
-        >
+        <MobileCategory to="/helping/housing">
           <h2> 🏡 Offer Housing </h2>
           <p> Help a displaced family, short term or long term. </p>
-        </MobileExternal>
+        </MobileCategory>
         <MobileExternal
           href="https://docs.google.com/spreadsheets/d/1miFPjSVhG8NR-tpieEH3Tu9cusCAesCSfr6ro1Nbd88/edit#gid=427392080"
           target="_blank"
@@ -48,13 +45,10 @@ const Home = ({ history: { goBack }}) => (
           <h2> 🛠 Volunteer </h2>
           <p> With individuals or organizations. </p>
         </Category>
-        <External
-          href="https://docs.google.com/forms/d/1W4Z7wwVGVBVNuf9bajq3ud0UwtkrrQ4H6AwY5F155X0/edit"
-          target="_blank"
-        >
+        <Category to="/helping/housing">
           <h2> 🏡 Offer Housing </h2>
           <p> Help a displaced family, short term or long term. </p>
-        </External>
+        </Category>
         <External
           href="https://docs.google.com/spreadsheets/d/1miFPjSVhG8NR-tpieEH3Tu9cusCAesCSfr6ro1Nbd88/edit#gid=427392080"
           target="_blank"

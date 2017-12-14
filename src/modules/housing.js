@@ -1,11 +1,30 @@
 import { createModule } from 'redux-modules';
 import { loop, Cmd, liftState } from 'redux-loop';
+import { getHost } from '../utils/network';
 
-const endpoint = '/housings'
+const endpoint = `${getHost()}/housings`;
 
 const create = params =>
   fetch(endpoint, { method: 'POST', body: JSON.stringify(params) })
     .then(res => res.json())
+
+const serializeForCreate = params => {
+  return {
+    beds: params.bedsAvailable,
+    paid: params.price,
+    neighborhood: params.neighborhood,
+    housing_type: params.housingType,
+    has_animals: params.householdHasAnimals,
+    length_of_stay: params.duration,
+    child_friendly: params.childFriendly,
+    child_notes: params.childNotes,
+    pets_accepted: params.petsAllowed,
+    pet_notes: params.petNotes,
+    contact_name: params.name,
+    phone_number: params.phoneNumber,
+    email_address: params.emailAddress,
+  }
+}
 
 const list = params =>
   fetch(endpoint).then(res => res.json())
@@ -26,7 +45,7 @@ const housingModule = createModule ({
       Cmd.run(create, {
         successActionCreator: housingModule.createSuccess,
         failActionCreator: housingModule.createError,
-        args: [payload]
+        args: [serializeForCreate(payload)]
       }),
     ],
     createSuccess: {
