@@ -34,7 +34,8 @@ const ErrorBannerContainer = styled(ErrorBanner)`
   animation: ${fadeIn} 1s, ${enlarge} 1s forwards
 `
 
-const ErrorMessage = styled.div`
+const ErrorMessage = styled.span`
+  display: block;
   animation: ${fadeIn} 1s forwards;
 `
 

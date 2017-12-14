@@ -22,7 +22,7 @@ const AuthInput = styled.input`
   border-bottom: 1px solid #000;
   border-radius: 0;
   color: #000;
-  margin-top: 40px;
+  margin-top: 30px;
   font-size: 20px;
   width: 100%;
   &:focus {

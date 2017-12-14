@@ -31,7 +31,7 @@ export const MobileHeaderContainer = styled.div`
   font-size: 12px;
   white-space: nowrap;
   overflow: hidden;
-  margin-top: 30px;
+  margin-top: 40px;
 
   h1 {
     margin: 0;

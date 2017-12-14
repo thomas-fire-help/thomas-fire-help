@@ -1,16 +1,10 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import MediaQuery from 'react-responsive'
 import Layout from '../../components/Layout'
-import { Container } from '../../components/atoms'
+import { Container, HeaderContainer, MobileHeaderContainer } from '../../components/atoms'
 import { fetchConfig } from '../../utils/fetchUtils'
-
-const HeaderContainer = styled.div`
-  align-self: flex-start;
-  text-transform: uppercase;
-  font-size: 1.75rem;
-  letter-spacing: 2px;
-`
 
 const AuthInputContainer = styled.div`
   display: flex;
@@ -25,9 +19,8 @@ const AuthInput = styled.input`
   border-bottom: 1px solid #000;
   border-radius: 0;
   color: #000;
-  padding: 2rem 0rem 1rem 0rem;
-  margin-top: 2rem;
-  font-size: 2.5rem;
+  margin-top: 30px;
+  font-size: 20px;
   width: 100%;
   &:focus {
     caret-color: #000;
@@ -38,7 +31,7 @@ const AuthInput = styled.input`
   }
   &::placeholder {
     color: #000;
-    font-size: 2rem;
+    font-size: 20px;
     font-family: 'Raleway', sans-serif;
     font-weight: 300;
   }
@@ -51,6 +44,22 @@ const AuthInput = styled.input`
   &:-webkit-autofill:focus {
     -webkit-text-fill-color: #000;
   }
+`
+
+const MobileLoginButton = styled.button`
+  align-self: flex-end;
+  background: none;
+  border: 1px solid #000;
+  border-radius: 3px;
+  color: #000;
+  cursor: pointer;
+  font-size: 18px;
+  height: 35px;
+  width: 140px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-top: 3rem;
+  outline: none;
 `
 
 const LoginButton = styled.button`
@@ -103,26 +112,48 @@ class Login extends Component {
     return (
       <Layout onBack={goBack}>
         <Container>
-          <HeaderContainer>
-            <h1>
-              Login
-            </h1>
-          </HeaderContainer>
-          <AuthInputContainer>
-            <AuthInput
-              onChange={(e) => {this.handleUsernameInput(e)}}
-              placeholder="Username or Phone #"
-              type="text"
-            />
-            <AuthInput
-              onChange={(e) => {this.handlePasswordInput(e)}}
-              placeholder="Password"
-              type="password"
-            />
-            <LoginButton onClick={this.handleOnClick}>
-              Login
-            </LoginButton>
-          </AuthInputContainer>
+          <MediaQuery minDeviceWidth={320} maxDeviceWidth={480}>
+            <MobileHeaderContainer style={{ marginBottom: '40px', textAlign: 'left' }}>
+              <h1> Login </h1>
+            </MobileHeaderContainer>
+            <AuthInputContainer>
+              <AuthInput
+                onChange={(e) => {this.handleUsernameInput(e)}}
+                placeholder="Username or Phone #"
+                type="text"
+                style={{ marginTop: '0' }}
+              />
+              <AuthInput
+                onChange={(e) => {this.handlePasswordInput(e)}}
+                placeholder="Password"
+                type="password"
+              />
+              <MobileLoginButton onClick={this.handleOnClick}>
+                Login
+              </MobileLoginButton>
+            </AuthInputContainer>
+          </MediaQuery>
+
+          <MediaQuery minDeviceWidth={481}>
+            <HeaderContainer>
+              <h1> Login </h1>
+            </HeaderContainer>
+            <AuthInputContainer>
+              <AuthInput
+                onChange={(e) => {this.handleUsernameInput(e)}}
+                placeholder="Username or Phone #"
+                type="text"
+              />
+              <AuthInput
+                onChange={(e) => {this.handlePasswordInput(e)}}
+                placeholder="Password"
+                type="password"
+              />
+              <LoginButton onClick={this.handleOnClick}>
+                Login
+              </LoginButton>
+            </AuthInputContainer>
+          </MediaQuery>
         </Container>
       </Layout>
     );
