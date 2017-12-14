@@ -7,7 +7,7 @@ import Layout from '../../components/Layout'
 import AuthBanner from './AuthErrorBanner';
 import { Container, HeaderContainer, MobileHeaderContainer } from '../../components/atoms'
 import { fetchConfig, handleErrors } from '../../utils/fetchUtils'
-import { isValidEmail, isValidPassword, hasSignUpErrors } from '../../utils/authUtils'
+import { isValidEmail, isValidPassword, isValidPhoneNumber, hasSignUpErrors } from '../../utils/authUtils'
 
 const AuthInputContainer = styled.div`
   display: flex;
@@ -119,10 +119,10 @@ class SignUp extends Component {
 
     hasSignUpErrors(errors)
       ? null
-      : fetch('auth/register', {
-        method: 'post',
-        body: JSON.stringify({ username, phone_number, password }),
-        headers: fetchConfig(),
+      : fetch('http://staging.thomasfirehelp.com/auth/register', {
+          method: 'post',
+          body: JSON.stringify({ username, phone_number, password }),
+          headers: fetchConfig(),
       })
         .then(handleErrors)
         .catch((err) => console.log(err))
@@ -143,7 +143,17 @@ class SignUp extends Component {
   }
 
   handlePhoneNumberInput = (e) => {
-    this.setState({ phoneNumber: e.target.value });
+    const { errors } = this.state;
+
+    isValidPhoneNumber(e.target.value)
+      ? this.setState({
+          phoneNumber: e.target.value,
+          errors: { ...errors, phoneNumber: { label: '' } }
+        })
+      : this.setState({
+          phoneNumber: e.target.value,
+          errors: { ...errors, phoneNumber: { label: 'Please enter a phone number with an area code' } }
+        })
   }
 
   handlePasswordInput = (e) => {

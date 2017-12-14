@@ -6,6 +6,12 @@ export const isValidPassword = (password) => (
   password.length >= 8
 );
 
+export const isValidPhoneNumber = (phoneNumber) => (
+  phoneNumber
+    ? phoneNumber.match(/\d/g).length >= 10
+    : false
+);
+
 export const hasSignUpErrors = (errors) => (
   Object.values(errors).some(error => Boolean(error.label))
 );

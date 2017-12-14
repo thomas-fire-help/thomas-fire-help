@@ -9,7 +9,7 @@ const Header = styled.div`
   padding-left: 20px;
   padding-right: 20px;
   padding-bottom: 20px;
-  padding-top: 10px;
+  margin-top: 40px;
 `
 
 const Container = styled.section`
@@ -48,7 +48,6 @@ const RightButton = styled.div`
 const Body = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 0 30px;
 `
 
 const BackArrow = styled(Icon)`

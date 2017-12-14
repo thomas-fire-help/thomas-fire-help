@@ -154,7 +154,7 @@ const AuthLink = styled(Link)`
 const MobileAuthLink = styled(Link)`
   color: #000;
   text-decoration: none;
-  font-size: 14px;
+  font-size: 16px;
   text-transform: uppercase;
   letter-spacing: 2px;
   font-weight: bold;
