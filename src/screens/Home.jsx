@@ -129,6 +129,7 @@ const NavigationCard = styled.section`
 
 const MobileNavigationCard = styled.section`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   margin-top: 20px;
@@ -146,6 +147,12 @@ const MobileNavigationCard = styled.section`
     box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.23), 0 3px 6px 0 rgba(0, 0, 0, 0.16);
   }
 `
+const MobileNavigationCardSubheading = styled.div`
+  font-size: 12px;
+  padding: 4px 4px;
+`
+
+
 
 const Emphasis = styled.span`
   color: orange;
@@ -241,6 +248,9 @@ const Home = props => (
         <StyledLink to="/looking_for_resources">
           <MobileNavigationCard>
             Show me resources
+            {/* <MobileNavigationCardSubheading>
+            Housing, Services, Free Food, Animal Needs, Supplies, Clothing & Volunteers
+            </MobileNavigationCardSubheading> */}
           </MobileNavigationCard>
         </StyledLink>
         <StyledLink to="/helping">
@@ -250,7 +260,7 @@ const Home = props => (
         </StyledLink>
       </MobileNavContainer>
       <MobileSubheadingContainer>
-        <h3> We're grassroots volunteers connecting help with need to recover from the Thomas Fire. Our community-sourced listings include: Housing, Services, Free Food, Animal Needs, Supplies, Clothing and Volunteers</h3>
+        <h3>We're volunteers connecting community-sourced help to recovery needs for the Thomas Fire.</h3>
       </MobileSubheadingContainer>
       <MobileNotificationBar>
         <div>
