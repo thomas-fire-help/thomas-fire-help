@@ -55,12 +55,21 @@ const MobileHeaderContainer = styled.div`
 const SubheadingContainer = styled.div`
   font-size: 16px;
   text-align: center;
-  margin: 10px 0 20px 0;
+  width: 450px;
+  padding: 30px 0px;
+  margin: 20px 0 10px 0;
+  animation: ${fadeIn} 1.5s forwards;
+  animation-delay: .3s;
+  margin-bottom: 10px;
 `
 
 const MobileSubheadingContainer = styled.div`
   font-size: 14px;
-  margin: 10px 0 20px 0;
+  margin: 10px 0 5px 0;
+  animation: ${fadeIn} 1.5s forwards;
+  animation-delay: .3s;
+  margin-bottom: 10px;
+  
 `
 
 const NavContainer = styled.nav`
@@ -191,7 +200,7 @@ const NotificationBar = styled.div`
   opacity: 0;
   animation: ${fadeIn} 1.5s forwards;
   animation-delay: .7s;
-  margin: 50px 0px 30px 0px;
+  margin: 30px 0px 20px 0px;
 `
 
 const Footer = styled.footer`
@@ -212,8 +221,8 @@ const MobileFooter = styled.footer`
   flex: 1;
   font-size: 28px;
   text-align: left;
-  margin: 0px 10px;
-  padding-top: 6px;
+  margin: 15px 0px 10px 0px;
+  padding-top: 10px;
   p {
     font-size: 12px;
   }
@@ -228,9 +237,6 @@ const Home = props => (
       <MobileHeaderContainer>
         <h1>Thomas Fire Help</h1>
       </MobileHeaderContainer>
-      <MobileSubheadingContainer>
-        <h3> We're grassroots volunteers connecting help with need to recover from the Thomas Fire. Our community-sourced listings include: Housing, Services, Free Food, Animal Needs, Supplies, Clothing and Volunteers</h3>
-      </MobileSubheadingContainer>
       <MobileNavContainer>
         <StyledLink to="/looking_for_resources">
           <MobileNavigationCard>
@@ -243,6 +249,9 @@ const Home = props => (
           </MobileNavigationCard>
         </StyledLink>
       </MobileNavContainer>
+      <MobileSubheadingContainer>
+        <h3> We're grassroots volunteers connecting help with need to recover from the Thomas Fire. Our community-sourced listings include: Housing, Services, Free Food, Animal Needs, Supplies, Clothing and Volunteers</h3>
+      </MobileSubheadingContainer>
       <MobileNotificationBar>
         <div>
           Homegrown in Ventura County 🌱
@@ -269,10 +278,6 @@ const Home = props => (
       <HeaderContainer>
         <h1>Thomas Fire Help</h1>
       </HeaderContainer>
-      <SubheadingContainer>
-        <h3>We're grassroots volunteers connecting help with need to recover from the Thomas Fire.</h3>
-        <h3>Our community-sourced listings include: Housing, Services, Free Food, Animal Needs, Supplies, Clothing and Volunteers</h3>
-      </SubheadingContainer>
       <NavContainer>
         <StyledLink to="/looking_for_resources">
           <NavigationCard>
@@ -285,6 +290,10 @@ const Home = props => (
           </NavigationCard>
         </StyledLink>
       </NavContainer>
+      <SubheadingContainer>
+        <h3>We're grassroots volunteers connecting help with need to recover from the Thomas Fire.</h3>
+        <h3>Our community-sourced listings include: Housing, Services, Free Food, Animal Needs, Supplies, Clothing and Volunteers</h3>
+      </SubheadingContainer>
       <NotificationBar>
         <div>
           <h3>Homegrown in Ventura County 🌱</h3>
