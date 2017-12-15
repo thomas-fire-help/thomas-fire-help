@@ -7,7 +7,7 @@ import Layout from '../../components/Layout'
 import AuthBanner from './AuthErrorBanner';
 import { Container, HeaderContainer, MobileHeaderContainer } from '../../components/atoms'
 import { fetchConfig, handleErrors } from '../../utils/fetchUtils'
-import { isValidEmail, isValidPassword, isValidPhoneNumber, hasSignUpErrors } from '../../utils/authUtils'
+import { isValidEmail, isValidPassword, isValidPhoneNumber, hasEmptyFields, hasSignUpErrors } from '../../utils/authUtils'
 
 const AuthInputContainer = styled.div`
   display: flex;
@@ -52,16 +52,16 @@ const AuthInput = styled.input`
 const MobileSignUpButton = styled.button`
   align-self: flex-end;
   background: none;
-  border: ${props => props.hasSignUpErrors
+  border: ${props => props.disabled
     ? '1px solid #AFAFAF;'
     : '1px solid #000;'
   }
   border-radius: 3px;
-  color: ${props => props.hasSignUpErrors
+  color: ${props => props.disabled
     ? '#AFAFAF;'
     : '#000;'
   }
-  cursor: ${props => props.hasSignUpErrors
+  cursor: ${props => props.disabled
     ? 'auto;'
     : 'pointer;'
   }
@@ -77,16 +77,16 @@ const MobileSignUpButton = styled.button`
 const SignUpButton = styled.button`
   align-self: flex-end;
   background: none;
-  border: ${props => props.hasSignUpErrors
+  border: ${props => props.disabled
     ? '1px solid #AFAFAF;'
     : '1px solid #000;'
   }
   border-radius: 3px;
-  color: ${props => props.hasSignUpErrors
+  color: ${props => props.disabled
     ? '#AFAFAF;'
     : '#000;'
   }
-  cursor: ${props => props.hasSignUpErrors
+  cursor: ${props => props.disabled
     ? 'auto;'
     : 'pointer;'
   }
@@ -98,6 +98,10 @@ const SignUpButton = styled.button`
   margin-top: 3rem;
   outline: none;
 `
+
+const canSubmit = (hasErrors, hasEmptyFields) => (
+  !hasErrors && !hasEmptyFields
+);
 
 class SignUp extends Component {
   constructor() {
@@ -114,18 +118,18 @@ class SignUp extends Component {
     this.handlePasswordInput = debounce(this.handlePasswordInput, 1000)
   }
 
-  handleOnClick = () => {
+  handleOnClick = (allowSubmit) => {
     const { email: username, phoneNumber: phone_number, password, errors } = this.state;
 
-    hasSignUpErrors(errors)
-      ? null
-      : fetch('http://staging.thomasfirehelp.com/auth/register', {
+    allowSubmit
+      ? fetch('https://firehelp-api-staging.herokuapp.com/auth/register', {
           method: 'post',
           body: JSON.stringify({ username, phone_number, password }),
           headers: fetchConfig(),
-      })
-        .then(handleErrors)
-        .catch((err) => console.log(err))
+        })
+          .then(handleErrors)
+          .catch((err) => console.log(err))
+      : null
   }
 
   handleEmailInput = (e) => {
@@ -172,8 +176,9 @@ class SignUp extends Component {
 
   render() {
     const { history: { goBack }} = this.props;
-    const { errors } = this.state;
+    const { email, phoneNumber, password, errors } = this.state;
 
+    const allowSubmit = canSubmit(hasSignUpErrors(errors), hasEmptyFields(email, phoneNumber, password));
     return (
       <Layout onBack={goBack}>
         <Container>
@@ -210,7 +215,7 @@ class SignUp extends Component {
                 placeholder="Password"
                 type="password"
               />
-              <MobileSignUpButton hasSignUpErrors={hasSignUpErrors(errors)} onClick={this.handleOnClick}>
+              <MobileSignUpButton disabled={!allowSubmit} onClick={this.handleOnClick}>
                 Sign Up
               </MobileSignUpButton>
             </AuthInputContainer>
@@ -246,7 +251,7 @@ class SignUp extends Component {
                 placeholder="Password"
                 type="password"
               />
-              <SignUpButton hasSignUpErrors={hasSignUpErrors(errors)} onClick={this.handleOnClick}>
+              <SignUpButton disabled={!allowSubmit} onClick={() => this.handleOnClick(allowSubmit)}>
                 Sign Up
               </SignUpButton>
             </AuthInputContainer>

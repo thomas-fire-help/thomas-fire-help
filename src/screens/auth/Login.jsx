@@ -87,7 +87,7 @@ class Login extends Component {
   handleOnClick = () => {
     const { user: login, password } = this.state;
 
-    fetch('auth/login', {
+    fetch('http://staging.thomasfirehelp.com/auth/login', {
       method: 'post',
       body: JSON.stringify({ login, password }),
       headers: fetchConfig(),

@@ -15,3 +15,7 @@ export const isValidPhoneNumber = (phoneNumber) => (
 export const hasSignUpErrors = (errors) => (
   Object.values(errors).some(error => Boolean(error.label))
 );
+
+export const hasEmptyFields = (...args) => (
+  args.some(fieldValue => fieldValue === '')
+);
