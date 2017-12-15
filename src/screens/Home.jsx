@@ -51,6 +51,17 @@ const MobileHeaderContainer = styled.div`
   }
 `
 
+const SubheadingContainer = styled.div`
+  font-size: 16px;
+  text-align: center;
+  margin: 10px 0 20px 0;
+`
+
+const MobileSubheadingContainer = styled.div`
+  font-size: 14px;
+  margin: 10px 0 20px 0;
+`
+
 const NavContainer = styled.nav`
   display: flex;
   flex-direction: column;
@@ -128,6 +139,10 @@ const MobileNavigationCard = styled.section`
 
 const Emphasis = styled.span`
   color: orange;
+`
+
+const EmphasisSmallSpace = styled.span`
+  font-size: 5px;
 `
 
 const AuthContainer = styled.div`
@@ -212,6 +227,9 @@ const Home = props => (
       <MobileHeaderContainer>
         <h1>Thomas Fire Help</h1>
       </MobileHeaderContainer>
+      <MobileSubheadingContainer>
+        <h3> We're grassroots volunteers connecting help with need to recover from the Thomas Fire. Our community-sourced listings include: Housing, Supplies, Clothing, Volunteers, Animal Needs, Free Food, and Services.</h3>
+      </MobileSubheadingContainer>
       <MobileNavContainer>
         <StyledLink to="/looking_for_resources">
           <MobileNavigationCard>
@@ -226,7 +244,14 @@ const Home = props => (
       </MobileNavContainer>
       <MobileNotificationBar>
         <div>
-          In event of Emergency, call <a href="tel:911"><Emphasis>911</Emphasis></a>
+          Homegrown in Ventura County 🌱
+        </div>
+        <div>
+          Part of the
+            <Emphasis> #805
+              <EmphasisSmallSpace> </EmphasisSmallSpace>
+              Strong
+            </Emphasis> Network
         </div>
         <div>
           <a href="mailto:help@thomasfirehelp.com">Send us Feedback 💌</a>
@@ -243,6 +268,10 @@ const Home = props => (
       <HeaderContainer>
         <h1>Thomas Fire Help</h1>
       </HeaderContainer>
+      <SubheadingContainer>
+        <h3>We're grassroots volunteers connecting help with need to recover from the Thomas Fire.</h3>
+        <h3>Our community-sourced listings include: Housing, Supplies, Clothing, Volunteers, Animal Needs, Free Food, and Services.</h3>
+      </SubheadingContainer>
       <NavContainer>
         <StyledLink to="/looking_for_resources">
           <NavigationCard>
@@ -257,7 +286,14 @@ const Home = props => (
       </NavContainer>
       <NotificationBar>
         <div>
-          In event of Emergency, call <a href="tel:911"><Emphasis>911</Emphasis></a>
+          <h3>Homegrown in Ventura County 🌱</h3>
+        </div>
+        <div>
+          <h3>Part of the
+            <Emphasis> #805
+              <EmphasisSmallSpace> </EmphasisSmallSpace>
+              Strong
+            </Emphasis> Network</h3>
         </div>
         <div>
           <a href="mailto:help@thomasfirehelp.com">Send us Feedback 💌</a>
