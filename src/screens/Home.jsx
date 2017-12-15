@@ -65,6 +65,7 @@ const SubheadingContainer = styled.div`
 
 const MobileSubheadingContainer = styled.div`
   font-size: 14px;
+  text-align: center;
   margin: 10px 0 5px 0;
   animation: ${fadeIn} 1.5s forwards;
   animation-delay: .3s;
@@ -151,8 +152,6 @@ const MobileNavigationCardSubheading = styled.div`
   font-size: 12px;
   padding: 4px 4px;
 `
-
-
 
 const Emphasis = styled.span`
   color: orange;
