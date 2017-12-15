@@ -11,6 +11,7 @@ const fadeIn = keyframes`
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   padding: 15px 55px;
 `
 
@@ -228,7 +229,7 @@ const Home = props => (
         <h1>Thomas Fire Help</h1>
       </MobileHeaderContainer>
       <MobileSubheadingContainer>
-        <h3> We're grassroots volunteers connecting help with need to recover from the Thomas Fire. Our community-sourced listings include: Housing, Supplies, Clothing, Volunteers, Animal Needs, Free Food, and Services.</h3>
+        <h3> We're grassroots volunteers connecting help with need to recover from the Thomas Fire. Our community-sourced listings include: Housing, Services, Free Food, Animal Needs, Supplies, Clothing and Volunteers</h3>
       </MobileSubheadingContainer>
       <MobileNavContainer>
         <StyledLink to="/looking_for_resources">
@@ -270,7 +271,7 @@ const Home = props => (
       </HeaderContainer>
       <SubheadingContainer>
         <h3>We're grassroots volunteers connecting help with need to recover from the Thomas Fire.</h3>
-        <h3>Our community-sourced listings include: Housing, Supplies, Clothing, Volunteers, Animal Needs, Free Food, and Services.</h3>
+        <h3>Our community-sourced listings include: Housing, Services, Free Food, Animal Needs, Supplies, Clothing and Volunteers</h3>
       </SubheadingContainer>
       <NavContainer>
         <StyledLink to="/looking_for_resources">
