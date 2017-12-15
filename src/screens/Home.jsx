@@ -12,7 +12,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 15px 55px;
+  padding: 0px 40px;
 `
 
 const HeaderContainer = styled.div`
@@ -42,11 +42,10 @@ const MobileHeaderContainer = styled.div`
   font-size: 14px;
   white-space: nowrap;
   overflow: hidden;
-  margin-top: 40px;
+  margin-top: 300px;
   margin-bottom: 30px;
   opacity: 0;
   animation: ${fadeIn} 1.5s forwards;
-
   h1 {
     margin: 0;
   }
