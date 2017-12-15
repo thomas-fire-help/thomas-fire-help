@@ -119,7 +119,7 @@ class SignUp extends Component {
 
     hasSignUpErrors(errors)
       ? null
-      : fetch('http://staging.thomasfirehelp.com/auth/register', {
+      : fetch('https://firehelp-api-staging.herokuapp.com/auth/register', {
           method: 'post',
           body: JSON.stringify({ username, phone_number, password }),
           headers: fetchConfig(),
