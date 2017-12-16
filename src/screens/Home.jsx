@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import styled, { keyframes } from 'styled-components'
 import MediaQuery from 'react-responsive';
+import { withAuth } from '../utils/authUtils';
 
 const fadeIn = keyframes`
   from { opacity: 0; }
@@ -11,7 +12,7 @@ const fadeIn = keyframes`
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 15px 55px;
+  padding: 15px 45px;
 `
 
 const HeaderContainer = styled.div`
@@ -43,6 +44,7 @@ const MobileHeaderContainer = styled.div`
   overflow: hidden;
   margin-top: 40px;
   margin-bottom: 30px;
+  marginTop: 100px;
   opacity: 0;
   animation: ${fadeIn} 1.5s forwards;
 
@@ -134,17 +136,31 @@ const AuthContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  opacity: 0;
+  animation: ${fadeIn} 1.5s forwards;
+  animation-delay: .7s;
 `
 
 const AuthLink = styled(Link)`
   color: #000;
-  font-size: 2rem;
   text-decoration: none;
+  font-size: 20px;
   text-transform: uppercase;
   letter-spacing: 2px;
   font-weight: bold;
   padding: 20px;
-  margin: 4.5rem 4.5rem;
+  margin: 40px 40px;
+`
+
+const MobileAuthLink = styled(Link)`
+  color: #000;
+  text-decoration: none;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: bold;
+  padding: 10px;
+  margin: 0px 30px;
 `
 
 const TranslateLink = styled.aside`
@@ -163,7 +179,7 @@ const MobileNotificationBar = styled.div`
   opacity: 0;
   animation: ${fadeIn} 1.5s forwards;
   animation-delay: .7s;
-  margin: 30px 0px 15px 0px;
+  margin: 60px 0px 15px 0px;
 `
 
 const NotificationBar = styled.div`
@@ -206,7 +222,7 @@ const MobileFooter = styled.footer`
   animation-delay: .8s;
 `
 
-const Home = props => (
+const Home = ({ loggedIn }) => (
   <Container>
     <MediaQuery minDeviceWidth={320} maxDeviceWidth={480}>
       <MobileHeaderContainer>
@@ -224,6 +240,16 @@ const Home = props => (
           </MobileNavigationCard>
         </StyledLink>
       </MobileNavContainer>
+      {!loggedIn &&
+        <AuthContainer>
+          <MobileAuthLink to="login">
+            Login
+          </MobileAuthLink>
+          <MobileAuthLink to="sign_up">
+            Sign Up
+          </MobileAuthLink>
+        </AuthContainer>
+      }
       <MobileNotificationBar>
         <div>
           In event of Emergency, call <a href="tel:911"><Emphasis>911</Emphasis></a>
@@ -255,6 +281,16 @@ const Home = props => (
           </NavigationCard>
         </StyledLink>
       </NavContainer>
+      {!loggedIn &&
+        <AuthContainer>
+          <AuthLink to="login">
+            Login
+          </AuthLink>
+          <AuthLink to="sign_up">
+            Sign Up
+          </AuthLink>
+        </AuthContainer>
+      }
       <NotificationBar>
         <div>
           In event of Emergency, call <a href="tel:911"><Emphasis>911</Emphasis></a>
@@ -269,18 +305,10 @@ const Home = props => (
         </p>
       </Footer>
     </MediaQuery>
-      {/* <AuthContainer>
-        <AuthLink to="login">
-          Login
-        </AuthLink>
-        <AuthLink to="sign_up">
-          Sign Up
-        </AuthLink>
-      </AuthContainer> */}
     {/* <TranslateLink>
       en Español
     </TranslateLink> */}
   </Container>
 )
 
-export default Home
+export default withAuth(Home)

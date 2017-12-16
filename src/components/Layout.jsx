@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import MediaQuery from 'react-responsive'
 import { Icon } from 'antd'
 
 const Header = styled.div`
@@ -10,6 +11,15 @@ const Header = styled.div`
   padding-right: 20px;
   padding-bottom: 20px;
   padding-top: 10px;
+`
+
+const MobileHeader = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-top: 40px;
 `
 
 const Container = styled.section`
