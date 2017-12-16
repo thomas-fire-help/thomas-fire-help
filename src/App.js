@@ -14,8 +14,8 @@ import { install, combineReducers } from 'redux-loop'
 
 import { Helmet } from 'react-helmet'
 import Home from './screens/Home'
-import Login from './screens/Login'
-import SignUp from './screens/SignUp'
+import Login from './screens/auth/Login'
+import SignUp from './screens/auth/SignUp'
 
 import LookingForHelp from './screens/looking_for_resources'
 import Housing from './screens/looking_for_resources/Housing'

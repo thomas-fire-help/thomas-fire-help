@@ -11,6 +11,7 @@ export const Container = styled.div`
   flex-direction: column;
   animation: ${fadeIn} 1s forwards;
   opacity: 0;
+  padding: 15px 45px;
 `
 
 export const HeaderContainer = styled.div`
@@ -30,7 +31,11 @@ export const MobileHeaderContainer = styled.div`
   font-size: 12px;
   white-space: nowrap;
   overflow: hidden;
-  margin-top: 30px;
+  margin-top: 40px;
+
+  h1 {
+    margin: 0;
+  }
 `
 
 export const NavigationCard = styled.section`
