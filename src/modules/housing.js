@@ -3,9 +3,13 @@ import { loop, Cmd, liftState } from 'redux-loop';
 import { getHost } from '../utils/network';
 
 const endpoint = `${getHost()}/housings`;
+const getHeaders = () => {
+  const accessToken = localStorage.getItem('access_token')
+  return { 'Authorization': `Bearer ${accessToken}`}
+}
 
 const create = params =>
-  fetch(endpoint, { method: 'POST', body: JSON.stringify(params) })
+  fetch(endpoint, { method: 'POST', body: JSON.stringify(params), headers: getHeaders() })
     .then(res => res.json());
 
 const serializeForCreate = params => {
@@ -27,7 +31,7 @@ const serializeForCreate = params => {
 };
 
 const list = params =>
-  fetch(endpoint).then(res => res.json());
+  fetch({ endpoint }, { headers: getHeaders() }).then(res => res.json());
 
 const examplePayload = [
   {

@@ -99,7 +99,7 @@ const Housing = ({ actions, update, formData, history: { goBack }}) => (
 
         <StackInput label="Neighborhood:">
           <Input
-            onChange={value => update('neighborhood', value)}
+            onChange={({ target }) => update('neighborhood', target.value)}
           />
         </StackInput>
       </FormSection>
@@ -157,19 +157,19 @@ const Housing = ({ actions, update, formData, history: { goBack }}) => (
       <FormSection>
         <StackInput required label="Your Name:">
           <Input
-            onChange={value => update('name', value)}
+            onChange={({ target }) => update('name', target.value)}
           />
         </StackInput>
 
         <StackInput required label="Phone Number:">
           <Input
-            onChange={value => update('phoneNumber', value)}
+            onChange={({ target }) => update('phoneNumber', target.value)}
           />
         </StackInput>
 
         <StackInput required label="Email Address:">
           <Input
-            onChange={value => update('emailAddress', value)}
+            onChange={({ target }) => update('emailAddress', target.value)}
           />
         </StackInput>
       </FormSection>
