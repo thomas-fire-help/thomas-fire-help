@@ -1,6 +1,7 @@
 import { createModule } from 'redux-modules';
 import { loop, Cmd, liftState } from 'redux-loop';
 import { getHost } from '../utils/network';
+import { log } from 'redux-modules-middleware';
 
 const endpoint = `${getHost()}/housings`;
 const getHeaders = () => {
@@ -31,7 +32,7 @@ const serializeForCreate = params => {
 };
 
 const list = params =>
-  fetch({ endpoint }, { headers: getHeaders() }).then(res => res.json());
+  fetch(endpoint, { headers: getHeaders() }).then(res => res.json());
 
 const examplePayload = [
   {
@@ -102,6 +103,7 @@ const housingModule = createModule ({
       }),
     ],
     listSuccess: {
+      middleware: [log()],
       reducer: (state, { payload }) =>
         Object.assign({}, state, { loading: false, data: examplePayload })
     },
