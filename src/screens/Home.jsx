@@ -42,15 +42,35 @@ const MobileHeaderContainer = styled.div`
   font-size: 14px;
   white-space: nowrap;
   overflow: hidden;
-  margin-top: 40px;
+  margin-top: 300px;
   margin-bottom: 30px;
   marginTop: 100px;
   opacity: 0;
   animation: ${fadeIn} 1.5s forwards;
-
   h1 {
     margin: 0;
   }
+`
+
+const SubheadingContainer = styled.div`
+  font-size: 16px;
+  text-align: center;
+  width: 450px;
+  padding: 30px 0px;
+  margin: 20px 0 10px 0;
+  animation: ${fadeIn} 1.5s forwards;
+  animation-delay: .3s;
+  margin-bottom: 10px;
+`
+
+const MobileSubheadingContainer = styled.div`
+  font-size: 14px;
+  text-align: center;
+  margin: 10px 0 5px 0;
+  animation: ${fadeIn} 1.5s forwards;
+  animation-delay: .3s;
+  margin-bottom: 10px;
+  
 `
 
 const NavContainer = styled.nav`
@@ -110,6 +130,7 @@ const NavigationCard = styled.section`
 
 const MobileNavigationCard = styled.section`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   margin-top: 20px;
@@ -130,6 +151,10 @@ const MobileNavigationCard = styled.section`
 
 const Emphasis = styled.span`
   color: orange;
+`
+
+const EmphasisSmallSpace = styled.span`
+  font-size: 5px;
 `
 
 const AuthContainer = styled.div`
@@ -191,7 +216,7 @@ const NotificationBar = styled.div`
   opacity: 0;
   animation: ${fadeIn} 1.5s forwards;
   animation-delay: .7s;
-  margin: 50px 0px 30px 0px;
+  margin: 30px 0px 20px 0px;
 `
 
 const Footer = styled.footer`
@@ -212,8 +237,8 @@ const MobileFooter = styled.footer`
   flex: 1;
   font-size: 28px;
   text-align: left;
-  margin: 0px 10px;
-  padding-top: 6px;
+  margin: 15px 0px 10px 0px;
+  padding-top: 10px;
   p {
     font-size: 12px;
   }
@@ -231,7 +256,7 @@ const Home = ({ loggedIn }) => (
       <MobileNavContainer>
         <StyledLink to="/looking_for_resources">
           <MobileNavigationCard>
-            Show me resources
+            View recovery resources
           </MobileNavigationCard>
         </StyledLink>
         <StyledLink to="/helping">
@@ -250,9 +275,19 @@ const Home = ({ loggedIn }) => (
           </MobileAuthLink>
         </AuthContainer>
       }
+      <MobileSubheadingContainer>
+        <h3>We're volunteers connecting community-sourced help to recovery needs for the Thomas Fire.</h3>
+      </MobileSubheadingContainer>
       <MobileNotificationBar>
         <div>
-          In event of Emergency, call <a href="tel:911"><Emphasis>911</Emphasis></a>
+          Homegrown in Ventura County 🌱
+        </div>
+        <div>
+          Part of the
+            <Emphasis> #805
+              <EmphasisSmallSpace> </EmphasisSmallSpace>
+              Strong
+            </Emphasis> Network
         </div>
         <div>
           <a href="mailto:help@thomasfirehelp.com">Send us Feedback 💌</a>
@@ -272,7 +307,7 @@ const Home = ({ loggedIn }) => (
       <NavContainer>
         <StyledLink to="/looking_for_resources">
           <NavigationCard>
-            Show me resources
+            View recovery resources
           </NavigationCard>
         </StyledLink>
         <StyledLink to="/helping">
@@ -291,9 +326,19 @@ const Home = ({ loggedIn }) => (
           </AuthLink>
         </AuthContainer>
       }
+      <SubheadingContainer>
+        <h3>We're volunteers connecting community-sourced help to recovery needs for the Thomas Fire.</h3>
+      </SubheadingContainer>
       <NotificationBar>
         <div>
-          In event of Emergency, call <a href="tel:911"><Emphasis>911</Emphasis></a>
+          <h3>Homegrown in Ventura County 🌱</h3>
+        </div>
+        <div>
+          <h3>Part of the
+            <Emphasis> #805
+              <EmphasisSmallSpace> </EmphasisSmallSpace>
+              Strong
+            </Emphasis> Network</h3>
         </div>
         <div>
           <a href="mailto:help@thomasfirehelp.com">Send us Feedback 💌</a>
