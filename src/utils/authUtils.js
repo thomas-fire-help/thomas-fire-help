@@ -7,10 +7,16 @@ export const isValidPassword = (password) => (
 );
 
 export const isValidPhoneNumber = (phoneNumber) => (
-  phoneNumber
+  filterNumericCharacters(phoneNumber)
     ? phoneNumber.match(/\d/g).length >= 10
     : false
 );
+
+export const filterNumericCharacters = (string) => {
+  return string
+    ? string.match(/\d/g).slice(-10).join('')
+    : null
+};
 
 export const hasSignUpErrors = (errors) => (
   Object.values(errors).some(error => Boolean(error.label))
