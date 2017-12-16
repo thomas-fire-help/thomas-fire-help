@@ -85,12 +85,19 @@ class Login extends Component {
   }
 
   handleOnClick = () => {
-    const { user: login, password } = this.state;
+    const { history } = this.props
+    const { user: login, password } = this.state
 
-    fetch('http://staging.thomasfirehelp.com/auth/login', {
+    fetch('https://firehelp-api-staging.herokuapp.com/auth/login', {
       method: 'post',
       body: JSON.stringify({ login, password }),
       headers: fetchConfig(),
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data)
+      localStorage.setItem('access_token', data.access_token)
+      history.push('/')
     })
   }
 
