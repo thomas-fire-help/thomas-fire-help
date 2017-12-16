@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import styled, { keyframes } from 'styled-components'
 import MediaQuery from 'react-responsive';
+import { withAuth } from '../utils/authUtils';
 
 const fadeIn = keyframes`
   from { opacity: 0; }
@@ -221,7 +222,7 @@ const MobileFooter = styled.footer`
   animation-delay: .8s;
 `
 
-const Home = props => (
+const Home = ({ loggedIn }) => (
   <Container>
     <MediaQuery minDeviceWidth={320} maxDeviceWidth={480}>
       <MobileHeaderContainer>
@@ -239,14 +240,16 @@ const Home = props => (
           </MobileNavigationCard>
         </StyledLink>
       </MobileNavContainer>
-      <AuthContainer>
-        <MobileAuthLink to="login">
-          Login
-        </MobileAuthLink>
-        <MobileAuthLink to="sign_up">
-          Sign Up
-        </MobileAuthLink>
-      </AuthContainer>
+      {!loggedIn &&
+        <AuthContainer>
+          <MobileAuthLink to="login">
+            Login
+          </MobileAuthLink>
+          <MobileAuthLink to="sign_up">
+            Sign Up
+          </MobileAuthLink>
+        </AuthContainer>
+      }
       <MobileNotificationBar>
         <div>
           In event of Emergency, call <a href="tel:911"><Emphasis>911</Emphasis></a>
@@ -278,14 +281,16 @@ const Home = props => (
           </NavigationCard>
         </StyledLink>
       </NavContainer>
-      <AuthContainer>
-        <AuthLink to="login">
-          Login
-        </AuthLink>
-        <AuthLink to="sign_up">
-          Sign Up
-        </AuthLink>
-      </AuthContainer>
+      {!loggedIn &&
+        <AuthContainer>
+          <AuthLink to="login">
+            Login
+          </AuthLink>
+          <AuthLink to="sign_up">
+            Sign Up
+          </AuthLink>
+        </AuthContainer>
+      }
       <NotificationBar>
         <div>
           In event of Emergency, call <a href="tel:911"><Emphasis>911</Emphasis></a>
@@ -306,4 +311,4 @@ const Home = props => (
   </Container>
 )
 
-export default Home
+export default withAuth(Home)
