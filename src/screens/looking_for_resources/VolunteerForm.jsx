@@ -6,6 +6,8 @@ import Layout from '../../components/Layout'
 import { Container, HeaderContainer } from '../../components/atoms'
 import { Input, Button, Select } from 'antd'
 import styled from 'styled-components'
+import MediaQuery from 'react-responsive'
+
 const Option = Select.Option
 const { TextArea } = Input
 
@@ -115,9 +117,23 @@ const LFVolunteerForm = ({ actions, update, formData, history: { goBack }}) => (
       </StackInput>
 
       <div style={{ paddingTop: '1em' }}>
-        <Button onClick={() => actions.create(formData)}>
-          Submit
-        </Button>
+        <MediaQuery minDeviceWidth={320} maxDeviceWidth={480}>
+          <Button
+            size="large"
+            style={{ width: '100%' }}
+            onClick={() => actions.create(formData)}
+          >
+            Submit
+          </Button>
+        </MediaQuery>
+        <MediaQuery minDeviceWidth={481}>
+          <Button
+            size="large"
+            onClick={() => actions.create(formData)}
+          >
+            Submit
+          </Button>
+        </MediaQuery>
       </div>
     </Container>
   </Layout>
