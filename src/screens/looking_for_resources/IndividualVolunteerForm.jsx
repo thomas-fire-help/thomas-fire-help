@@ -1,13 +1,11 @@
 import React from 'react'
 import { connectModule } from 'redux-modules'
 import { compose, withStateHandlers } from 'recompose'
-import housingModule from '../../modules/housing'
+import lfVolunteersModule from '../../modules/lfVolunteers'
 import Layout from '../../components/Layout'
 import { Container, HeaderContainer } from '../../components/atoms'
-import { Input, Radio, Checkbox, Button, Select } from 'antd'
+import { Input, Button, Select } from 'antd'
 import styled from 'styled-components'
-import SegmentedController from '../../components/SegmentedController'
-const RadioGroup = Radio.Group
 const Option = Select.Option
 const { TextArea } = Input
 
@@ -35,39 +33,36 @@ const StackInput = ({ required, children, label }) => (
   </StackContainer>
 )
 
-const LFVolunteerForm = ({ actions, update, formData, history: { goBack }}) => (
+const LFIndividualVolunteerForm = ({ actions, update, formData, history: { goBack }}) => (
   <Layout header="Housing" onBack={goBack}>
     <Container>
       <HeaderContainer>
-        Enter Housing Information
+        I need volunteer help...
       </HeaderContainer>
-      <StackInput required label="Housing Type:">
-        <SegmentedController
-          value={formData.housingType}
-          onChange={value => update('housingType', value)}
-          options={[
-            {label: 'Entire Home', value: 'entire_home'},
-            {label: 'Private Room', value: 'private_room'}
-          ]}
-        />
-      </StackInput>
 
-      <StackInput required label="Beds Available:">
+      <StackInput required label="Type of help:">
         <Select
           showSearch
           style={{ width: '100%' }}
-          value={formData.bedsAvailable}
-          placeholder="Select number of beds available"
+          value={formData.type}
           optionFilterProp="children"
-          onChange={value => update('bedsAvailable', value)}
+          onChange={value => update('type', value)}
           filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
         >
-          <Option value="1">1</Option>
-          <Option value="2">2</Option>
-          <Option value="3">3</Option>
-          <Option value="4">4</Option>
-          <Option value="5">5+</Option>
+          <Option value="foodAndWater">Food and water</Option>
+          <Option value="medicalSupplies">Medical supplies</Option>
+          <Option value="clothing">Clothing</Option>
+          <Option value="housing">Housing</Option>
+          <Option value="personalCareItems">Personal care items</Option>
+          <Option value="animalServices">Animal services</Option>
         </Select>
+      </StackInput>
+
+      <StackInput required label="Describe what you need (be specific):">
+        <TextArea
+          autosize={{ minRows: 3 }}
+          onChange={value => update('description', value)}
+        />
       </StackInput>
 
       <StackInput required label="City:">
@@ -95,64 +90,25 @@ const LFVolunteerForm = ({ actions, update, formData, history: { goBack }}) => (
         />
       </StackInput>
 
-      <StackInput required label="Duration:">
-        <RadioGroup value={formData.duration} onChange={({ target }) => update('duration', target.value)}>
-          <Radio value={'short_term'}>Short-Term: one week or less</Radio>
-          <Radio value={'long_term'}>Long-Term: one month to one week </Radio>
-          <Radio value={'permanent'}>Permanent: available for rent or lease</Radio>
-        </RadioGroup>
-      </StackInput>
-
-      <StackInput required label="Price:">
-        <SegmentedController
-          value={formData.price}
-          onChange={value => update('price', value)}
-          options={[{ label: "Free", value: 'free' }, { label: "Paid", value: 'paid' }]}
+      <StackInput required label="Street address:">
+        <Input
+          onChange={value => update('streetAddress', value)}
         />
       </StackInput>
 
-      <StackInput label="Child Friendly:">
-        <SegmentedController
-          value={formData.childFriendly}
-          onChange={value => update('childFriendly', value)}
-          options={[{ label: "Yes", value: 'yes' }, { label: "No", value: 'no' }]}
-        />
-      </StackInput>
-
-      <StackInput label="Household currently has animals?">
-        <SegmentedController
-          value={formData.householdHasAnimals}
-          onChange={value => update('householdHasAnimals', value)}
-          options={[{ label: "Yes", value: 'yes' }, { label: "No", value: 'no' }]}
-        />
-      </StackInput>
-
-      <StackInput label="Pets allowed:">
-        <SegmentedController
-          value={formData.petsAllowed}
-          onChange={value => update('petsAllowed', value)}
-          options={[{ label: "Yes", value: 'yes' }, { label: "No", value: 'no' }]}
-        />
-      </StackInput>
-
-
-      <StackInput label="Description of Housing:">
-        <TextArea placeholder="Additional Information" autosize={{ minRows: 2 }} />
-      </StackInput>
-
-      <StackInput required label="Your Name:">
+      <StackInput required label="Your name:">
         <Input
           onChange={value => update('name', value)}
         />
       </StackInput>
 
-      <StackInput required label="Phone Number:">
+      <StackInput required label="Phone number:">
         <Input
           onChange={value => update('phoneNumber', value)}
         />
       </StackInput>
 
-      <StackInput required label="Email Address:">
+      <StackInput required label="Email address:">
         <Input
           onChange={value => update('emailAddress', value)}
         />
@@ -160,14 +116,14 @@ const LFVolunteerForm = ({ actions, update, formData, history: { goBack }}) => (
 
       <div style={{ paddingTop: '1em' }}>
         <Button onClick={() => actions.create(formData)}>
-          Submit!
+          Submit
         </Button>
       </div>
     </Container>
   </Layout>
 )
 
-LFVolunteerForm.defaultProps = {
+LFIndividualVolunteerForm.defaultProps = {
 
 }
 
@@ -175,24 +131,20 @@ export default compose(
   withStateHandlers(
     {
       formData: {
-        housingType: 'private_room',
-        bedsAvailable: 1,
+        type: 'foodAndWater',
+        description: '',
         city: 'ventura',
         neighborhood: '',
-        duration: 'short_term',
-        price: 'free',
-        childFriendly: 'yes',
-        householdHasAnimals: 'no',
-        petsAllowed: 'yes',
-        description: '',
-        yourName: '',
+        streetAddress: '',
+        name: '',
         phoneNumber: '',
+        emailAddress: '',
         RequiredIndicatorailAddress: ''
       }
     },
     {
-      update: (state) => (key, value) => Object.assign({}, { formData: { ... state.formData, [key]: value  } })
+      update: (state) => (key, value) => Object.assign({}, { formData: { ...state.formData, [key]: value  } })
     }
   ),
-  connectModule(housingModule)
-)(LFVolunteerForm)
+  connectModule(lfVolunteersModule)
+)(LFIndividualVolunteerForm)
