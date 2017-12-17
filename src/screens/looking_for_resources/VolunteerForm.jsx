@@ -33,7 +33,7 @@ const StackInput = ({ required, children, label }) => (
   </StackContainer>
 )
 
-const LFIndividualVolunteerForm = ({ actions, update, formData, history: { goBack }}) => (
+const LFVolunteerForm = ({ actions, update, formData, history: { goBack }}) => (
   <Layout header="Housing" onBack={goBack}>
     <Container>
       <HeaderContainer>
@@ -123,7 +123,7 @@ const LFIndividualVolunteerForm = ({ actions, update, formData, history: { goBac
   </Layout>
 )
 
-LFIndividualVolunteerForm.defaultProps = {
+LFVolunteerForm.defaultProps = {
 
 }
 
@@ -147,4 +147,4 @@ export default compose(
     }
   ),
   connectModule(lfVolunteersModule)
-)(LFIndividualVolunteerForm)
+)(LFVolunteerForm)
