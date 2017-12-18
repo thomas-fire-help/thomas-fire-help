@@ -3,6 +3,8 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import MediaQuery from 'react-responsive'
+import { connectModule } from 'redux-modules'
+import authModule from '../../modules/auth'
 import Layout from '../../components/Layout'
 import AuthErrorBanner from './AuthErrorBanner'
 import { Container, HeaderContainer, MobileHeaderContainer } from '../../components/atoms'
@@ -105,20 +107,10 @@ class PhoneVerification extends Component {
   }
 
   handleVerify = () => {
-    const { history } = this.props
+    const { history, actions } = this.props
     const { verification } = this.state
 
-    fetch('https://firehelp-api-staging.herokuapp.com/auth/login', {
-      method: 'post',
-      body: JSON.stringify({ pin: verification }),
-      headers: fetchConfig(),
-    })
-    .then(res => res.json())
-    .then(data => {
-      console.log(data)
-      localStorage.setItem('access_token', data.access_token)
-      history.push('/')
-    })
+    actions.verifyPhone(verification)
   }
 
   updateVerification = (verification) => {
@@ -152,7 +144,7 @@ class PhoneVerification extends Component {
             </AuthInputContainer>
             <AuthInputContainer>
               <MobileLoginButton onClick={this.handleResendVerification}>
-                Resend Pin 
+                Resend Pin
               </MobileLoginButton>
             </AuthInputContainer>
           </MediaQuery>
@@ -186,4 +178,4 @@ class PhoneVerification extends Component {
   }
 }
 
-export default PhoneVerification;
+export default connectModule(authModule)(PhoneVerification);
