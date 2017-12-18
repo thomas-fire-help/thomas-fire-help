@@ -90,27 +90,15 @@ class PhoneVerification extends Component {
   }
 
   handleResendVerification = () => {
-    const { history } = this.props
-    const { verification } = this.state
-
-    fetch('https://firehelp-api-staging.herokuapp.com/auth/login', {
-      method: 'post',
-      body: JSON.stringify({ pin: verification }),
-      headers: fetchConfig(),
-    })
-    .then(res => res.json())
-    .then(data => {
-      console.log(data)
-      localStorage.setItem('access_token', data.access_token)
-      history.push('/')
-    })
+    const { history, actions } = this.props
+    actions.resendVerification()
   }
 
   handleVerify = () => {
     const { history, actions } = this.props
     const { verification } = this.state
 
-    actions.verifyPhone(verification)
+    actions.verifyPhone(verification, { onSuccess: history.push('/') })
   }
 
   updateVerification = (verification) => {

@@ -1,21 +1,7 @@
 import { createModule } from 'redux-modules';
-import { loop, Cmd, liftState } from 'redux-loop';
+import { loop, Cmd, liftState } from 'redux-loop'
 import { fetchConfig } from '../utils/fetchUtils'
-
-const fetchFromStorage = (key) => new Promise((resolve, reject) => {
-  let fromStorage = localStorage.getItem(key)
-  resolve(JSON.parse(fromStorage))
-})
-
-const clearStorage = (...args) => new Promise((resolve, reject) => {
-  args.forEach(key => localStorage.setItem(key, null))
-  resolve()
-})
-
-const persist = (key, value) => new Promise((resolve, reject) => {
-  localStorage.setItem(key, JSON.stringify(value))
-  resolve(key)
-})
+import { fetchFromStorage, clearStorage, persist } from '../utils/localStorage'
 
 const login = ({ login, password }, onSuccess) =>
   fetch('https://firehelp-api-staging.herokuapp.com/auth/login', {
@@ -109,7 +95,7 @@ const authModule = createModule({
         args: ['auth']
       })
     ],
-    verifyPhone: (state, { payload, meta }) => [
+    verifyPhone: (state, { payload, meta = {} }) => [
       Object.assign({}, state, { loading: true }),
       Cmd.run(verifyPhone, {
         successActionCreator: authModule.actions.verifyPhoneSuccess,
@@ -121,7 +107,7 @@ const authModule = createModule({
       Object.assign({}, state, { loading: false }),
     verifyPhoneError: (state, { payload }) =>
       Object.assign({}, state, { loading: false }),
-    resendVerification: (state, { payload, meta }) => [
+    resendVerification: (state, { payload, meta = {} }) => [
       Object.assign({}, state, { loading: true }),
       Cmd.run(resendVerification, {
         successActionCreator: authModule.actions.resendVerificationSuccess,
