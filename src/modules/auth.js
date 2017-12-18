@@ -39,6 +39,17 @@ const verifyPhone = ({ userId, pin }, onSuccess = () => {}) =>
     return data
   })
 
+const resendVerification = ({ userId }, onSuccess = () => {}) =>
+  fetch(`https://firehelp-api-staging.herokuapp.com/users/${userId}/resend_verification`, {
+    method: 'post',
+    headers: fetchConfig(),
+  })
+  .then(res => res.json())
+  .then(data => {
+    onSuccess(data)
+    return data
+  })
+
 const authModule = createModule({
   name: 'auth',
   initialState: {
@@ -109,6 +120,18 @@ const authModule = createModule({
     verifyPhoneSuccess: (state, { payload }) =>
       Object.assign({}, state, { loading: false }),
     verifyPhoneError: (state, { payload }) =>
+      Object.assign({}, state, { loading: false }),
+    resendVerification: (state, { payload, meta }) => [
+      Object.assign({}, state, { loading: true }),
+      Cmd.run(resendVerification, {
+        successActionCreator: authModule.actions.resendVerificationSuccess,
+        failActionCreator: authModule.actions.resendVerificationError,
+        args: [{ userId: state.user.id, pin: payload }, meta.onSuccess]
+      })
+    ],
+    resendVerificationSuccess: (state, { payload }) =>
+      Object.assign({}, state, { loading: false }),
+    resendVerificationError: (state, { payload }) =>
       Object.assign({}, state, { loading: false }),
     noop: s => s,
   }
