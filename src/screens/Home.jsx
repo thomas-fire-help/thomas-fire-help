@@ -70,7 +70,7 @@ const MobileSubheadingContainer = styled.div`
   animation: ${fadeIn} 1.5s forwards;
   animation-delay: .3s;
   margin-bottom: 10px;
-  
+
 `
 
 const NavContainer = styled.nav`
@@ -157,6 +157,11 @@ const EmphasisSmallSpace = styled.span`
   font-size: 5px;
 `
 
+const LogoutContainer = styled.section`
+  display: flex;
+  justify-content: center;
+`
+
 const AuthContainer = styled.div`
   display: flex;
   align-items: center;
@@ -164,6 +169,18 @@ const AuthContainer = styled.div`
   opacity: 0;
   animation: ${fadeIn} 1.5s forwards;
   animation-delay: .7s;
+`
+
+const LogoutButton = styled.div`
+  color: #000;
+  text-decoration: none;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: bold;
+  padding: 20px;
+  margin: 40px 40px;
+  cursor: pointer;
 `
 
 const AuthLink = styled(Link)`
@@ -247,7 +264,7 @@ const MobileFooter = styled.footer`
   animation-delay: .8s;
 `
 
-const Home = ({ loggedIn }) => (
+const Home = ({ loggedIn, logout }) => (
   <Container>
     <MediaQuery minDeviceWidth={320} maxDeviceWidth={480}>
       <MobileHeaderContainer>
@@ -273,6 +290,13 @@ const Home = ({ loggedIn }) => (
           <MobileAuthLink to="sign_up">
             Sign Up
           </MobileAuthLink>
+        </AuthContainer>
+      }
+      {loggedIn &&
+        <AuthContainer>
+          <LogoutButton onClick={logout}>
+            Logout
+          </LogoutButton>
         </AuthContainer>
       }
       <MobileSubheadingContainer>
@@ -325,6 +349,13 @@ const Home = ({ loggedIn }) => (
             Sign Up
           </AuthLink>
         </AuthContainer>
+      }
+      {loggedIn &&
+        <LogoutContainer>
+          <LogoutButton onClick={logout}>
+            Logout
+          </LogoutButton>
+        </LogoutContainer>
       }
       <SubheadingContainer>
         <h3>We're volunteers connecting community-sourced help to recovery needs for the Thomas Fire.</h3>
