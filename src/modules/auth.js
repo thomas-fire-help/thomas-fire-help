@@ -19,8 +19,18 @@ const persist = (key, value) => new Promise((resolve, reject) => {
 
 const login = ({ login, password }, onSuccess) =>
   fetch('https://firehelp-api-staging.herokuapp.com/auth/login', {
-    method: 'post',
-    body: JSON.stringify({ login, password }),
+    method: 'post', body: JSON.stringify({ login, password }),
+    headers: fetchConfig(),
+  })
+  .then(res => res.json())
+  .then(data => {
+    onSuccess(data)
+    return data
+  })
+
+const verifyPhone = ({ userId, pin }, onSuccess = () => {}) =>
+  fetch(`https://firehelp-api-staging.herokuapp.com/users/${userId}/verify`, {
+    method: 'post', body: JSON.stringify({ pin }),
     headers: fetchConfig(),
   })
   .then(res => res.json())
@@ -88,6 +98,18 @@ const authModule = createModule({
         args: ['auth']
       })
     ],
+    verifyPhone: (state, { payload, meta }) => [
+      Object.assign({}, state, { loading: true }),
+      Cmd.run(verifyPhone, {
+        successActionCreator: authModule.actions.verifyPhoneSuccess,
+        failActionCreator: authModule.actions.verifyPhoneError,
+        args: [{ userId: state.user.id, pin: payload }, meta.onSuccess]
+      })
+    ],
+    verifyPhoneSuccess: (state, { payload }) =>
+      Object.assign({}, state, { loading: false }),
+    verifyPhoneError: (state, { payload }) =>
+      Object.assign({}, state, { loading: false }),
     noop: s => s,
   }
 })
