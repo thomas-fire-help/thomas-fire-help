@@ -48,7 +48,7 @@ const Home = ({ history: { goBack }}) => (
         </MobileExternal>
 
         <MobileExternal
-          href="https://drive.google.com/open?id=1Ws8tgwwf6q9I9enknXBtL3sEZf7orBE_v5OBwhZtVw4"
+          href="https://docs.google.com/spreadsheets/d/12E1-zwPSmnNNtPz3KSE1oB3i_Y3SYNmYFpoRL9aLXkg/edit?usp=sharing"
           target="_blank"
         >
           <h2> 🍲 Food </h2>
@@ -96,7 +96,7 @@ const Home = ({ history: { goBack }}) => (
         </External>
 
         <External
-          href="https://drive.google.com/open?id=1Ws8tgwwf6q9I9enknXBtL3sEZf7orBE_v5OBwhZtVw4"
+          href="https://docs.google.com/spreadsheets/d/12E1-zwPSmnNNtPz3KSE1oB3i_Y3SYNmYFpoRL9aLXkg/edit?usp=sharing"
           target="_blank"
         >
           <h2> 🍲 Food </h2>

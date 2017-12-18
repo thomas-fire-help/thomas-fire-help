@@ -4,7 +4,7 @@ import styled, { keyframes } from 'styled-components'
 import debounce from 'lodash.debounce'
 import MediaQuery from 'react-responsive'
 import Layout from '../../components/Layout'
-import AuthBanner from './AuthErrorBanner';
+import AuthErrorBanner from './AuthErrorBanner';
 import { Container, HeaderContainer, MobileHeaderContainer } from '../../components/atoms'
 import { fetchConfig, handleErrors } from '../../utils/fetchUtils'
 import { isValidEmail, isValidPassword, isValidPhoneNumber, hasEmptyFields, hasSignUpErrors } from '../../utils/authUtils'
@@ -178,13 +178,17 @@ class SignUp extends Component {
     const { history: { goBack }} = this.props;
     const { email, phoneNumber, password, errors } = this.state;
 
-    const allowSubmit = canSubmit(hasSignUpErrors(errors), hasEmptyFields(email, phoneNumber, password));
+    const allowSubmit = canSubmit(
+      hasSignUpErrors(errors),
+      hasEmptyFields(email, phoneNumber, password)
+    );
+
     return (
       <Layout onBack={goBack}>
         <Container>
           <MediaQuery minDeviceWidth={320} maxDeviceWidth={480}>
             {hasSignUpErrors(errors) &&
-              <AuthBanner hasSignUpErrors={hasSignUpErrors(errors)} errors={errors} />
+              <AuthErrorBanner errors={errors} />
             }
             <MobileHeaderContainer style={{ marginBottom: '40px', textAlign: 'left' }}>
               <h1> Sign Up </h1>
@@ -222,7 +226,9 @@ class SignUp extends Component {
           </MediaQuery>
 
           <MediaQuery minDeviceWidth={481}>
-            {hasSignUpErrors(errors) && <AuthBanner hasSignUpErrors={hasSignUpErrors(errors)} errors={errors} />}
+            {hasSignUpErrors(errors) &&
+              <AuthErrorBanner errors={errors} />
+            }
             <HeaderContainer>
               <h1> Sign Up </h1>
             </HeaderContainer>

@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import MediaQuery from 'react-responsive'
 import Layout from '../../components/Layout'
+import AuthErrorBanner from './AuthErrorBanner'
 import { Container, HeaderContainer, MobileHeaderContainer } from '../../components/atoms'
 import { fetchConfig } from '../../utils/fetchUtils'
+import { hasSignUpErrors } from '../../utils/authUtils'
 
 const AuthInputContainer = styled.div`
   display: flex;
@@ -81,6 +83,7 @@ class Login extends Component {
     this.state = {
       user: '',
       password: '',
+      errors: {},
     }
   }
 
@@ -114,12 +117,16 @@ class Login extends Component {
   }
 
   render() {
+    const { errors } = this.state;
     const { history: { goBack }} = this.props;
 
     return (
       <Layout onBack={goBack}>
         <Container>
           <MediaQuery minDeviceWidth={320} maxDeviceWidth={480}>
+            {hasSignUpErrors(errors) &&
+              <AuthErrorBanner errors={errors} />
+            }
             <MobileHeaderContainer style={{ marginBottom: '40px', textAlign: 'left' }}>
               <h1> Login </h1>
             </MobileHeaderContainer>
@@ -142,6 +149,9 @@ class Login extends Component {
           </MediaQuery>
 
           <MediaQuery minDeviceWidth={481}>
+            {hasSignUpErrors(errors) &&
+              <AuthErrorBanner errors={errors} />
+            }
             <HeaderContainer>
               <h1> Login </h1>
             </HeaderContainer>
