@@ -104,7 +104,7 @@ const authModule = createModule({
       })
     ],
     verifyPhoneSuccess: (state, { payload }) =>
-      Object.assign({}, state, { loading: false }),
+      Object.assign({}, state, { loading: false,  user: { ...state.user, verified: true } }),
     verifyPhoneError: (state, { payload }) =>
       Object.assign({}, state, { loading: false }),
     resendVerification: (state, { payload, meta = {} }) => [
