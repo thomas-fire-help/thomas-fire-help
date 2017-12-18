@@ -264,8 +264,34 @@ const MobileFooter = styled.footer`
   animation-delay: .8s;
 `
 
-const Home = ({ loggedIn, authActions, user }) => (
+const NotificationBanner = styled.aside`
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 25px;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: red;
+  cursor: pointer;
+  a {
+    color: white;
+  }
+  a:hover {
+    color: white;
+  }
+`
+
+const Home = ({ loggedIn, authActions, user = {} }) => (
   <Container>
+    {(loggedIn && !user.verified) &&
+      <NotificationBanner>
+        <Link to="verify_phone">
+          Your phone number isn't verified! Verify now.
+        </Link>
+      </NotificationBanner>
+    }
     <MediaQuery minDeviceWidth={320} maxDeviceWidth={480}>
       <MobileHeaderContainer>
         <h1>Thomas Fire Help</h1>
