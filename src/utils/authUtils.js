@@ -32,8 +32,9 @@ export const hasEmptyFields = (...args) => (
 
 export const withAuth = Component => {
   class withAuth extends React.Component {
-    componentWillMount() {
+    componentDidMount() {
       this.props.actions.init()
+      console.log('Mounted withAuth')
     }
     render() {
       const { actions, ...props } = this.props

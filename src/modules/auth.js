@@ -2,14 +2,19 @@ import { createModule } from 'redux-modules';
 import { loop, Cmd, liftState } from 'redux-loop';
 import { fetchConfig } from '../utils/fetchUtils'
 
+const fetchFromStorage = (key) => new Promise((resolve, reject) => {
+  let fromStorage = localStorage.getItem(key)
+  resolve(JSON.parse(fromStorage))
+})
+
 const clearStorage = (...args) => new Promise((resolve, reject) => {
   args.forEach(key => localStorage.setItem(key, null))
   resolve()
 })
 
-const persist = (...args) => new Promise((resolve, reject) => {
-  args.forEach(toPersist => localStorage.setItem(toPersist.key, toPersist.value))
-  resolve()
+const persist = (key, value) => new Promise((resolve, reject) => {
+  localStorage.setItem(key, JSON.stringify(value))
+  resolve(key)
 })
 
 const login = ({ login, password }, onSuccess) =>
@@ -35,29 +40,42 @@ const authModule = createModule({
   composes: [liftState],
   selector: s => s.auth,
   transformations: {
-    init: state => state,
+    init: state => [
+      Object.assign({}, state, { loading: true }),
+      Cmd.run(fetchFromStorage, {
+        successActionCreator: authModule.actions.initSuccess,
+        failActionCreator: authModule.actions.noop,
+        args: ['auth'],
+      })
+    ],
+    initSuccess: (state, { payload }) => {
+      let newState = payload;
+      newState.loading = false
+      // TODO: Check for expiration here
+      if (payload.accessToken) {
+        newState.loggedIn = true
+      }
+      return Object.assign({}, state, newState)
+    },
     login: (state, { payload, meta }) => [
       Object.assign({}, state, { loading: true }),
       Cmd.run(login, {
         successActionCreator: authModule.actions.loginSuccess,
         failActionCreator: authModule.actions.loginError,
-        args: [payload, meta.onSuccess  ]
+        args: [payload, meta.onSuccess]
       })
     ],
     loginSuccess: (state, { payload }) => [
       Object.assign({}, state, {
         loading: false,
         loggedIn: true,
-        accessToken: payload.accessToken,
+        accessToken: payload.access_token,
         user: payload.user
       }),
       Cmd.run(persist, {
         successActionCreator: authModule.noop,
         failActionCreator: authModule.noop,
-        args: [
-          { key: 'accessToken', value: payload.access_token },
-          { key: 'user', value: payload.user },
-        ]
+        args: ['auth', { accessToken: payload.access_token, user: payload.user }]
       })
     ],
     loginError: (state, { payload }) =>
@@ -67,7 +85,7 @@ const authModule = createModule({
       Cmd.run(clearStorage, {
         successActionCreator: authModule.noop,
         failActionCreator: authModule.noop,
-        args: ['accessToken', 'user']
+        args: ['auth']
       })
     ],
     noop: s => s,

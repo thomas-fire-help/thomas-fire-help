@@ -264,7 +264,7 @@ const MobileFooter = styled.footer`
   animation-delay: .8s;
 `
 
-const Home = ({ loggedIn, authActions }) => (
+const Home = ({ loggedIn, authActions, user }) => (
   <Container>
     <MediaQuery minDeviceWidth={320} maxDeviceWidth={480}>
       <MobileHeaderContainer>
