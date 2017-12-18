@@ -49,10 +49,10 @@ const authModule = createModule({
       })
     ],
     initSuccess: (state, { payload }) => {
-      let newState = payload;
+      let newState = payload || {};
       newState.loading = false
       // TODO: Check for expiration here
-      if (payload.accessToken) {
+      if (newState.accessToken) {
         newState.loggedIn = true
       }
       return Object.assign({}, state, newState)
