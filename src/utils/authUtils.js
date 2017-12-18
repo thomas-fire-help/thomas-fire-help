@@ -33,6 +33,11 @@ export const withAuth = Component =>
     constructor(props) {
       super(props)
       this.state = { loggedIn: false, token: false }
+      this.logout = this.logout.bind(this)
+    }
+    logout() {
+      localStorage.setItem('access_token', null)
+      this.setState({ accessToken: false, loggedIn: false })
     }
     componentWillMount() {
       const accessToken = localStorage.getItem('access_token')
@@ -45,6 +50,7 @@ export const withAuth = Component =>
           {...this.props}
           accessToken={this.state.accessToken}
           loggedIn={this.state.loggedIn}
+          logout={this.logout}
         />
       );
     }
