@@ -24,8 +24,8 @@ const housingModule = createModule ({
     create: (state, { payload }) => [
       Object.assign({}, state, { loading: true }),
       Cmd.run(create, {
-        successActionCreator: housingModule.createSuccess,
-        failActionCreator: housingModule.createError,
+        successActionCreator: housingModule.actions.createSuccess,
+        failActionCreator: housingModule.actions.createError,
         args: [payload]
       }),
     ],

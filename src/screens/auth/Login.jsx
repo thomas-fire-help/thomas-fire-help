@@ -2,10 +2,11 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import MediaQuery from 'react-responsive'
+import { connectModule } from 'redux-modules'
+import authModule from '../../modules/auth';
 import Layout from '../../components/Layout'
 import AuthErrorBanner from './AuthErrorBanner'
 import { Container, HeaderContainer, MobileHeaderContainer } from '../../components/atoms'
-import { fetchConfig } from '../../utils/fetchUtils'
 import { hasSignUpErrors } from '../../utils/authUtils'
 
 const AuthInputContainer = styled.div`
@@ -80,28 +81,14 @@ const LoginButton = styled.button`
 class Login extends Component {
   constructor() {
     super()
-    this.state = {
-      user: '',
-      password: '',
-      errors: {},
-    }
+    this.state = { user: '', password: '' }
   }
 
   handleOnClick = () => {
-    const { history } = this.props
+    const { history, actions } = this.props
     const { user: login, password } = this.state
 
-    fetch('https://firehelp-api-staging.herokuapp.com/auth/login', {
-      method: 'post',
-      body: JSON.stringify({ login, password }),
-      headers: fetchConfig(),
-    })
-    .then(res => res.json())
-    .then(data => {
-      console.log(data)
-      localStorage.setItem('access_token', data.access_token)
-      history.push('/')
-    })
+    actions.login({ login, password }, { onSuccess: () => history.push('/') })
   }
 
   handleUsernameInput = (e) => {
@@ -117,8 +104,7 @@ class Login extends Component {
   }
 
   render() {
-    const { errors } = this.state;
-    const { history: { goBack }} = this.props;
+    const { errors = {}, history: { goBack }} = this.props;
 
     return (
       <Layout onBack={goBack}>
@@ -177,4 +163,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default connectModule(authModule)(Login);

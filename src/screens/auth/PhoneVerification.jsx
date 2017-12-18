@@ -82,19 +82,18 @@ class PhoneVerification extends Component {
   constructor() {
     super()
     this.state = {
-      user: '',
-      password: '',
+      verification: '',
       errors: {},
     }
   }
 
-  handleOnClick = () => {
+  handleResendVerification = () => {
     const { history } = this.props
-    const { user: login, password } = this.state
+    const { verification } = this.state
 
     fetch('https://firehelp-api-staging.herokuapp.com/auth/login', {
       method: 'post',
-      body: JSON.stringify({ login, password }),
+      body: JSON.stringify({ pin: verification }),
       headers: fetchConfig(),
     })
     .then(res => res.json())
@@ -105,16 +104,25 @@ class PhoneVerification extends Component {
     })
   }
 
-  handleUsernameInput = (e) => {
-    this.setState({
-      user: e.target.value
+  handleVerify = () => {
+    const { history } = this.props
+    const { verification } = this.state
+
+    fetch('https://firehelp-api-staging.herokuapp.com/auth/login', {
+      method: 'post',
+      body: JSON.stringify({ pin: verification }),
+      headers: fetchConfig(),
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data)
+      localStorage.setItem('access_token', data.access_token)
+      history.push('/')
     })
   }
 
-  handlePasswordInput = (e) => {
-    this.setState({
-      password: e.target.value
-    })
+  updateVerification = (verification) => {
+    this.setState({ verification })
   }
 
   render() {
@@ -133,13 +141,18 @@ class PhoneVerification extends Component {
             </MobileHeaderContainer>
             <AuthInputContainer>
               <AuthInput
-                onChange={(e) => {this.handleUsernameInput(e)}}
+                onChange={({ target }) => this.updateVerification(target.value)}
                 placeholder="Enter text verification code"
                 type="text"
                 style={{ marginTop: '0' }}
               />
-              <MobileLoginButton onClick={this.handleOnClick}>
+              <MobileLoginButton onClick={this.handleVerify}>
                 Verify
+              </MobileLoginButton>
+            </AuthInputContainer>
+            <AuthInputContainer>
+              <MobileLoginButton onClick={this.handleResendVerification}>
+                Resend Pin 
               </MobileLoginButton>
             </AuthInputContainer>
           </MediaQuery>
@@ -153,12 +166,17 @@ class PhoneVerification extends Component {
             </HeaderContainer>
             <AuthInputContainer>
               <AuthInput
-                onChange={(e) => {this.handlePasswordInput(e)}}
+                onChange={({ target }) => this.updateVerification(target.value)}
                 placeholder="Enter text verification code"
                 type="text"
               />
-              <LoginButton onClick={this.handleOnClick}>
+              <LoginButton onClick={this.handleVerify}>
                 Verify
+              </LoginButton>
+            </AuthInputContainer>
+            <AuthInputContainer>
+              <LoginButton onClick={this.handleResendVerification}>
+                Resend Pin
               </LoginButton>
             </AuthInputContainer>
           </MediaQuery>
