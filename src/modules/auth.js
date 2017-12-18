@@ -103,8 +103,14 @@ const authModule = createModule({
         args: [{ userId: state.user.id, pin: payload }, meta.onSuccess]
       })
     ],
-    verifyPhoneSuccess: (state, { payload }) =>
+    verifyPhoneSuccess: (state, { payload }) => [
       Object.assign({}, state, { loading: false,  user: { ...state.user, verified: true } }),
+      Cmd.run(persist, {
+        successActionCreator: authModule.noop,
+        failActionCreator: authModule.noop,
+        args: ['auth', { accessToken: state.accessToken, user: { ...state.user, verified: true } }]
+      })
+    ],
     verifyPhoneError: (state, { payload }) =>
       Object.assign({}, state, { loading: false }),
     resendVerification: (state, { payload, meta = {} }) => [
