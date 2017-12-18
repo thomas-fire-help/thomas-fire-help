@@ -2,6 +2,11 @@ import { createModule } from 'redux-modules';
 import { loop, Cmd, liftState } from 'redux-loop';
 import { fetchConfig } from '../utils/fetchUtils'
 
+const clearStorage = (...args) => new Promise((resolve, reject) => {
+  args.forEach(key => localStorage.setItem(key, null))
+  resolve()
+})
+
 const persist = (...args) => new Promise((resolve, reject) => {
   args.forEach(toPersist => localStorage.setItem(toPersist.key, toPersist.value))
   resolve()
@@ -36,29 +41,35 @@ const authModule = createModule({
       Cmd.run(login, {
         successActionCreator: authModule.actions.loginSuccess,
         failActionCreator: authModule.actions.loginError,
-        args: [payload, meta.onSuccess]
+        args: [payload, meta.onSuccess  ]
       })
     ],
-    loginSuccess: (state, { payload }) => {
-      return loop(
-        Object.assign({}, state, {
-          loading: false,
-          loggedIn: true,
-          accessToken: payload.accessToken,
-          user: payload.user
-        }),
-        Cmd.run(persist, {
-          successActionCreator: authModule.noop,
-          failActionCreator: authModule.noop,
-          args: [
-            { key: 'accessToken', value: payload.access_token },
-            { key: 'user', value: payload.user },
-          ]
-        })
-      )
-    },
+    loginSuccess: (state, { payload }) => [
+      Object.assign({}, state, {
+        loading: false,
+        loggedIn: true,
+        accessToken: payload.accessToken,
+        user: payload.user
+      }),
+      Cmd.run(persist, {
+        successActionCreator: authModule.noop,
+        failActionCreator: authModule.noop,
+        args: [
+          { key: 'accessToken', value: payload.access_token },
+          { key: 'user', value: payload.user },
+        ]
+      })
+    ],
     loginError: (state, { payload }) =>
       Object.assign({}, state, { loading: false }),
+    logout: (state, { payload }) => [
+      Object.assign({}, state, { loggedIn: false, accessToken: '', user: {} }),
+      Cmd.run(clearStorage, {
+        successActionCreator: authModule.noop,
+        failActionCreator: authModule.noop,
+        args: ['accessToken', 'user']
+      })
+    ],
     noop: s => s,
   }
 })

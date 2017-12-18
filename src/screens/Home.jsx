@@ -264,7 +264,7 @@ const MobileFooter = styled.footer`
   animation-delay: .8s;
 `
 
-const Home = ({ loggedIn, logout }) => (
+const Home = ({ loggedIn, authActions }) => (
   <Container>
     <MediaQuery minDeviceWidth={320} maxDeviceWidth={480}>
       <MobileHeaderContainer>
@@ -294,7 +294,7 @@ const Home = ({ loggedIn, logout }) => (
       }
       {loggedIn &&
         <AuthContainer>
-          <LogoutButton onClick={logout}>
+          <LogoutButton onClick={authActions.logout}>
             Logout
           </LogoutButton>
         </AuthContainer>
@@ -352,7 +352,7 @@ const Home = ({ loggedIn, logout }) => (
       }
       {loggedIn &&
         <LogoutContainer>
-          <LogoutButton onClick={logout}>
+          <LogoutButton onClick={authActions.logout}>
             Logout
           </LogoutButton>
         </LogoutContainer>
