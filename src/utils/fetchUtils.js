@@ -1,6 +1,9 @@
 const fetchAuthToken = () => {
   const authPayload = JSON.parse(localStorage.getItem('auth'))
-  return authPayload.accessToken
+  if (authPayload) {
+    return authPayload.accessToken
+  }
+  return ''
 }
 
 export const fetchConfig = () => {
