@@ -21,13 +21,10 @@ const Home = ({ history: { goBack }}) => (
           <h1> How do you want to help? </h1>
         </MobileHeaderContainer>
 
-        <MobileExternal
-          href="https://drive.google.com/open?id=1DjCXaJgoLG4vG4OVD3ACY_DUidvn3MHaBEiQLG0mkIc"
-          target="_blank"
-        >
+        <MobileCategory to="/helping/housing">
           <h2> 🏡 Offer Housing </h2>
-          <p> Help a displaced family or individual, short term or long term. </p>
-        </MobileExternal>
+          <p> Help a displaced family, short term or long term. </p>
+        </MobileCategory>
 
         <MobileExternal
           href="https://drive.google.com/open?id=13X6RVw99trn_Hmmng3NcyacolVJDo3wPmo4WjYV0Ulw"
@@ -36,7 +33,7 @@ const Home = ({ history: { goBack }}) => (
           <h2> 🐴 Help With Animals </h2>
           <p> Volunteer to help animals. </p>
         </MobileExternal>
-        
+
         <MobileCategory to="/helping/volunteers">
           <h2> 🛠 Volunteer </h2>
           <p> With individuals or organizations. </p>
@@ -81,13 +78,10 @@ const Home = ({ history: { goBack }}) => (
           <h1> How do you want to help? </h1>
         </HeaderContainer>
 
-        <External
-          href="https://drive.google.com/open?id=1DjCXaJgoLG4vG4OVD3ACY_DUidvn3MHaBEiQLG0mkIc"
-          target="_blank"
-        >
+        <Category to="/helping/housing">
           <h2> 🏡 Offer Housing </h2>
           <p> Help a displaced family, short term or long term. </p>
-        </External>
+        </Category>
 
         <External
           href="https://drive.google.com/open?id=13X6RVw99trn_Hmmng3NcyacolVJDo3wPmo4WjYV0Ulw"
@@ -96,7 +90,7 @@ const Home = ({ history: { goBack }}) => (
           <h2> 🐴 Help With Animals </h2>
           <p> Volunteer to help animals. </p>
         </External>
-        
+
         <Category to="/helping/volunteers">
           <h2> 🛠 Volunteer </h2>
           <p> With individuals or organizations. </p>

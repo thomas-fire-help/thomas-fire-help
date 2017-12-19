@@ -6284,6 +6284,10 @@ redux-loop@^4.2.4:
   version "4.2.4"
   resolved "https://registry.yarnpkg.com/redux-loop/-/redux-loop-4.2.4.tgz#d497ddf79ebdfc16b3aa9006f5d0a7a442e6bd6c"
 
+redux-modules-middleware@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/redux-modules-middleware/-/redux-modules-middleware-1.1.0.tgz#839fa490e6af42dbdc7f53eeeb05dac37812f911"
+
 redux-modules@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/redux-modules/-/redux-modules-1.1.0.tgz#5565dd1717eb94fa3da50b38871699034426e366"

@@ -18,7 +18,16 @@ export const HeaderContainer = styled.div`
   align-self: flex-start;
   flex: 1;
   font-size: 24px;
+  font-weight: 600px
   padding-bottom: 20px;
+`
+
+export const Card = styled.div`
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.2s ease-in-out;
+  &:hover {
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.23), 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+  }
 `
 
 export const MobileHeaderContainer = styled.div`
@@ -41,7 +50,6 @@ export const MobileHeaderContainer = styled.div`
 export const NavigationCard = styled.section`
   margin-top: 20px;
   padding: 35px 15px;
-  border: 1px solid black;
   text-transform: uppercase;
   text-align: center;
 `
@@ -73,7 +81,6 @@ export const Category = styled(Link)`
 export const MobileCategory = styled(Link)`
   color: #000;
   padding: 15px 15px;
-  border: 1px solid black;
   text-decoration: none;
   margin-bottom: 20px;
 
@@ -123,7 +130,6 @@ export const External = styled.a`
 
 export const MobileExternal = styled.a`
   color: #000;
-  border: 1px solid black;
   padding: 15px 15px;
   text-decoration: none;
   margin-bottom: 20px;
