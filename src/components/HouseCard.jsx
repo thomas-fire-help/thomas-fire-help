@@ -81,7 +81,7 @@ const wordMap = {
   },
   housing_type: {
     room: 'Room',
-    house: 'House',
+    home: 'House',
   },
   length_of_stay: {
     short: 'Short Term (5 days)',

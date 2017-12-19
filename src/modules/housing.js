@@ -24,6 +24,7 @@ const serializeForCreate = params => {
     housing_type: params.housingType,
     has_animals: params.householdHasAnimals,
     length_of_stay: params.duration,
+    notes: params.description,
     child_friendly: params.childFriendly,
     child_notes: params.childNotes,
     pets_accepted: params.petsAllowed,

@@ -40,8 +40,8 @@ const StackInput = ({ required, children, label }) => (
   </StackContainer>
 )
 
-const Housing = ({ actions, update, formData, history: { goBack }}) => (
-  <Layout header="Housing" onBack={goBack}>
+const Housing = ({ actions, update, formData, history }) => (
+  <Layout header="Housing" onBack={history.goBack}>
     <Container style={{ maxWidth: '600px', display: 'flex' }}>
       <HeaderContainer>
         Housing Information
@@ -52,7 +52,7 @@ const Housing = ({ actions, update, formData, history: { goBack }}) => (
             value={formData.housingType}
             onChange={value => update('housingType', value)}
             options={[
-              {label: 'Entire Home', value: 'home'},
+              {label: 'Entire Home', value: 'house'},
               {label: 'Private Room', value: 'room'}
             ]}
           />
@@ -117,17 +117,21 @@ const Housing = ({ actions, update, formData, history: { goBack }}) => (
       <FormSection>
         <StackInput required label="Price:">
           <SegmentedController
-            value={formData.price}
-            onChange={value => update('price', value)}
-            options={[{ label: "Free", value: 'free' }, { label: "Paid", value: 'paid' }]}
+            value={formData.paid}
+            onChange={value => update('paid', value)}
+            options={[{ label: "Free", value: false }, { label: "Paid", value: true }]}
           />
         </StackInput>
+
+        {formData.paid &&
+          <Input onChange={({ target }) => update('price', target.value)} />
+        }
 
         <StackInput label="Child Friendly:">
           <SegmentedController
             value={formData.childFriendly}
             onChange={value => update('childFriendly', value)}
-            options={[{ label: "Yes", value: 'yes' }, { label: "No", value: 'no' }]}
+            options={[{ label: "Yes", value: true }, { label: "No", value: false }]}
           />
         </StackInput>
 
@@ -135,7 +139,7 @@ const Housing = ({ actions, update, formData, history: { goBack }}) => (
           <SegmentedController
             value={formData.householdHasAnimals}
             onChange={value => update('householdHasAnimals', value)}
-            options={[{ label: "Yes", value: 'yes' }, { label: "No", value: 'no' }]}
+            options={[{ label: "Yes", value: true }, { label: "No", value: false }]}
           />
         </StackInput>
 
@@ -143,7 +147,7 @@ const Housing = ({ actions, update, formData, history: { goBack }}) => (
           <SegmentedController
             value={formData.petsAllowed}
             onChange={value => update('petsAllowed', value)}
-            options={[{ label: "Yes", value: 'yes' }, { label: "No", value: 'no' }]}
+            options={[{ label: "Yes", value: true }, { label: "No", value: false }]}
           />
         </StackInput>
       </FormSection>
@@ -178,7 +182,7 @@ const Housing = ({ actions, update, formData, history: { goBack }}) => (
         <Button
           type="primary"
           style={{ width: '100%', height: '44px' }}
-          onClick={() => actions.create(formData)}
+          onClick={() => actions.create(formData, { onSuccess: () => history.push('/looking_for_resources/housing')})}
         >
           Submit!
         </Button>
@@ -200,14 +204,14 @@ export default compose(
         city: 'ventura',
         neighborhood: '',
         duration: 'short',
-        price: 'free',
-        childFriendly: 'yes',
-        householdHasAnimals: 'no',
-        petsAllowed: 'yes',
+        paid: true,
+        childFriendly: true,
+        householdHasAnimals: false,
+        petsAllowed: true,
         description: '',
         yourName: '',
         phoneNumber: '',
-        RequiredIndicatorailAddress: ''
+        emailAddress: ''
       }
     },
     {
