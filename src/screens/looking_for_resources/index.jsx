@@ -21,13 +21,10 @@ const Home = ({ history: { goBack }}) => (
           <h1> What do you need? </h1>
         </MobileHeaderContainer>
 
-        <MobileExternal
-          href="https://drive.google.com/open?id=1xWoeLBQYWkgpaMcVCaBnMfEC-oY80aS2CD3sGxMHdes"
-          target="_blank"
-        >
+        <MobileCategory to="/looking_for_resources/housing">
           <h2> 🏘 Housing </h2>
           <p> View housing that is available now. </p>
-        </MobileExternal>
+        </MobileCategory>
 
         <MobileCategory to="/looking_for_resources/volunteers">
           <h2> 🛠 Volunteers </h2>
@@ -57,7 +54,7 @@ const Home = ({ history: { goBack }}) => (
           <h2> 🍲 Food </h2>
           <p> Something free to eat. </p>
         </MobileExternal>
-        
+
         <MobileExternal
           href="https://drive.google.com/open?id=1nUv_bw0IA7KPy_jP5IXEGELd1GF7cfzv_LkJutN_nV4"
           target="_blank"
@@ -72,13 +69,10 @@ const Home = ({ history: { goBack }}) => (
           <h1> What do you need? </h1>
         </HeaderContainer>
 
-        <External
-          href="https://drive.google.com/open?id=1xWoeLBQYWkgpaMcVCaBnMfEC-oY80aS2CD3sGxMHdes"
-          target="_blank"
-        >
+        <Category to="/looking_for_resources/housing">
           <h2> 🏘 Housing </h2>
           <p> View housing that is available now. </p>
-        </External>
+        </Category>
 
         <Category to="/looking_for_resources/volunteers">
           <h2> 🛠 Volunteers </h2>
@@ -108,7 +102,7 @@ const Home = ({ history: { goBack }}) => (
           <h2> 🍲 Food </h2>
           <p> Something free to eat. </p>
         </External>
-        
+
         <External
           href="https://drive.google.com/open?id=1nUv_bw0IA7KPy_jP5IXEGELd1GF7cfzv_LkJutN_nV4"
           target="_blank"
