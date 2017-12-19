@@ -2,21 +2,20 @@ import { createModule } from 'redux-modules';
 import { loop, Cmd, liftState } from 'redux-loop';
 import { getHost } from '../utils/network';
 import { log } from 'redux-modules-middleware';
+import { fetchConfig } from '../utils/fetchUtils';
 
 const endpoint = `${getHost()}/housings`;
-const getHeaders = () => {
-  const accessToken = localStorage.getItem('access_token')
-  return { 'Authorization': `Bearer ${accessToken}`}
-}
 
 const create = params =>
-  fetch(endpoint, { method: 'POST', body: JSON.stringify(params), headers: getHeaders() })
+  fetch(endpoint, { method: 'POST', body: JSON.stringify(params), headers: fetchConfig() })
     .then(res => res.json());
 
 const serializeForCreate = params => {
   return {
     beds: params.bedsAvailable,
     paid: params.price,
+    city: params.city,
+    length_of_stay: params.duration,
     neighborhood: params.neighborhood,
     housing_type: params.housingType,
     has_animals: params.householdHasAnimals,
@@ -32,7 +31,7 @@ const serializeForCreate = params => {
 };
 
 const list = params =>
-  fetch(endpoint, { headers: getHeaders() }).then(res => res.json());
+  fetch(endpoint, { headers: fetchConfig() }).then(res => res.json());
 
 const examplePayload = [
   {
@@ -84,8 +83,8 @@ const housingModule = createModule ({
     create: (state, { payload }) => [
       Object.assign({}, state, { loading: true }),
       Cmd.run(create, {
-        successActionCreator: housingModule.createSuccess,
-        failActionCreator: housingModule.createError,
+        successActionCreator: housingModule.actions.createSuccess,
+        failActionCreator: housingModule.actions.createError,
         args: [serializeForCreate(payload)]
       }),
     ],
