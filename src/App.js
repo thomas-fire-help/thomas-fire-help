@@ -16,6 +16,7 @@ import { Helmet } from 'react-helmet'
 import Home from './screens/Home'
 import Login from './screens/auth/Login'
 import SignUp from './screens/auth/SignUp'
+import PhoneVerification from './screens/auth/PhoneVerification'
 
 import LookingForHelp from './screens/looking_for_resources'
 import Housing from './screens/looking_for_resources/Housing'
@@ -54,6 +55,7 @@ const App = props => (
         <Route exact path="/helping/housing" component={HousingForm} />
         <Route exact path="/helping/volunteers" component={Volunteers} />
         <Route exact path="/login" component={Login} />
+        <Route exact path="/verify_phone" component={PhoneVerification} />
         <Route exact path="/sign_up" component={SignUp} />
       </AppContainer>
     </ModuleProvider>

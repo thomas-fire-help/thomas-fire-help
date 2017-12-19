@@ -1,4 +1,6 @@
 import React from 'react';
+import { connectModule } from 'redux-modules';
+import auth from '../modules/auth';
 
 export const isValidEmail = (email) => (
   /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email)
@@ -28,30 +30,18 @@ export const hasEmptyFields = (...args) => (
   args.some(fieldValue => fieldValue === '')
 );
 
-export const withAuth = Component =>
+export const withAuth = Component => {
   class withAuth extends React.Component {
-    constructor(props) {
-      super(props)
-      this.state = { loggedIn: false, token: false }
-      this.logout = this.logout.bind(this)
-    }
-    logout() {
-      localStorage.setItem('access_token', null)
-      this.setState({ accessToken: false, loggedIn: false })
-    }
-    componentWillMount() {
-      const accessToken = localStorage.getItem('access_token')
-      console.log('AccessToken', accessToken)
-      this.setState({ accessToken, loggedIn: !!accessToken })
+    componentDidMount() {
+      this.props.actions.init()
+      console.log('Mounted withAuth')
     }
     render() {
+      const { actions, ...props } = this.props
       return (
-        <Component
-          {...this.props}
-          accessToken={this.state.accessToken}
-          loggedIn={this.state.loggedIn}
-          logout={this.logout}
-        />
+        <Component {...props} authActions={actions} />
       );
     }
   }
+  return connectModule(auth)(withAuth);
+}

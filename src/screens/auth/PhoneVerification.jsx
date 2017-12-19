@@ -1,12 +1,14 @@
+
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import MediaQuery from 'react-responsive'
 import { connectModule } from 'redux-modules'
-import authModule from '../../modules/auth';
+import authModule from '../../modules/auth'
 import Layout from '../../components/Layout'
 import AuthErrorBanner from './AuthErrorBanner'
 import { Container, HeaderContainer, MobileHeaderContainer } from '../../components/atoms'
+import { fetchConfig } from '../../utils/fetchUtils'
 import { hasSignUpErrors } from '../../utils/authUtils'
 
 const AuthInputContainer = styled.div`
@@ -78,33 +80,34 @@ const LoginButton = styled.button`
   cursor: pointer;
 `
 
-class Login extends Component {
+class PhoneVerification extends Component {
   constructor() {
     super()
-    this.state = { user: '', password: '' }
+    this.state = {
+      verification: '',
+      errors: {},
+    }
   }
 
-  handleOnClick = () => {
+  handleResendVerification = () => {
     const { history, actions } = this.props
-    const { user: login, password } = this.state
-
-    actions.login({ login, password }, { onSuccess: () => history.push('/') })
+    actions.resendVerification()
   }
 
-  handleUsernameInput = (e) => {
-    this.setState({
-      user: e.target.value
-    })
+  handleVerify = () => {
+    const { history, actions } = this.props
+    const { verification } = this.state
+
+    actions.verifyPhone(verification, { onSuccess: history.push('/') })
   }
 
-  handlePasswordInput = (e) => {
-    this.setState({
-      password: e.target.value
-    })
+  updateVerification = (verification) => {
+    this.setState({ verification })
   }
 
   render() {
-    const { errors = {}, history: { goBack }} = this.props;
+    const { errors } = this.state;
+    const { history: { goBack }} = this.props;
 
     return (
       <Layout onBack={goBack}>
@@ -114,22 +117,22 @@ class Login extends Component {
               <AuthErrorBanner errors={errors} />
             }
             <MobileHeaderContainer style={{ marginBottom: '40px', textAlign: 'left' }}>
-              <h1> Login </h1>
+              <h1>Verify Phone</h1>
             </MobileHeaderContainer>
             <AuthInputContainer>
               <AuthInput
-                onChange={(e) => {this.handleUsernameInput(e)}}
-                placeholder="Username or Phone #"
+                onChange={({ target }) => this.updateVerification(target.value)}
+                placeholder="Enter text verification code"
                 type="text"
                 style={{ marginTop: '0' }}
               />
-              <AuthInput
-                onChange={(e) => {this.handlePasswordInput(e)}}
-                placeholder="Password"
-                type="password"
-              />
-              <MobileLoginButton onClick={this.handleOnClick}>
-                Login
+              <MobileLoginButton onClick={this.handleVerify}>
+                Verify
+              </MobileLoginButton>
+            </AuthInputContainer>
+            <AuthInputContainer>
+              <MobileLoginButton onClick={this.handleResendVerification}>
+                Resend Pin
               </MobileLoginButton>
             </AuthInputContainer>
           </MediaQuery>
@@ -139,21 +142,21 @@ class Login extends Component {
               <AuthErrorBanner errors={errors} />
             }
             <HeaderContainer>
-              <h1> Login </h1>
+              <h1>Verify Phone</h1>
             </HeaderContainer>
             <AuthInputContainer>
               <AuthInput
-                onChange={(e) => {this.handleUsernameInput(e)}}
-                placeholder="Username or Phone #"
+                onChange={({ target }) => this.updateVerification(target.value)}
+                placeholder="Enter text verification code"
                 type="text"
               />
-              <AuthInput
-                onChange={(e) => {this.handlePasswordInput(e)}}
-                placeholder="Password"
-                type="password"
-              />
-              <LoginButton onClick={this.handleOnClick}>
-                Login
+              <LoginButton onClick={this.handleVerify}>
+                Verify
+              </LoginButton>
+            </AuthInputContainer>
+            <AuthInputContainer>
+              <LoginButton onClick={this.handleResendVerification}>
+                Resend Pin
               </LoginButton>
             </AuthInputContainer>
           </MediaQuery>
@@ -163,4 +166,4 @@ class Login extends Component {
   }
 }
 
-export default connectModule(authModule)(Login);
+export default connectModule(authModule)(PhoneVerification);
