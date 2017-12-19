@@ -84,8 +84,9 @@ const wordMap = {
     house: 'House',
   },
   length_of_stay: {
-    short_term: 'Short Term (5 days)',
-    long_term: 'Long Term (1 month)',
+    short: 'Short Term (5 days)',
+    long: 'Long Term (1 month)',
+    permanent: 'Permanent',
   },
 }
 

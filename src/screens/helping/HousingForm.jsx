@@ -52,8 +52,8 @@ const Housing = ({ actions, update, formData, history: { goBack }}) => (
             value={formData.housingType}
             onChange={value => update('housingType', value)}
             options={[
-              {label: 'Entire Home', value: 'entire_home'},
-              {label: 'Private Room', value: 'private_room'}
+              {label: 'Entire Home', value: 'home'},
+              {label: 'Private Room', value: 'room'}
             ]}
           />
         </StackInput>
@@ -107,8 +107,8 @@ const Housing = ({ actions, update, formData, history: { goBack }}) => (
       <FormSection>
         <StackInput required label="Duration:">
           <RadioGroup value={formData.duration} onChange={({ target }) => update('duration', target.value)}>
-            <Radio value={'short_term'}>Short-Term: one week or less</Radio>
-            <Radio value={'long_term'}>Long-Term: one month to one week </Radio>
+            <Radio value={'short'}>Short-Term: one week or less</Radio>
+            <Radio value={'long'}>Long-Term: one month to one week </Radio>
             <Radio value={'permanent'}>Permanent: available for rent or lease</Radio>
           </RadioGroup>
         </StackInput>
@@ -195,11 +195,11 @@ export default compose(
   withStateHandlers(
     {
       formData: {
-        housingType: 'private_room',
+        housingType: 'room',
         bedsAvailable: 1,
         city: 'ventura',
         neighborhood: '',
-        duration: 'short_term',
+        duration: 'short',
         price: 'free',
         childFriendly: 'yes',
         householdHasAnimals: 'no',

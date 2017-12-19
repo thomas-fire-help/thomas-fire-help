@@ -6,9 +6,13 @@ import { fetchConfig } from '../utils/fetchUtils';
 
 const endpoint = `${getHost()}/housings`;
 
-const create = params =>
+const create = (params, onSuccess) =>
   fetch(endpoint, { method: 'POST', body: JSON.stringify(params), headers: fetchConfig() })
-    .then(res => res.json());
+    .then(res => res.json())
+    .then(data => {
+      onSuccess(data)
+      return data
+    })
 
 const serializeForCreate = params => {
   return {
@@ -80,12 +84,12 @@ const housingModule = createModule ({
   selector: s => s.housing,
   transformations: {
     init: state => state,
-    create: (state, { payload }) => [
+    create: (state, { payload, meta }) => [
       Object.assign({}, state, { loading: true }),
       Cmd.run(create, {
         successActionCreator: housingModule.actions.createSuccess,
         failActionCreator: housingModule.actions.createError,
-        args: [serializeForCreate(payload)]
+        args: [serializeForCreate(payload), meta.onSuccess]
       }),
     ],
     createSuccess: {
@@ -104,7 +108,7 @@ const housingModule = createModule ({
     listSuccess: {
       middleware: [log()],
       reducer: (state, { payload }) =>
-        Object.assign({}, state, { loading: false, data: examplePayload })
+        Object.assign({}, state, { loading: false, data: payload })
     },
     listError: s => s,
   },
