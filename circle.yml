@@ -23,7 +23,7 @@ deployment:
   production:
     branch: master
     commands:
-      - yarn build
+      - REACT_APP_API_HOST=production yarn build
       - aws s3 sync build/ s3://aws-website-thomasfirehelp-1sy02
   staging:
     branch: develop
