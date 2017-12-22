@@ -35,7 +35,7 @@ const StackInput = ({ required, children, label }) => (
   </StackContainer>
 )
 
-const LFVolunteerForm = ({ actions, update, formData, history: { goBack }}) => (
+const LFVolunteerForm = ({ actions, update, formData, history: { goBack }, match: { path } }) => (
   <Layout header="Housing" onBack={goBack}>
     <Container>
       <HeaderContainer>
@@ -66,6 +66,26 @@ const LFVolunteerForm = ({ actions, update, formData, history: { goBack }}) => (
           onChange={value => update('description', value)}
         />
       </StackInput>
+
+      {(formType => {
+        if (formType === 'organization') {
+          return (
+            <div>
+              <StackInput label="Number of volunteers:">
+                <Input
+                  onChange={value => update('numberVolunteers', value)}
+                />
+              </StackInput>
+
+              <StackInput label="Time(s) needed:">
+                <Input
+                  onChange={value => update('timeNeeded', value)}
+                />
+              </StackInput>
+            </div>
+          )
+        }
+      })(path.split('/').pop())}
 
       <StackInput required label="City:">
         <Select
