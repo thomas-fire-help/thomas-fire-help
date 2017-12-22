@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import styled, { keyframes } from 'styled-components'
 import debounce from 'lodash.debounce'
 import MediaQuery from 'react-responsive'
+import { connectModule } from 'redux-modules'
+import authModule from '../../modules/auth';
 import Layout from '../../components/Layout'
 import AuthErrorBanner from './AuthErrorBanner';
 import { Container, HeaderContainer, MobileHeaderContainer } from '../../components/atoms'
@@ -119,17 +121,13 @@ class SignUp extends Component {
   }
 
   handleOnClick = (allowSubmit) => {
+    const { history, actions } = this.props;
     const { email: username, phoneNumber: phone_number, password, errors } = this.state;
 
-    allowSubmit
-      ? fetch('https://firehelp-api-staging.herokuapp.com/auth/register', {
-          method: 'post',
-          body: JSON.stringify({ username, phone_number, password }),
-          headers: fetchConfig(),
-        })
-          .then(handleErrors)
-          .catch((err) => console.log(err))
-      : null
+    actions.signup(
+      { username, phone_number, password },
+      { onSuccess: () => history.push('/') }
+    )
   }
 
   handleEmailInput = (e) => {
@@ -268,4 +266,4 @@ class SignUp extends Component {
   }
 }
 
-export default SignUp;
+export default connectModule(authModule)(SignUp);

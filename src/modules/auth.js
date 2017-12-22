@@ -3,14 +3,27 @@ import { loop, Cmd, liftState } from 'redux-loop'
 import { fetchConfig } from '../utils/fetchUtils'
 import { fetchFromStorage, clearStorage, persist } from '../utils/localStorage'
 
-const login = ({ login, password }, onSuccess) =>
+const signup = ({ username, phone_number, password }, onSuccess = () => {}) =>
   fetch('https://firehelp-api-staging.herokuapp.com/auth/login', {
-    method: 'post', body: JSON.stringify({ login, password }),
+    method: 'post', body: JSON.stringify({ username, phone_number, password }),
     headers: fetchConfig(),
   })
   .then(res => res.json())
   .then(data => {
     onSuccess(data)
+    return data
+  })
+
+const login = ({ login, password }, onSuccess) =>
+  fetch('https://firehelp-api-staging.herokuapp.com/auth/login', {
+    method: 'post', body: JSON.stringify({ login, password }),
+    headers: fetchConfig(),
+  })
+  .then(res =>
+    res.json().then(json => Object.assign({}, json, { status: res.status }))
+  )
+  .then(data => {
+    if (data.status >= 200 && data.status < 299) { onSuccess(data) }
     return data
   })
 
@@ -64,8 +77,21 @@ const authModule = createModule({
       }
       return Object.assign({}, state, newState)
     },
-    login: (state, { payload, meta }) => [
+    signup: (state, { payload, meta }) => [
       Object.assign({}, state, { loading: true }),
+      Cmd.run(signup, {
+        successActionCreator: () => authModule.actions.login({
+          login: payload.username,
+          password: payload.password
+        }, meta),
+        failActionCreator: authModule.actions.signupError,
+        args: [payload]
+      })
+    ],
+    signupError: (state, { payload }) =>
+      Object.assign({}, state, { loading: false }),
+    login: (state, { payload, meta }) => [
+      Object.assign({}, state, { loading: true, loginErrors: false }),
       Cmd.run(login, {
         successActionCreator: authModule.actions.loginSuccess,
         failActionCreator: authModule.actions.loginError,
@@ -75,7 +101,8 @@ const authModule = createModule({
     loginSuccess: (state, { payload }) => [
       Object.assign({}, state, {
         loading: false,
-        loggedIn: true,
+        loginErrors: payload.error,
+        loggedIn: !!payload.access_token,
         accessToken: payload.access_token,
         user: payload.user
       }),
@@ -86,7 +113,7 @@ const authModule = createModule({
       })
     ],
     loginError: (state, { payload }) =>
-      Object.assign({}, state, { loading: false }),
+      Object.assign({}, state, { loading: false, loginErrors: payload }),
     logout: (state, { payload }) => [
       Object.assign({}, state, { loggedIn: false, accessToken: '', user: {} }),
       Cmd.run(clearStorage, {
