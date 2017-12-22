@@ -1,8 +1,9 @@
 import { createModule } from 'redux-modules';
 import { loop, Cmd, liftState } from 'redux-loop';
+import { getHost } from '../utils/network'
 
 // TODO - 12/16 yash - replace this with the actual endpoint
-const endpoint = '/volunteers'
+const endpoint = `${getHost()}/volunteers`
 
 const create = params =>
   fetch(endpoint, { method: 'POST', body: JSON.stringify(params) })
