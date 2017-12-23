@@ -327,6 +327,7 @@ const Home = ({ loggedIn, authActions, user = {} }) => (
       }
       <MobileSubheadingContainer>
         <h3>We're volunteers connecting community-sourced help to recovery needs for the Thomas Fire.</h3>
+        <h3><a href="http://about.thomasfirehelp.com" target="_blank">Click here to learn more.</a></h3>
       </MobileSubheadingContainer>
       <MobileNotificationBar>
         <div>
@@ -385,6 +386,7 @@ const Home = ({ loggedIn, authActions, user = {} }) => (
       }
       <SubheadingContainer>
         <h3>We're volunteers connecting community-sourced help to recovery needs for the Thomas Fire.</h3>
+        <h3><a href="http://about.thomasfirehelp.com" target="_blank">Click here to learn more.</a></h3>
       </SubheadingContainer>
       <NotificationBar>
         <div>
