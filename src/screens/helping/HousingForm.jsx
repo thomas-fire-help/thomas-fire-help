@@ -147,7 +147,6 @@ const Housing = ({ actions, update, formData, history }) => (
             <TextArea
               placeholder="Enter additional information about children..."
               onChange={({ target }) => update('childNotes', target.value)}
-              placeholder="Enter a price..."
             />
           </StackInput>
         }
@@ -175,7 +174,6 @@ const Housing = ({ actions, update, formData, history }) => (
             <TextArea
               placeholder="Enter additional information about pets..."
               onChange={({ target }) => update('petNotes', target.value)}
-              placeholder="Enter a price..."
             />
           </StackInput>
         }
