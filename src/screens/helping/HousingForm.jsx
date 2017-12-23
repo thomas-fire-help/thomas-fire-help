@@ -124,9 +124,16 @@ const Housing = ({ actions, update, formData, history }) => (
         </StackInput>
 
         {formData.paid &&
-          <Input onChange={({ target }) => update('price', target.value)} />
+          <StackInput required label="Monthly Payment">
+            <Input
+              onChange={({ target }) => update('price', target.value)}
+              placeholder="Enter a price..."
+            />
+          </StackInput>
         }
+      </FormSection>
 
+      <FormSection>
         <StackInput label="Child Friendly:">
           <SegmentedController
             value={formData.childFriendly}
@@ -135,6 +142,17 @@ const Housing = ({ actions, update, formData, history }) => (
           />
         </StackInput>
 
+        {formData.childFriendly &&
+          <StackInput required label="Notes on Children">
+            <TextArea
+              placeholder="Enter additional information about children..."
+              onChange={({ target }) => update('childNotes', target.value)}
+            />
+          </StackInput>
+        }
+      </FormSection>
+
+      <FormSection>
         <StackInput label="Animals present:">
           <SegmentedController
             value={formData.householdHasAnimals}
@@ -150,11 +168,24 @@ const Housing = ({ actions, update, formData, history }) => (
             options={[{ label: "Yes", value: true }, { label: "No", value: false }]}
           />
         </StackInput>
+
+        {formData.petsAllowed &&
+          <StackInput required label="Pet Notes">
+            <TextArea
+              placeholder="Enter additional information about pets..."
+              onChange={({ target }) => update('petNotes', target.value)}
+            />
+          </StackInput>
+        }
       </FormSection>
 
       <FormSection>
         <StackInput label="Description of Housing:">
-          <TextArea placeholder="Additional Information" autosize={{ minRows: 2 }} />
+          <TextArea
+            placeholder="Additional Information"
+            autosize={{ minRows: 2 }}
+            onChange={({ target }) => update('description', target.value)}
+          />
         </StackInput>
       </FormSection>
 

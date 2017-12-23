@@ -81,13 +81,21 @@ const wordMap = {
   },
   housing_type: {
     room: 'Room',
-    home: 'House',
+    house: 'House',
   },
   length_of_stay: {
     short: 'Short Term (5 days)',
     long: 'Long Term (1 month)',
     permanent: 'Permanent',
   },
+  city: {
+    santa_barbara: 'Santa Barbara',
+    ventura: 'Ventura',
+    goleta: 'Goleta',
+    ojai: 'Ojai',
+    camarillo: 'Camarillo',
+    thousand_oaks: 'Thousand Oaks',
+  }
 }
 
 const prettyPrint = (key, value) => wordMap[key][value]
@@ -98,7 +106,7 @@ const HouseCard = ({ showDetails, setShowDetails, ...houseListing }) => (
     <Body>
       <HeaderContainer onClick={() => setShowDetails(!showDetails)}>
         <h2>
-          {`${prettyPrint('housing_type', houseListing.housing_type)} in ${houseListing.city}`}
+          {`${prettyPrint('housing_type', houseListing.housing_type)} in ${prettyPrint('city', houseListing.city)}`}
         </h2>
         <aside>
           {houseListing.neighborhood}
