@@ -26,7 +26,7 @@ const serializeForCreate = params => {
     length_of_stay: params.duration,
     notes: params.description,
     child_friendly: params.childFriendly,
-    child_notes: params.childNotes,
+    kid_notes: params.childNotes,
     pets_accepted: params.petsAllowed,
     pet_notes: params.petNotes,
     contact_name: params.name,
