@@ -4,13 +4,15 @@ import { fetchConfig } from '../utils/fetchUtils'
 import { fetchFromStorage, clearStorage, persist } from '../utils/localStorage'
 
 const signup = ({ username, phone_number, password }, onSuccess = () => {}) =>
-  fetch('https://firehelp-api-staging.herokuapp.com/auth/login', {
+  fetch('https://firehelp-api-staging.herokuapp.com/auth/register', {
     method: 'post', body: JSON.stringify({ username, phone_number, password }),
     headers: fetchConfig(),
   })
-  .then(res => res.json())
+  .then(res =>
+    res.json().then(json => Object.assign({}, json, { status: res.status }))
+  )
   .then(data => {
-    onSuccess(data)
+    if (data.status >= 200 && data.status < 299) { onSuccess(data) }
     return data
   })
 
@@ -77,17 +79,27 @@ const authModule = createModule({
       }
       return Object.assign({}, state, newState)
     },
-    signup: (state, { payload, meta }) => [
-      Object.assign({}, state, { loading: true }),
-      Cmd.run(signup, {
-        successActionCreator: () => authModule.actions.login({
-          login: payload.username,
-          password: payload.password
-        }, meta),
-        failActionCreator: authModule.actions.signupError,
-        args: [payload]
-      })
-    ],
+    signup: (state, { payload, meta }) => {
+      return [
+        Object.assign({}, state, { loading: true }),
+        Cmd.run(signup, {
+          successActionCreator: (result) => {
+              let sideEffects;
+
+              if (result.status >= 400) {
+                return authModule.actions.signupError(result)
+              }
+
+              return authModule.actions.login({
+              login: payload.username,
+              password: payload.password
+            }, meta)
+          },
+          failActionCreator: authModule.actions.signupError,
+          args: [payload]
+        })
+      ];
+    },
     signupError: (state, { payload }) =>
       Object.assign({}, state, { loading: false }),
     login: (state, { payload, meta }) => [
