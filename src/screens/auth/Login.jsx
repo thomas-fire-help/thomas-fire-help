@@ -97,6 +97,12 @@ class Login extends Component {
     })
   }
 
+  checkForSubmit = (e) => {
+    if (e.keyCode === 13) {
+      this.handleOnClick();
+    }
+  }
+
   handlePasswordInput = (e) => {
     this.setState({
       password: e.target.value
@@ -104,7 +110,7 @@ class Login extends Component {
   }
 
   render() {
-    const { errors = {}, history: { goBack }} = this.props;
+    const { errors = {}, history: { goBack }, loginErrors} = this.props;
 
     return (
       <Layout onBack={goBack}>
@@ -120,12 +126,14 @@ class Login extends Component {
               <AuthInput
                 onChange={(e) => {this.handleUsernameInput(e)}}
                 placeholder="Username or Phone #"
+                onKeyDown={this.checkForSubmit.bind(this)}
                 type="text"
                 style={{ marginTop: '0' }}
               />
               <AuthInput
                 onChange={(e) => {this.handlePasswordInput(e)}}
                 placeholder="Password"
+                onKeyDown={this.checkForSubmit.bind(this)}
                 type="password"
               />
               <MobileLoginButton onClick={this.handleOnClick}>
@@ -144,17 +152,22 @@ class Login extends Component {
             <AuthInputContainer>
               <AuthInput
                 onChange={(e) => {this.handleUsernameInput(e)}}
+                onKeyDown={this.checkForSubmit.bind(this)}
                 placeholder="Username or Phone #"
                 type="text"
               />
               <AuthInput
                 onChange={(e) => {this.handlePasswordInput(e)}}
+                onKeyDown={this.checkForSubmit.bind(this)}
                 placeholder="Password"
                 type="password"
               />
               <LoginButton onClick={this.handleOnClick}>
                 Login
               </LoginButton>
+              {loginErrors &&
+                <div>{JSON.stringify(loginErrors)}</div>
+              }
             </AuthInputContainer>
           </MediaQuery>
         </Container>
