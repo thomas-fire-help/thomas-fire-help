@@ -2,9 +2,10 @@ import { createModule } from 'redux-modules';
 import { loop, Cmd, liftState } from 'redux-loop'
 import { fetchConfig } from '../utils/fetchUtils'
 import { fetchFromStorage, clearStorage, persist } from '../utils/localStorage'
+import { getHost } from '../utils/network'
 
 const login = ({ login, password }, onSuccess) =>
-  fetch('https://firehelp-api-staging.herokuapp.com/auth/login', {
+  fetch(`${getHost()}/auth/login`, {
     method: 'post', body: JSON.stringify({ login, password }),
     headers: fetchConfig(),
   })
@@ -15,7 +16,7 @@ const login = ({ login, password }, onSuccess) =>
   })
 
 const verifyPhone = ({ userId, pin }, onSuccess = () => {}) =>
-  fetch(`https://firehelp-api-staging.herokuapp.com/users/${userId}/verify`, {
+  fetch(`${getHost()}/users/${userId}/verify`, {
     method: 'post', body: JSON.stringify({ pin }),
     headers: fetchConfig(),
   })
@@ -26,7 +27,7 @@ const verifyPhone = ({ userId, pin }, onSuccess = () => {}) =>
   })
 
 const resendVerification = ({ userId }, onSuccess = () => {}) =>
-  fetch(`https://firehelp-api-staging.herokuapp.com/users/${userId}/resend_verification`, {
+  fetch(`${getHost()}/users/${userId}/resend_verification`, {
     method: 'post',
     headers: fetchConfig(),
   })
