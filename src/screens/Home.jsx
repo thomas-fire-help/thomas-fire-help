@@ -58,8 +58,9 @@ const SubheadingContainer = styled.div`
   width: 450px;
   padding: 30px 0px;
   margin: 20px 0 10px 0;
+  opacity: 0;
   animation: ${fadeIn} 1.5s forwards;
-  animation-delay: .3s;
+  animation-delay: .7s;
   margin-bottom: 10px;
 `
 
@@ -67,8 +68,9 @@ const MobileSubheadingContainer = styled.div`
   font-size: 14px;
   text-align: center;
   margin: 10px 0 5px 0;
+  opacity: 0;
   animation: ${fadeIn} 1.5s forwards;
-  animation-delay: .3s;
+  animation-delay: .7s;
   margin-bottom: 10px;
 
 `
@@ -247,7 +249,7 @@ const Footer = styled.footer`
   }
   opacity: 0;
   animation: ${fadeIn} 1.5s forwards;
-  animation-delay: .7s;
+  animation-delay: .9s;
 `
 
 const MobileFooter = styled.footer`
@@ -261,7 +263,7 @@ const MobileFooter = styled.footer`
   }
   opacity: 0;
   animation: ${fadeIn} 1.5s forwards;
-  animation-delay: .8s;
+  animation-delay: .9s;
 `
 
 const NotificationBanner = styled.aside`
