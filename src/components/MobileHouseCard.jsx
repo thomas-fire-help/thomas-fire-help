@@ -1,7 +1,7 @@
 import React from 'react'
 import { withStateHandlers } from 'recompose'
 import styled from 'styled-components'
-import { Card } from './atoms'
+import { MobileCard } from './atoms'
 
 const Body = styled.div`
   padding: 15px;
@@ -49,8 +49,8 @@ const HeaderContainer = styled.div`
 
 const Button = styled.button`
   align-self: flex-end;
-  background-color: ${props => props.active ? '#3A3A3A' : '#FFF'};
-  color: ${props => props.active ? '#000' : '#FFF'};
+  background-color: #FFF;
+  color: ${props => props.active ? 'white' : 'black'};
   border: 1px solid lightgray;
   padding: 15px 30px;
   flex: 1;
@@ -99,8 +99,8 @@ const wordMap = {
 const prettyPrint = (key, value) => wordMap[key][value]
 
 
-const HouseCard = ({ showDetails, setShowDetails, ...houseListing }) => (
-  <Card>
+const MobileHouseCard = ({ showDetails, setShowDetails, ...houseListing }) => (
+  <MobileCard>
     <Body>
       <HeaderContainer onClick={() => setShowDetails(!showDetails)}>
         <h2>
@@ -166,9 +166,9 @@ const HouseCard = ({ showDetails, setShowDetails, ...houseListing }) => (
         Contact
       </Button>
     </Footer>
-  </Card>
+  </MobileCard>
 )
 
 export default withStateHandlers({ showDetails: false }, {
   setShowDetails: state => value => ({ showDetails: value }),
-})(HouseCard)
+})(MobileHouseCard)
