@@ -1,5 +1,36 @@
+import React from 'react'
 import styled, { keyframes } from 'styled-components'
 import { Link } from 'react-router-dom'
+
+const Label = styled.div`
+  font-size: 1.5rem;
+  padding: 1rem 0;
+  color: ${({ dark }) => dark && 'white;'}
+`
+
+const StackContainer = styled.div`
+  margin: 30px 0;
+`
+
+export const StackInput = ({ required, children, label, dark }) => (
+  <StackContainer>
+    <Label dark={dark}>
+      {label}
+    </Label>
+    <div>
+      {children}
+    </div>
+  </StackContainer>
+)
+
+export const FullscreenOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: darkgrey;
+`
 
 const fadeIn = keyframes`
   from { opacity: 0; }
