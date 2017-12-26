@@ -142,16 +142,22 @@ const housingModule = createModule ({
     },
     listError: s => s,
 
-    updatePage: (state, { payload }) =>
+    updatePage: (state, { payload }) => [
       Object.assign({}, state, { page: payload }),
+      Cmd.action(housingModule.actions.list())
+    ],
 
-    updatePerPage: (state, { payload }) =>
+    updatePerPage: (state, { payload }) => [
       Object.assign({}, state, { perPage: payload }),
+      Cmd.action(housingModule.actions.list())
+    ],
 
-    updateFilters: (state, { payload: { key, value } }) =>
+    updateFilters: (state, { payload: { key, value } }) => [
       Object.assign({}, state, {
         filters: Object.assign({}, state.filters, { [key]: value })
-      })
+      }),
+      Cmd.action(housingModule.actions.list())
+    ]
   },
 });
 
