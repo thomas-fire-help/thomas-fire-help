@@ -48,7 +48,7 @@ const LFVolunteerForm = ({ actions, update, formData, history: { goBack }, match
           style={{ width: '100%' }}
           value={formData.type}
           optionFilterProp="children"
-          onChange={value => update('type', value)}
+          // onChange={ e => update('type', e.target.value)}
           filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
         >
           <Option value="foodAndWater">Food and water</Option>
@@ -63,7 +63,7 @@ const LFVolunteerForm = ({ actions, update, formData, history: { goBack }, match
       <StackInput required label="Describe what you need (be specific):">
         <TextArea
           autosize={{ minRows: 3 }}
-          onChange={value => update('description', value)}
+          onChange={ e => update('volunteer_notes', e.target.value)}
         />
       </StackInput>
 
@@ -73,13 +73,19 @@ const LFVolunteerForm = ({ actions, update, formData, history: { goBack }, match
             <div>
               <StackInput label="Number of volunteers:">
                 <Input
-                  onChange={value => update('numberVolunteers', value)}
+                  onChange={ e => update('number_of_volunteers', e.target.value)}
                 />
               </StackInput>
 
               <StackInput label="Time(s) needed:">
                 <Input
-                  onChange={value => update('timeNeeded', value)}
+                  onChange={ e => update('timeNeeded', e.target.value)}
+                />
+              </StackInput>
+
+              <StackInput required label="Organization's name:">
+                <Input
+                  onChange={ e => update('organization', e.target.value)}
                 />
               </StackInput>
             </div>
@@ -94,7 +100,7 @@ const LFVolunteerForm = ({ actions, update, formData, history: { goBack }, match
           value={formData.city}
           placeholder="Select a city"
           optionFilterProp="children"
-          onChange={value => update('city', value)}
+          onChange={ e => update('city', e.target.value)}
           filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
         >
           <Option value="goleta">Goleta</Option>
@@ -106,33 +112,40 @@ const LFVolunteerForm = ({ actions, update, formData, history: { goBack }, match
         </Select>
       </StackInput>
 
+      <StackInput label="Skills:">
+        <TextArea
+          autosize={{ minRows: 3 }}
+          onChange={ e => update('skills', e.target.value)}
+        />
+      </StackInput>
+
       <StackInput label="Neighborhood:">
         <Input
-          onChange={value => update('neighborhood', value)}
+          onChange={ e => update('location', e.target.value)}
         />
       </StackInput>
 
       <StackInput required label="Street address:">
         <Input
-          onChange={value => update('streetAddress', value)}
+          onChange={ e => update('address', e.target.value)}
         />
       </StackInput>
 
       <StackInput required label="Your name:">
         <Input
-          onChange={value => update('name', value)}
+          onChange={ e => update('contact_name', e.target.value)}
         />
       </StackInput>
 
       <StackInput required label="Phone number:">
         <Input
-          onChange={value => update('phoneNumber', value)}
+          onChange={ e => update('phone_number', e.target.value)}
         />
       </StackInput>
 
       <StackInput required label="Email address:">
         <Input
-          onChange={value => update('emailAddress', value)}
+          onChange={ e => update('email_address', e.target.value)}
         />
       </StackInput>
 
@@ -167,20 +180,22 @@ export default compose(
   withStateHandlers(
     {
       formData: {
-        type: 'foodAndWater',
-        description: '',
+        skills: '',
+        number_of_volunteers: '',
+        volunteer_notes: '',
+        organization: '',
+        address: '',
+        contact_name: '',
+        phone_number: '',
+        email_address: '',
         city: 'ventura',
-        neighborhood: '',
-        streetAddress: '',
-        name: '',
-        phoneNumber: '',
-        emailAddress: '',
-        RequiredIndicatorailAddress: ''
+        location: '',
+        volunteer_type: 'organization',
       }
     },
     {
       update: (state) => (key, value) => Object.assign({}, { formData: { ...state.formData, [key]: value  } })
     }
   ),
-  connectModule(lfVolunteersModule)
+  connectModule(lfVolunteersModule),
 )(LFVolunteerForm)
