@@ -2,6 +2,7 @@ import { createModule } from 'redux-modules';
 import { loop, Cmd, liftState } from 'redux-loop';
 import { getHost } from '../utils/network'
 import { fetchConfig } from '../utils/fetchUtils';
+import { log } from 'redux-modules-middleware';
 
 const endpoint = `${getHost()}/volunteers`
 
@@ -47,7 +48,7 @@ const volunteersModule = createModule ({
     listSuccess: {
       middleware: [log()],
       reducer: (state, { payload }) =>
-        Object.assign({}, state, { loading: false, data: payload })
+        Object.assign({}, state, { loading: false, data: payload || [] })
     },
     listError: s => s,
   },

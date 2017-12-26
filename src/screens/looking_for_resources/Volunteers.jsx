@@ -3,7 +3,7 @@ import { connectModule } from 'redux-modules'
 import { Spinner } from '@procore/core-react'
 import { compose, lifecycle } from 'recompose'
 import housingModule from '../../modules/housing'
-import { Container, MobileHeaderContainer, HeaderContainer, MobileExternal, External } from '../../components/atoms'
+import { Container, MobileHeaderContainer, HeaderContainer, MobileCategory, Category } from '../../components/atoms'
 import Layout from '../../components/Layout'
 import MediaQuery from 'react-responsive';
 
@@ -14,36 +14,24 @@ const Housing = ({ loading, data, history: { goBack }}) => (
         <MobileHeaderContainer style={{ marginBottom: '20px', textAlign: 'left' }}>
           <h1> I am an... </h1>
         </MobileHeaderContainer>
-        <MobileExternal
-          href="https://drive.google.com/open?id=1UQHC1UUAOlwGiMorw8DBVUTE6j_ayTTevvqoLHQgYzg"
-          target="_blank"
-        >
+        <MobileCategory to="/looking_for_resources/volunteers/organization">
           <h2> 🏩 Organization </h2>
-        </MobileExternal>
-        <MobileExternal
-          href="https://drive.google.com/open?id=1ccC9ekZDZSCYxCxZbhyviwEI5yLvOYuW2HRO1DABRQU"
-          target="_blank"
-        >
+        </MobileCategory>
+        <MobileCategory to="/looking_for_resources/volunteers/individual">
           <h2> 🙋 Individual </h2>
-        </MobileExternal>
+        </MobileCategory>
       </MediaQuery>
 
       <MediaQuery minDeviceWidth={481}>
         <HeaderContainer>
           <h1> I'm an... </h1>
         </HeaderContainer>
-        <External
-          href="https://drive.google.com/open?id=1UQHC1UUAOlwGiMorw8DBVUTE6j_ayTTevvqoLHQgYzg"
-          target="_blank"
-        >
+        <Category to="/looking_for_resources/volunteers/organization">
           <h2> 🏩 Organization </h2>
-        </External>
-        <External
-          href="https://drive.google.com/open?id=1ccC9ekZDZSCYxCxZbhyviwEI5yLvOYuW2HRO1DABRQU"
-          target="_blank"
-        >
+        </Category>
+        <Category to="/looking_for_resources/volunteers/individual">
           <h2> 🙋 Individual </h2>
-        </External>
+        </Category>
       </MediaQuery>
     </Container>
   </Layout>
