@@ -44,7 +44,7 @@ const serializeForCreate = params => {
   }
 
 */
-const formatParams = ({ filter, page = 0, per_page = 25 }) => {
+const formatParams = ({ filter, page = 0, perPage = 25 }) => {
   const formattedFilters = Object
     .keys(filter)
     .reduce((string, key) => {
@@ -52,7 +52,7 @@ const formatParams = ({ filter, page = 0, per_page = 25 }) => {
       return `${string}&filter${key}=${value}`
     }, '')
 
-  return `?page=${page}&per_page=${per_page}&${formattedFilters}`
+  return `?page=${page}&per_page=${perPage}&${formattedFilters}`
 }
 
 
@@ -101,6 +101,9 @@ const housingModule = createModule ({
   name: 'housing',
   initialState: {
     data: [],
+    filters: {},
+    page: 0,
+    perPage: 25,
     loading: false,
   },
   composes: [liftState],
@@ -134,6 +137,17 @@ const housingModule = createModule ({
         Object.assign({}, state, { loading: false, data: payload })
     },
     listError: s => s,
+    
+    updatePage: (state, { payload }) =>
+      Object.assign({}, state, { page: payload }),
+
+    updatePerPage: (state, { payload }) =>
+      Object.assign({}, state, { perPage: payload }),
+
+    updateFilters: (state, { payload: { key, value } }) =>
+      Object.assign({}, state, {
+        filters: Object.assign({}, state.filters, { [key]: value })
+      })
   },
 });
 
