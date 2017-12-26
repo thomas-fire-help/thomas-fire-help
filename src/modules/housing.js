@@ -3,6 +3,7 @@ import { loop, Cmd, liftState } from 'redux-loop';
 import { getHost } from '../utils/network';
 import { log } from 'redux-modules-middleware';
 import { fetchConfig } from '../utils/fetchUtils';
+import qs from 'query-string';
 
 const endpoint = `${getHost()}/housings`;
 
@@ -34,9 +35,30 @@ const serializeForCreate = params => {
     email_address: params.emailAddress,
   };
 };
+/*
+  params = {
+    filter: {
+      pets_accepted: true
+    },
+    page: 1
+  }
+
+*/
+const formatParams = ({ filter, page = 0, perPage = 25 }) => {
+  const formattedFilters = Object
+    .keys(filter)
+    .reduce((string, key) => {
+      const value = filter[key]
+      return `${string}&filter${key}=${value}`
+    }, '')
+
+  return `?page=${page}&per_page=${perPage}&${formattedFilters}`
+}
+
 
 const list = params =>
-  fetch(endpoint, { headers: fetchConfig() }).then(res => res.json());
+  fetch(`endpoint${formatParams(params)}`, { headers: fetchConfig() })
+  .then(res => res.json());
 
 const examplePayload = [
   {
@@ -79,6 +101,9 @@ const housingModule = createModule ({
   name: 'housing',
   initialState: {
     data: [],
+    filters: {},
+    page: 0,
+    perPage: 25,
     loading: false,
   },
   composes: [liftState],
@@ -103,7 +128,11 @@ const housingModule = createModule ({
       Cmd.run(list, {
         successActionCreator: housingModule.actions.listSuccess,
         failActionCreator: housingModule.actions.listError,
-        args: [payload]
+        args: [{
+          filters: state.filters,
+          perPage: state.perPage,
+          page: state.page
+        }]
       }),
     ],
     listSuccess: {
@@ -112,6 +141,23 @@ const housingModule = createModule ({
         Object.assign({}, state, { loading: false, data: payload })
     },
     listError: s => s,
+
+    updatePage: (state, { payload }) => [
+      Object.assign({}, state, { page: payload }),
+      Cmd.action(housingModule.actions.list())
+    ],
+
+    updatePerPage: (state, { payload }) => [
+      Object.assign({}, state, { perPage: payload }),
+      Cmd.action(housingModule.actions.list())
+    ],
+
+    updateFilters: (state, { payload: { key, value } }) => [
+      Object.assign({}, state, {
+        filters: Object.assign({}, state.filters, { [key]: value })
+      }),
+      Cmd.action(housingModule.actions.list())
+    ]
   },
 });
 
