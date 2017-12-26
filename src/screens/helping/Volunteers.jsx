@@ -8,8 +8,8 @@ import {
   Container,
   MobileHeaderContainer,
   HeaderContainer,
-  MobileExternal,
-  External
+  MobileCategory,
+  Category
 } from '../../components/atoms'
 import Layout from '../../components/Layout'
 
@@ -20,36 +20,30 @@ const Housing = ({ loading, data, history: { goBack }}) => (
         <MobileHeaderContainer style={{ marginBottom: '20px', textAlign: 'left' }}>
           <h1> I want to help... </h1>
         </MobileHeaderContainer>
-        <MobileExternal
-          href="https://drive.google.com/open?id=1OjKdINzQMqDTHGPA76KYYG-v3_0MzhiRIJ1DRczLC8U"
+        <MobileCategory
+          to="/helping/volunteers/organization"
           target="_blank"
         >
           <h2> 🏩 An Organization </h2>
-        </MobileExternal>
-        <MobileExternal
-          href="https://drive.google.com/open?id=1ul5ZYbb4UUBuzpMB-nKplNFtIv3mloLD5u3iWhvEWq0"
-          target="_blank"
-        >
+        </MobileCategory>
+        <MobileCategory to="/helping/volunteers/individual">
           <h2> 🏡 My Neighbors </h2>
-        </MobileExternal>
+        </MobileCategory>
       </MediaQuery>
 
       <MediaQuery minDeviceWidth={481}>
         <HeaderContainer>
           <h1> I want to help... </h1>
         </HeaderContainer>
-        <External
-          href="https://drive.google.com/open?id=1OjKdINzQMqDTHGPA76KYYG-v3_0MzhiRIJ1DRczLC8U"
+        <Category
+          to="/helping/volunteers/organization"
           target="_blank"
         >
           <h2> 🏩 An Organization </h2>
-        </External>
-        <External
-          href="https://drive.google.com/open?id=1ul5ZYbb4UUBuzpMB-nKplNFtIv3mloLD5u3iWhvEWq0"
-          target="_blank"
-        >
+        </Category>>
+        <Category to="/helping/volunteers/individual">
           <h2> 🏡 My Neighbors </h2>
-        </External>
+        </Category>
       </MediaQuery>
     </Container>
   </Layout>
