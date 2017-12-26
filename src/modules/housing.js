@@ -128,7 +128,11 @@ const housingModule = createModule ({
       Cmd.run(list, {
         successActionCreator: housingModule.actions.listSuccess,
         failActionCreator: housingModule.actions.listError,
-        args: [payload]
+        args: [{
+          filters: state.filters,
+          perPage: state.perPage,
+          page: state.page
+        }]
       }),
     ],
     listSuccess: {
@@ -137,7 +141,7 @@ const housingModule = createModule ({
         Object.assign({}, state, { loading: false, data: payload })
     },
     listError: s => s,
-    
+
     updatePage: (state, { payload }) =>
       Object.assign({}, state, { page: payload }),
 
