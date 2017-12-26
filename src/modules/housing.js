@@ -3,6 +3,7 @@ import { loop, Cmd, liftState } from 'redux-loop';
 import { getHost } from '../utils/network';
 import { log } from 'redux-modules-middleware';
 import { fetchConfig } from '../utils/fetchUtils';
+import qs from 'query-string';
 
 const endpoint = `${getHost()}/housings`;
 
@@ -34,9 +35,30 @@ const serializeForCreate = params => {
     email_address: params.emailAddress,
   };
 };
+/*
+  params = {
+    filter: {
+      pets_accepted: true
+    },
+    page: 1
+  }
+
+*/
+const formatParams = ({ filter, page = 0, per_page = 25 }) => {
+  const formattedFilters = Object
+    .keys(filter)
+    .reduce((string, key) => {
+      const value = filter[key]
+      return `${string}&filter${key}=${value}`
+    }, '')
+
+  return `?page=${page}&per_page=${per_page}&${formattedFilters}`
+}
+
 
 const list = params =>
-  fetch(endpoint, { headers: fetchConfig() }).then(res => res.json());
+  fetch(`endpoint${formatParams(params)}`, { headers: fetchConfig() })
+  .then(res => res.json());
 
 const examplePayload = [
   {
