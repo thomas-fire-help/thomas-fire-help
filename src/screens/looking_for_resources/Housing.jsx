@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import MediaQuery from 'react-responsive'
+import { Icon } from 'antd';
 import { connectModule } from 'redux-modules'
 import { Spinner } from '@procore/core-react'
 import { compose, lifecycle, withStateHandlers } from 'recompose'
@@ -24,8 +25,15 @@ const Housing = ({ loading, data, history: { goBack }}) => (
   <Layout header="Housing" onBack={goBack}>
     <Container style={{ margin: '15px 25px'}}>
       <MediaQuery minDeviceWidth={320} maxDeviceWidth={480}>
-        <MobileHeaderContainer style={{ marginBottom: '20px', textAlign: 'left' }}>
+        <MobileHeaderContainer style={{ marginBottom: '20px' }}>
           <h1> Housing </h1>
+
+          <Icon
+            type="filter"
+            style={{ display: 'flex', textTransform: 'uppercase', fontWeight: 'bold', marginRight: '10px', justifyContent: 'space-between', width: '75px', cursor: 'pointer' }}
+          >
+            Filter
+          </Icon>
         </ MobileHeaderContainer>
         <CardList>
           {data.map((houseListing, i) => (
