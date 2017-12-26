@@ -62,6 +62,7 @@ export default compose(
   connectModule(housingModule),
   lifecycle({
     componentWillMount() {
+      console.log('Mounting')
       this.props.actions.list()
     }
   }),

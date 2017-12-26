@@ -44,58 +44,23 @@ const serializeForCreate = params => {
   }
 
 */
-const formatParams = ({ filter, page = 0, perPage = 25 }) => {
+const formatParams = ({ filters = {}, page = 0, perPage = 25 }) => {
   const formattedFilters = Object
-    .keys(filter)
+    .keys(filters)
     .reduce((string, key) => {
-      const value = filter[key]
-      return `${string}&filter${key}=${value}`
+      const value = filters[key]
+      return `${string}&filters[${key}]=${value}`
     }, '')
 
-  return `?page=${page}&per_page=${perPage}&${formattedFilters}`
+  const querystring = `?page=${page}&per_page=${perPage}${formattedFilters}`
+  return querystring
 }
 
 
-const list = params =>
-  fetch(`endpoint${formatParams(params)}`, { headers: fetchConfig() })
+const list = params => {
+  return fetch(`${endpoint}${formatParams(params)}`, { headers: fetchConfig() })
   .then(res => res.json());
-
-const examplePayload = [
-  {
-    city: 'Ventura',
-    beds: 2,
-    paid: true,
-    neighborhood: 'The Avenue',
-    housing_type: 'room',
-    has_animals: true,
-    length_of_stay: 'short_term',
-    child_friendly: true,
-    kid_notes: '',
-    pets_accepted: true,
-    pet_notes: 'No gerbils',
-    contact_name: 'Marcus Bernales',
-    phone_number: '8052639559',
-    email_address: 'mboperator@gmail.com',
-    notes: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tempus consequat nunc nec efficitur. Phasellus pellentesque a leo id dignissim. Fusce ac neque tortor. Phasellus eu finibus orci. Proin et euismod lorem. Quisque a sem dapibus, tincidunt mauris sit amet, fringilla urna. Etiam vestibulum eu tortor id blandit. Mauris pellentesque enim sed dolor posuere consectetur. Ut accumsan eros et neque gravida, eget rhoncus nunc elementum. Donec lacinia placerat mauris, at malesuada nisi fringilla ac.',
-  },
-  {
-    city: 'Ventura',
-    beds: 2,
-    paid: true,
-    neighborhood: 'Old Town',
-    housing_type: 'house',
-    has_animals: true,
-    length_of_stay: 'short_term',
-    child_friendly: true,
-    kid_notes: 'No toddlers.',
-    pets_accepted: true,
-    pet_notes: 'No gerbils',
-    contact_name: 'Marcus Bernales',
-    phone_number: '8052639559',
-    email_address: 'mboperator@gmail.com',
-    notes: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tempus consequat nunc nec efficitur. Phasellus pellentesque a leo id dignissim. Fusce ac neque tortor. Phasellus eu finibus orci. Proin et euismod lorem. Quisque a sem dapibus, tincidunt mauris sit amet, fringilla urna. Etiam vestibulum eu tortor id blandit. Mauris pellentesque enim sed dolor posuere consectetur. Ut accumsan eros et neque gravida, eget rhoncus nunc elementum. Donec lacinia placerat mauris, at malesuada nisi fringilla ac.',
-  },
-]
+}
 
 const housingModule = createModule ({
   name: 'housing',
