@@ -7,8 +7,6 @@ import { fetchFromStorage } from '../utils/localStorage';
 
 const endpoint = `${getHost()}/volunteers`
 
-const getAccessToken = () => fetchFromStorage('auth');
-
 const create = (params) => {
   console.log(params);
   const formattedParams = { ...params, number_of_volunteers: Number(params.number_of_volunteers)}
@@ -29,18 +27,6 @@ const volunteersModule = createModule ({
   composes: [liftState],
   selector: s => s.volunteers,
   transformations: {
-    init: state => loop(
-      state,
-      Cmd.run(getAccessToken, {
-        successActionCreator: volunteersModule.actions.initSuccess,
-        failActionCreator: volunteersModule.actions.initError,
-        args: [],
-      })
-    ),
-    initSuccess: (state, { payload }) => {
-      return Object.assign({}, state);
-    },
-    initError: (state) => state,
     create: (state, { payload }) => {
       return loop(
       Object.assign({}, state, { loading: true }),

@@ -63,7 +63,7 @@ const LFVolunteerForm = ({ actions, update, formData, history: { goBack }, match
       <StackInput required label="Describe what you need (be specific):">
         <TextArea
           autosize={{ minRows: 3 }}
-          onChange={ e => update('volunteer_notes', e.target.value)}
+          onChange={ e => update('volunteers_notes', e.target.value)}
         />
       </StackInput>
 
@@ -119,11 +119,11 @@ const LFVolunteerForm = ({ actions, update, formData, history: { goBack }, match
         />
       </StackInput>
 
-      <StackInput label="Neighborhood:">
+      {/* <StackInput label="Neighborhood:">
         <Input
           onChange={ e => update('location', e.target.value)}
         />
-      </StackInput>
+      </StackInput> */}
 
       <StackInput required label="Street address:">
         <Input
@@ -182,14 +182,13 @@ export default compose(
       formData: {
         skills: '',
         number_of_volunteers: '',
-        volunteer_notes: '',
+        volunteers_notes: '',
         organization: '',
         address: '',
         contact_name: '',
         phone_number: '',
         email_address: '',
         city: 'ventura',
-        location: '',
         volunteer_type: 'organization',
       }
     },
