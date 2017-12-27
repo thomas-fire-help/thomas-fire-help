@@ -11,7 +11,7 @@ export const Container = styled.div`
   flex-direction: column;
   animation: ${fadeIn} 1s forwards;
   opacity: 0;
-  padding: 15px 45px;
+  margin: 15px 45px;
 `
 
 export const HeaderContainer = styled.div`
@@ -30,8 +30,21 @@ export const Card = styled.div`
   }
 `
 
+export const MobileCard = styled.div`
+  border: 1px solid black;
+  border-radius: 2px;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.2s ease-in-out;
+  &:hover {
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.23), 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+  }
+`
+
 export const MobileHeaderContainer = styled.div`
+  display: flex;
   align-self: flex-start;
+  align-items: center;
+  justify-content: space-between;
   flex: .75;
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -79,6 +92,8 @@ export const Category = styled(Link)`
 `
 
 export const MobileCategory = styled(Link)`
+  border: 1px solid #000;
+  border-radius: 2px;
   color: #000;
   padding: 15px 15px;
   text-decoration: none;
@@ -129,6 +144,8 @@ export const External = styled.a`
 `
 
 export const MobileExternal = styled.a`
+  border: 1px solid #000;
+  border-radius: 2px;
   color: #000;
   padding: 15px 15px;
   text-decoration: none;
