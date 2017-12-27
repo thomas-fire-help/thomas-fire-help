@@ -64,7 +64,8 @@ const RightButton = styled.div`
 const Body = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: left;
+  padding: 30px;
   color: white;
 `
 

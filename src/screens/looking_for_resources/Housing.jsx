@@ -17,6 +17,7 @@ import {
   HeaderContainer,
   StackInput
   } from '../../components/atoms'
+import MultiSelect from '../../components/MultiSelect'
 import OverlayLayout from '../../components/OverlayLayout'
 
 const CardList = styled.div`
@@ -41,6 +42,13 @@ const Housing = ({
       {filterPaneActive &&
         <OverlayLayout onBack={hideFilters}>
           <StackInput dark label="Housing Type">
+            <MultiSelect
+              options={[
+                { label: "House", value: "house" },
+                { label: "Room", value: "room" }
+              ]}
+              onChange={selected => console.log(selected)}
+            />
 
           </StackInput>
           <StackInput dark label="Beds Available">
@@ -50,10 +58,22 @@ const Housing = ({
 
           </StackInput>
           <StackInput dark label="Paid">
-
+            <MultiSelect
+              options={[
+                { label: "Paid", value: true },
+                { label: "Free", value: false }
+              ]}
+              onChange={selected => console.log(selected)}
+            />
           </StackInput>
           <StackInput dark label="Pets Allowed">
-
+            <MultiSelect
+              options={[
+                { label: "Allowed", value: true },
+                { label: "Not Allowed", value: false }
+              ]}
+              onChange={selected => console.log(selected)}
+            />
           </StackInput>
         </OverlayLayout>
       }
@@ -110,7 +130,6 @@ export default compose(
   }),
   lifecycle({
     componentWillMount() {
-      console.log('Mounting')
       this.props.actions.list()
     }
   }),
