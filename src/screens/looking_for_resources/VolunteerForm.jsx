@@ -21,7 +21,7 @@ const Label = styled.div`
 `
 
 const StackContainer = styled.div`
-  margin: 30px 0;
+  margin: 20px 0;
 `
 
 const StackInput = ({ required, children, label }) => (
@@ -42,13 +42,13 @@ const LFVolunteerForm = ({ actions, update, formData, history: { goBack }, match
         I need volunteer help...
       </HeaderContainer>
 
-      <StackInput required label="Type of help:">
+      {/* <StackInput required label="Type of help:">
         <Select
           showSearch
           style={{ width: '100%' }}
           value={formData.type}
           optionFilterProp="children"
-          // onChange={ e => update('type', e.target.value)}
+          onChange={ e => update('type', e.target.value)}
           filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
         >
           <Option value="foodAndWater">Food and water</Option>
@@ -58,7 +58,26 @@ const LFVolunteerForm = ({ actions, update, formData, history: { goBack }, match
           <Option value="personalCareItems">Personal care items</Option>
           <Option value="animalServices">Animal services</Option>
         </Select>
-      </StackInput>
+      </StackInput> */}
+      {(formType => {
+        if (formType === 'organization') {
+          return (
+            <div>
+              <StackInput required label="Organization's name:">
+                <Input
+                  onChange={ e => update('organization', e.target.value)}
+                />
+              </StackInput>
+
+              <StackInput label="Number of volunteers:">
+                <Input
+                  onChange={ e => update('number_of_volunteers', e.target.value)}
+                />
+              </StackInput>
+            </div>
+          )
+        }
+      })(path.split('/').pop())}
 
       <StackInput required label="Describe what you need (be specific):">
         <TextArea
@@ -67,31 +86,29 @@ const LFVolunteerForm = ({ actions, update, formData, history: { goBack }, match
         />
       </StackInput>
 
-      {(formType => {
-        if (formType === 'organization') {
-          return (
-            <div>
-              <StackInput label="Number of volunteers:">
-                <Input
-                  onChange={ e => update('number_of_volunteers', e.target.value)}
-                />
-              </StackInput>
+      <StackInput required label="Your name:">
+        <Input
+          onChange={ e => update('contact_name', e.target.value)}
+        />
+      </StackInput>
 
-              <StackInput label="Time(s) needed:">
-                <Input
-                  onChange={ e => update('timeNeeded', e.target.value)}
-                />
-              </StackInput>
+      <StackInput required label="Phone number:">
+        <Input
+          onChange={ e => update('phone_number', e.target.value)}
+        />
+      </StackInput>
 
-              <StackInput required label="Organization's name:">
-                <Input
-                  onChange={ e => update('organization', e.target.value)}
-                />
-              </StackInput>
-            </div>
-          )
-        }
-      })(path.split('/').pop())}
+      <StackInput required label="Email address:">
+        <Input
+          onChange={ e => update('email_address', e.target.value)}
+        />
+      </StackInput>
+
+      <StackInput required label="Street address:">
+        <Input
+          onChange={ e => update('address', e.target.value)}
+        />
+      </StackInput>
 
       <StackInput required label="City:">
         <Select
@@ -112,40 +129,10 @@ const LFVolunteerForm = ({ actions, update, formData, history: { goBack }, match
         </Select>
       </StackInput>
 
-      <StackInput label="Skills:">
+      <StackInput required label="Required Skills:">
         <TextArea
           autosize={{ minRows: 3 }}
           onChange={ e => update('skills', e.target.value)}
-        />
-      </StackInput>
-
-      {/* <StackInput label="Neighborhood:">
-        <Input
-          onChange={ e => update('location', e.target.value)}
-        />
-      </StackInput> */}
-
-      <StackInput required label="Street address:">
-        <Input
-          onChange={ e => update('address', e.target.value)}
-        />
-      </StackInput>
-
-      <StackInput required label="Your name:">
-        <Input
-          onChange={ e => update('contact_name', e.target.value)}
-        />
-      </StackInput>
-
-      <StackInput required label="Phone number:">
-        <Input
-          onChange={ e => update('phone_number', e.target.value)}
-        />
-      </StackInput>
-
-      <StackInput required label="Email address:">
-        <Input
-          onChange={ e => update('email_address', e.target.value)}
         />
       </StackInput>
 

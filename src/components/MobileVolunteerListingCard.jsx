@@ -1,10 +1,12 @@
 import React from 'react'
 import { withStateHandlers } from 'recompose'
 import styled from 'styled-components'
+import { Icon } from 'antd'
 import { MobileCard } from './atoms'
 
 const Body = styled.div`
   padding: 15px;
+  padding-bottom: 0px;
 `
 
 const Summary = styled.div`
@@ -21,12 +23,16 @@ const Location = styled.div`
   font-size: 20px;
 `
 
-const DetailPane = styled.aside`
-  padding-top: ${props => props.acive && '15px'};
+const DetailsPane = styled.aside`
   max-height: ${props => props.active ? '750px' : '0px'};
   overflow: hidden;
   font-size: 14px;
   transition: max-height 0.25s ease-in-out;
+  margin-top: 15px;
+
+  p {
+    margin-bottom: 0;
+  }
 `
 
 const Footer = styled.section`
@@ -55,21 +61,24 @@ const ContactButton = styled.button`
   color: #000;
   cursor: pointer;
   flex: 1;
-  margin-top: 20px;
   outline: none;
   padding: 15px 30px;
+  margin-top: 20px;
+  user-select: none;
 `
 
 const DetailsButton = styled.button`
   align-self: flex-end;
-  background-color: #FFF;
+  background-color: ${props => props.active ? '#3A3A3A' : '#FFF'};
   border: 1px solid lightgray;
   color: ${props => props.active ? 'white' : 'black'};
   cursor: pointer;
   flex: 1;
-  margin-top: 20px;
   outline: none;
   padding: 15px 30px;
+  transition: background-color 0.25s ease-in-out;
+  margin-top: 20px;
+  user-select: none;
 `
 
 const TagList = styled.ul`
@@ -100,7 +109,8 @@ const MobileVolunteerListingCardHeader = styled.div`
   }
 
   aside {
-    font-size: 18px;
+    font-size: 14px;
+    margin-top: 10px;
   }
 `
 
@@ -132,6 +142,7 @@ const prettyPrint = (key, value) => wordMap[key][value]
 
 
 const MobileVolunteerListingCard = ({
+  address,
   organization,
   phone_number,
   setShowDetails,
@@ -144,9 +155,12 @@ const MobileVolunteerListingCard = ({
         <h2>
           {organization}
         </h2>
-        <aside>
-          {}
-        </aside>
+        {address &&
+          <aside>
+            <Icon type="environment-o" style={{ marginRight: '5px' }}/>
+            {address}
+          </aside>
+        }
       </MobileVolunteerListingCardHeader>
 
       <Summary>
@@ -155,43 +169,27 @@ const MobileVolunteerListingCard = ({
         </div>
       </Summary>
 
-      <TagList>
-        {/* <Tag>{prettyPrint('paid', houseListing.paid)}</Tag>
+      {/* <TagList>
+        <Tag>{prettyPrint('paid', houseListing.paid)}</Tag>
         <Tag>{prettyPrint('length_of_stay', houseListing.length_of_stay)}</Tag>
         {houseListing.child_friendly &&
           <Tag>Child Friendly</Tag>
         }
         {houseListing.pets_accepted &&
           <Tag>Pets Accepted</Tag>
-        } */}
-      </TagList>
+        }
+      </TagList> */}
 
-      <DetailPane active={showDetails}>
+      <DetailsPane active={showDetails}>
        {volunteers_notes &&
           <div>
-            <b>Notes for volunteers:</b>
+            <b>Description:</b>
             <p>
               {volunteers_notes}
             </p>
           </div>
         }
-        {/* {houseListing.pet_notes &&
-          <div>
-            <b>Notes on Pets</b>
-            <p>
-              {houseListing.pet_notes}
-            </p>
-          </div>
-        }
-        {houseListing.notes &&
-          <div>
-            <b>Notes</b>
-            <p>
-              {houseListing.notes}
-            </p>
-          </div>
-        } */}
-      </DetailPane>
+      </DetailsPane>
     </Body>
     <Footer>
       <DetailsButton

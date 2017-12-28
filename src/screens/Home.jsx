@@ -159,11 +159,6 @@ const EmphasisSmallSpace = styled.span`
   font-size: 5px;
 `
 
-const LogoutContainer = styled.section`
-  display: flex;
-  justify-content: center;
-`
-
 const AuthContainer = styled.div`
   display: flex;
   align-items: center;
@@ -173,15 +168,23 @@ const AuthContainer = styled.div`
   animation-delay: .7s;
 `
 
+const LogoutContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  animation: ${fadeIn} 1.5s forwards;
+  animation-delay: .7s;
+`
+
 const LogoutButton = styled.div`
   color: #000;
   text-decoration: none;
-  font-size: 20px;
+  font-size: 16px;
   text-transform: uppercase;
   letter-spacing: 2px;
   font-weight: bold;
   padding: 20px;
-  margin: 40px 40px;
   cursor: pointer;
 `
 
@@ -321,11 +324,11 @@ const Home = ({ loggedIn, authActions, user = {} }) => (
         </AuthContainer>
       }
       {loggedIn &&
-        <AuthContainer>
+        <LogoutContainer>
           <LogoutButton onClick={authActions.logout}>
             Logout
           </LogoutButton>
-        </AuthContainer>
+        </LogoutContainer>
       }
       <MobileSubheadingContainer>
         <h3>We're volunteers connecting community-sourced help to recovery needs for the Thomas Fire.</h3>
