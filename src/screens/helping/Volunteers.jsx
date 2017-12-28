@@ -31,7 +31,7 @@ const Volunteers = ({ history: { goBack }}) => (
         </HeaderContainer>
         <Category to="/helping/volunteers/organization">
           <h2> 🏩 An Organization </h2>
-        </Category>>
+        </Category>
         <Category to="/helping/volunteers/individual">
           <h2> 🏡 My Neighbors </h2>
         </Category>
