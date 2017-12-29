@@ -43,7 +43,6 @@ const AuthErrorBanner = ({ errors }) => {
         }
         </Banner.Body>
       </Banner.Content>
-      {/* <Banner.Dismiss onClick={() => alert('dismiss clicked')} /> */}
     </ErrorBannerContainer>
   )
 }
