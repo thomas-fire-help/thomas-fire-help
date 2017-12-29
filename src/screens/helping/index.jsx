@@ -63,10 +63,10 @@ const Home = ({ history: { goBack }}) => (
           <p> I have food or meals to offer. </p>
         </MobileExternal>
 
-        <MobileExternal to="/helping/services">
+        <MobileCategory to="/helping/services">
           <h2> ⛑ Services </h2>
           <p> Offer professional services. </p>
-        </MobileExternal>
+        </MobileCategory>
 
       </MediaQuery>
 
@@ -117,10 +117,10 @@ const Home = ({ history: { goBack }}) => (
           <p> Donate food or meals. </p>
         </External>
 
-        <External to="/helping/services">
+        <Category to="/helping/services">
           <h2> ⛑ Services </h2>
           <p> Offer professional services. </p>
-        </External>
+        </Category>
 
       </MediaQuery>
     </Container>
