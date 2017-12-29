@@ -20,7 +20,7 @@ const Volunteers = ({ history: { goBack }}) => (
         <MobileCategory to="/helping/volunteers/organization">
           <h2> 🏩 An Organization </h2>
         </MobileCategory>
-        <MobileCategory to="/helping/volunteers/individual">
+        <MobileCategory to="/helping/volunteers/personal">
           <h2> 🏡 My Neighbors </h2>
         </MobileCategory>
       </MediaQuery>
@@ -32,7 +32,7 @@ const Volunteers = ({ history: { goBack }}) => (
         <Category to="/helping/volunteers/organization">
           <h2> 🏩 An Organization </h2>
         </Category>
-        <Category to="/helping/volunteers/individual">
+        <Category to="/helping/volunteers/personal">
           <h2> 🏡 My Neighbors </h2>
         </Category>
       </MediaQuery>

@@ -1,4 +1,4 @@
-import { Banner, SuccessBanner } from '@procore/core-react'
+import { Banner, SuccessBanner, ActionBanner } from '@procore/core-react'
 import { compose, withStateHandlers, lifecycle } from 'recompose'
 import { connectModule } from 'redux-modules'
 import Loader from 'react-loader'
@@ -88,7 +88,7 @@ const LFVolunteerForm = ({ actions, update, resetForm, formData, loading, succes
                     />
                   </StackInput>
 
-                  <StackInput label="Number of volunteers:">
+                  <StackInput required label="Number of volunteers:">
                     <Input
                       onChange={ e => update('number_of_volunteers', e.target.value)}
                     />
@@ -129,7 +129,7 @@ const LFVolunteerForm = ({ actions, update, resetForm, formData, loading, succes
             />
           </StackInput>
 
-          <StackInput required label="City:">
+          {/* <StackInput required label="City:">
             <Select
               showSearch
               style={{ width: '100%' }}
@@ -146,7 +146,7 @@ const LFVolunteerForm = ({ actions, update, resetForm, formData, loading, succes
               <Option value="ventura">Ventura</Option>
               <Option value="thousand_oaks">Thousand Oaks</Option>
             </Select>
-          </StackInput>
+          </StackInput> */}
 
           <StackInput required label="Required Skills:">
             <TextArea
@@ -182,37 +182,40 @@ const LFVolunteerForm = ({ actions, update, resetForm, formData, loading, succes
           </div>
         </Loader>
       ) : (
-        <span>😅 Sorry! You have to sign up if you'd like to post a listing.</span>
+        <ActionBanner>
+          <Banner.Content>
+            <Banner.Title>Whoops!</Banner.Title>
+            <Banner.Body>
+              <div>We can't post a listing yet because you're not logged in. Try:</div>
+              <ul style={{ marginTop: '10px' }}>
+                <li>Signing up</li>
+                <li>Verifying your phone number</li>
+              </ul>
+            </Banner.Body>
+          </Banner.Content>
+        </ActionBanner>
       )}
     </Container>
   </Layout>
 )
 
-const emptyForm = {
-  skills: '',
-  number_of_volunteers: '',
-  volunteers_notes: '',
-  organization: '',
-  address: '',
-  contact_name: '',
-  phone_number: '',
-  email_address: '',
-  city: 'ventura',
-  volunteer_type: 'organization',
-}
-
 export default compose(
-  withStateHandlers(
-    { formData: emptyForm },
+  connectModule(lfVolunteersModule),
+  withStateHandlers( props => (
+    {
+      formData: {
+        volunteer_type: props.location.pathname.split('/').pop(),
+      },
+    }),
     {
       update: (state) => (key, value) => Object.assign({}, { formData: { ...state.formData, [key]: value  } }),
-      resetForm: (state) => () => Object.assign({}, { formData: emptyForm })
+      resetForm: (state) => () => Object.assign({}, { formData: {} })
     }
   ),
   lifecycle({
     componentDidMount() {
-      this.setState({ isLoggedIn: JSON.parse(localStorage.getItem('auth'))})
+      this.setState({ isLoggedIn: Boolean(JSON.parse(localStorage.getItem('auth')))});
+      this.props.actions.resetBanners();
     }
   }),
-  connectModule(lfVolunteersModule),
 )(LFVolunteerForm)

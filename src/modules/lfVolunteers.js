@@ -61,6 +61,7 @@ const volunteersModule = createModule ({
         Object.assign({}, state, { loading: false, data: payload || [] })
     },
     listError: s => s,
+    resetBanners: state => Object.assign({}, state, { successMessage: '' })
   },
 });
 

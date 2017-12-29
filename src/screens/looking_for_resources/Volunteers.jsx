@@ -17,7 +17,7 @@ const Housing = ({ loading, data, history: { goBack }}) => (
         <MobileCategory to="/looking_for_resources/volunteers/organization">
           <h2> 🏩 Organization </h2>
         </MobileCategory>
-        <MobileCategory to="/looking_for_resources/volunteers/individual">
+        <MobileCategory to="/looking_for_resources/volunteers/personal">
           <h2> 🙋 Individual </h2>
         </MobileCategory>
       </MediaQuery>
@@ -29,7 +29,7 @@ const Housing = ({ loading, data, history: { goBack }}) => (
         <Category to="/looking_for_resources/volunteers/organization">
           <h2> 🏩 Organization </h2>
         </Category>
-        <Category to="/looking_for_resources/volunteers/individual">
+        <Category to="/looking_for_resources/volunteers/personal">
           <h2> 🙋 Individual </h2>
         </Category>
       </MediaQuery>

@@ -51,12 +51,12 @@ const App = props => (
         <Route exact path="/looking_for_resources" component={LookingForHelp} />
         <Route exact path="/looking_for_resources/housing" component={Housing} />
         <Route exact path="/looking_for_resources/volunteers" component={LFVolunteers} />
-        <Route exact path="/looking_for_resources/volunteers/individual" component={VolunteerList} />
+        <Route exact path="/looking_for_resources/volunteers/personal" component={LFVolunteerForm} />
         <Route exact path="/looking_for_resources/volunteers/organization" component={LFVolunteerForm} />
         <Route exact path="/helping" component={Helping} />
         <Route exact path="/helping/housing" component={HousingForm} />
         <Route exact path="/helping/volunteers" component={Volunteers} />
-        <Route exact path="/helping/volunteers/individual" component={LFVolunteerForm} />
+        <Route exact path="/helping/volunteers/personal" component={LFVolunteerForm} />
         <Route exact path="/helping/volunteers/organization" component={VolunteerList} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/verify_phone" component={PhoneVerification} />
