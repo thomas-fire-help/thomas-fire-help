@@ -245,6 +245,11 @@ const Home = props => (
             I want to help
           </MobileNavigationCard>
         </StyledLink>
+        <a href="http://about.thomasfirehelp.com" target="_blank">
+          <MobileNavigationCard>
+            About Us
+          </MobileNavigationCard>
+        </a>
       </MobileNavContainer>
       {/* {!loggedIn &&
         <AuthContainer>
@@ -265,7 +270,6 @@ const Home = props => (
       } */}
       <MobileSubheadingContainer>
         <h3>We're volunteers connecting community-sourced help to recovery needs for the Thomas Fire.</h3>
-        <h3><a href="http://about.thomasfirehelp.com" target="_blank">Click here to learn more.</a></h3>
       </MobileSubheadingContainer>
       <MobileNotificationBar>
         <div>
@@ -297,6 +301,11 @@ const Home = props => (
             I want to help
           </NavigationCard>
         </StyledLink>
+        <a href="http://about.thomasfirehelp.com" target="_blank">
+          <NavigationCard>
+            More Information
+          </NavigationCard>
+        </a>
       </NavContainer>
       {/* {!loggedIn &&
         <AuthContainer>
@@ -317,7 +326,6 @@ const Home = props => (
       } */}
       <SubheadingContainer>
         <h3>We're volunteers connecting community-sourced help to recovery needs for the Thomas Fire.</h3>
-        <h3><a href="http://about.thomasfirehelp.com" target="_blank">Click here to learn more.</a></h3>
       </SubheadingContainer>
       <NotificationBar>
         <div>
