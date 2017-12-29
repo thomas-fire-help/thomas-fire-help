@@ -22,8 +22,8 @@ const MultiSelect = ({ value = [], options, onChange }) => (
       <Button
         selected={value.includes(option.value)}
         onClick={() => value.includes(option.value)
-          ? value.filter(val => options.value !== val)
-          : value.concat(option)
+          ? onChange(value.filter(val => option.value !== val))
+          : onChange(value.concat(option.value))
         }
       >
         {option.label}

@@ -117,12 +117,15 @@ const housingModule = createModule ({
       Cmd.action(housingModule.actions.list())
     ],
 
-    updateFilters: (state, { payload: { key, value } }) => [
-      Object.assign({}, state, {
-        filters: Object.assign({}, state.filters, { [key]: value })
-      }),
-      Cmd.action(housingModule.actions.list())
-    ]
+    updateFilters: {
+      middleware: [log()],
+      reducer: (state, { payload: { key, value } }) => [
+        Object.assign({}, state, {
+          filters: Object.assign({}, state.filters, { [key]: value })
+        }),
+        Cmd.action(housingModule.actions.list())
+      ]
+    }
   },
 });
 

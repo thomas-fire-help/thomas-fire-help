@@ -33,8 +33,10 @@ const Housing = ({
   filterPaneActive,
   hideFilters,
   showFilters,
+  actions,
   loading,
   data,
+  filters,
   history: { goBack }
 }) => (
   <Layout header="Housing" onBack={goBack}>
@@ -43,11 +45,14 @@ const Housing = ({
         <OverlayLayout onBack={hideFilters}>
           <StackInput dark label="Housing Type">
             <MultiSelect
+              value={filters.housing_type}
               options={[
                 { label: "House", value: "house" },
                 { label: "Room", value: "room" }
               ]}
-              onChange={selected => console.log(selected)}
+              onChange={selected =>
+                actions.updateFilters({ key: 'housing_type', value: selected })
+              }
             />
 
           </StackInput>
@@ -59,20 +64,26 @@ const Housing = ({
           </StackInput>
           <StackInput dark label="Paid">
             <MultiSelect
+              value={filters.paid}
               options={[
                 { label: "Paid", value: true },
                 { label: "Free", value: false }
               ]}
-              onChange={selected => console.log(selected)}
+              onChange={selected =>
+                actions.updateFilters({ key: 'paid', value: selected })
+              }
             />
           </StackInput>
           <StackInput dark label="Pets Allowed">
             <MultiSelect
+              value={filters.pets_accepted}
               options={[
                 { label: "Allowed", value: true },
                 { label: "Not Allowed", value: false }
               ]}
-              onChange={selected => console.log(selected)}
+              onChange={selected =>
+                actions.updateFilters({ key: 'paid', value: selected })
+              }
             />
           </StackInput>
         </OverlayLayout>
