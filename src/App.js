@@ -20,13 +20,13 @@ import PhoneVerification from './screens/auth/PhoneVerification'
 
 import LookingForHelp from './screens/looking_for_resources'
 import Housing from './screens/looking_for_resources/Housing'
-import LFServices from './screens/looking_for_resources/Services'
 import LFVolunteers from './screens/looking_for_resources/Volunteers'
 import LFVolunteerForm from './screens/looking_for_resources/VolunteerForm'
+import LFServices from './screens/looking_for_resources/Services'
 
 import Helping from './screens/helping'
-import Volunteers from './screens/helping/Volunteers'
 import HousingForm from './screens/helping/HousingForm'
+import Volunteers from './screens/helping/Volunteers'
 import Services from './screens/helping/Services'
 import './App.css'
 
@@ -58,6 +58,7 @@ const App = props => (
         <Route exact path="/helping" component={Helping} />
         <Route exact path="/helping/housing" component={HousingForm} />
         <Route exact path="/helping/volunteers" component={Volunteers} />
+        <Route exact path="/helping/services" component={Services} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/verify_phone" component={PhoneVerification} />
         <Route exact path="/sign_up" component={SignUp} />
