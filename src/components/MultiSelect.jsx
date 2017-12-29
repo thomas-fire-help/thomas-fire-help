@@ -16,6 +16,22 @@ const Button = styled.div`
   cursor: pointer;
 `
 
+export const SingleSelect = ({ value = [], options, onChange }) => (
+  <Container>
+    {options.map(option => (
+      <Button
+        selected={value.includes(option.value)}
+        onClick={() => value.includes(option.value)
+          ? onChange(value.filter(val => option.value !== val))
+          : onChange([option.value])
+        }
+      >
+        {option.label}
+      </Button>
+    ))}
+  </Container>
+)
+
 const MultiSelect = ({ value = [], options, onChange }) => (
   <Container>
     {options.map(option => (

@@ -17,7 +17,7 @@ import {
   HeaderContainer,
   StackInput
   } from '../../components/atoms'
-import MultiSelect from '../../components/MultiSelect'
+import { SingleSelect } from '../../components/MultiSelect'
 import OverlayLayout from '../../components/OverlayLayout'
 
 const CardList = styled.div`
@@ -44,7 +44,7 @@ const Housing = ({
       {filterPaneActive &&
         <OverlayLayout onBack={hideFilters}>
           <StackInput dark label="Housing Type">
-            <MultiSelect
+            <SingleSelect
               value={filters.housing_type}
               options={[
                 { label: "House", value: "house" },
@@ -57,7 +57,7 @@ const Housing = ({
 
           </StackInput>
           <StackInput dark label="Beds Available">
-            <MultiSelect
+            <SingleSelect
               value={filters.beds}
               options={[
                 { label: "1", value: "1" },
@@ -73,7 +73,7 @@ const Housing = ({
           </StackInput>
 
           <StackInput dark label="Duration">
-            <MultiSelect
+            <SingleSelect
               value={filters.length_of_stay}
               options={[
                 { label: "Short Term", value: "short" },
@@ -87,7 +87,7 @@ const Housing = ({
 
           </StackInput>
           <StackInput dark label="Paid">
-            <MultiSelect
+            <SingleSelect
               value={filters.paid}
               options={[
                 { label: "Paid", value: true },
@@ -99,7 +99,7 @@ const Housing = ({
             />
           </StackInput>
           <StackInput dark label="Pets Allowed">
-            <MultiSelect
+            <SingleSelect
               value={filters.pets_accepted}
               options={[
                 { label: "Allowed", value: true },
