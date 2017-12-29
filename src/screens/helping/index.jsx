@@ -64,7 +64,7 @@ const Home = ({ history: { goBack }}) => (
         </MobileExternal>
 
         <MobileExternal
-          href="https://drive.google.com/open?id=1ykwR9EozuxWDQ0oLkiE9fIn5ku7Z6VjelsY3PWWrNM0"
+          href="/helping/services"
           target="_blank"
         >
           <h2> ⛑ Services </h2>
@@ -121,7 +121,7 @@ const Home = ({ history: { goBack }}) => (
         </External>
 
         <External
-          href="https://drive.google.com/open?id=1ykwR9EozuxWDQ0oLkiE9fIn5ku7Z6VjelsY3PWWrNM0"
+          href="/helping/services"
           target="_blank"
         >
           <h2> ⛑ Services </h2>
