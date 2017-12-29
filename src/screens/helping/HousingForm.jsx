@@ -151,7 +151,7 @@ const Housing = ({ actions, update, formData, history }) => (
         </StackInput>
 
         {formData.petsAllowed &&
-          <StackInput required label="Pet Notes">
+          <StackInput label="Pet Notes">
             <TextArea
               placeholder="Enter additional information about pets..."
               onChange={({ target }) => update('petNotes', target.value)}
