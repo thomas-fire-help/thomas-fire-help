@@ -20,12 +20,14 @@ import PhoneVerification from './screens/auth/PhoneVerification'
 
 import LookingForHelp from './screens/looking_for_resources'
 import Housing from './screens/looking_for_resources/Housing'
+import LFServices from './screens/looking_for_resources/Services'
 import LFVolunteers from './screens/looking_for_resources/Volunteers'
 import LFVolunteerForm from './screens/looking_for_resources/VolunteerForm'
 
 import Helping from './screens/helping'
 import Volunteers from './screens/helping/Volunteers'
 import HousingForm from './screens/helping/HousingForm'
+import Services from './screens/helping/Services'
 import './App.css'
 
 const store = createStore(s => s, {}, install());
@@ -52,6 +54,7 @@ const App = props => (
         <Route exact path="/looking_for_resources/volunteers" component={LFVolunteers} />
         <Route exact path="/looking_for_resources/volunteers/individual" component={LFVolunteerForm} />
         <Route exact path="/looking_for_resources/volunteers/organization" component={LFVolunteerForm} />
+        <Route exact path="/looking_for_resources/services" component={LFServices} />
         <Route exact path="/helping" component={Helping} />
         <Route exact path="/helping/housing" component={HousingForm} />
         <Route exact path="/helping/volunteers" component={Volunteers} />
