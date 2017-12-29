@@ -1,8 +1,7 @@
 import React from 'react'
 import { connectModule } from 'redux-modules'
 import { compose, withStateHandlers } from 'recompose'
-// import services module below
-import housingModule from '../../modules/housing'
+import servicesModule from '../../modules/services'
 import Layout from '../../components/Layout'
 import { Container, HeaderContainer } from '../../components/atoms'
 import { Input, Radio, Checkbox, Button, Select } from 'antd'
@@ -42,10 +41,10 @@ const StackInput = ({ required, children, label }) => (
 )
 
 const Services = ({ actions, update, formData, history }) => (
-  <Layout header="Housing" onBack={history.goBack}>
+  <Layout header="Services" onBack={history.goBack}>
     <Container style={{ maxWidth: '600px', display: 'flex' }}>
       <HeaderContainer>
-        Housing Information
+        Service Information
       </HeaderContainer>
       <FormSection>
         <StackInput required label="Housing Type:">
@@ -223,7 +222,7 @@ const Services = ({ actions, update, formData, history }) => (
   </Layout>
 )
 
-Housing.defaultProps = {
+Services.defaultProps = {
 
 }
 
@@ -250,5 +249,5 @@ export default compose(
       update: (state) => (key, value) => Object.assign({}, { formData: { ... state.formData, [key]: value  } })
     }
   ),
-  connectModule(housingModule)
-)(Housing)
+  connectModule(servicesModule)
+)(Services)
