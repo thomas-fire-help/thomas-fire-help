@@ -20,7 +20,6 @@ const serializeForCreate = params => {
     beds: params.bedsAvailable,
     paid: params.price,
     city: params.city,
-    length_of_stay: params.duration,
     neighborhood: params.neighborhood,
     housing_type: params.housingType,
     has_animals: params.householdHasAnimals,

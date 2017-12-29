@@ -57,9 +57,33 @@ const Housing = ({
 
           </StackInput>
           <StackInput dark label="Beds Available">
-
+            <MultiSelect
+              value={filters.beds}
+              options={[
+                { label: "1", value: "1" },
+                { label: "2", value: "2" },
+                { label: "3", value: "3" },
+                { label: "4", value: "4" },
+                { label: "5+", value: "5" }
+              ]}
+              onChange={selected =>
+                actions.updateFilters({ key: 'beds', value: selected })
+              }
+            />
           </StackInput>
+
           <StackInput dark label="Duration">
+            <MultiSelect
+              value={filters.length_of_stay}
+              options={[
+                { label: "Short Term", value: "short" },
+                { label: "Long Term", value: "long" },
+                { label: "Permanent", value: "permanent" }
+              ]}
+              onChange={selected =>
+                actions.updateFilters({ key: 'length_of_stay', value: selected })
+              }
+            />
 
           </StackInput>
           <StackInput dark label="Paid">
@@ -82,7 +106,7 @@ const Housing = ({
                 { label: "Not Allowed", value: false }
               ]}
               onChange={selected =>
-                actions.updateFilters({ key: 'paid', value: selected })
+                actions.updateFilters({ key: 'pets_accepted', value: selected })
               }
             />
           </StackInput>
