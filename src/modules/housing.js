@@ -3,6 +3,7 @@ import { loop, Cmd, liftState } from 'redux-loop';
 import { getHost } from '../utils/network';
 import { log } from 'redux-modules-middleware';
 import { fetchConfig } from '../utils/fetchUtils';
+import qs from 'query-string';
 
 const endpoint = `${getHost()}/housings`;
 
@@ -19,7 +20,6 @@ const serializeForCreate = params => {
     beds: params.bedsAvailable,
     paid: params.price,
     city: params.city,
-    length_of_stay: params.duration,
     neighborhood: params.neighborhood,
     housing_type: params.housingType,
     has_animals: params.householdHasAnimals,
@@ -35,50 +35,30 @@ const serializeForCreate = params => {
   };
 };
 
-const list = params =>
-  fetch(endpoint, { headers: fetchConfig() }).then(res => res.json());
+const formatParams = ({ filters = {}, page = 0, perPage = 25 }) => {
+  const formattedFilters = Object
+    .keys(filters)
+    .reduce((string, key) => {
+      const value = filters[key]
+      return `${string}&filters[${key}]=${value}`
+    }, '')
 
-const examplePayload = [
-  {
-    city: 'Ventura',
-    beds: 2,
-    paid: true,
-    neighborhood: 'The Avenue',
-    housing_type: 'room',
-    has_animals: true,
-    length_of_stay: 'short_term',
-    child_friendly: true,
-    kid_notes: '',
-    pets_accepted: true,
-    pet_notes: 'No gerbils',
-    contact_name: 'Marcus Bernales',
-    phone_number: '8052639559',
-    email_address: 'mboperator@gmail.com',
-    notes: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tempus consequat nunc nec efficitur. Phasellus pellentesque a leo id dignissim. Fusce ac neque tortor. Phasellus eu finibus orci. Proin et euismod lorem. Quisque a sem dapibus, tincidunt mauris sit amet, fringilla urna. Etiam vestibulum eu tortor id blandit. Mauris pellentesque enim sed dolor posuere consectetur. Ut accumsan eros et neque gravida, eget rhoncus nunc elementum. Donec lacinia placerat mauris, at malesuada nisi fringilla ac.',
-  },
-  {
-    city: 'Ventura',
-    beds: 2,
-    paid: true,
-    neighborhood: 'Old Town',
-    housing_type: 'house',
-    has_animals: true,
-    length_of_stay: 'short_term',
-    child_friendly: true,
-    kid_notes: 'No toddlers.',
-    pets_accepted: true,
-    pet_notes: 'No gerbils',
-    contact_name: 'Marcus Bernales',
-    phone_number: '8052639559',
-    email_address: 'mboperator@gmail.com',
-    notes: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tempus consequat nunc nec efficitur. Phasellus pellentesque a leo id dignissim. Fusce ac neque tortor. Phasellus eu finibus orci. Proin et euismod lorem. Quisque a sem dapibus, tincidunt mauris sit amet, fringilla urna. Etiam vestibulum eu tortor id blandit. Mauris pellentesque enim sed dolor posuere consectetur. Ut accumsan eros et neque gravida, eget rhoncus nunc elementum. Donec lacinia placerat mauris, at malesuada nisi fringilla ac.',
-  },
-]
+  const querystring = `?page=${page}&per_page=${perPage}${formattedFilters}`
+  return querystring
+}
+
+const list = params => {
+  return fetch(`${endpoint}${formatParams(params)}`, { headers: fetchConfig() })
+  .then(res => res.json());
+}
 
 const housingModule = createModule ({
   name: 'housing',
   initialState: {
     data: [],
+    filters: {},
+    page: 0,
+    perPage: 25,
     loading: false,
   },
   composes: [liftState],
@@ -103,7 +83,11 @@ const housingModule = createModule ({
       Cmd.run(list, {
         successActionCreator: housingModule.actions.listSuccess,
         failActionCreator: housingModule.actions.listError,
-        args: [payload]
+        args: [{
+          filters: state.filters,
+          perPage: state.perPage,
+          page: state.page
+        }]
       }),
     ],
     listSuccess: {
@@ -112,6 +96,26 @@ const housingModule = createModule ({
         Object.assign({}, state, { loading: false, data: payload })
     },
     listError: s => s,
+
+    updatePage: (state, { payload }) => [
+      Object.assign({}, state, { page: payload }),
+      Cmd.action(housingModule.actions.list())
+    ],
+
+    updatePerPage: (state, { payload }) => [
+      Object.assign({}, state, { perPage: payload }),
+      Cmd.action(housingModule.actions.list())
+    ],
+
+    updateFilters: {
+      middleware: [log()],
+      reducer: (state, { payload: { key, value } }) => [
+        Object.assign({}, state, {
+          filters: Object.assign({}, state.filters, { [key]: value })
+        }),
+        Cmd.action(housingModule.actions.list())
+      ]
+    }
   },
 });
 
