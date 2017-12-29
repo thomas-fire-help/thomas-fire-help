@@ -52,6 +52,7 @@ const MobileHeaderContainer = styled.div`
 `
 
 const SubheadingContainer = styled.div`
+  opacity: 0;
   font-size: 16px;
   text-align: center;
   width: 450px;
@@ -63,6 +64,7 @@ const SubheadingContainer = styled.div`
 `
 
 const MobileSubheadingContainer = styled.div`
+  opacity: 0;
   font-size: 14px;
   text-align: center;
   margin: 10px 0 5px 0;
