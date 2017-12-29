@@ -50,7 +50,7 @@ const HeaderContainer = styled.div`
 const Button = styled.button`
   align-self: flex-end;
   background-color: ${props => props.active ? '#3A3A3A' : '#FFF'};
-  color: ${props => props.active ? '#000' : '#FFF'};
+  color: ${props => !props.active ? '#000' : '#FFF'};
   border: 1px solid lightgray;
   padding: 15px 30px;
   flex: 1;

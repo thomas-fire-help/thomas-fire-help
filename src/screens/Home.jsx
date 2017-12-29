@@ -23,6 +23,7 @@ const HeaderContainer = styled.div`
   width: 100%;
   text-align: center;
   font-size: 20px;
+  margin-top: 50px;
   margin-bottom: 30px;
   opacity: 0;
   animation: ${fadeIn} 1.5s forwards;
@@ -42,7 +43,7 @@ const MobileHeaderContainer = styled.div`
   font-size: 14px;
   white-space: nowrap;
   overflow: hidden;
-  margin-top: 300px;
+  margin-top: 30px;
   margin-bottom: 30px;
   marginTop: 100px;
   opacity: 0;

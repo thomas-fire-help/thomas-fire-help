@@ -10,20 +10,110 @@ import housingModule from '../../modules/housing'
 import Layout from '../../components/Layout'
 import HouseCard from '../../components/HouseCard'
 import MobileHouseCard from '../../components/MobileHouseCard'
-import { Container, MobileHeaderContainer } from '../../components/atoms'
+import {
+  FullscreenOverlay,
+  Container,
+  MobileHeaderContainer,
+  HeaderContainer,
+  StackInput
+  } from '../../components/atoms'
+import { SingleSelect } from '../../components/MultiSelect'
+import OverlayLayout from '../../components/OverlayLayout'
 
 const CardList = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
 
   > div {
     margin-bottom: 30px;
   }
 `
 
-const Housing = ({ loading, data, history: { goBack }}) => (
+const Housing = ({
+  filterPaneActive,
+  hideFilters,
+  showFilters,
+  actions,
+  loading,
+  data,
+  filters,
+  history: { goBack }
+}) => (
   <Layout header="Housing" onBack={goBack}>
-    <Container style={{ margin: '15px 25px'}}>
+    <Container style={{ padding: '15px 25px', width: '100%'}}>
+      {filterPaneActive &&
+        <OverlayLayout onBack={hideFilters}>
+          <StackInput dark label="Housing Type">
+            <SingleSelect
+              value={filters.housing_type}
+              options={[
+                { label: "House", value: "house" },
+                { label: "Room", value: "room" }
+              ]}
+              onChange={selected =>
+                actions.updateFilters({ key: 'housing_type', value: selected })
+              }
+            />
+          </StackInput>
+
+          <StackInput dark label="Beds Available">
+            <SingleSelect
+              value={filters.beds}
+              options={[
+                { label: "1", value: "1" },
+                { label: "2", value: "2" },
+                { label: "3", value: "3" },
+                { label: "4", value: "4" },
+                { label: "5+", value: "5" }
+              ]}
+              onChange={selected =>
+                actions.updateFilters({ key: 'beds', value: selected })
+              }
+            />
+          </StackInput>
+
+          <StackInput dark label="Duration">
+            <SingleSelect
+              value={filters.length_of_stay}
+              options={[
+                { label: "Short Term", value: "short" },
+                { label: "Long Term", value: "long" },
+                { label: "Permanent", value: "permanent" }
+              ]}
+              onChange={selected =>
+                actions.updateFilters({ key: 'length_of_stay', value: selected })
+              }
+            />
+          </StackInput>
+
+          <StackInput dark label="Paid">
+            <SingleSelect
+              value={filters.paid}
+              options={[
+                { label: "Paid", value: true },
+                { label: "Free", value: false }
+              ]}
+              onChange={selected =>
+                actions.updateFilters({ key: 'paid', value: selected })
+              }
+            />
+          </StackInput>
+
+          <StackInput dark label="Pets Allowed">
+            <SingleSelect
+              value={filters.pets_accepted}
+              options={[
+                { label: "Allowed", value: true },
+                { label: "Not Allowed", value: false }
+              ]}
+              onChange={selected =>
+                actions.updateFilters({ key: 'pets_accepted', value: selected })
+              }
+            />
+          </StackInput>
+        </OverlayLayout>
+      }
       <MediaQuery minDeviceWidth={320} maxDeviceWidth={480}>
         <MobileHeaderContainer style={{ marginBottom: '20px' }}>
           <h1> Housing </h1>
@@ -43,6 +133,17 @@ const Housing = ({ loading, data, history: { goBack }}) => (
       </ MediaQuery>
 
       <MediaQuery minDeviceWidth={481}>
+        <HeaderContainer style={{ marginBottom: '20px' }}>
+          <h1> Housing </h1>
+
+          <Icon
+            onClick={showFilters}
+            type="filter"
+            style={{ display: 'flex', textTransform: 'uppercase', fontWeight: 'bold', marginRight: '10px', justifyContent: 'space-between', width: '75px', cursor: 'pointer' }}
+          >
+            Filter
+          </Icon>
+        </HeaderContainer>
         <CardList>
           {data.map((houseListing, i) => (
             <HouseCard key={i} {...houseListing} />
@@ -60,6 +161,10 @@ Housing.defaultProps = {
 
 export default compose(
   connectModule(housingModule),
+  withStateHandlers({ filterPaneActive: false }, {
+    showFilters: state => () => ({ filterPaneActive: true }),
+    hideFilters: state => () => ({ filterPaneActive: false }),
+  }),
   lifecycle({
     componentWillMount() {
       this.props.actions.list()
