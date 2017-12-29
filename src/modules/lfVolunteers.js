@@ -38,7 +38,6 @@ const volunteersModule = createModule ({
     )},
     createSuccess: {
       reducer: (state, { payload }) => {
-        console.log(state, payload)
         return Object.assign({}, state, { data: state.data.concat(payload), loading: false });
       }
     },

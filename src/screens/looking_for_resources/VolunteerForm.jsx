@@ -1,12 +1,15 @@
-import React from 'react'
-import { connectModule } from 'redux-modules'
+import { Banner, SuccessBanner } from '@procore/core-react'
 import { compose, withStateHandlers } from 'recompose'
-import lfVolunteersModule from '../../modules/lfVolunteers'
-import Layout from '../../components/Layout'
+import { connectModule } from 'redux-modules'
+import Loader from 'react-loader'
+import MediaQuery from 'react-responsive'
+import React from 'react'
+import styled, { keyframes } from 'styled-components'
+
 import { Container, HeaderContainer } from '../../components/atoms'
 import { Input, Button, Select } from 'antd'
-import styled from 'styled-components'
-import MediaQuery from 'react-responsive'
+import Layout from '../../components/Layout'
+import lfVolunteersModule from '../../modules/lfVolunteers'
 
 const Option = Select.Option
 const { TextArea } = Input
@@ -24,6 +27,28 @@ const StackContainer = styled.div`
   margin: 20px 0;
 `
 
+const fadeIn = keyframes`
+0% {
+  opacity: 0;
+}
+100% {
+  opacity: 1;
+}
+`;
+
+const dropIn = keyframes`
+  0% {
+    transform: translateY(-100px);
+  }
+  100% {
+    transform: translateY(-10px);
+  }
+`;
+
+const SuccessBannerContainer = styled(SuccessBanner)`
+  animation: ${fadeIn} 1s, ${dropIn} .7s forwards;
+`
+
 const StackInput = ({ required, children, label }) => (
   <StackContainer>
     <Label>
@@ -35,9 +60,17 @@ const StackInput = ({ required, children, label }) => (
   </StackContainer>
 )
 
-const LFVolunteerForm = ({ actions, update, formData, history: { goBack }, match: { path } }) => (
+const LFVolunteerForm = ({ actions, update, resetForm, formData, loading, history: { goBack }, match: { path } }) => (
   <Layout header="Housing" onBack={goBack}>
     <Container>
+
+      <SuccessBannerContainer>
+        <Banner.Content>
+          <Banner.Title style={{ fontSize: '17px' }}>Success!</Banner.Title>
+          <Banner.Body style={{ fontSize: '15px' }}>Save Successful</Banner.Body>
+        </Banner.Content>
+      </SuccessBannerContainer>
+
       <HeaderContainer>
         I need volunteer help...
       </HeaderContainer>
@@ -59,6 +92,7 @@ const LFVolunteerForm = ({ actions, update, formData, history: { goBack }, match
           <Option value="animalServices">Animal services</Option>
         </Select>
       </StackInput> */}
+      <Loader loaded={!loading} lines={13} length={10} width={2}>
       {(formType => {
         if (formType === 'organization') {
           return (
@@ -141,7 +175,10 @@ const LFVolunteerForm = ({ actions, update, formData, history: { goBack }, match
           <Button
             size="large"
             style={{ width: '100%' }}
-            onClick={() => actions.create(formData)}
+            onClick={() => {
+              actions.create(formData)
+              resetForm()
+            }}
           >
             Submit
           </Button>
@@ -149,12 +186,16 @@ const LFVolunteerForm = ({ actions, update, formData, history: { goBack }, match
         <MediaQuery minDeviceWidth={481}>
           <Button
             size="large"
-            onClick={() => actions.create(formData)}
+            onClick={() => {
+              actions.create(formData)
+              resetForm()
+            }}
           >
             Submit
           </Button>
         </MediaQuery>
       </div>
+      </Loader>
     </Container>
   </Layout>
 )
@@ -163,24 +204,25 @@ LFVolunteerForm.defaultProps = {
 
 }
 
+const emptyForm = {
+  skills: '',
+  number_of_volunteers: '',
+  volunteers_notes: '',
+  organization: '',
+  address: '',
+  contact_name: '',
+  phone_number: '',
+  email_address: '',
+  city: 'ventura',
+  volunteer_type: 'organization',
+}
+
 export default compose(
   withStateHandlers(
+    { formData: emptyForm },
     {
-      formData: {
-        skills: '',
-        number_of_volunteers: '',
-        volunteers_notes: '',
-        organization: '',
-        address: '',
-        contact_name: '',
-        phone_number: '',
-        email_address: '',
-        city: 'ventura',
-        volunteer_type: 'organization',
-      }
-    },
-    {
-      update: (state) => (key, value) => Object.assign({}, { formData: { ...state.formData, [key]: value  } })
+      update: (state) => (key, value) => Object.assign({}, { formData: { ...state.formData, [key]: value  } }),
+      resetForm: (state) => () => Object.assign({}, { formData: emptyForm })
     }
   ),
   connectModule(lfVolunteersModule),
