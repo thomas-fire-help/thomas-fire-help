@@ -4,11 +4,10 @@ import { compose, withStateHandlers } from 'recompose'
 import servicesModule from '../../modules/services'
 import Layout from '../../components/Layout'
 import { Container, HeaderContainer } from '../../components/atoms'
-import { Input, Radio, Checkbox, Button, Select } from 'antd'
+import { Input, Radio, Checkbox, Button } from 'antd'
 import styled from 'styled-components'
-import SegmentedController from '../../components/SegmentedController'
 const RadioGroup = Radio.Group
-const Option = Select.Option
+const CheckboxGroup = Checkbox.Group
 const { TextArea } = Input
 
 const RequiredIndicator = styled.em`
@@ -29,6 +28,8 @@ const FormSection = styled.div`
   padding: 30px 0;
 `
 
+const contactOptions = ['Phone', 'Text Message', 'Email', ]
+
 const StackInput = ({ required, children, label }) => (
   <StackContainer>
     <Label>
@@ -46,153 +47,17 @@ const Services = ({ actions, update, formData, history }) => (
       <HeaderContainer>
         Service Information
       </HeaderContainer>
-      <FormSection>
-        <StackInput required label="Housing Type:">
-          <SegmentedController
-            value={formData.housingType}
-            onChange={value => update('housingType', value)}
-            options={[
-              {label: 'Entire Home', value: 'house'},
-              {label: 'Private Room', value: 'room'}
-            ]}
-          />
-        </StackInput>
-
-        <StackInput required label="Beds Available:">
-          <Select
-            showSearch
-            style={{ width: '100%' }}
-            value={formData.bedsAvailable}
-            placeholder="Select number of beds available"
-            optionFilterProp="children"
-            onChange={value => update('bedsAvailable', value)}
-            filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
-          >
-            <Option value="1">1</Option>
-            <Option value="2">2</Option>
-            <Option value="3">3</Option>
-            <Option value="4">4</Option>
-            <Option value="5">5+</Option>
-          </Select>
-        </StackInput>
-      </FormSection>
-
-      <FormSection>
-        <StackInput required label="City:">
-          <Select
-            showSearch
-            style={{ width: '100%' }}
-            value={formData.city}
-            placeholder="Select a city"
-            optionFilterProp="children"
-            onChange={value => update('city', value)}
-            filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
-          >
-            <Option value="goleta">Goleta</Option>
-            <Option value="ojai">Ojai</Option>
-            <Option value="santa_barbara">Santa Barbara</Option>
-            <Option value="camarillo">Camarillo</Option>
-            <Option value="ventura">Ventura</Option>
-            <Option value="thousand_oaks">Thousand Oaks</Option>
-          </Select>
-        </StackInput>
-
-        <StackInput label="Neighborhood:">
-          <Input
-            onChange={({ target }) => update('neighborhood', target.value)}
-          />
-        </StackInput>
-      </FormSection>
-
-      <FormSection>
-        <StackInput required label="Duration:">
-          <RadioGroup value={formData.duration} onChange={({ target }) => update('duration', target.value)}>
-            <Radio value={'short'}>Short-Term: one week or less</Radio>
-            <Radio value={'long'}>Long-Term: one month to one week </Radio>
-            <Radio value={'permanent'}>Permanent: available for rent or lease</Radio>
-          </RadioGroup>
-        </StackInput>
-      </FormSection>
-
-      <FormSection>
-        <StackInput required label="Price:">
-          <SegmentedController
-            value={formData.paid}
-            onChange={value => update('paid', value)}
-            options={[{ label: "Free", value: false }, { label: "Paid", value: true }]}
-          />
-        </StackInput>
-
-        {formData.paid &&
-          <StackInput required label="Monthly Payment">
-            <Input
-              onChange={({ target }) => update('price', target.value)}
-              placeholder="Enter a price..."
-            />
-          </StackInput>
-        }
-      </FormSection>
-
-      <FormSection>
-        <StackInput label="Child Friendly:">
-          <SegmentedController
-            value={formData.childFriendly}
-            onChange={value => update('childFriendly', value)}
-            options={[{ label: "Yes", value: true }, { label: "No", value: false }]}
-          />
-        </StackInput>
-
-        {formData.childFriendly &&
-          <StackInput required label="Notes on Children">
-            <TextArea
-              placeholder="Enter additional information about children..."
-              onChange={({ target }) => update('childNotes', target.value)}
-            />
-          </StackInput>
-        }
-      </FormSection>
-
-      <FormSection>
-        <StackInput label="Animals present:">
-          <SegmentedController
-            value={formData.householdHasAnimals}
-            onChange={value => update('householdHasAnimals', value)}
-            options={[{ label: "Yes", value: true }, { label: "No", value: false }]}
-          />
-        </StackInput>
-
-        <StackInput label="Pets allowed:">
-          <SegmentedController
-            value={formData.petsAllowed}
-            onChange={value => update('petsAllowed', value)}
-            options={[{ label: "Yes", value: true }, { label: "No", value: false }]}
-          />
-        </StackInput>
-
-        {formData.petsAllowed &&
-          <StackInput required label="Pet Notes">
-            <TextArea
-              placeholder="Enter additional information about pets..."
-              onChange={({ target }) => update('petNotes', target.value)}
-            />
-          </StackInput>
-        }
-      </FormSection>
-
-      <FormSection>
-        <StackInput label="Description of Housing:">
-          <TextArea
-            placeholder="Additional Information"
-            autosize={{ minRows: 2 }}
-            onChange={({ target }) => update('description', target.value)}
-          />
-        </StackInput>
-      </FormSection>
-
+      
       <FormSection>
         <StackInput required label="Your Name:">
           <Input
             onChange={({ target }) => update('name', target.value)}
+          />
+        </StackInput>
+
+        <StackInput required label="Organization/Company:">
+          <Input
+            onChange={({ target }) => update('update-this-field', target.value)}
           />
         </StackInput>
 
@@ -205,6 +70,50 @@ const Services = ({ actions, update, formData, history }) => (
         <StackInput required label="Email Address:">
           <Input
             onChange={({ target }) => update('emailAddress', target.value)}
+          />
+        </StackInput>
+
+        <StackInput label="Website:">
+          <Input
+            onChange={({ target }) => update('update-this-field', target.value)}
+          />
+        </StackInput>
+      </FormSection>
+
+      <FormSection>
+        <StackInput required label="Service Fees:">
+          <RadioGroup value={formData.duration} onChange={({ target }) => update('duration', target.value)}>
+            <Radio value={'short'}>Full Fee</Radio>
+            <Radio value={'long'}>Reduced Fee</Radio>
+            <Radio value={'permanent'}>Pro Bono</Radio>
+          </RadioGroup>
+        </StackInput>
+      </FormSection>
+
+      <FormSection>
+        <StackInput required label="Description of services:">
+          <TextArea
+            placeholder="Legal counsel, Insurance, Accounting, Therapy & emotional support, House cleaning, Childcare, Transportation, Chiropractic..."
+            autosize={{ minRows: 3 }}
+            onChange={({ target }) => update('childNotes', target.value)}
+          />
+        </StackInput>
+      </FormSection>
+      
+      <FormSection>
+        <StackInput required label="Preferred Method(s) of customer contact:">
+          <CheckboxGroup 
+            options = {contactOptions}
+          />
+        </StackInput>
+      </FormSection>
+
+      <FormSection>
+        <StackInput label="Additional Information:">
+          <TextArea
+            placeholder="Additional Information..."
+            autosize={{ minRows: 2 }}
+            onChange={({ target }) => update('childNotes', target.value)}
           />
         </StackInput>
       </FormSection>
