@@ -33,6 +33,7 @@ const store = createStore(s => s, {}, install());
 const AppContainer = styled.div`
   width: 100vw;
   height: 100vh;
+  overflow-x: hidden;
   display: flex;
   justify-content: center;
   align-items: flex-start;

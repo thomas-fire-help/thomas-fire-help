@@ -23,6 +23,7 @@ import OverlayLayout from '../../components/OverlayLayout'
 const CardList = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
 
   > div {
     margin-bottom: 30px;
@@ -40,7 +41,7 @@ const Housing = ({
   history: { goBack }
 }) => (
   <Layout header="Housing" onBack={goBack}>
-    <Container style={{ margin: '15px 25px'}}>
+    <Container style={{ padding: '15px 25px', width: '100%'}}>
       {filterPaneActive &&
         <OverlayLayout onBack={hideFilters}>
           <StackInput dark label="Housing Type">
