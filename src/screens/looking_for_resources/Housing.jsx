@@ -55,8 +55,8 @@ const Housing = ({
                 actions.updateFilters({ key: 'housing_type', value: selected })
               }
             />
-
           </StackInput>
+
           <StackInput dark label="Beds Available">
             <SingleSelect
               value={filters.beds}
@@ -85,8 +85,8 @@ const Housing = ({
                 actions.updateFilters({ key: 'length_of_stay', value: selected })
               }
             />
-
           </StackInput>
+
           <StackInput dark label="Paid">
             <SingleSelect
               value={filters.paid}
@@ -99,6 +99,7 @@ const Housing = ({
               }
             />
           </StackInput>
+
           <StackInput dark label="Pets Allowed">
             <SingleSelect
               value={filters.pets_accepted}

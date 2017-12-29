@@ -10,8 +10,8 @@ const Container = styled.div`
 const Button = styled.div`
   border: 1px solid white;
   padding: 5px 10px;
-  color: ${({ selected }) => selected ? 'black' : 'white'};
-  background-color: ${({ selected }) => selected ? 'white' : 'black'};
+  color: ${({ selected }) => selected ? '#000' : '#FFF'};
+  background-color: ${({ selected }) => selected ? '#FFF' : '#000'};
   margin: 10px;
   cursor: pointer;
 `

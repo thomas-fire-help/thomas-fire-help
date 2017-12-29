@@ -3,9 +3,9 @@ import styled, { keyframes } from 'styled-components'
 import { Link } from 'react-router-dom'
 
 const Label = styled.div`
-  font-size: 1.5rem;
-  padding: 1rem 0;
-  color: ${({ dark }) => dark && 'white;'}
+  font-size: 24px;
+  padding: 16px 0;
+  color: ${({ dark }) => dark && '#FFF;'}
 `
 
 const StackContainer = styled.div`
