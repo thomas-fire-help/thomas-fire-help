@@ -134,25 +134,6 @@ const Housing = ({ actions, update, formData, history }) => (
       </FormSection>
 
       <FormSection>
-        <StackInput label="Child Friendly:">
-          <SegmentedController
-            value={formData.childFriendly}
-            onChange={value => update('childFriendly', value)}
-            options={[{ label: "Yes", value: true }, { label: "No", value: false }]}
-          />
-        </StackInput>
-
-        {formData.childFriendly &&
-          <StackInput required label="Notes on Children">
-            <TextArea
-              placeholder="Enter additional information about children..."
-              onChange={({ target }) => update('childNotes', target.value)}
-            />
-          </StackInput>
-        }
-      </FormSection>
-
-      <FormSection>
         <StackInput label="Animals present:">
           <SegmentedController
             value={formData.householdHasAnimals}
@@ -236,7 +217,6 @@ export default compose(
         neighborhood: '',
         duration: 'short',
         paid: true,
-        childFriendly: true,
         householdHasAnimals: false,
         petsAllowed: true,
         description: '',
