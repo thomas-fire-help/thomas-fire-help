@@ -152,23 +152,12 @@ const MobileHouseCard = ({ showDetails, setShowDetails, ...houseListing }) => (
       <TagList>
         <Tag>{prettyPrint('paid', houseListing.paid)}</Tag>
         <Tag>{prettyPrint('length_of_stay', houseListing.length_of_stay)}</Tag>
-        {houseListing.child_friendly &&
-          <Tag>Child Friendly</Tag>
-        }
         {houseListing.pets_accepted &&
           <Tag>Pets Accepted</Tag>
         }
       </TagList>
 
       <DetailPane active={showDetails}>
-        {houseListing.kid_notes &&
-          <div>
-            <b>Notes on Children</b>
-            <p>
-              {houseListing.kid_notes}
-            </p>
-          </div>
-        }
         {houseListing.pet_notes &&
           <div>
             <b>Notes on Pets</b>
