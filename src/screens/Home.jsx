@@ -51,6 +51,28 @@ const MobileHeaderContainer = styled.div`
   }
 `
 
+const SubheadingContainer = styled.div`
+  opacity: 0;
+  font-size: 16px;
+  text-align: center;
+  width: 450px;
+  padding: 30px 0px;
+  margin: 20px 0 10px 0;
+  animation: ${fadeIn} 1.5s forwards;
+  animation-delay: .3s;
+  margin-bottom: 10px;
+`
+
+const MobileSubheadingContainer = styled.div`
+  opacity: 0;
+  font-size: 14px;
+  text-align: center;
+  margin: 10px 0 5px 0;
+  animation: ${fadeIn} 1.5s forwards;
+  animation-delay: .3s;
+  margin-bottom: 10px;
+`
+
 const NavContainer = styled.nav`
   display: flex;
   flex-direction: column;
@@ -223,7 +245,32 @@ const Home = props => (
             I want to help
           </MobileNavigationCard>
         </StyledLink>
+        <a href="http://about.thomasfirehelp.com" target="_blank">
+          <MobileNavigationCard>
+            About Us
+          </MobileNavigationCard>
+        </a>
       </MobileNavContainer>
+      {/* {!loggedIn &&
+        <AuthContainer>
+          <MobileAuthLink to="login">
+            Login
+          </MobileAuthLink>
+          <MobileAuthLink to="sign_up">
+            Sign Up
+          </MobileAuthLink>
+        </AuthContainer>
+      }
+      {loggedIn &&
+        <AuthContainer>
+          <LogoutButton onClick={authActions.logout}>
+            Logout
+          </LogoutButton>
+        </AuthContainer>
+      } */}
+      <MobileSubheadingContainer>
+        <h3>We're volunteers connecting community-sourced help to recovery needs for the Thomas Fire.</h3>
+      </MobileSubheadingContainer>
       <MobileNotificationBar>
         <div>
           In event of Emergency, call <a href="tel:911"><Emphasis>911</Emphasis></a>
@@ -254,7 +301,32 @@ const Home = props => (
             I want to help
           </NavigationCard>
         </StyledLink>
+        <a href="http://about.thomasfirehelp.com" target="_blank">
+          <NavigationCard>
+            More Information
+          </NavigationCard>
+        </a>
       </NavContainer>
+      {/* {!loggedIn &&
+        <AuthContainer>
+          <AuthLink to="login">
+            Login
+          </AuthLink>
+          <AuthLink to="sign_up">
+            Sign Up
+          </AuthLink>
+        </AuthContainer>
+      }
+      {loggedIn &&
+        <LogoutContainer>
+          <LogoutButton onClick={authActions.logout}>
+            Logout
+          </LogoutButton>
+        </LogoutContainer>
+      } */}
+      <SubheadingContainer>
+        <h3>We're volunteers connecting community-sourced help to recovery needs for the Thomas Fire.</h3>
+      </SubheadingContainer>
       <NotificationBar>
         <div>
           In event of Emergency, call <a href="tel:911"><Emphasis>911</Emphasis></a>
