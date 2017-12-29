@@ -23,13 +23,14 @@ const volunteersModule = createModule ({
   initialState: {
     data: [],
     loading: false,
+    successMessage: '',
   },
   composes: [liftState],
   selector: s => s.volunteers,
   transformations: {
     create: (state, { payload }) => {
       return loop(
-      Object.assign({}, state, { loading: true }),
+      Object.assign({}, state, { loading: true, successMessage: '' }),
       Cmd.run(create, {
         successActionCreator: volunteersModule.actions.createSuccess,
         failActionCreator: volunteersModule.actions.createError,
@@ -38,7 +39,11 @@ const volunteersModule = createModule ({
     )},
     createSuccess: {
       reducer: (state, { payload }) => {
-        return Object.assign({}, state, { data: state.data.concat(payload), loading: false });
+        return Object.assign(
+          {},
+          state,
+          { data: state.data.concat(payload), loading: false, successMessage: 'Save successful!' }
+        );
       }
     },
     createError: (state, payload) => console.log(state, payload),

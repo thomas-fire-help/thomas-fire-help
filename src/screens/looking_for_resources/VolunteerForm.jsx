@@ -60,16 +60,17 @@ const StackInput = ({ required, children, label }) => (
   </StackContainer>
 )
 
-const LFVolunteerForm = ({ actions, update, resetForm, formData, loading, history: { goBack }, match: { path } }) => (
+const LFVolunteerForm = ({ actions, update, resetForm, formData, loading, successMessage, history: { goBack }, match: { path } }) => (
   <Layout header="Housing" onBack={goBack}>
     <Container>
-
-      <SuccessBannerContainer>
-        <Banner.Content>
-          <Banner.Title style={{ fontSize: '17px' }}>Success!</Banner.Title>
-          <Banner.Body style={{ fontSize: '15px' }}>Save Successful</Banner.Body>
-        </Banner.Content>
-      </SuccessBannerContainer>
+      {successMessage &&
+        <SuccessBannerContainer>
+          <Banner.Content>
+            <Banner.Title style={{ fontSize: '17px' }}>Success!</Banner.Title>
+            <Banner.Body style={{ fontSize: '15px' }}>Save Successful</Banner.Body>
+          </Banner.Content>
+        </SuccessBannerContainer>
+      }
 
       <HeaderContainer>
         I need volunteer help...
