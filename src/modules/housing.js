@@ -34,15 +34,7 @@ const serializeForCreate = params => {
     email_address: params.emailAddress,
   };
 };
-/*
-  params = {
-    filter: {
-      pets_accepted: true
-    },
-    page: 1
-  }
 
-*/
 const formatParams = ({ filters = {}, page = 0, perPage = 25 }) => {
   const formattedFilters = Object
     .keys(filters)
@@ -54,7 +46,6 @@ const formatParams = ({ filters = {}, page = 0, perPage = 25 }) => {
   const querystring = `?page=${page}&per_page=${perPage}${formattedFilters}`
   return querystring
 }
-
 
 const list = params => {
   return fetch(`${endpoint}${formatParams(params)}`, { headers: fetchConfig() })
