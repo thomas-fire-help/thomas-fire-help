@@ -63,13 +63,10 @@ const Home = ({ history: { goBack }}) => (
           <p> I have food or meals to offer. </p>
         </MobileExternal>
 
-        <MobileExternal
-          href="https://drive.google.com/open?id=1ykwR9EozuxWDQ0oLkiE9fIn5ku7Z6VjelsY3PWWrNM0"
-          target="_blank"
-        >
+        <MobileCategory to="/helping/services">
           <h2> ⛑ Services </h2>
           <p> Offer professional services. </p>
-        </MobileExternal>
+        </MobileCategory>
 
       </MediaQuery>
 
@@ -120,13 +117,10 @@ const Home = ({ history: { goBack }}) => (
           <p> Donate food or meals. </p>
         </External>
 
-        <External
-          href="https://drive.google.com/open?id=1ykwR9EozuxWDQ0oLkiE9fIn5ku7Z6VjelsY3PWWrNM0"
-          target="_blank"
-        >
+        <Category to="/helping/services">
           <h2> ⛑ Services </h2>
           <p> Offer professional services. </p>
-        </External>
+        </Category>
 
       </MediaQuery>
     </Container>

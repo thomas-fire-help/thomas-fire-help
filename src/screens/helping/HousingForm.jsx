@@ -7,27 +7,11 @@ import { Container, HeaderContainer } from '../../components/atoms'
 import { Input, Radio, Checkbox, Button, Select } from 'antd'
 import styled from 'styled-components'
 import SegmentedController from '../../components/SegmentedController'
+import { RequiredIndicator, Label, StackContainer, FormSection } from '../../components/formAtoms'
+
 const RadioGroup = Radio.Group
 const Option = Select.Option
 const { TextArea } = Input
-
-const RequiredIndicator = styled.em`
-  color: red;
-`
-
-const Label = styled.div`
-  font-size: 18px;
-  text-transform: uppercase;
-  padding: 15px 0;
-`
-
-const StackContainer = styled.div`
-  margin: 0 0;
-`
-
-const FormSection = styled.div`
-  padding: 30px 0;
-`
 
 const StackInput = ({ required, children, label }) => (
   <StackContainer>
