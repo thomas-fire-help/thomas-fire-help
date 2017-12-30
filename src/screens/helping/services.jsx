@@ -6,27 +6,11 @@ import Layout from '../../components/Layout'
 import { Container, HeaderContainer } from '../../components/atoms'
 import { Input, Radio, Checkbox, Button } from 'antd'
 import styled from 'styled-components'
+import {RequiredIndicator, Label, StackContainer, FormSection} from '../../components/formAtoms'
+
 const RadioGroup = Radio.Group
 const CheckboxGroup = Checkbox.Group
 const { TextArea } = Input
-
-const RequiredIndicator = styled.em`
-  color: red;
-`
-
-const Label = styled.div`
-  font-size: 18px;
-  text-transform: uppercase;
-  padding: 15px 0;
-`
-
-const StackContainer = styled.div`
-  margin: 0 0;
-`
-
-const FormSection = styled.div`
-  padding: 30px 0;
-`
 
 const contactOptions = ['Phone', 'Text Message', 'Email', ]
 
