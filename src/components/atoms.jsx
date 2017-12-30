@@ -1,5 +1,36 @@
+import React from 'react'
 import styled, { keyframes } from 'styled-components'
 import { Link } from 'react-router-dom'
+
+const Label = styled.div`
+  font-size: 24px;
+  padding: 16px 0;
+  color: ${({ dark }) => dark && '#FFF;'}
+`
+
+const StackContainer = styled.div`
+  margin: 30px 0;
+`
+
+export const StackInput = ({ required, children, label, dark }) => (
+  <StackContainer>
+    <Label dark={dark}>
+      {label}
+    </Label>
+    <div>
+      {children}
+    </div>
+  </StackContainer>
+)
+
+export const FullscreenOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: darkgrey;
+`
 
 const fadeIn = keyframes`
   from { opacity: 0; }
@@ -11,7 +42,7 @@ export const Container = styled.div`
   flex-direction: column;
   animation: ${fadeIn} 1s forwards;
   opacity: 0;
-  padding: 15px 45px;
+  margin: 15px 45px;
 `
 
 export const HeaderContainer = styled.div`
@@ -30,8 +61,21 @@ export const Card = styled.div`
   }
 `
 
+export const MobileCard = styled.div`
+  border: 1px solid black;
+  border-radius: 2px;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.2s ease-in-out;
+  &:hover {
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.23), 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+  }
+`
+
 export const MobileHeaderContainer = styled.div`
+  display: flex;
   align-self: flex-start;
+  align-items: center;
+  justify-content: space-between;
   flex: .75;
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -79,6 +123,8 @@ export const Category = styled(Link)`
 `
 
 export const MobileCategory = styled(Link)`
+  border: 1px solid #000;
+  border-radius: 2px;
   color: #000;
   padding: 15px 15px;
   text-decoration: none;
@@ -129,6 +175,8 @@ export const External = styled.a`
 `
 
 export const MobileExternal = styled.a`
+  border: 1px solid #000;
+  border-radius: 2px;
   color: #000;
   padding: 15px 15px;
   text-decoration: none;

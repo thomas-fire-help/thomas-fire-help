@@ -1,19 +1,20 @@
 import React from 'react'
 import { withStateHandlers } from 'recompose'
 import styled from 'styled-components'
-import { Card } from './atoms'
+import { MobileCard } from './atoms'
 
 const Body = styled.div`
   padding: 15px;
 `
 
 const Summary = styled.div`
-  padding-left: 4px;
-  font-size: 18px;
+  margin-left: 2px;
+  margin-top: 6px;
+  font-size: 14px;
   text-transform: uppercase;
   font-weight: 600;
   font-color: #6D6D6D;
-  letter-spacing: .03em;
+  letter-spacing: 1px;
 `
 
 const Location = styled.div`
@@ -47,15 +48,28 @@ const HeaderContainer = styled.div`
   }
 `
 
-const Button = styled.button`
+const ContactButton = styled.button`
   align-self: flex-end;
-  background-color: ${props => props.active ? '#3A3A3A' : '#FFF'};
-  color: ${props => !props.active ? '#000' : '#FFF'};
+  background-color: #FFF;
   border: 1px solid lightgray;
-  padding: 15px 30px;
+  color: #000;
+  cursor: pointer;
   flex: 1;
   margin-top: 20px;
+  outline: none;
+  padding: 15px 30px;
+`
+
+const DetailsButton = styled.button`
+  align-self: flex-end;
+  background-color: #FFF;
+  border: 1px solid lightgray;
+  color: ${props => props.active ? 'white' : 'black'};
   cursor: pointer;
+  flex: 1;
+  margin-top: 20px;
+  outline: none;
+  padding: 15px 30px;
 `
 
 const TagList = styled.ul`
@@ -70,6 +84,24 @@ const Tag = styled.li`
   padding: 5px 10px;
   border-radius: 15px;
   border: 1px solid grey;
+`
+
+const MobileHouseCardHeader = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  user-select: none;
+
+  h2 {
+    font-size: 24px;
+    line-height: 30px;
+    margin: 0px;
+  }
+
+  aside {
+    font-size: 18px;
+  }
 `
 
 const wordMap = {
@@ -99,21 +131,21 @@ const wordMap = {
 const prettyPrint = (key, value) => wordMap[key][value]
 
 
-const HouseCard = ({ showDetails, setShowDetails, ...houseListing }) => (
-  <Card>
+const MobileHouseCard = ({ showDetails, setShowDetails, ...houseListing }) => (
+  <MobileCard>
     <Body>
-      <HeaderContainer onClick={() => setShowDetails(!showDetails)}>
+      <MobileHouseCardHeader onClick={() => setShowDetails(!showDetails)}>
         <h2>
           {`${prettyPrint('housing_type', houseListing.housing_type)} in ${prettyPrint('city', houseListing.city)}`}
         </h2>
         <aside>
           {houseListing.neighborhood}
         </aside>
-      </HeaderContainer>
+      </MobileHouseCardHeader>
 
       <Summary>
         <div>
-          {`${houseListing.beds} beds - ${prettyPrint('length_of_stay', houseListing.length_of_stay)}`}
+          {`${houseListing.beds} beds`} &middot; {prettyPrint('length_of_stay', houseListing.length_of_stay)}
         </div>
       </Summary>
 
@@ -145,19 +177,19 @@ const HouseCard = ({ showDetails, setShowDetails, ...houseListing }) => (
       </DetailPane>
     </Body>
     <Footer>
-      <Button
+      <DetailsButton
         active={showDetails}
         onClick={() => setShowDetails(!showDetails)}
       >
         Details
-      </Button>
-      <Button>
+      </DetailsButton>
+      <ContactButton>
         Contact
-      </Button>
+      </ContactButton>
     </Footer>
-  </Card>
+  </MobileCard>
 )
 
 export default withStateHandlers({ showDetails: false }, {
   setShowDetails: state => value => ({ showDetails: value }),
-})(HouseCard)
+})(MobileHouseCard)
