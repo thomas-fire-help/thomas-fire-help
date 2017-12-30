@@ -66,10 +66,10 @@ const Services = ({ actions, update, formData, history }) => (
 
       <FormSection>
         <StackInput required label="Service Fees:">
-          <RadioGroup value={formData.duration} onChange={({ target }) => update('duration', target.value)}>
-            <Radio value={'short'}>Full Fee</Radio>
-            <Radio value={'long'}>Reduced Fee</Radio>
-            <Radio value={'permanent'}>Pro Bono</Radio>
+          <RadioGroup value={formData.serviceFees} onChange={({ target }) => update('serviceFees', target.value)}>
+            <Radio value={'fullFee'}>Full Fee</Radio>
+            <Radio value={'reducedFee'}>Reduced Fee</Radio>
+            <Radio value={'proBono'}>Pro Bono</Radio>
           </RadioGroup>
         </StackInput>
       </FormSection>
@@ -79,7 +79,7 @@ const Services = ({ actions, update, formData, history }) => (
           <TextArea
             placeholder="Legal counsel, Insurance, Accounting, Therapy & emotional support, House cleaning, Childcare, Transportation, Chiropractic..."
             autosize={{ minRows: 3 }}
-            onChange={({ target }) => update('childNotes', target.value)}
+            onChange={({ target }) => update('serviceDescription', target.value)}
           />
         </StackInput>
       </FormSection>
@@ -97,7 +97,8 @@ const Services = ({ actions, update, formData, history }) => (
           <TextArea
             placeholder="Additional Information..."
             autosize={{ minRows: 2 }}
-            onChange={({ target }) => update('childNotes', target.value)}
+            value={formData.additionalInfo}
+            onChange={({ target }) => update('additionalInfo', target.value)}
           />
         </StackInput>
       </FormSection>
@@ -106,7 +107,7 @@ const Services = ({ actions, update, formData, history }) => (
         <Button
           type="primary"
           style={{ width: '100%', height: '44px' }}
-          onClick={() => actions.create(formData, { onSuccess: () => history.push('/looking_for_resources/housing')})}
+          onClick={() => actions.create(formData, { onSuccess: () => history.push('/looking_for_resources/services')})}
         >
           Submit!
         </Button>
@@ -123,19 +124,7 @@ export default compose(
   withStateHandlers(
     {
       formData: {
-        housingType: 'room',
-        bedsAvailable: 1,
-        city: 'ventura',
-        neighborhood: '',
-        duration: 'short',
-        paid: true,
-        childFriendly: true,
-        householdHasAnimals: false,
-        petsAllowed: true,
-        description: '',
-        yourName: '',
-        phoneNumber: '',
-        emailAddress: ''
+        // TO DO: update with API
       }
     },
     {
