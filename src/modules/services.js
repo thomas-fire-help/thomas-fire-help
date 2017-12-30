@@ -16,23 +16,7 @@ const create = (params, onSuccess) =>
 
 const serializeForCreate = params => {
   return {
-    // Update with services info
-    beds: params.bedsAvailable,
-    paid: params.price,
-    city: params.city,
-    length_of_stay: params.duration,
-    neighborhood: params.neighborhood,
-    housing_type: params.housingType,
-    has_animals: params.householdHasAnimals,
-    length_of_stay: params.duration,
-    notes: params.description,
-    child_friendly: params.childFriendly,
-    kid_notes: params.childNotes,
-    pets_accepted: params.petsAllowed,
-    pet_notes: params.petNotes,
-    contact_name: params.name,
-    phone_number: params.phoneNumber,
-    email_address: params.emailAddress,
+    // TO DO: Update with services API
   };
 };
 
@@ -41,40 +25,8 @@ const list = params =>
 
   // TO DO: services examples
   const examplePayload = [
-  {
-    city: 'Ventura',
-    beds: 2,
-    paid: true,
-    neighborhood: 'The Avenue',
-    housing_type: 'room',
-    has_animals: true,
-    length_of_stay: 'short_term',
-    child_friendly: true,
-    kid_notes: '',
-    pets_accepted: true,
-    pet_notes: 'No gerbils',
-    contact_name: 'Marcus Bernales',
-    phone_number: '8052639559',
-    email_address: 'mboperator@gmail.com',
-    notes: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tempus consequat nunc nec efficitur. Phasellus pellentesque a leo id dignissim. Fusce ac neque tortor. Phasellus eu finibus orci. Proin et euismod lorem. Quisque a sem dapibus, tincidunt mauris sit amet, fringilla urna. Etiam vestibulum eu tortor id blandit. Mauris pellentesque enim sed dolor posuere consectetur. Ut accumsan eros et neque gravida, eget rhoncus nunc elementum. Donec lacinia placerat mauris, at malesuada nisi fringilla ac.',
-  },
-  {
-    city: 'Ventura',
-    beds: 2,
-    paid: true,
-    neighborhood: 'Old Town',
-    housing_type: 'house',
-    has_animals: true,
-    length_of_stay: 'short_term',
-    child_friendly: true,
-    kid_notes: 'No toddlers.',
-    pets_accepted: true,
-    pet_notes: 'No gerbils',
-    contact_name: 'Marcus Bernales',
-    phone_number: '8052639559',
-    email_address: 'mboperator@gmail.com',
-    notes: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tempus consequat nunc nec efficitur. Phasellus pellentesque a leo id dignissim. Fusce ac neque tortor. Phasellus eu finibus orci. Proin et euismod lorem. Quisque a sem dapibus, tincidunt mauris sit amet, fringilla urna. Etiam vestibulum eu tortor id blandit. Mauris pellentesque enim sed dolor posuere consectetur. Ut accumsan eros et neque gravida, eget rhoncus nunc elementum. Donec lacinia placerat mauris, at malesuada nisi fringilla ac.',
-  },
+  {},
+  {}
 ]
 
 const servicesModule = createModule ({
@@ -84,7 +36,7 @@ const servicesModule = createModule ({
     loading: false,
   },
   composes: [liftState],
-  selector: s => s.housing,
+  selector: s => s.services,
   transformations: {
     init: state => state,
     create: (state, { payload, meta }) => [
