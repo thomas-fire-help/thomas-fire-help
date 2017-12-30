@@ -1,7 +1,8 @@
-import React from 'react'
-import { withStateHandlers } from 'recompose'
-import styled from 'styled-components'
 import { Icon } from 'antd'
+import { withStateHandlers } from 'recompose'
+import React from 'react'
+import styled from 'styled-components'
+
 import { MobileCard } from './atoms'
 
 const Body = styled.div`
@@ -149,7 +150,7 @@ const MobileVolunteerListingCard = ({
   showDetails,
   volunteers_notes,
 }) => (
-  <MobileCard>
+  <MobileCard style={{ marginTop: '30px' }}>
     <Body>
       <MobileVolunteerListingCardHeader onClick={() => setShowDetails(!showDetails)}>
         <h2>

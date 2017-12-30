@@ -1,6 +1,8 @@
-import React from 'react'
+import { Icon } from 'antd'
 import { withStateHandlers } from 'recompose'
+import React from 'react'
 import styled from 'styled-components'
+
 import { Card } from './atoms'
 
 const Body = styled.div`
@@ -37,6 +39,7 @@ const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   user-select: none;
+  align-items: center;
 
   h2 {
     cursor: pointer;
@@ -47,17 +50,34 @@ const HeaderContainer = styled.div`
   }
 `
 
-const Button = styled.button`
+const ContactButton = styled.button`
   align-self: flex-end;
-  background-color: ${props => props.active ? 'darkgray' : 'none'};
-  color: ${props => props.active ? 'white' : 'black'};
-  border: 1px solid lightgray;
-  border-radius: 3px;
-  padding: 15px 30px;
-  flex: 1;
-  text-transform: uppercase;
-  margin-top: 2rem;
+  background-color: #FFF;
+  border: none;
+  border-top: 1px solid lightgray;
+  color: #000;
   cursor: pointer;
+  flex: 1;
+  outline: none;
+  padding: 15px 30px;
+  margin-top: 20px;
+  user-select: none;
+`
+
+const DetailsButton = styled.button`
+  align-self: flex-end;
+  background-color: ${props => props.active ? '#3A3A3A' : '#FFF'};
+  border: none;
+  border-top: 1px solid lightgray;
+  border-right: 1px solid lightgray;
+  color: ${props => props.active ? 'white' : 'black'};
+  cursor: pointer;
+  flex: 1;
+  outline: none;
+  padding: 15px 30px;
+  transition: background-color 0.25s ease-in-out;
+  margin-top: 20px;
+  user-select: none;
 `
 
 const TagList = styled.ul`
@@ -102,19 +122,25 @@ const wordMap = {
 
 
 const VolunteerListingCard = ({
+  address,
   organization,
+  phone_number,
   setShowDetails,
   showDetails,
+  volunteers_notes,
 }) => (
-  <Card>
+  <Card style={{ marginTop: '50px' }}>
     <Body>
-      <HeaderContainer>
+      <HeaderContainer onClick={() => setShowDetails(!showDetails)}>
         <h2>
-          {`${organization}`}
+          {organization}
         </h2>
-        <aside>
-          {}
-        </aside>
+        {address &&
+          <aside>
+            <Icon type="environment-o" style={{ marginRight: '5px' }}/>
+            {address}
+          </aside>
+        }
       </HeaderContainer>
 
       <Summary>
@@ -134,44 +160,28 @@ const VolunteerListingCard = ({
         } */}
       </TagList>
 
-      <DetailPane>
-        {/* {houseListing.kid_notes &&
+      <DetailPane active={showDetails}>
+        {volunteers_notes &&
           <div>
-            <b>Notes on Children</b>
+            <b>Description:</b>
             <p>
-              {houseListing.kid_notes}
+              {volunteers_notes}
             </p>
           </div>
         }
-        {houseListing.pet_notes &&
-          <div>
-            <b>Notes on Pets</b>
-            <p>
-              {houseListing.pet_notes}
-            </p>
-          </div>
-        }
-        {houseListing.notes &&
-          <div>
-            <b>Notes</b>
-            <p>
-              {houseListing.notes}
-            </p>
-          </div>
-        } */}
       </DetailPane>
-      <Footer>
-        <Button
-          active={showDetails}
-          onClick={() => setShowDetails(!showDetails)}
-        >
-          Details
-        </Button>
-        <Button>
-          Contact
-        </Button>
-      </Footer>
     </Body>
+    <Footer>
+      <DetailsButton
+        active={showDetails}
+        onClick={() => setShowDetails(!showDetails)}
+      >
+        Details
+      </DetailsButton>
+      <ContactButton>
+        Contact
+      </ContactButton>
+    </Footer>
   </Card>
 )
 
