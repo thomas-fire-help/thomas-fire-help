@@ -96,7 +96,7 @@ const wordMap = {
   }
 }
 
-const prettyPrint = (key, value) => wordMap[key][value]
+const prettyPrint = (key, value) => wordMap[key][value] || value
 
 
 const HouseCard = ({ showDetails, setShowDetails, ...houseListing }) => (
