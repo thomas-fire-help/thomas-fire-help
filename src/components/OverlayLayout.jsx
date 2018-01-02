@@ -67,7 +67,7 @@ const Body = styled.div`
   align-items: left;
   padding: 30px;
   color: white;
-  overflow: scroll;
+  overflow-y: auto;
   height: 100%;
 `
 
