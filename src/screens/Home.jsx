@@ -332,7 +332,7 @@ const Home = ({ loggedIn, authActions, user = {} }) => (
             Logout
           </LogoutButton>
         </AuthContainer>
-      } */}
+      }
       <MobileSubheadingContainer>
         <h3>We're volunteers connecting community-sourced help to recovery needs for the Thomas Fire.</h3>
       </MobileSubheadingContainer>
