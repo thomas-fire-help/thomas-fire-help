@@ -136,11 +136,13 @@ const HouseCard = ({ showContact, setShowContact, showDetails, setShowDetails, .
               {houseListing.contact_name}
             </p>
           </div>
-        {houseListing.email &&
+        {houseListing.email_address &&
           <div>
             <b>Email</b>
             <p>
-              {houseListing.email}
+              <a href={`mailto:${houseListing.email_address}`}>
+                {houseListing.email_address}
+              </a>
             </p>
           </div>
         }
