@@ -33,7 +33,7 @@ const serializeForCreate = params => {
   };
 };
 
-const formatParams = ({ filters = {}, page = 0, perPage = 25 }) => {
+const formatParams = ({ filters = {}, page = 0, perPage = 1000 }) => {
   const formattedFilters = Object
     .keys(filters)
     .reduce((string, key) => {
