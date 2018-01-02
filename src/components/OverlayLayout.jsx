@@ -67,6 +67,8 @@ const Body = styled.div`
   align-items: left;
   padding: 30px;
   color: white;
+  overflow-y: auto;
+  height: 100%;
 `
 
 const BackArrow = styled(Icon)`
