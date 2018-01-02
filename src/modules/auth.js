@@ -82,7 +82,7 @@ const authModule = createModule({
     },
     signup: (state, { payload, meta }) => {
       return [
-        Object.assign({}, state, { loading: true }),
+        Object.assign({}, state, { loading: true, signupErrors: false }),
         Cmd.run(signup, {
           successActionCreator: (result) => {
               let sideEffects;
@@ -102,9 +102,9 @@ const authModule = createModule({
       ];
     },
     signupError: (state, { payload }) =>
-      Object.assign({}, state, { loading: false }),
+      Object.assign({}, state, { loading: false, signupErrors: payload }),
     login: (state, { payload, meta }) => [
-      Object.assign({}, state, { loading: true, loginErrors: false }),
+      Object.assign({}, state, { loading: true, loginErrors: false, signupErrors: false }),
       Cmd.run(login, {
         successActionCreator: authModule.actions.loginSuccess,
         failActionCreator: authModule.actions.loginError,

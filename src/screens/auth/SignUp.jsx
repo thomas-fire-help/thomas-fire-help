@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import { Banner, ErrorBanner } from '@procore/core-react'
 import styled, { keyframes } from 'styled-components'
 import debounce from 'lodash.debounce'
 import MediaQuery from 'react-responsive'
@@ -173,7 +174,7 @@ class SignUp extends Component {
   }
 
   render() {
-    const { history: { goBack }} = this.props;
+    const { history: { goBack }, signupErrors } = this.props;
     const { email, phoneNumber, password, errors } = this.state;
 
     const allowSubmit = canSubmit(
@@ -187,6 +188,11 @@ class SignUp extends Component {
           <MediaQuery minDeviceWidth={320} maxDeviceWidth={480}>
             {hasSignUpErrors(errors) &&
               <AuthErrorBanner errors={errors} />
+            }
+            {signupErrors &&
+              <ErrorBanner>
+                {JSON.stringify(signupErrors)}
+              </ErrorBanner>
             }
             <MobileHeaderContainer style={{ marginBottom: '40px', textAlign: 'left' }}>
               <h1> Sign Up </h1>
