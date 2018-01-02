@@ -420,9 +420,6 @@ const Home = ({ loggedIn, authActions, user = {} }) => (
         </p>
       </Footer>
     </MediaQuery>
-    {/* <TranslateLink>
-      en Español
-    </TranslateLink> */}
   </Container>
 )
 
