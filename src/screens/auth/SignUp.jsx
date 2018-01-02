@@ -190,9 +190,9 @@ class SignUp extends Component {
               <AuthErrorBanner errors={errors} />
             }
             {signupErrors &&
-              <ErrorBanner>
-                {JSON.stringify(signupErrors)}
-              </ErrorBanner>
+              <div>
+                <AuthErrorBanner errors={signupErrors} />
+              </div>
             }
             <MobileHeaderContainer style={{ marginBottom: '40px', textAlign: 'left' }}>
               <h1> Sign Up </h1>
@@ -233,6 +233,9 @@ class SignUp extends Component {
             {hasSignUpErrors(errors) &&
               <AuthErrorBanner errors={errors} />
             }
+            {signupErrors &&
+              <AuthErrorBanner errors={signupErrors} />
+
             <HeaderContainer>
               <h1> Sign Up </h1>
             </HeaderContainer>
