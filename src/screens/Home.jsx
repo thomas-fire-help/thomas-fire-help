@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import styled, { keyframes } from 'styled-components'
 import MediaQuery from 'react-responsive';
+import { withAuth } from '../utils/authUtils';
 
 const fadeIn = keyframes`
   from { opacity: 0; }
@@ -11,7 +12,7 @@ const fadeIn = keyframes`
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 15px 55px;
+  padding: 15px 45px;
 `
 
 const HeaderContainer = styled.div`
@@ -22,6 +23,7 @@ const HeaderContainer = styled.div`
   width: 100%;
   text-align: center;
   font-size: 20px;
+  margin-top: 50px;
   margin-bottom: 30px;
   opacity: 0;
   animation: ${fadeIn} 1.5s forwards;
@@ -41,36 +43,37 @@ const MobileHeaderContainer = styled.div`
   font-size: 14px;
   white-space: nowrap;
   overflow: hidden;
-  margin-top: 40px;
+  margin-top: 30px;
   margin-bottom: 30px;
+  marginTop: 100px;
   opacity: 0;
   animation: ${fadeIn} 1.5s forwards;
-
   h1 {
     margin: 0;
   }
 `
 
 const SubheadingContainer = styled.div`
-  opacity: 0;
   font-size: 16px;
   text-align: center;
   width: 450px;
   padding: 30px 0px;
   margin: 20px 0 10px 0;
+  opacity: 0;
   animation: ${fadeIn} 1.5s forwards;
-  animation-delay: .3s;
+  animation-delay: .7s;
   margin-bottom: 10px;
 `
 
 const MobileSubheadingContainer = styled.div`
-  opacity: 0;
   font-size: 14px;
   text-align: center;
   margin: 10px 0 5px 0;
+  opacity: 0;
   animation: ${fadeIn} 1.5s forwards;
-  animation-delay: .3s;
+  animation-delay: .7s;
   margin-bottom: 10px;
+
 `
 
 const NavContainer = styled.nav`
@@ -130,6 +133,7 @@ const NavigationCard = styled.section`
 
 const MobileNavigationCard = styled.section`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   margin-top: 20px;
@@ -152,21 +156,56 @@ const Emphasis = styled.span`
   color: orange;
 `
 
+const EmphasisSmallSpace = styled.span`
+  font-size: 5px;
+`
+
+const LogoutContainer = styled.section`
+  display: flex;
+  justify-content: center;
+`
+
 const AuthContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  opacity: 0;
+  animation: ${fadeIn} 1.5s forwards;
+  animation-delay: .7s;
 `
 
-const AuthLink = styled(Link)`
+const LogoutButton = styled.div`
   color: #000;
-  font-size: 2rem;
   text-decoration: none;
+  font-size: 20px;
   text-transform: uppercase;
   letter-spacing: 2px;
   font-weight: bold;
   padding: 20px;
-  margin: 4.5rem 4.5rem;
+  margin: 40px 40px;
+  cursor: pointer;
+`
+
+const AuthLink = styled(Link)`
+  color: #000;
+  text-decoration: none;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: bold;
+  padding: 20px;
+  margin: 40px 40px;
+`
+
+const MobileAuthLink = styled(Link)`
+  color: #000;
+  text-decoration: none;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: bold;
+  padding: 10px;
+  margin: 0px 30px;
 `
 
 const TranslateLink = styled.aside`
@@ -185,7 +224,7 @@ const MobileNotificationBar = styled.div`
   opacity: 0;
   animation: ${fadeIn} 1.5s forwards;
   animation-delay: .7s;
-  margin: 30px 0px 15px 0px;
+  margin: 60px 0px 15px 0px;
 `
 
 const NotificationBar = styled.div`
@@ -197,7 +236,7 @@ const NotificationBar = styled.div`
   opacity: 0;
   animation: ${fadeIn} 1.5s forwards;
   animation-delay: .7s;
-  margin: 50px 0px 30px 0px;
+  margin: 30px 0px 20px 0px;
 `
 
 const Footer = styled.footer`
@@ -211,25 +250,51 @@ const Footer = styled.footer`
   }
   opacity: 0;
   animation: ${fadeIn} 1.5s forwards;
-  animation-delay: .7s;
+  animation-delay: .9s;
 `
 
 const MobileFooter = styled.footer`
   flex: 1;
   font-size: 28px;
   text-align: left;
-  margin: 0px 10px;
-  padding-top: 6px;
+  margin: 15px 0px 10px 0px;
+  padding-top: 10px;
   p {
     font-size: 12px;
   }
   opacity: 0;
   animation: ${fadeIn} 1.5s forwards;
-  animation-delay: .8s;
+  animation-delay: .9s;
 `
 
-const Home = props => (
+const NotificationBanner = styled.aside`
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 25px;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: red;
+  cursor: pointer;
+  a {
+    color: white;
+  }
+  a:hover {
+    color: white;
+  }
+`
+
+const Home = ({ loggedIn, authActions, user = {} }) => (
   <Container>
+    {(loggedIn && !user.verified) &&
+      <NotificationBanner>
+        <Link to="verify_phone">
+          Your phone number isn't verified! Verify now.
+        </Link>
+      </NotificationBanner>
+    }
     <MediaQuery minDeviceWidth={320} maxDeviceWidth={480}>
       <MobileHeaderContainer>
         <h1>Thomas Fire Help</h1>
@@ -237,7 +302,7 @@ const Home = props => (
       <MobileNavContainer>
         <StyledLink to="/looking_for_resources">
           <MobileNavigationCard>
-            Show me resources
+            View recovery resources
           </MobileNavigationCard>
         </StyledLink>
         <StyledLink to="/helping">
@@ -251,7 +316,7 @@ const Home = props => (
           </MobileNavigationCard>
         </a>
       </MobileNavContainer>
-      {/* {!loggedIn &&
+      {!loggedIn &&
         <AuthContainer>
           <MobileAuthLink to="login">
             Login
@@ -273,7 +338,14 @@ const Home = props => (
       </MobileSubheadingContainer>
       <MobileNotificationBar>
         <div>
-          In event of Emergency, call <a href="tel:911"><Emphasis>911</Emphasis></a>
+          Homegrown in Ventura County 🌱
+        </div>
+        <div>
+          Part of the
+            <Emphasis> #805
+              <EmphasisSmallSpace> </EmphasisSmallSpace>
+              Strong
+            </Emphasis> Network
         </div>
         <div>
           <a href="mailto:help@thomasfirehelp.com">Send us Feedback 💌</a>
@@ -293,7 +365,7 @@ const Home = props => (
       <NavContainer>
         <StyledLink to="/looking_for_resources">
           <NavigationCard>
-            Show me resources
+            View recovery resources
           </NavigationCard>
         </StyledLink>
         <StyledLink to="/helping">
@@ -307,7 +379,7 @@ const Home = props => (
           </NavigationCard>
         </a>
       </NavContainer>
-      {/* {!loggedIn &&
+      {!loggedIn &&
         <AuthContainer>
           <AuthLink to="login">
             Login
@@ -329,7 +401,14 @@ const Home = props => (
       </SubheadingContainer>
       <NotificationBar>
         <div>
-          In event of Emergency, call <a href="tel:911"><Emphasis>911</Emphasis></a>
+          <h3>Homegrown in Ventura County 🌱</h3>
+        </div>
+        <div>
+          <h3>Part of the
+            <Emphasis> #805
+              <EmphasisSmallSpace> </EmphasisSmallSpace>
+              Strong
+            </Emphasis> Network</h3>
         </div>
         <div>
           <a href="mailto:help@thomasfirehelp.com">Send us Feedback 💌</a>
@@ -341,18 +420,10 @@ const Home = props => (
         </p>
       </Footer>
     </MediaQuery>
-      {/* <AuthContainer>
-        <AuthLink to="login">
-          Login
-        </AuthLink>
-        <AuthLink to="sign_up">
-          Sign Up
-        </AuthLink>
-      </AuthContainer> */}
     {/* <TranslateLink>
       en Español
     </TranslateLink> */}
   </Container>
 )
 
-export default Home
+export default withAuth(Home)

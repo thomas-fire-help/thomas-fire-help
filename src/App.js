@@ -14,12 +14,14 @@ import { install, combineReducers } from 'redux-loop'
 
 import { Helmet } from 'react-helmet'
 import Home from './screens/Home'
-import Login from './screens/Login'
-import SignUp from './screens/SignUp'
+import Login from './screens/auth/Login'
+import SignUp from './screens/auth/SignUp'
+import PhoneVerification from './screens/auth/PhoneVerification'
 
 import LookingForHelp from './screens/looking_for_resources'
 import Housing from './screens/looking_for_resources/Housing'
 import LFVolunteers from './screens/looking_for_resources/Volunteers'
+import LFVolunteerForm from './screens/looking_for_resources/VolunteerForm'
 
 import Helping from './screens/helping'
 import Volunteers from './screens/helping/Volunteers'
@@ -31,9 +33,10 @@ const store = createStore(s => s, {}, install());
 const AppContainer = styled.div`
   width: 100vw;
   height: 100vh;
+  overflow-x: hidden;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   font-family: Montserrat, sans-serif;
 `
 
@@ -48,10 +51,13 @@ const App = props => (
         <Route exact path="/looking_for_resources" component={LookingForHelp} />
         <Route exact path="/looking_for_resources/housing" component={Housing} />
         <Route exact path="/looking_for_resources/volunteers" component={LFVolunteers} />
+        <Route exact path="/looking_for_resources/volunteers/individual" component={LFVolunteerForm} />
+        <Route exact path="/looking_for_resources/volunteers/organization" component={LFVolunteerForm} />
         <Route exact path="/helping" component={Helping} />
         <Route exact path="/helping/housing" component={HousingForm} />
         <Route exact path="/helping/volunteers" component={Volunteers} />
         <Route exact path="/login" component={Login} />
+        <Route exact path="/verify_phone" component={PhoneVerification} />
         <Route exact path="/sign_up" component={SignUp} />
       </AppContainer>
     </ModuleProvider>

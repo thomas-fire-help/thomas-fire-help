@@ -11,6 +11,7 @@ const Header = styled.div`
   padding-right: 20px;
   padding-bottom: 20px;
   padding-top: 10px;
+  color: white;
 `
 
 const MobileHeader = styled.div`
@@ -23,8 +24,12 @@ const MobileHeader = styled.div`
 `
 
 const Container = styled.section`
-  height: 100%;
-  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: black;
 `
 
 const LeftButton = styled.div`
@@ -35,6 +40,7 @@ const LeftButton = styled.div`
   font-size: 18px;
   text-transform: uppercase;
   letter-spacing: 2px;
+  color: white;
 `
 
 const Title = styled.div`
@@ -58,7 +64,9 @@ const RightButton = styled.div`
 const Body = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: left;
+  padding: 30px;
+  color: white;
 `
 
 const BackArrow = styled(Icon)`
@@ -75,7 +83,7 @@ const Layout = ({ onBack, children, header }) => (
       </LeftButton>
       <Title>
         <h2>
-          TFH
+          Filters
         </h2>
       </Title>
       <RightButton>
