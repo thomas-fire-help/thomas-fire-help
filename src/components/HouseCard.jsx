@@ -103,7 +103,7 @@ const wordMap = {
 const prettyPrint = (key, value) => wordMap[key][value] || value
 
 
-const HouseCard = ({ showDetails, setShowDetails, ...houseListing }) => (
+const HouseCard = ({ showContact, setShowContact, showDetails, setShowDetails, ...houseListing }) => (
   <Card>
     <Body>
       <HeaderContainer onClick={() => setShowDetails(!showDetails)}>
@@ -128,6 +128,33 @@ const HouseCard = ({ showDetails, setShowDetails, ...houseListing }) => (
           <Tag>Pets Accepted</Tag>
         }
       </TagList>
+
+      <DetailPane active={showContact}>
+          <div>
+            <b>Contact Name</b>
+            <p>
+              {houseListing.contact_name}
+            </p>
+          </div>
+        {houseListing.email &&
+          <div>
+            <b>Email</b>
+            <p>
+              {houseListing.email}
+            </p>
+          </div>
+        }
+        {houseListing.phone_number &&
+          <div>
+            <b>Phone</b>
+            <p>
+              <a href={`tel:${houseListing.phone_number}`}>
+                {houseListing.phone_number}
+              </a>
+            </p>
+          </div>
+        }
+      </DetailPane>
 
       <DetailPane active={showDetails}>
         {houseListing.pet_notes &&
@@ -159,17 +186,19 @@ const HouseCard = ({ showDetails, setShowDetails, ...houseListing }) => (
           </Button>
         </ButtonContainer>
       }
-      <ButtonContainer>
-        <a href={`tel:${houseListing.phone_number}`}>
-          <Button>
+        <ButtonContainer>
+          <Button
+            active={showContact}
+            onClick={() => setShowContact(!showContact)}
+          >
             Contact
           </Button>
-        </a>
-      </ButtonContainer>
+        </ButtonContainer>
     </Footer>
   </Card>
 )
 
-export default withStateHandlers({ showDetails: false }, {
+export default withStateHandlers({ showDetails: false, showContact: false }, {
   setShowDetails: state => value => ({ showDetails: value }),
+  setShowContact: state => value => ({ showContact: value }),
 })(HouseCard)
