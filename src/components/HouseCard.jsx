@@ -47,15 +47,19 @@ const HeaderContainer = styled.div`
   }
 `
 
+const ButtonContainer = styled.div`
+  flex: 1;
+  margin-top: 20px;
+`
+
 const Button = styled.button`
   align-self: flex-end;
   background-color: ${props => props.active ? '#3A3A3A' : '#FFF'};
   color: ${props => !props.active ? '#000' : '#FFF'};
   border: 1px solid lightgray;
   padding: 15px 30px;
-  flex: 1;
-  margin-top: 20px;
   cursor: pointer;
+  width: 100%;
 `
 
 const TagList = styled.ul`
@@ -96,10 +100,10 @@ const wordMap = {
   }
 }
 
-const prettyPrint = (key, value) => wordMap[key][value]
+const prettyPrint = (key, value) => wordMap[key][value] || value
 
 
-const HouseCard = ({ showDetails, setShowDetails, ...houseListing }) => (
+const HouseCard = ({ showContact, setShowContact, showDetails, setShowDetails, ...houseListing }) => (
   <Card>
     <Body>
       <HeaderContainer onClick={() => setShowDetails(!showDetails)}>
@@ -125,6 +129,35 @@ const HouseCard = ({ showDetails, setShowDetails, ...houseListing }) => (
         }
       </TagList>
 
+      <DetailPane active={showContact}>
+          <div>
+            <b>Contact Name</b>
+            <p>
+              {houseListing.contact_name}
+            </p>
+          </div>
+        {houseListing.email_address &&
+          <div>
+            <b>Email</b>
+            <p>
+              <a href={`mailto:${houseListing.email_address}`}>
+                {houseListing.email_address}
+              </a>
+            </p>
+          </div>
+        }
+        {houseListing.phone_number &&
+          <div>
+            <b>Phone</b>
+            <p>
+              <a href={`tel:${houseListing.phone_number}`}>
+                {houseListing.phone_number}
+              </a>
+            </p>
+          </div>
+        }
+      </DetailPane>
+
       <DetailPane active={showDetails}>
         {houseListing.pet_notes &&
           <div>
@@ -145,19 +178,29 @@ const HouseCard = ({ showDetails, setShowDetails, ...houseListing }) => (
       </DetailPane>
     </Body>
     <Footer>
-      <Button
-        active={showDetails}
-        onClick={() => setShowDetails(!showDetails)}
-      >
-        Details
-      </Button>
-      <Button>
-        Contact
-      </Button>
+      {(houseListing.notes || houseListing.pet_notes) &&
+        <ButtonContainer>
+          <Button
+            active={showDetails}
+            onClick={() => setShowDetails(!showDetails)}
+          >
+            Details
+          </Button>
+        </ButtonContainer>
+      }
+        <ButtonContainer>
+          <Button
+            active={showContact}
+            onClick={() => setShowContact(!showContact)}
+          >
+            Contact
+          </Button>
+        </ButtonContainer>
     </Footer>
   </Card>
 )
 
-export default withStateHandlers({ showDetails: false }, {
+export default withStateHandlers({ showDetails: false, showContact: false }, {
   setShowDetails: state => value => ({ showDetails: value }),
+  setShowContact: state => value => ({ showContact: value }),
 })(HouseCard)
