@@ -54,10 +54,6 @@ const MobileHeaderContainer = styled.div`
 `
 
 const SubheadingContainer = styled.div`
-<<<<<<< HEAD
-=======
-  opacity: 0;
->>>>>>> 63ffd91935276680c3809ba8f9d4cd13932c320d
   font-size: 16px;
   text-align: center;
   width: 450px;
