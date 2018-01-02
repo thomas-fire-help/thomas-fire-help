@@ -54,6 +54,10 @@ const MobileHeaderContainer = styled.div`
 `
 
 const SubheadingContainer = styled.div`
+<<<<<<< HEAD
+=======
+  opacity: 0;
+>>>>>>> 63ffd91935276680c3809ba8f9d4cd13932c320d
   font-size: 16px;
   text-align: center;
   width: 450px;
@@ -310,6 +314,11 @@ const Home = ({ loggedIn, authActions, user = {} }) => (
             I want to help
           </MobileNavigationCard>
         </StyledLink>
+        <a href="http://about.thomasfirehelp.com" target="_blank">
+          <MobileNavigationCard>
+            About Us
+          </MobileNavigationCard>
+        </a>
       </MobileNavContainer>
       {!loggedIn &&
         <AuthContainer>
@@ -327,10 +336,9 @@ const Home = ({ loggedIn, authActions, user = {} }) => (
             Logout
           </LogoutButton>
         </AuthContainer>
-      }
+      } */}
       <MobileSubheadingContainer>
         <h3>We're volunteers connecting community-sourced help to recovery needs for the Thomas Fire.</h3>
-        <h3><a href="http://about.thomasfirehelp.com" target="_blank">Click here to learn more.</a></h3>
       </MobileSubheadingContainer>
       <MobileNotificationBar>
         <div>
@@ -369,6 +377,11 @@ const Home = ({ loggedIn, authActions, user = {} }) => (
             I want to help
           </NavigationCard>
         </StyledLink>
+        <a href="http://about.thomasfirehelp.com" target="_blank">
+          <NavigationCard>
+            More Information
+          </NavigationCard>
+        </a>
       </NavContainer>
       {!loggedIn &&
         <AuthContainer>
@@ -386,10 +399,9 @@ const Home = ({ loggedIn, authActions, user = {} }) => (
             Logout
           </LogoutButton>
         </LogoutContainer>
-      }
+      } */}
       <SubheadingContainer>
         <h3>We're volunteers connecting community-sourced help to recovery needs for the Thomas Fire.</h3>
-        <h3><a href="http://about.thomasfirehelp.com" target="_blank">Click here to learn more.</a></h3>
       </SubheadingContainer>
       <NotificationBar>
         <div>
