@@ -47,15 +47,19 @@ const HeaderContainer = styled.div`
   }
 `
 
+const ButtonContainer = styled.div`
+  flex: 1;
+  margin-top: 20px;
+`
+
 const Button = styled.button`
   align-self: flex-end;
   background-color: ${props => props.active ? '#3A3A3A' : '#FFF'};
   color: ${props => !props.active ? '#000' : '#FFF'};
   border: 1px solid lightgray;
   padding: 15px 30px;
-  flex: 1;
-  margin-top: 20px;
   cursor: pointer;
+  width: 100%;
 `
 
 const TagList = styled.ul`
@@ -145,15 +149,23 @@ const HouseCard = ({ showDetails, setShowDetails, ...houseListing }) => (
       </DetailPane>
     </Body>
     <Footer>
-      <Button
-        active={showDetails}
-        onClick={() => setShowDetails(!showDetails)}
-      >
-        Details
-      </Button>
-      <Button>
-        Contact
-      </Button>
+      {(houseListing.notes || houseListing.pet_notes) &&
+        <ButtonContainer>
+          <Button
+            active={showDetails}
+            onClick={() => setShowDetails(!showDetails)}
+          >
+            Details
+          </Button>
+        </ButtonContainer>
+      }
+      <ButtonContainer>
+        <a href={`tel:${houseListing.phone_number}`}>
+          <Button>
+            Contact
+          </Button>
+        </a>
+      </ButtonContainer>
     </Footer>
   </Card>
 )
