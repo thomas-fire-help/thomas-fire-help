@@ -56,7 +56,7 @@ const housingModule = createModule ({
     data: [],
     filters: {},
     page: 0,
-    perPage: 25,
+    perPage: 1000,
     loading: false,
   },
   composes: [liftState],
