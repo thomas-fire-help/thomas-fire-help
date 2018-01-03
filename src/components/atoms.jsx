@@ -9,7 +9,7 @@ const Label = styled.div`
 `
 
 export const horizontalSlide = keyframes`
-  from { transform: translateX(300px); }
+  from { transform: translateX(1000px); }
   to { transform: translateX(0px); }
 `
 
