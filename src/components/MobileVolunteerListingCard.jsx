@@ -57,13 +57,14 @@ const HeaderContainer = styled.div`
 
 const ContactButton = styled.button`
   align-self: flex-end;
-  background-color: #FFF;
+  background-color: ${props => props.active ? '#3A3A3A' : '#FFF'};
   border: 1px solid lightgray;
-  color: #000;
+  color: ${props => props.active ? '#FFF' : '#000'};
   cursor: pointer;
   flex: 1;
   outline: none;
   padding: 15px 30px;
+  transition: background-color 0.3s ease-in-out;
   margin-top: 20px;
   user-select: none;
 `
@@ -72,12 +73,12 @@ const DetailsButton = styled.button`
   align-self: flex-end;
   background-color: ${props => props.active ? '#3A3A3A' : '#FFF'};
   border: 1px solid lightgray;
-  color: ${props => props.active ? 'white' : 'black'};
+  color: ${props => props.active ? '#FFF' : '#000'};
   cursor: pointer;
   flex: 1;
   outline: none;
   padding: 15px 30px;
-  transition: background-color 0.25s ease-in-out;
+  transition: background-color 0.3s ease-in-out;
   margin-top: 20px;
   user-select: none;
 `
@@ -146,6 +147,8 @@ const MobileVolunteerListingCard = ({
   address,
   organization,
   phone_number,
+  setShowContact,
+  showContact,
   setShowDetails,
   showDetails,
   volunteers_notes,
@@ -181,6 +184,35 @@ const MobileVolunteerListingCard = ({
         }
       </TagList> */}
 
+      <DetailsPane active={showContact}>
+        <div>
+          <b>Contact Name</b>
+          <p>
+            {/* {houseListing.contact_name} */}
+          </p>
+        </div>
+        {/* {houseListing.email_address &&
+          <div>
+            <b>Email</b>
+            <p>
+              <a href={`mailto:${houseListing.email_address}`}>
+                {houseListing.email_address}
+              </a>
+            </p>
+          </div>
+        }
+        {houseListing.phone_number &&
+          <div>
+            <b>Phone</b>
+            <p>
+              <a href={`tel:${houseListing.phone_number}`}>
+                {houseListing.phone_number}
+              </a>
+            </p>
+          </div>
+        } */}
+      </DetailsPane>
+
       <DetailsPane active={showDetails}>
        {volunteers_notes &&
           <div>
@@ -199,13 +231,17 @@ const MobileVolunteerListingCard = ({
       >
         Details
       </DetailsButton>
-      <ContactButton>
+      <ContactButton
+        active={showContact}
+        onClick={() => setShowContact(!showContact)}
+      >
         Contact
       </ContactButton>
     </Footer>
   </MobileCard>
 )
 
-export default withStateHandlers({ showDetails: false }, {
+export default withStateHandlers({ showDetails: false, showContact: false }, {
   setShowDetails: state => value => ({ showDetails: value }),
+  setShowContact: state => value => ({ showContact: value }),
 })(MobileVolunteerListingCard)
