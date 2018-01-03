@@ -16,15 +16,6 @@ const Header = styled.div`
   color: white;
 `
 
-const MobileHeader = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-left: 20px;
-  padding-right: 20px;
-  margin-top: 40px;
-`
-
 const Container = styled.section`
   position: fixed;
   top: 0;
@@ -34,6 +25,8 @@ const Container = styled.section`
   background-color: black;
   animation: ${horizontalSlide} .2s forwards;
   will-change: transform;
+  overflow-y: auto;
+  height: 100%;
 `
 
 const LeftButton = styled.div`

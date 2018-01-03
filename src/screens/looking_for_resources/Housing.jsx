@@ -21,12 +21,31 @@ import { SingleSelect } from '../../components/MultiSelect'
 import OverlayLayout from '../../components/OverlayLayout'
 
 const Button = styled.div`
-  border: 1px solid white;
+  border: 1px solid #47ABFC;
+  border-radius: 2px;
   padding: 5px 10px;
-  color: '#FFF';
-  background-color: '#000';
-  margin: 10px;
+  color: #FFF;
+  background-color: #47ABFC;
   cursor: pointer;
+  text-transform: uppercase;
+  width: 100%;
+  text-align: center;
+  letter-spacing: 2px;
+  margin-top: 30px;
+`
+
+const MobileButton = styled.div`
+  border: 1px solid #47ABFC;
+  border-radius: 2px;
+  padding: 5px 10px;
+  color: #FFF;
+  background-color: #47ABFC;
+  cursor: pointer;
+  text-transform: uppercase;
+  width: 100%;
+  text-align: center;
+  letter-spacing: 2px;
+  margin-top: 30px;
 `
 
 const CardList = styled.div`
@@ -122,9 +141,12 @@ const Housing = ({
             />
           </StackInput>
 
-          <Button>
+          <MobileButton
+            onClick={hideFilters}
+          >
+            <Icon type="search" style={{ marginRight: '10px' }}/>
             Filter
-          </Button>
+          </MobileButton>
         </OverlayLayout>
       }
       <MediaQuery minDeviceWidth={320} maxDeviceWidth={480}>
