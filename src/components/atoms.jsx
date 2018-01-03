@@ -8,6 +8,16 @@ const Label = styled.div`
   color: ${({ dark }) => dark && '#FFF;'}
 `
 
+export const horizontalSlide = keyframes`
+  from { transform: translateX(1000px); }
+  to { transform: translateX(0px); }
+`
+
+export const fadeIn = keyframes`
+  from { opacity: 0; }
+  to { opacity: 1; }
+`
+
 const StackContainer = styled.div`
   margin: 30px 0;
 `
@@ -30,11 +40,6 @@ export const FullscreenOverlay = styled.div`
   left: 0;
   right: 0;
   background-color: darkgrey;
-`
-
-const fadeIn = keyframes`
-  from { opacity: 0; }
-  to { opacity: 1; }
 `
 
 export const Container = styled.div`

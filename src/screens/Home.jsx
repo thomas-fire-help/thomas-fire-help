@@ -310,7 +310,7 @@ const Home = ({ loggedIn, authActions, user = {} }) => (
             I want to help
           </MobileNavigationCard>
         </StyledLink>
-        <a href="http://about.thomasfirehelp.com" target="_blank">
+        <a href="http://about.thomasfirehelp.com" target="_blank" style={{ width: '100%' }}>
           <MobileNavigationCard>
             About Us
           </MobileNavigationCard>

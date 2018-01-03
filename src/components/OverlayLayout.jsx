@@ -1,7 +1,9 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import MediaQuery from 'react-responsive'
 import { Icon } from 'antd'
+
+import { fadeIn, horizontalSlide } from './atoms'
 
 const Header = styled.div`
   display: flex;
@@ -14,15 +16,6 @@ const Header = styled.div`
   color: white;
 `
 
-const MobileHeader = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-left: 20px;
-  padding-right: 20px;
-  margin-top: 40px;
-`
-
 const Container = styled.section`
   position: fixed;
   top: 0;
@@ -30,6 +23,10 @@ const Container = styled.section`
   right: 0;
   bottom: 0;
   background-color: black;
+  animation: ${horizontalSlide} .2s forwards;
+  will-change: transform;
+  overflow-y: auto;
+  height: 100%;
 `
 
 const LeftButton = styled.div`
@@ -64,7 +61,7 @@ const RightButton = styled.div`
 const Body = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: left;
+  align-items: flex-start;
   padding: 30px;
   color: white;
   overflow-y: auto;
