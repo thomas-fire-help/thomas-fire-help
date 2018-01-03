@@ -110,7 +110,7 @@ class Login extends Component {
   }
 
   render() {
-    const { errors = {}, history: { goBack }, loginErrors} = this.props;
+    const { errors = {}, history: { goBack, push }, loginErrors} = this.props;
 
     return (
       <Layout onBack={goBack}>
@@ -164,6 +164,9 @@ class Login extends Component {
               />
               <LoginButton onClick={this.handleOnClick}>
                 Login
+              </LoginButton>
+              <LoginButton onClick={() => push('/sign_up')}>
+                Signup
               </LoginButton>
               {loginErrors &&
                 <div>{JSON.stringify(loginErrors)}</div>

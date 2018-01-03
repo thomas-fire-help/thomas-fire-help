@@ -52,6 +52,16 @@ const resendVerification = ({ userId }, onSuccess = () => {}) =>
     return data
   })
 
+const formatErrors = errors =>
+  Object
+    .keys(errors)
+    .reduce((acc, attribute) => {
+      return {
+        ...acc,
+        [attribute]: { label: `${attribute} ${errors[attribute][0]}` }
+      }
+    }, {})
+
 const authModule = createModule({
   name: 'auth',
   initialState: {
@@ -82,7 +92,7 @@ const authModule = createModule({
     },
     signup: (state, { payload, meta }) => {
       return [
-        Object.assign({}, state, { loading: true }),
+        Object.assign({}, state, { loading: true, signupErrors: false }),
         Cmd.run(signup, {
           successActionCreator: (result) => {
               let sideEffects;
@@ -101,10 +111,10 @@ const authModule = createModule({
         })
       ];
     },
-    signupError: (state, { payload }) =>
-      Object.assign({}, state, { loading: false }),
+    signupError: (state, { payload: { status, ...errors } }) =>
+      Object.assign({}, state, { loading: false, signupErrors: formatErrors(errors) }),
     login: (state, { payload, meta }) => [
-      Object.assign({}, state, { loading: true, loginErrors: false }),
+      Object.assign({}, state, { loading: true, loginErrors: false, signupErrors: false }),
       Cmd.run(login, {
         successActionCreator: authModule.actions.loginSuccess,
         failActionCreator: authModule.actions.loginError,

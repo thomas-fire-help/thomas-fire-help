@@ -1,10 +1,12 @@
 import React from 'react'
 import { connectModule } from 'redux-modules'
 import { compose, withStateHandlers } from 'recompose'
+import { ErrorBanner, Banner, Button } from '@procore/core-react'
+import { withAuth } from '../../utils/authUtils'
 import housingModule from '../../modules/housing'
 import Layout from '../../components/Layout'
 import { Container, HeaderContainer } from '../../components/atoms'
-import { Input, Radio, Checkbox, Button, Select } from 'antd'
+import { Input, Radio, Checkbox, Select } from 'antd'
 import styled from 'styled-components'
 import SegmentedController from '../../components/SegmentedController'
 const RadioGroup = Radio.Group
@@ -40,9 +42,26 @@ const StackInput = ({ required, children, label }) => (
   </StackContainer>
 )
 
-const Housing = ({ actions, update, formData, history }) => (
+const Housing = ({ loggedIn, actions, update, formData, history }) => (
   <Layout header="Housing" onBack={history.goBack}>
     <Container style={{ maxWidth: '600px', display: 'flex' }}>
+      {!loggedIn &&
+        <ErrorBanner>
+          <Banner.Content>
+            <Banner.Title>
+              Not logged in.
+            </Banner.Title>
+            <Banner.Body>
+              You have to be logged in to post a house listing!
+            </Banner.Body>
+          </Banner.Content>
+          <Banner.Action>
+            <Button variant="error-outline" onClick={() => history.push('/login')}>
+              Login
+            </Button>
+          </Banner.Action>
+        </ErrorBanner>
+      }
       <HeaderContainer>
         Housing Information
       </HeaderContainer>
@@ -134,25 +153,6 @@ const Housing = ({ actions, update, formData, history }) => (
       </FormSection>
 
       <FormSection>
-        <StackInput label="Child Friendly:">
-          <SegmentedController
-            value={formData.childFriendly}
-            onChange={value => update('childFriendly', value)}
-            options={[{ label: "Yes", value: true }, { label: "No", value: false }]}
-          />
-        </StackInput>
-
-        {formData.childFriendly &&
-          <StackInput required label="Notes on Children">
-            <TextArea
-              placeholder="Enter additional information about children..."
-              onChange={({ target }) => update('childNotes', target.value)}
-            />
-          </StackInput>
-        }
-      </FormSection>
-
-      <FormSection>
         <StackInput label="Animals present:">
           <SegmentedController
             value={formData.householdHasAnimals}
@@ -170,7 +170,7 @@ const Housing = ({ actions, update, formData, history }) => (
         </StackInput>
 
         {formData.petsAllowed &&
-          <StackInput required label="Pet Notes">
+          <StackInput label="Pet Notes">
             <TextArea
               placeholder="Enter additional information about pets..."
               onChange={({ target }) => update('petNotes', target.value)}
@@ -211,7 +211,8 @@ const Housing = ({ actions, update, formData, history }) => (
 
       <div style={{ padding: '30px 0' }}>
         <Button
-          type="primary"
+          variant="secondary"
+          disabled={!loggedIn}
           style={{ width: '100%', height: '44px' }}
           onClick={() => actions.create(formData, { onSuccess: () => history.push('/looking_for_resources/housing')})}
         >
@@ -227,6 +228,7 @@ Housing.defaultProps = {
 }
 
 export default compose(
+  withAuth,
   withStateHandlers(
     {
       formData: {
@@ -236,7 +238,6 @@ export default compose(
         neighborhood: '',
         duration: 'short',
         paid: true,
-        childFriendly: true,
         householdHasAnimals: false,
         petsAllowed: true,
         description: '',

@@ -25,8 +25,6 @@ const serializeForCreate = params => {
     has_animals: params.householdHasAnimals,
     length_of_stay: params.duration,
     notes: params.description,
-    child_friendly: params.childFriendly,
-    kid_notes: params.childNotes,
     pets_accepted: params.petsAllowed,
     pet_notes: params.petNotes,
     contact_name: params.name,
@@ -35,7 +33,7 @@ const serializeForCreate = params => {
   };
 };
 
-const formatParams = ({ filters = {}, page = 0, perPage = 25 }) => {
+const formatParams = ({ filters = {}, page = 0, perPage = 1000 }) => {
   const formattedFilters = Object
     .keys(filters)
     .reduce((string, key) => {
@@ -58,7 +56,7 @@ const housingModule = createModule ({
     data: [],
     filters: {},
     page: 0,
-    perPage: 25,
+    perPage: 1000,
     loading: false,
   },
   composes: [liftState],

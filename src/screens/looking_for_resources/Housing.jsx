@@ -20,6 +20,34 @@ import {
 import { SingleSelect } from '../../components/MultiSelect'
 import OverlayLayout from '../../components/OverlayLayout'
 
+const Button = styled.div`
+  border: 1px solid #47ABFC;
+  border-radius: 2px;
+  padding: 5px 10px;
+  color: #FFF;
+  background-color: #47ABFC;
+  cursor: pointer;
+  text-transform: uppercase;
+  width: 100%;
+  text-align: center;
+  letter-spacing: 2px;
+  margin-top: 30px;
+`
+
+const MobileButton = styled.div`
+  border: 1px solid #47ABFC;
+  border-radius: 2px;
+  padding: 5px 10px;
+  color: #FFF;
+  background-color: #47ABFC;
+  cursor: pointer;
+  text-transform: uppercase;
+  width: 100%;
+  text-align: center;
+  letter-spacing: 2px;
+  margin-top: 30px;
+`
+
 const CardList = styled.div`
   display: flex;
   flex-direction: column;
@@ -112,6 +140,13 @@ const Housing = ({
               }
             />
           </StackInput>
+
+          <MobileButton
+            onClick={hideFilters}
+          >
+            <Icon type="search" style={{ marginRight: '10px' }}/>
+            Filter
+          </MobileButton>
         </OverlayLayout>
       }
       <MediaQuery minDeviceWidth={320} maxDeviceWidth={480}>
@@ -119,8 +154,9 @@ const Housing = ({
           <h1> Housing </h1>
 
           <Icon
+            onClick={showFilters}
             type="filter"
-            style={{ display: 'flex', textTransform: 'uppercase', fontWeight: 'bold', marginRight: '10px', justifyContent: 'space-between', width: '75px', cursor: 'pointer' }}
+            style={{ display: 'flex', fontSize: '14px', textTransform: 'uppercase', fontWeight: 'bold', marginRight: '10px', justifyContent: 'space-between', width: '75px', cursor: 'pointer' }}
           >
             Filter
           </Icon>
