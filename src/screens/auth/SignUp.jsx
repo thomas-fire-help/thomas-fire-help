@@ -235,7 +235,7 @@ class SignUp extends Component {
             }
             {signupErrors &&
               <AuthErrorBanner errors={signupErrors} />
-
+            }
             <HeaderContainer>
               <h1> Sign Up </h1>
             </HeaderContainer>
