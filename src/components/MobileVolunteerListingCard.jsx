@@ -150,7 +150,7 @@ const MobileVolunteerListingCard = ({
   showDetails,
   volunteers_notes,
 }) => (
-  <MobileCard style={{ marginTop: '30px' }}>
+  <MobileCard style={{ marginBottom: '30px' }}>
     <Body>
       <MobileVolunteerListingCardHeader onClick={() => setShowDetails(!showDetails)}>
         <h2>

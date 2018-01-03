@@ -17,7 +17,7 @@ const CardList = styled.div`
   flex-direction: column;
 
   > div {
-    margin-bottom: 30px;
+    margin-bosttom: 30px;
   }
 `
 
@@ -31,8 +31,8 @@ const Volunteers = ({ loading, data, history: { goBack }}) => (
                 <h1> Volunteer </h1>
                 <Icon
                   type="filter"
-                  style={{ display: 'flex', textTransform: 'uppercase', fontWeight: 'bold', marginRight: '10px', justifyContent: 'space-between', width: '75px', cursor: 'pointer' }}
-                >
+                  style={{ display: 'flex', fontSize: '14px', textTransform: 'uppercase', fontWeight: 'bold', marginRight: '10px', justifyContent: 'space-between', width: '75px', cursor: 'pointer' }}
+                  >
                   Filter
                 </Icon>
               </ MobileHeaderContainer>
