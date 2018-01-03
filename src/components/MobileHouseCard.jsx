@@ -50,9 +50,9 @@ const HeaderContainer = styled.div`
 
 const ContactButton = styled.button`
   align-self: flex-end;
-  background-color: #FFF;
+  background-color: ${props => props.active ? '#3A3A3A' : '#FFF'};
   border: 1px solid lightgray;
-  color: #000;
+  color: ${props => props.active ? '#FFF' : '#000'};
   cursor: pointer;
   flex: 1;
   margin-top: 20px;
@@ -62,9 +62,9 @@ const ContactButton = styled.button`
 
 const DetailsButton = styled.button`
   align-self: flex-end;
-  background-color: #FFF;
+  background-color: ${props => props.active ? '#3A3A3A' : '#FFF'};
   border: 1px solid lightgray;
-  color: ${props => props.active ? 'white' : 'black'};
+  color: ${props => props.active ? '#FFF' : '#000'};
   cursor: pointer;
   flex: 1;
   margin-top: 20px;
@@ -128,10 +128,9 @@ const wordMap = {
   }
 }
 
-const prettyPrint = (key, value) => wordMap[key][value]
+const prettyPrint = (key, value) => wordMap[key][value] || value
 
-
-const MobileHouseCard = ({ showDetails, setShowDetails, ...houseListing }) => (
+const MobileHouseCard = ({ showContact, setShowContact, showDetails, setShowDetails, ...houseListing }) => (
   <MobileCard>
     <Body>
       <MobileHouseCardHeader onClick={() => setShowDetails(!showDetails)}>
@@ -157,6 +156,35 @@ const MobileHouseCard = ({ showDetails, setShowDetails, ...houseListing }) => (
         }
       </TagList>
 
+      <DetailPane active={showContact}>
+          <div>
+            <b>Contact Name</b>
+            <p>
+              {houseListing.contact_name}
+            </p>
+          </div>
+        {houseListing.email_address &&
+          <div>
+            <b>Email</b>
+            <p>
+              <a href={`mailto:${houseListing.email_address}`}>
+                {houseListing.email_address}
+              </a>
+            </p>
+          </div>
+        }
+        {houseListing.phone_number &&
+          <div>
+            <b>Phone</b>
+            <p>
+              <a href={`tel:${houseListing.phone_number}`}>
+                {houseListing.phone_number}
+              </a>
+            </p>
+          </div>
+        }
+      </DetailPane>
+
       <DetailPane active={showDetails}>
         {houseListing.pet_notes &&
           <div>
@@ -177,13 +205,18 @@ const MobileHouseCard = ({ showDetails, setShowDetails, ...houseListing }) => (
       </DetailPane>
     </Body>
     <Footer>
-      <DetailsButton
-        active={showDetails}
-        onClick={() => setShowDetails(!showDetails)}
+      {(houseListing.notes || houseListing.pet_notes) &&
+        <DetailsButton
+          active={showDetails}
+          onClick={() => setShowDetails(!showDetails)}
+        >
+          Details
+        </DetailsButton>
+      }
+      <ContactButton
+        active={showContact}
+        onClick={() => setShowContact(!showContact)}
       >
-        Details
-      </DetailsButton>
-      <ContactButton>
         Contact
       </ContactButton>
     </Footer>
@@ -192,4 +225,5 @@ const MobileHouseCard = ({ showDetails, setShowDetails, ...houseListing }) => (
 
 export default withStateHandlers({ showDetails: false }, {
   setShowDetails: state => value => ({ showDetails: value }),
+  setShowContact: state => value => ({ showContact: value }),
 })(MobileHouseCard)
