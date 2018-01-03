@@ -32,7 +32,8 @@ const Container = styled.section`
   right: 0;
   bottom: 0;
   background-color: black;
-  animation: ${fadeIn} .2s forwards, ${horizontalSlide} .2s forwards;
+  animation: ${horizontalSlide} .2s forwards;
+  will-change: transform;
 `
 
 const LeftButton = styled.div`
@@ -67,7 +68,7 @@ const RightButton = styled.div`
 const Body = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: left;
+  align-items: flex-start;
   padding: 30px;
   color: white;
   overflow-y: auto;
