@@ -119,6 +119,7 @@ const Housing = ({
           <h1> Housing </h1>
 
           <Icon
+            onClick={showFilters}
             type="filter"
             style={{ display: 'flex', textTransform: 'uppercase', fontWeight: 'bold', marginRight: '10px', justifyContent: 'space-between', width: '75px', cursor: 'pointer' }}
           >

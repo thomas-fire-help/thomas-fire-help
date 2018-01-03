@@ -1,7 +1,9 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import MediaQuery from 'react-responsive'
 import { Icon } from 'antd'
+
+import { fadeIn, horizontalSlide } from './atoms'
 
 const Header = styled.div`
   display: flex;
@@ -30,6 +32,7 @@ const Container = styled.section`
   right: 0;
   bottom: 0;
   background-color: black;
+  animation: ${fadeIn} .2s forwards, ${horizontalSlide} .2s forwards;
 `
 
 const LeftButton = styled.div`
