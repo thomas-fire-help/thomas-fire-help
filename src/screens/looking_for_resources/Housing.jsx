@@ -52,7 +52,7 @@ const CardList = styled.div`
   display: flex;
   flex-direction: column;
   align-self: center;
-  max-width: 640px;
+  max-width: 720px;
 
   > div {
     margin-bottom: 30px;
