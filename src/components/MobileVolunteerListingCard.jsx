@@ -29,11 +29,6 @@ const DetailsPane = styled.aside`
   overflow: hidden;
   font-size: 14px;
   transition: max-height 0.25s ease-in-out;
-  margin-top: 15px;
-
-  p {
-    margin-bottom: 0;
-  }
 `
 
 const Footer = styled.section`
@@ -145,6 +140,8 @@ const prettyPrint = (key, value) => wordMap[key][value]
 
 const MobileVolunteerListingCard = ({
   address,
+  contact_name,
+  email_address,
   organization,
   phone_number,
   setShowContact,
@@ -188,29 +185,29 @@ const MobileVolunteerListingCard = ({
         <div>
           <b>Contact Name</b>
           <p>
-            {/* {houseListing.contact_name} */}
+            {contact_name}
           </p>
         </div>
-        {/* {houseListing.email_address &&
+        {email_address &&
           <div>
             <b>Email</b>
             <p>
-              <a href={`mailto:${houseListing.email_address}`}>
-                {houseListing.email_address}
+              <a href={`mailto:${email_address}`}>
+                {email_address}
               </a>
             </p>
           </div>
         }
-        {houseListing.phone_number &&
+        {phone_number &&
           <div>
             <b>Phone</b>
             <p>
-              <a href={`tel:${houseListing.phone_number}`}>
-                {houseListing.phone_number}
+              <a href={`tel:${phone_number}`}>
+                {phone_number}
               </a>
             </p>
           </div>
-        } */}
+        }
       </DetailsPane>
 
       <DetailsPane active={showDetails}>

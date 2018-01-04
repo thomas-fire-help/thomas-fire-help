@@ -8,7 +8,7 @@ import { connectModule } from 'redux-modules'
 import authModule from '../../modules/auth';
 import Layout from '../../components/Layout'
 import AuthErrorBanner from './AuthErrorBanner';
-import { Container, HeaderContainer, MobileHeaderContainer } from '../../components/atoms'
+import { MobileContainer, Container, HeaderContainer, MobileHeaderContainer } from '../../components/atoms'
 import { fetchConfig, handleErrors } from '../../utils/fetchUtils'
 import { isValidEmail, isValidPassword, isValidPhoneNumber, hasEmptyFields, hasSignUpErrors } from '../../utils/authUtils'
 
@@ -184,8 +184,8 @@ class SignUp extends Component {
 
     return (
       <Layout onBack={goBack}>
-        <Container>
-          <MediaQuery minDeviceWidth={320} maxDeviceWidth={480}>
+        <MediaQuery minDeviceWidth={320} maxDeviceWidth={480}>
+          <MobileContainer>
             {hasSignUpErrors(errors) &&
               <AuthErrorBanner errors={errors} />
             }
@@ -227,9 +227,11 @@ class SignUp extends Component {
                 Sign Up
               </MobileSignUpButton>
             </AuthInputContainer>
-          </MediaQuery>
+          </MobileContainer>
+        </MediaQuery>
 
-          <MediaQuery minDeviceWidth={481}>
+        <MediaQuery minDeviceWidth={481}>
+          <Container>
             {hasSignUpErrors(errors) &&
               <AuthErrorBanner errors={errors} />
             }
@@ -268,8 +270,8 @@ class SignUp extends Component {
                 Sign Up
               </SignUpButton>
             </AuthInputContainer>
-          </MediaQuery>
-        </Container>
+          </Container>
+        </MediaQuery>
       </Layout>
     );
   }
