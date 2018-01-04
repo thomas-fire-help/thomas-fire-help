@@ -51,7 +51,10 @@ export const Container = styled.div`
 `
 
 export const HeaderContainer = styled.div`
-  align-self: flex-start;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   flex: 1;
   font-size: 24px;
   font-weight: 600px
