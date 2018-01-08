@@ -3,28 +3,21 @@ import styled from 'styled-components'
 import MediaQuery from 'react-responsive'
 import { Icon } from 'antd'
 
+import { MobileContainer, Container } from './atoms'
+
 const Header = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-bottom: 20px;
-  padding-top: 10px;
+  margin-top: 35px;
+  margin-bottom: 30px;
 `
 
 const MobileHeader = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-left: 20px;
-  padding-right: 20px;
-  margin-top: 40px;
-`
-
-const Container = styled.section`
-  height: 100%;
-  width: 100%;
+  margin-top: 10px;
 `
 
 const LeftButton = styled.div`
@@ -61,33 +54,68 @@ const Body = styled.div`
   align-items: center;
 `
 
+const MobileBackArrow = styled(Icon)`
+  margin-right: 10px;
+  margin-left: -5px;
+  font-size: 24px;
+`
+
 const BackArrow = styled(Icon)`
   margin-right: 10px;
+  margin-left: -5px;
   font-size: 24px;
 `
 
 const Layout = ({ onBack, children, header }) => (
-  <Container>
-    <Header>
-      <LeftButton onClick={onBack}>
-        <BackArrow type="arrow-left"/>
-        {'Back'}
-      </LeftButton>
-      <Title>
-        <h2>
-          <img src={require('../assets/logo.svg')} style={{ height: '40px', width: 'auto' }}/>
-        </h2>
-      </Title>
-      <RightButton>
-        {/* <a href="mailto:help@thomasfirehelp.com">
-          Send us Feedback 💌
-        </a> */}
-      </RightButton>
-    </Header>
-    <Body>
-      {children}
-    </Body>
-  </Container>
+  <div style={{ width: '100vw' }}>
+    <MediaQuery minDeviceWidth={320} maxDeviceWidth={480}>
+      <MobileContainer>
+        <MobileHeader>
+          <LeftButton onClick={onBack}>
+            <MobileBackArrow type="arrow-left"/>
+            {'Back'}
+          </LeftButton>
+          <Title>
+            <h2>
+              <img src={require('../assets/logo.svg')} style={{ height: '40px', width: 'auto' }}/>
+            </h2>
+          </Title>
+          <RightButton>
+            {/* <a href="mailto:help@thomasfirehelp.com">
+              Send us Feedback 💌
+            </a> */}
+          </RightButton>
+        </MobileHeader>
+      </MobileContainer>
+      <Body>
+        {children}
+      </Body>
+    </MediaQuery>
+
+    <MediaQuery minDeviceWidth={481}>
+      <Container>
+        <Header>
+          <LeftButton onClick={onBack}>
+            <BackArrow type="arrow-left"/>
+            {'Back'}
+          </LeftButton>
+          <Title>
+            <h2>
+              <img src={require('../assets/logo.svg')} style={{ height: '40px', width: 'auto' }}/>
+            </h2>
+          </Title>
+          <RightButton>
+            {/* <a href="mailto:help@thomasfirehelp.com">
+              Send us Feedback 💌
+            </a> */}
+          </RightButton>
+        </Header>
+        <Body>
+          {children}
+        </Body>
+      </Container>
+    </MediaQuery>
+  </div>
 )
 
 export default Layout
