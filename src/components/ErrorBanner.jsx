@@ -29,7 +29,7 @@ const ErrorMessage = styled.span`
   animation: ${fadeIn} 1s forwards;
 `
 
-const AuthErrorBanner = ({ errors }) => {
+const GeneralErrorBanner = ({ errors }) => {
   return (
     <ErrorBannerContainer>
       <Banner.Content>
@@ -38,7 +38,9 @@ const AuthErrorBanner = ({ errors }) => {
         { Object.keys(errors)
             .filter(category => Boolean(errors[category].label))
             .map((category, index) => (
-              <ErrorMessage key={`error-${index}`}>{`${index + 1}. ${errors[category].label}`}</ErrorMessage>
+              <ErrorMessage key={`error-${index}`} style={{ padding: '7px 0px' }} >
+                {`${index + 1}. ${errors[category].label}`}
+              </ErrorMessage>
             ))
         }
         </Banner.Body>
@@ -47,4 +49,4 @@ const AuthErrorBanner = ({ errors }) => {
   )
 }
 
-export default AuthErrorBanner;
+export default GeneralErrorBanner;

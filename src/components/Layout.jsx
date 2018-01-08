@@ -17,7 +17,8 @@ const MobileHeader = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 10px;
+  margin-top: 20px;
+  margin-bottom: 10px;
 `
 
 const MobileLeftButton = styled.div`

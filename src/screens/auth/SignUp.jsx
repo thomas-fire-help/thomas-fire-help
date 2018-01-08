@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { Banner, ErrorBanner } from '@procore/core-react'
 import styled, { keyframes } from 'styled-components'
 import debounce from 'lodash.debounce'
 import MediaQuery from 'react-responsive'
 import { connectModule } from 'redux-modules'
 import authModule from '../../modules/auth';
 import Layout from '../../components/Layout'
-import AuthErrorBanner from './AuthErrorBanner';
+import ErrorBanner from '../../components/ErrorBanner';
 import { MobileContainer, Container, HeaderContainer, MobileHeaderContainer } from '../../components/atoms'
 import { fetchConfig, handleErrors } from '../../utils/fetchUtils'
 import { isValidEmail, isValidPassword, isValidPhoneNumber, hasEmptyFields, hasSignUpErrors } from '../../utils/authUtils'
@@ -187,11 +186,11 @@ class SignUp extends Component {
         <MediaQuery minDeviceWidth={320} maxDeviceWidth={480}>
           <MobileContainer>
             {hasSignUpErrors(errors) &&
-              <AuthErrorBanner errors={errors} />
+              <ErrorBanner errors={errors} />
             }
             {signupErrors &&
               <div>
-                <AuthErrorBanner errors={signupErrors} />
+                <ErrorBanner errors={signupErrors} />
               </div>
             }
             <MobileHeaderContainer style={{ marginBottom: '40px', textAlign: 'left' }}>
@@ -233,10 +232,10 @@ class SignUp extends Component {
         <MediaQuery minDeviceWidth={481}>
           <Container>
             {hasSignUpErrors(errors) &&
-              <AuthErrorBanner errors={errors} />
+              <ErrorBanner errors={errors} />
             }
             {signupErrors &&
-              <AuthErrorBanner errors={signupErrors} />
+              <ErrorBanner errors={signupErrors} />
             }
             <HeaderContainer>
               <h1> Sign Up </h1>

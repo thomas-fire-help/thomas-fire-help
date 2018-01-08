@@ -6,7 +6,7 @@ import MediaQuery from 'react-responsive'
 import { connectModule } from 'redux-modules'
 import authModule from '../../modules/auth'
 import Layout from '../../components/Layout'
-import AuthErrorBanner from './AuthErrorBanner'
+import ErrorBanner from '../../components/ErrorBanner'
 import { Container, HeaderContainer, MobileHeaderContainer } from '../../components/atoms'
 import { fetchConfig } from '../../utils/fetchUtils'
 import { hasSignUpErrors } from '../../utils/authUtils'
@@ -114,7 +114,7 @@ class PhoneVerification extends Component {
         <Container>
           <MediaQuery minDeviceWidth={320} maxDeviceWidth={480}>
             {hasSignUpErrors(errors) &&
-              <AuthErrorBanner errors={errors} />
+              <ErrorBanner errors={errors} />
             }
             <MobileHeaderContainer style={{ marginBottom: '40px', textAlign: 'left' }}>
               <h1>Verify Phone</h1>
@@ -139,7 +139,7 @@ class PhoneVerification extends Component {
 
           <MediaQuery minDeviceWidth={481}>
             {hasSignUpErrors(errors) &&
-              <AuthErrorBanner errors={errors} />
+              <ErrorBanner errors={errors} />
             }
             <HeaderContainer>
               <h1>Verify Phone</h1>
