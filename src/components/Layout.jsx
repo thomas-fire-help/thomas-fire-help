@@ -20,12 +20,22 @@ const MobileHeader = styled.div`
   margin-top: 10px;
 `
 
-const LeftButton = styled.div`
+const MobileLeftButton = styled.div`
   flex: 1;
   display: flex;
   align-items: center;
   cursor: pointer;
   font-size: 18px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+`
+
+const LeftButton = styled.div`
+  flex: 1;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 20px;
   text-transform: uppercase;
   letter-spacing: 2px;
 `
@@ -57,7 +67,7 @@ const Body = styled.div`
 const MobileBackArrow = styled(Icon)`
   margin-right: 10px;
   margin-left: -5px;
-  font-size: 24px;
+  font-size: 22px;
 `
 
 const BackArrow = styled(Icon)`
@@ -67,14 +77,14 @@ const BackArrow = styled(Icon)`
 `
 
 const Layout = ({ onBack, children, header }) => (
-  <div style={{ width: '100vw' }}>
+  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100vw' }}>
     <MediaQuery minDeviceWidth={320} maxDeviceWidth={480}>
       <MobileContainer>
         <MobileHeader>
-          <LeftButton onClick={onBack}>
+          <MobileLeftButton onClick={onBack}>
             <MobileBackArrow type="arrow-left"/>
             {'Back'}
-          </LeftButton>
+          </MobileLeftButton>
           <Title>
             <h2>
               <img src={require('../assets/logo.svg')} style={{ height: '40px', width: 'auto' }}/>
