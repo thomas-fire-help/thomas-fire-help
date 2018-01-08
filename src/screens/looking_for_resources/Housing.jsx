@@ -52,7 +52,8 @@ const MobileButton = styled.div`
 const CardList = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  align-self: center;
+  max-width: 720px;
 
   > div {
     margin-bottom: 30px;
