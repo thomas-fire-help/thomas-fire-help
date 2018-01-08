@@ -22,7 +22,7 @@ const Location = styled.div`
   font-size: 20px;
 `
 
-const DetailPane = styled.aside`
+const DetailsPane = styled.aside`
   padding-top: ${props => props.acive && '15px'};
   max-height: ${props => props.active ? '750px' : '0px'};
   overflow: hidden;
@@ -52,14 +52,14 @@ const HeaderContainer = styled.div`
 
 const ContactButton = styled.button`
   align-self: flex-end;
-  background-color: #FFF;
-  border: none;
-  border-top: 1px solid lightgray;
-  color: #000;
+  background-color: ${props => props.active ? '#3A3A3A' : '#FFF'};
+  border: 1px solid lightgray;
+  color: ${props => props.active ? '#FFF' : '#000'};
   cursor: pointer;
   flex: 1;
   outline: none;
   padding: 15px 30px;
+  transition: background-color 0.3s ease-in-out;
   margin-top: 20px;
   user-select: none;
 `
@@ -67,15 +67,13 @@ const ContactButton = styled.button`
 const DetailsButton = styled.button`
   align-self: flex-end;
   background-color: ${props => props.active ? '#3A3A3A' : '#FFF'};
-  border: none;
-  border-top: 1px solid lightgray;
-  border-right: 1px solid lightgray;
-  color: ${props => props.active ? 'white' : 'black'};
+  border: 1px solid lightgray;
+  color: ${props => props.active ? '#FFF' : '#000'};
   cursor: pointer;
   flex: 1;
   outline: none;
   padding: 15px 30px;
-  transition: background-color 0.25s ease-in-out;
+  transition: background-color 0.3s ease-in-out;
   margin-top: 20px;
   user-select: none;
 `
@@ -123,8 +121,12 @@ const wordMap = {
 
 const VolunteerListingCard = ({
   address,
+  contact_name,
+  email_address,
   organization,
   phone_number,
+  setShowContact,
+  showContact,
   setShowDetails,
   showDetails,
   volunteers_notes,
@@ -160,8 +162,37 @@ const VolunteerListingCard = ({
         } */}
       </TagList>
 
-      <DetailPane active={showDetails}>
-        {volunteers_notes &&
+      <DetailsPane active={showContact}>
+        <div>
+          <b>Contact Name</b>
+          <p>
+            {contact_name}
+          </p>
+        </div>
+        {email_address &&
+          <div>
+            <b>Email</b>
+            <p>
+              <a href={`mailto:${email_address}`}>
+                {email_address}
+              </a>
+            </p>
+          </div>
+        }
+        {phone_number &&
+          <div>
+            <b>Phone</b>
+            <p>
+              <a href={`tel:${phone_number}`}>
+                {phone_number}
+              </a>
+            </p>
+          </div>
+        }
+      </DetailsPane>
+
+      <DetailsPane active={showDetails}>
+       {volunteers_notes &&
           <div>
             <b>Description:</b>
             <p>
@@ -169,7 +200,7 @@ const VolunteerListingCard = ({
             </p>
           </div>
         }
-      </DetailPane>
+      </DetailsPane>
     </Body>
     <Footer>
       <DetailsButton
@@ -178,7 +209,10 @@ const VolunteerListingCard = ({
       >
         Details
       </DetailsButton>
-      <ContactButton>
+      <ContactButton
+        active={showContact}
+        onClick={() => setShowContact(!showContact)}
+      >
         Contact
       </ContactButton>
     </Footer>
@@ -187,4 +221,5 @@ const VolunteerListingCard = ({
 
 export default withStateHandlers({ showDetails: false }, {
   setShowDetails: state => value => ({ showDetails: value }),
+  setShowContact: state => value => ({ showContact: value }),
 })(VolunteerListingCard)
