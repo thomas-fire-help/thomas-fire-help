@@ -111,12 +111,14 @@ const LFVolunteerForm = ({
                     <StackInput required label="Organization's name:">
                       <Input
                         onChange={ e => update('organization', e.target.value)}
+                        value={formData.organization}
                       />
                     </StackInput>
 
                     <StackInput required label="Number of volunteers:">
                       <Input
                         onChange={ e => update('number_of_volunteers', e.target.value)}
+                        value={formData.number_of_volunteers}
                       />
                     </StackInput>
                   </div>
@@ -128,30 +130,35 @@ const LFVolunteerForm = ({
               <TextArea
                 autosize={{ minRows: 3 }}
                 onChange={ e => update('volunteers_notes', e.target.value)}
+                value={formData.volunteers_notes}
               />
             </StackInput>
 
             <StackInput required label="Your name:">
               <Input
                 onChange={ e => update('contact_name', e.target.value)}
+                value={formData.contact_name}
               />
             </StackInput>
 
             <StackInput required label="Phone number:">
               <Input
                 onChange={ e => update('phone_number', e.target.value)}
+                value={formData.phone_number}
               />
             </StackInput>
 
             <StackInput required label="Email address:">
               <Input
                 onChange={ e => update('email_address', e.target.value)}
+                value={formData.email_address}
               />
             </StackInput>
 
             <StackInput required label="Street address:">
               <Input
                 onChange={ e => update('address', e.target.value)}
+                value={formData.address}
               />
             </StackInput>
 
@@ -178,6 +185,7 @@ const LFVolunteerForm = ({
               <TextArea
                 autosize={{ minRows: 3 }}
                 onChange={ e => update('skills', e.target.value)}
+                value={formData.skills}
               />
             </StackInput>
 
@@ -186,8 +194,7 @@ const LFVolunteerForm = ({
                 size="large"
                 style={{ backgroundColor: '#6D6D6D', color: '#FFF', width: '100%' }}
                 onClick={() => {
-                  actions.create(formData)
-                  resetForm()
+                  actions.create({ formData, resetForm })
                 }}
               >
                 Submit
@@ -239,12 +246,14 @@ const LFVolunteerForm = ({
                     <StackInput required label="Organization's name:">
                       <Input
                         onChange={ e => update('organization', e.target.value)}
+                        value={formData.organization}
                       />
                     </StackInput>
 
                     <StackInput required label="Number of volunteers:">
                       <Input
                         onChange={ e => update('number_of_volunteers', e.target.value)}
+                        value={formData.number_of_volunteers}
                       />
                     </StackInput>
                   </div>
@@ -256,30 +265,35 @@ const LFVolunteerForm = ({
               <TextArea
                 autosize={{ minRows: 3 }}
                 onChange={ e => update('volunteers_notes', e.target.value)}
+                value={formData.volunteers_notes}
               />
             </StackInput>
 
             <StackInput required label="Your name:">
               <Input
                 onChange={ e => update('contact_name', e.target.value)}
+                value={formData.contact_name}
               />
             </StackInput>
 
             <StackInput required label="Phone number:">
               <Input
                 onChange={ e => update('phone_number', e.target.value)}
+                value={formData.phone_number}
               />
             </StackInput>
 
             <StackInput required label="Email address:">
               <Input
                 onChange={ e => update('email_address', e.target.value)}
+                value={formData.email_address}
               />
             </StackInput>
 
             <StackInput required label="Street address:">
               <Input
                 onChange={ e => update('address', e.target.value)}
+                value={formData.address}
               />
             </StackInput>
 
@@ -314,8 +328,7 @@ const LFVolunteerForm = ({
                 size="large"
                 style={{ backgroundColor: '#6D6D6D', color: '#FFF', width: '100%' }}
                 onClick={() => {
-                  actions.create(formData)
-                  resetForm()
+                  actions.create({ formData, resetForm })
                 }}
               >
                 Submit

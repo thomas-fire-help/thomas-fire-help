@@ -7,7 +7,7 @@ import { fetchFromStorage } from '../utils/localStorage';
 
 const endpoint = `${getHost()}/volunteers`
 
-const create = (params) => {
+const create = (params, resetForm) => {
   const formattedParams = { ...params, number_of_volunteers: Number(params.number_of_volunteers)}
   return fetch(endpoint, { headers: fetchConfig(), method: 'POST', body: JSON.stringify(params) })
     .then(res => {
@@ -17,7 +17,7 @@ const create = (params) => {
         return res.json();
       }
     })
-    .then(data => ({ data: '', status: 'success' }))
+    .then(data => ({ data: '', status: 'success', resetForm }))
     .catch(res => res.json().then(err => ({ errors: err.errors, status: 'failure' })))
 }
 
@@ -42,16 +42,18 @@ const volunteersModule = createModule ({
       Cmd.run(create, {
         successActionCreator: volunteersModule.actions.createSuccess,
         failActionCreator: volunteersModule.actions.createError,
-        args: [payload]
+        args: [payload.formData, payload.resetForm]
       })
     )},
     createSuccess: {
       reducer: (state, { payload }) => {
+        payload.status === 'success' && payload.resetForm();
+
         return payload.status === 'success'
           ? Object.assign(
               {},
               state,
-              { data: state.data.concat(payload), loading: false, successMessage: 'Save successful!', errors: {} }
+              { loading: false, successMessage: 'Save successful!', errors: {} }
             )
           : Object.assign(
               {},
