@@ -183,7 +183,15 @@ const Housing = ({
               <Icon
                 onClick={showFilters}
                 type="filter"
-                style={{ display: 'flex', textTransform: 'uppercase', fontWeight: 'bold', marginRight: '10px', justifyContent: 'space-between', width: '75px', cursor: 'pointer' }}
+                style={{
+                  display: 'flex',
+                  textTransform: 'uppercase',
+                  fontWeight: 'bold',
+                  marginRight: '10px',
+                  justifyContent: 'space-between',
+                  width: '75px',
+                  cursor: 'pointer'
+                }}
               >
                 Filter
               </Icon>

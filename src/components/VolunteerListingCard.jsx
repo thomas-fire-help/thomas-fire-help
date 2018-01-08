@@ -43,7 +43,7 @@ const HeaderContainer = styled.div`
 
   h2 {
     cursor: pointer;
-    font-size: 36px;
+    font-size: 30px;
     color: #3A3A3A;
     font-weight: 600;
     margin-bottom: 0px;

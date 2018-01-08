@@ -75,7 +75,7 @@ const Layout = ({ onBack, children, header }) => (
       </LeftButton>
       <Title>
         <h2>
-          TFH
+          <img src={require('../assets/logo.svg')} style={{ height: '40px', width: 'auto' }}/>
         </h2>
       </Title>
       <RightButton>
