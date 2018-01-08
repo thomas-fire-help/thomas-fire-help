@@ -123,19 +123,19 @@ const LFVolunteerForm = ({
                         value={formData.number_of_volunteers}
                       />
                     </StackInput>
+
+                    <StackInput required label="Describe what you need (be specific):">
+                      <TextArea
+                        style={{ fontSize: '16px' }}
+                        autosize={{ minRows: 3 }}
+                        onChange={ e => update('volunteers_notes', e.target.value)}
+                        value={formData.volunteers_notes}
+                      />
+                    </StackInput>
                   </div>
                 )
               }
             })(path.split('/').pop())}
-
-            <StackInput required label="Describe what you need (be specific):">
-              <TextArea
-                style={{ fontSize: '16px' }}
-                autosize={{ minRows: 3 }}
-                onChange={ e => update('volunteers_notes', e.target.value)}
-                value={formData.volunteers_notes}
-              />
-            </StackInput>
 
             <StackInput required label="Your name:">
               <Input
@@ -164,8 +164,10 @@ const LFVolunteerForm = ({
             <StackInput required label="Street address:">
               <Input
                 style={{ fontSize: '16px' }}
-                onChange={ e => update('address', e.target.value)}
-                value={formData.address}
+                onChange={ e => update(
+                  formData.volunteerType === 'organization' ? 'address' : 'location', e.target.value)
+                }
+                value={formData.volunteerType === 'organization' ? formData.address : formData.location}
               />
             </StackInput>
 
