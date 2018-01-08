@@ -6,10 +6,11 @@ import MediaQuery from 'react-responsive'
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
 
-import { MobileContainer, Container, HeaderContainer } from '../../components/atoms'
+import { MobileContainer, Container, MobileHeaderContainer, HeaderContainer } from '../../components/atoms'
 import { Input, Button, Select } from 'antd'
 import Layout from '../../components/Layout'
 import lfVolunteersModule from '../../modules/lfVolunteers'
+import ErrorBanner from '../../components/ErrorBanner'
 
 const Option = Select.Option
 const { TextArea } = Input
@@ -18,13 +19,12 @@ const RequiredIndicator = styled.em`
   color: red;
 `
 
-const Label = styled.div`
-  font-size: 1.5rem;
-  padding: 1rem 0;
+const Label = styled.h2`
+  font-size: 20px;
 `
 
 const StackContainer = styled.div`
-  margin: 20px 0;
+  margin: 40px 0;
 `
 
 const fadeIn = keyframes`
@@ -41,7 +41,7 @@ const dropIn = keyframes`
     transform: translateY(-100px);
   }
   100% {
-    transform: translateY(-10px);
+    transform: translateY(20px);
   }
 `;
 
@@ -60,7 +60,27 @@ const StackInput = ({ required, children, label }) => (
   </StackContainer>
 )
 
-const LFVolunteerForm = ({ actions, update, resetForm, formData, loading, successMessage, isLoggedIn, history: { goBack }, match: { path } }) => (
+const formatErrors = (errors) => {
+  return Object.keys(errors).reduce((acc, category) => {
+    const prettifiedCategory = category.replace(/_/g, ' ');
+    const capitalizedCategory = prettifiedCategory.charAt(0).toUpperCase() + prettifiedCategory.slice(1)
+
+    return { ...acc, [category]: { label: `${capitalizedCategory} ${errors[category][0]}` } }
+  }, {})
+}
+
+const LFVolunteerForm = ({
+  actions,
+  errors,
+  update,
+  resetForm,
+  formData,
+  loading,
+  successMessage,
+  isLoggedIn,
+  history: { goBack },
+  match: { path }
+}) => (
   <Layout header="Housing" onBack={goBack}>
     <MediaQuery minDeviceWidth={320} maxDeviceWidth={480}>
       <MobileContainer>
@@ -73,11 +93,16 @@ const LFVolunteerForm = ({ actions, update, resetForm, formData, loading, succes
           </SuccessBannerContainer>
         }
 
+        {Boolean(Object.keys(errors).length) &&
+          <ErrorBanner errors={formatErrors(errors)}/>
+        }
+
         {isLoggedIn ? (
           <Loader loaded={!loading} lines={13} length={10} width={2}>
-            <HeaderContainer>
-              I need volunteer help...
-            </HeaderContainer>
+            <MobileHeaderContainer>
+              <h1 style={{ whiteSpace: 'normal',
+              textAlign: 'left' }}> I need volunteer help... </h1>
+            </MobileHeaderContainer>
 
             {(formType => {
               if (formType === 'organization') {
@@ -86,12 +111,14 @@ const LFVolunteerForm = ({ actions, update, resetForm, formData, loading, succes
                     <StackInput required label="Organization's name:">
                       <Input
                         onChange={ e => update('organization', e.target.value)}
+                        value={formData.organization}
                       />
                     </StackInput>
 
                     <StackInput required label="Number of volunteers:">
                       <Input
                         onChange={ e => update('number_of_volunteers', e.target.value)}
+                        value={formData.number_of_volunteers}
                       />
                     </StackInput>
                   </div>
@@ -103,30 +130,35 @@ const LFVolunteerForm = ({ actions, update, resetForm, formData, loading, succes
               <TextArea
                 autosize={{ minRows: 3 }}
                 onChange={ e => update('volunteers_notes', e.target.value)}
+                value={formData.volunteers_notes}
               />
             </StackInput>
 
             <StackInput required label="Your name:">
               <Input
                 onChange={ e => update('contact_name', e.target.value)}
+                value={formData.contact_name}
               />
             </StackInput>
 
             <StackInput required label="Phone number:">
               <Input
                 onChange={ e => update('phone_number', e.target.value)}
+                value={formData.phone_number}
               />
             </StackInput>
 
             <StackInput required label="Email address:">
               <Input
                 onChange={ e => update('email_address', e.target.value)}
+                value={formData.email_address}
               />
             </StackInput>
 
             <StackInput required label="Street address:">
               <Input
                 onChange={ e => update('address', e.target.value)}
+                value={formData.address}
               />
             </StackInput>
 
@@ -153,16 +185,16 @@ const LFVolunteerForm = ({ actions, update, resetForm, formData, loading, succes
               <TextArea
                 autosize={{ minRows: 3 }}
                 onChange={ e => update('skills', e.target.value)}
+                value={formData.skills}
               />
             </StackInput>
 
-            <div style={{ paddingTop: '1em' }}>
+            <div style={{ margin: '20px 0px', width: '100%' }}>
               <Button
                 size="large"
-                style={{ width: '100%' }}
+                style={{ backgroundColor: '#6D6D6D', color: '#FFF', width: '100%' }}
                 onClick={() => {
-                  actions.create(formData)
-                  resetForm()
+                  actions.create({ formData, resetForm })
                 }}
               >
                 Submit
@@ -197,10 +229,14 @@ const LFVolunteerForm = ({ actions, update, resetForm, formData, loading, succes
           </SuccessBannerContainer>
         }
 
+        {Boolean(Object.keys(errors).length) &&
+          <ErrorBanner errors={formatErrors(errors)}/>
+        }
+
         {isLoggedIn ? (
           <Loader loaded={!loading} lines={13} length={10} width={2}>
             <HeaderContainer>
-              I need volunteer help...
+              <h1>I need volunteer help...</h1>
             </HeaderContainer>
 
             {(formType => {
@@ -210,12 +246,14 @@ const LFVolunteerForm = ({ actions, update, resetForm, formData, loading, succes
                     <StackInput required label="Organization's name:">
                       <Input
                         onChange={ e => update('organization', e.target.value)}
+                        value={formData.organization}
                       />
                     </StackInput>
 
                     <StackInput required label="Number of volunteers:">
                       <Input
                         onChange={ e => update('number_of_volunteers', e.target.value)}
+                        value={formData.number_of_volunteers}
                       />
                     </StackInput>
                   </div>
@@ -227,30 +265,35 @@ const LFVolunteerForm = ({ actions, update, resetForm, formData, loading, succes
               <TextArea
                 autosize={{ minRows: 3 }}
                 onChange={ e => update('volunteers_notes', e.target.value)}
+                value={formData.volunteers_notes}
               />
             </StackInput>
 
             <StackInput required label="Your name:">
               <Input
                 onChange={ e => update('contact_name', e.target.value)}
+                value={formData.contact_name}
               />
             </StackInput>
 
             <StackInput required label="Phone number:">
               <Input
                 onChange={ e => update('phone_number', e.target.value)}
+                value={formData.phone_number}
               />
             </StackInput>
 
             <StackInput required label="Email address:">
               <Input
                 onChange={ e => update('email_address', e.target.value)}
+                value={formData.email_address}
               />
             </StackInput>
 
             <StackInput required label="Street address:">
               <Input
                 onChange={ e => update('address', e.target.value)}
+                value={formData.address}
               />
             </StackInput>
 
@@ -280,28 +323,16 @@ const LFVolunteerForm = ({ actions, update, resetForm, formData, loading, succes
               />
             </StackInput>
 
-            <div style={{ paddingTop: '1em' }}>
-              <MediaQuery minDeviceWidth={320} maxDeviceWidth={480}>
-                <Button
-                  size="large"
-                  style={{ width: '100%' }}
-                  onClick={() => {
-                    actions.create(formData)
-                    resetForm()
-                  }}
-                >
-                  Submit
-                </Button>
-              </MediaQuery>
+            <div style={{ marginTop: '20px', marginBottom: '30px' }}>
               <Button
                 size="large"
+                style={{ backgroundColor: '#6D6D6D', color: '#FFF', width: '100%' }}
                 onClick={() => {
-                  actions.create(formData)
-                  resetForm()
+                  actions.create({ formData, resetForm })
                 }}
               >
                 Submit
-                </Button>
+              </Button>
             </div>
           </Loader>
         ) : (
@@ -323,6 +354,10 @@ const LFVolunteerForm = ({ actions, update, resetForm, formData, loading, succes
   </Layout>
 )
 
+LFVolunteerForm.defaultProps = {
+  errors: {},
+};
+
 export default compose(
   connectModule(lfVolunteersModule),
   withStateHandlers( props => (
@@ -333,7 +368,7 @@ export default compose(
     }),
     {
       update: (state) => (key, value) => Object.assign({}, { formData: { ...state.formData, [key]: value  } }),
-      resetForm: (state) => () => Object.assign({}, { formData: {} })
+      resetForm: (state, props) => () => Object.assign({}, { formData: { volunteer_type: props.location.pathname.split('/').pop() } })
     }
   ),
   lifecycle({

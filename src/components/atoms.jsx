@@ -47,7 +47,6 @@ export const Container = styled.div`
   flex-direction: column;
   animation: ${fadeIn} 1s forwards;
   opacity: 0;
-  margin: 15px 30px;
   width: 600px;
 `
 
@@ -56,18 +55,7 @@ export const MobileContainer = styled.div`
   flex-direction: column;
   animation: ${fadeIn} 1s forwards;
   opacity: 0;
-  margin: 15px 30px;
-`
-
-export const HeaderContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  flex: 1;
-  font-size: 24px;
-  font-weight: 600px
-  padding-bottom: 20px;
+  width: 85vw;
 `
 
 export const Card = styled.div`
@@ -85,6 +73,23 @@ export const MobileCard = styled.div`
   transition: box-shadow 0.2s ease-in-out;
   &:hover {
     box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.23), 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+  }
+`
+
+export const HeaderContainer = styled.div`
+  display: flex;
+  align-self: flex-start;
+  align-items: center;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1;
+  font-size: 20px;
+  font-weight: 600px
+  padding-bottom: 20px;
+  width: 100%;
+
+  h1 {
+    margin: 0;
   }
 `
 

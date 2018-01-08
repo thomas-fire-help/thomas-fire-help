@@ -5,7 +5,8 @@ import { Icon } from 'antd';
 import { connectModule } from 'redux-modules'
 import { Spinner } from '@procore/core-react'
 import { compose, lifecycle, withStateHandlers } from 'recompose'
-import Loader from 'react-loader'
+
+import LoadingSpinner from '../../components/LoadingSpinner'
 import { Card } from '../../components/atoms'
 import housingModule from '../../modules/housing'
 import Layout from '../../components/Layout'
@@ -13,6 +14,7 @@ import HouseCard from '../../components/HouseCard'
 import MobileHouseCard from '../../components/MobileHouseCard'
 import {
   FullscreenOverlay,
+  MobileContainer,
   Container,
   MobileHeaderContainer,
   HeaderContainer,
@@ -71,7 +73,6 @@ const Housing = ({
   history: { goBack }
 }) => (
   <Layout header="Housing" onBack={goBack}>
-    <Container style={{ padding: '15px 25px', width: '100%'}}>
       {filterPaneActive &&
         <OverlayLayout onBack={hideFilters}>
           <StackInput dark label="Housing Type">
@@ -151,8 +152,9 @@ const Housing = ({
           </MobileButton>
         </OverlayLayout>
       }
-      <Loader loaded={!loading} lines={13} length={10} width={2}>
+      <LoadingSpinner loading={loading}>
         <MediaQuery minDeviceWidth={320} maxDeviceWidth={480}>
+          <MobileContainer>
             <MobileHeaderContainer style={{ marginBottom: '20px' }}>
               <h1> Housing </h1>
 
@@ -165,33 +167,43 @@ const Housing = ({
               </Icon>
             </ MobileHeaderContainer>
 
-          <CardList>
-            {data.map((houseListing, i) => (
-              <MobileHouseCard key={i} {...houseListing} />
-            ))}
-          </CardList>
+            <CardList>
+              {data.map((houseListing, i) => (
+                <MobileHouseCard key={i} {...houseListing} />
+              ))}
+            </CardList>
+          </MobileContainer>
         </ MediaQuery>
 
         <MediaQuery minDeviceWidth={481}>
-          <HeaderContainer style={{ marginBottom: '20px' }}>
-            <h1> Housing </h1>
+          <Container style={{ padding: '15px 25px', width: '100%'}}>
+            <HeaderContainer>
+              <h1> Housing </h1>
 
-            <Icon
-              onClick={showFilters}
-              type="filter"
-              style={{ display: 'flex', textTransform: 'uppercase', fontWeight: 'bold', marginRight: '10px', justifyContent: 'space-between', width: '75px', cursor: 'pointer' }}
-            >
-              Filter
-            </Icon>
-          </HeaderContainer>
-          <CardList>
-            {data.map((houseListing, i) => (
-              <HouseCard key={i} {...houseListing} />
-            ))}
-          </CardList>
+              <Icon
+                onClick={showFilters}
+                type="filter"
+                style={{
+                  display: 'flex',
+                  textTransform: 'uppercase',
+                  fontWeight: 'bold',
+                  marginRight: '10px',
+                  justifyContent: 'space-between',
+                  width: '75px',
+                  cursor: 'pointer'
+                }}
+              >
+                Filter
+              </Icon>
+            </HeaderContainer>
+            <CardList>
+              {data.map((houseListing, i) => (
+                <HouseCard key={i} {...houseListing} />
+              ))}
+            </CardList>
+          </Container>
         </MediaQuery>
-      </Loader>
-    </Container>
+      </LoadingSpinner>
   </Layout>
 )
 

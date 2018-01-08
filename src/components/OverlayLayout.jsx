@@ -27,6 +27,7 @@ const Container = styled.section`
   will-change: transform;
   overflow-y: auto;
   height: 100%;
+  z-index: 9999;
 `
 
 const LeftButton = styled.div`

@@ -7,11 +7,18 @@ import { fetchFromStorage } from '../utils/localStorage';
 
 const endpoint = `${getHost()}/volunteers`
 
-const create = (params) => {
-  console.log(params);
+const create = (params, resetForm) => {
   const formattedParams = { ...params, number_of_volunteers: Number(params.number_of_volunteers)}
   return fetch(endpoint, { headers: fetchConfig(), method: 'POST', body: JSON.stringify(params) })
-    .then(res => res.json())
+    .then(res => {
+      if (!res.ok) {
+        throw res;
+      } else {
+        return res.json();
+      }
+    })
+    .then(data => ({ data: '', status: 'success', resetForm }))
+    .catch(res => res.json().then(err => ({ errors: err.errors, status: 'failure' })))
 }
 
 const list = params =>
@@ -23,6 +30,7 @@ const volunteersModule = createModule ({
   initialState: {
     data: [],
     loading: false,
+    errors: {},
     successMessage: '',
   },
   composes: [liftState],
@@ -34,16 +42,25 @@ const volunteersModule = createModule ({
       Cmd.run(create, {
         successActionCreator: volunteersModule.actions.createSuccess,
         failActionCreator: volunteersModule.actions.createError,
-        args: [payload]
+        args: [payload.formData, payload.resetForm]
       })
     )},
     createSuccess: {
       reducer: (state, { payload }) => {
-        return Object.assign(
-          {},
-          state,
-          { data: state.data.concat(payload), loading: false, successMessage: 'Save successful!' }
-        );
+        payload.status === 'success' && payload.resetForm();
+
+        return payload.status === 'success'
+          ? Object.assign(
+              {},
+              state,
+              { loading: false, successMessage: 'Save successful!', errors: {} }
+            )
+          : Object.assign(
+              {},
+              state,
+              { loading: false, errors: payload.errors }
+            )
+
       }
     },
     createError: (state, payload) => console.log(state, payload),
@@ -61,7 +78,7 @@ const volunteersModule = createModule ({
         Object.assign({}, state, { loading: false, data: payload || [] })
     },
     listError: s => s,
-    resetBanners: state => Object.assign({}, state, { successMessage: '' })
+    resetBanners: state => Object.assign({}, state, { successMessage: '', errors: {} })
   },
 });
 
