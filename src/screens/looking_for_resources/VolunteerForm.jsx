@@ -1,12 +1,15 @@
-import React from 'react'
+import { Banner, SuccessBanner, ActionBanner } from '@procore/core-react'
+import { compose, withStateHandlers, lifecycle } from 'recompose'
 import { connectModule } from 'redux-modules'
-import { compose, withStateHandlers } from 'recompose'
-import lfVolunteersModule from '../../modules/lfVolunteers'
-import Layout from '../../components/Layout'
-import { Container, HeaderContainer } from '../../components/atoms'
-import { Input, Button, Select } from 'antd'
-import styled from 'styled-components'
+import Loader from 'react-loader'
 import MediaQuery from 'react-responsive'
+import React from 'react'
+import styled, { keyframes } from 'styled-components'
+
+import { MobileContainer, Container, HeaderContainer } from '../../components/atoms'
+import { Input, Button, Select } from 'antd'
+import Layout from '../../components/Layout'
+import lfVolunteersModule from '../../modules/lfVolunteers'
 
 const Option = Select.Option
 const { TextArea } = Input
@@ -21,7 +24,29 @@ const Label = styled.div`
 `
 
 const StackContainer = styled.div`
-  margin: 30px 0;
+  margin: 20px 0;
+`
+
+const fadeIn = keyframes`
+0% {
+  opacity: 0;
+}
+100% {
+  opacity: 1;
+}
+`;
+
+const dropIn = keyframes`
+  0% {
+    transform: translateY(-100px);
+  }
+  100% {
+    transform: translateY(-10px);
+  }
+`;
+
+const SuccessBannerContainer = styled(SuccessBanner)`
+  animation: ${fadeIn} 1s, ${dropIn} .7s forwards;
 `
 
 const StackInput = ({ required, children, label }) => (
@@ -35,152 +60,286 @@ const StackInput = ({ required, children, label }) => (
   </StackContainer>
 )
 
-const LFVolunteerForm = ({ actions, update, formData, history: { goBack }, match: { path } }) => (
+const LFVolunteerForm = ({ actions, update, resetForm, formData, loading, successMessage, isLoggedIn, history: { goBack }, match: { path } }) => (
   <Layout header="Housing" onBack={goBack}>
-    <Container>
-      <HeaderContainer>
-        I need volunteer help...
-      </HeaderContainer>
-
-      <StackInput required label="Type of help:">
-        <Select
-          showSearch
-          style={{ width: '100%' }}
-          value={formData.type}
-          optionFilterProp="children"
-          onChange={value => update('type', value)}
-          filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
-        >
-          <Option value="foodAndWater">Food and water</Option>
-          <Option value="medicalSupplies">Medical supplies</Option>
-          <Option value="clothing">Clothing</Option>
-          <Option value="housing">Housing</Option>
-          <Option value="personalCareItems">Personal care items</Option>
-          <Option value="animalServices">Animal services</Option>
-        </Select>
-      </StackInput>
-
-      <StackInput required label="Describe what you need (be specific):">
-        <TextArea
-          autosize={{ minRows: 3 }}
-          onChange={value => update('description', value)}
-        />
-      </StackInput>
-
-      {(formType => {
-        if (formType === 'organization') {
-          return (
-            <div>
-              <StackInput label="Number of volunteers:">
-                <Input
-                  onChange={value => update('numberVolunteers', value)}
-                />
-              </StackInput>
-
-              <StackInput label="Time(s) needed:">
-                <Input
-                  onChange={value => update('timeNeeded', value)}
-                />
-              </StackInput>
-            </div>
-          )
+    <MediaQuery minDeviceWidth={320} maxDeviceWidth={480}>
+      <MobileContainer>
+        {successMessage &&
+          <SuccessBannerContainer>
+            <Banner.Content>
+              <Banner.Title style={{ fontSize: '17px' }}>Success!</Banner.Title>
+              <Banner.Body style={{ fontSize: '15px' }}>Save Successful</Banner.Body>
+            </Banner.Content>
+          </SuccessBannerContainer>
         }
-      })(path.split('/').pop())}
 
-      <StackInput required label="City:">
-        <Select
-          showSearch
-          style={{ width: '100%' }}
-          value={formData.city}
-          placeholder="Select a city"
-          optionFilterProp="children"
-          onChange={value => update('city', value)}
-          filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
-        >
-          <Option value="goleta">Goleta</Option>
-          <Option value="ojai">Ojai</Option>
-          <Option value="santa_barbara">Santa Barbara</Option>
-          <Option value="camarillo">Camarillo</Option>
-          <Option value="ventura">Ventura</Option>
-          <Option value="thousand_oaks">Thousand Oaks</Option>
-        </Select>
-      </StackInput>
+        {isLoggedIn ? (
+          <Loader loaded={!loading} lines={13} length={10} width={2}>
+            <HeaderContainer>
+              I need volunteer help...
+            </HeaderContainer>
 
-      <StackInput label="Neighborhood:">
-        <Input
-          onChange={value => update('neighborhood', value)}
-        />
-      </StackInput>
+            {(formType => {
+              if (formType === 'organization') {
+                return (
+                  <div>
+                    <StackInput required label="Organization's name:">
+                      <Input
+                        onChange={ e => update('organization', e.target.value)}
+                      />
+                    </StackInput>
 
-      <StackInput required label="Street address:">
-        <Input
-          onChange={value => update('streetAddress', value)}
-        />
-      </StackInput>
+                    <StackInput required label="Number of volunteers:">
+                      <Input
+                        onChange={ e => update('number_of_volunteers', e.target.value)}
+                      />
+                    </StackInput>
+                  </div>
+                )
+              }
+            })(path.split('/').pop())}
 
-      <StackInput required label="Your name:">
-        <Input
-          onChange={value => update('name', value)}
-        />
-      </StackInput>
+            <StackInput required label="Describe what you need (be specific):">
+              <TextArea
+                autosize={{ minRows: 3 }}
+                onChange={ e => update('volunteers_notes', e.target.value)}
+              />
+            </StackInput>
 
-      <StackInput required label="Phone number:">
-        <Input
-          onChange={value => update('phoneNumber', value)}
-        />
-      </StackInput>
+            <StackInput required label="Your name:">
+              <Input
+                onChange={ e => update('contact_name', e.target.value)}
+              />
+            </StackInput>
 
-      <StackInput required label="Email address:">
-        <Input
-          onChange={value => update('emailAddress', value)}
-        />
-      </StackInput>
+            <StackInput required label="Phone number:">
+              <Input
+                onChange={ e => update('phone_number', e.target.value)}
+              />
+            </StackInput>
 
-      <div style={{ paddingTop: '1em' }}>
-        <MediaQuery minDeviceWidth={320} maxDeviceWidth={480}>
-          <Button
-            size="large"
-            style={{ width: '100%' }}
-            onClick={() => actions.create(formData)}
-          >
-            Submit
-          </Button>
-        </MediaQuery>
-        <MediaQuery minDeviceWidth={481}>
-          <Button
-            size="large"
-            onClick={() => actions.create(formData)}
-          >
-            Submit
-          </Button>
-        </MediaQuery>
-      </div>
-    </Container>
+            <StackInput required label="Email address:">
+              <Input
+                onChange={ e => update('email_address', e.target.value)}
+              />
+            </StackInput>
+
+            <StackInput required label="Street address:">
+              <Input
+                onChange={ e => update('address', e.target.value)}
+              />
+            </StackInput>
+
+            {/* <StackInput required label="City:">
+              <Select
+                showSearch
+                style={{ width: '100%' }}
+                value={formData.city}
+                placeholder="Select a city"
+                optionFilterProp="children"
+                onChange={ e => update('city', e.target.value)}
+                filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+              >
+                <Option value="goleta">Goleta</Option>
+                <Option value="ojai">Ojai</Option>
+                <Option value="santa_barbara">Santa Barbara</Option>
+                <Option value="camarillo">Camarillo</Option>
+                <Option value="ventura">Ventura</Option>
+                <Option value="thousand_oaks">Thousand Oaks</Option>
+              </Select>
+            </StackInput> */}
+
+            <StackInput required label="Required Skills:">
+              <TextArea
+                autosize={{ minRows: 3 }}
+                onChange={ e => update('skills', e.target.value)}
+              />
+            </StackInput>
+
+            <div style={{ paddingTop: '1em' }}>
+              <Button
+                size="large"
+                style={{ width: '100%' }}
+                onClick={() => {
+                  actions.create(formData)
+                  resetForm()
+                }}
+              >
+                Submit
+              </Button>
+            </div>
+          </Loader>
+        ) : (
+          <ActionBanner>
+            <Banner.Content>
+              <Banner.Title>Whoops!</Banner.Title>
+              <Banner.Body>
+                <div>We can't post a listing yet because you're not logged in. Try:</div>
+                <ul style={{ marginTop: '10px' }}>
+                  <li>Signing up</li>
+                  <li>Verifying your phone number</li>
+                </ul>
+              </Banner.Body>
+            </Banner.Content>
+          </ActionBanner>
+        )}
+      </MobileContainer>
+    </MediaQuery>
+
+    <MediaQuery minDeviceWidth={481}>
+      <Container>
+        {successMessage &&
+          <SuccessBannerContainer>
+            <Banner.Content>
+              <Banner.Title style={{ fontSize: '17px' }}>Success!</Banner.Title>
+              <Banner.Body style={{ fontSize: '15px' }}>Save Successful</Banner.Body>
+            </Banner.Content>
+          </SuccessBannerContainer>
+        }
+
+        {isLoggedIn ? (
+          <Loader loaded={!loading} lines={13} length={10} width={2}>
+            <HeaderContainer>
+              I need volunteer help...
+            </HeaderContainer>
+
+            {(formType => {
+              if (formType === 'organization') {
+                return (
+                  <div>
+                    <StackInput required label="Organization's name:">
+                      <Input
+                        onChange={ e => update('organization', e.target.value)}
+                      />
+                    </StackInput>
+
+                    <StackInput required label="Number of volunteers:">
+                      <Input
+                        onChange={ e => update('number_of_volunteers', e.target.value)}
+                      />
+                    </StackInput>
+                  </div>
+                )
+              }
+            })(path.split('/').pop())}
+
+            <StackInput required label="Describe what you need (be specific):">
+              <TextArea
+                autosize={{ minRows: 3 }}
+                onChange={ e => update('volunteers_notes', e.target.value)}
+              />
+            </StackInput>
+
+            <StackInput required label="Your name:">
+              <Input
+                onChange={ e => update('contact_name', e.target.value)}
+              />
+            </StackInput>
+
+            <StackInput required label="Phone number:">
+              <Input
+                onChange={ e => update('phone_number', e.target.value)}
+              />
+            </StackInput>
+
+            <StackInput required label="Email address:">
+              <Input
+                onChange={ e => update('email_address', e.target.value)}
+              />
+            </StackInput>
+
+            <StackInput required label="Street address:">
+              <Input
+                onChange={ e => update('address', e.target.value)}
+              />
+            </StackInput>
+
+            {/* <StackInput required label="City:">
+              <Select
+                showSearch
+                style={{ width: '100%' }}
+                value={formData.city}
+                placeholder="Select a city"
+                optionFilterProp="children"
+                onChange={ e => update('city', e.target.value)}
+                filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+              >
+                <Option value="goleta">Goleta</Option>
+                <Option value="ojai">Ojai</Option>
+                <Option value="santa_barbara">Santa Barbara</Option>
+                <Option value="camarillo">Camarillo</Option>
+                <Option value="ventura">Ventura</Option>
+                <Option value="thousand_oaks">Thousand Oaks</Option>
+              </Select>
+            </StackInput> */}
+
+            <StackInput required label="Required Skills:">
+              <TextArea
+                autosize={{ minRows: 3 }}
+                onChange={ e => update('skills', e.target.value)}
+              />
+            </StackInput>
+
+            <div style={{ paddingTop: '1em' }}>
+              <MediaQuery minDeviceWidth={320} maxDeviceWidth={480}>
+                <Button
+                  size="large"
+                  style={{ width: '100%' }}
+                  onClick={() => {
+                    actions.create(formData)
+                    resetForm()
+                  }}
+                >
+                  Submit
+                </Button>
+              </MediaQuery>
+              <Button
+                size="large"
+                onClick={() => {
+                  actions.create(formData)
+                  resetForm()
+                }}
+              >
+                Submit
+                </Button>
+            </div>
+          </Loader>
+        ) : (
+          <ActionBanner>
+            <Banner.Content>
+              <Banner.Title>Whoops!</Banner.Title>
+              <Banner.Body>
+                <div>We can't post a listing yet because you're not logged in. Try:</div>
+                <ul style={{ marginTop: '10px' }}>
+                  <li>Signing up</li>
+                  <li>Verifying your phone number</li>
+                </ul>
+              </Banner.Body>
+            </Banner.Content>
+          </ActionBanner>
+        )}
+      </Container>
+    </MediaQuery>
   </Layout>
 )
 
-LFVolunteerForm.defaultProps = {
-
-}
-
 export default compose(
-  withStateHandlers(
+  connectModule(lfVolunteersModule),
+  withStateHandlers( props => (
     {
       formData: {
-        type: 'foodAndWater',
-        description: '',
-        city: 'ventura',
-        neighborhood: '',
-        streetAddress: '',
-        name: '',
-        phoneNumber: '',
-        emailAddress: '',
-        RequiredIndicatorailAddress: ''
-      }
-    },
+        volunteer_type: props.location.pathname.split('/').pop(),
+      },
+    }),
     {
-      update: (state) => (key, value) => Object.assign({}, { formData: { ...state.formData, [key]: value  } })
+      update: (state) => (key, value) => Object.assign({}, { formData: { ...state.formData, [key]: value  } }),
+      resetForm: (state) => () => Object.assign({}, { formData: {} })
     }
   ),
-  connectModule(lfVolunteersModule)
+  lifecycle({
+    componentDidMount() {
+      this.setState({ isLoggedIn: Boolean(JSON.parse(localStorage.getItem('auth')))});
+      this.props.actions.resetBanners();
+    }
+  }),
 )(LFVolunteerForm)

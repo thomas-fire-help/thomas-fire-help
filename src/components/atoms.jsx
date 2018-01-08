@@ -47,7 +47,16 @@ export const Container = styled.div`
   flex-direction: column;
   animation: ${fadeIn} 1s forwards;
   opacity: 0;
-  margin: 15px 45px;
+  margin: 15px 30px;
+  width: 600px;
+`
+
+export const MobileContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  animation: ${fadeIn} 1s forwards;
+  opacity: 0;
+  margin: 15px 30px;
 `
 
 export const HeaderContainer = styled.div`

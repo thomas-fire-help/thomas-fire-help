@@ -5,6 +5,7 @@ import { Icon } from 'antd';
 import { connectModule } from 'redux-modules'
 import { Spinner } from '@procore/core-react'
 import { compose, lifecycle, withStateHandlers } from 'recompose'
+import Loader from 'react-loader'
 import { Card } from '../../components/atoms'
 import housingModule from '../../modules/housing'
 import Layout from '../../components/Layout'
@@ -150,43 +151,46 @@ const Housing = ({
           </MobileButton>
         </OverlayLayout>
       }
-      <MediaQuery minDeviceWidth={320} maxDeviceWidth={480}>
-        <MobileHeaderContainer style={{ marginBottom: '20px' }}>
-          <h1> Housing </h1>
+      <Loader loaded={!loading} lines={13} length={10} width={2}>
+        <MediaQuery minDeviceWidth={320} maxDeviceWidth={480}>
+            <MobileHeaderContainer style={{ marginBottom: '20px' }}>
+              <h1> Housing </h1>
 
-          <Icon
-            onClick={showFilters}
-            type="filter"
-            style={{ display: 'flex', fontSize: '14px', textTransform: 'uppercase', fontWeight: 'bold', marginRight: '10px', justifyContent: 'space-between', width: '75px', cursor: 'pointer' }}
-          >
-            Filter
-          </Icon>
-        </ MobileHeaderContainer>
-        <CardList>
-          {data.map((houseListing, i) => (
-            <MobileHouseCard key={i} {...houseListing} />
-          ))}
-        </CardList>
-      </ MediaQuery>
+              <Icon
+                onClick={showFilters}
+                type="filter"
+                style={{ display: 'flex', fontSize: '14px', textTransform: 'uppercase', fontWeight: 'bold', marginRight: '10px', justifyContent: 'space-between', width: '75px', cursor: 'pointer' }}
+              >
+                Filter
+              </Icon>
+            </ MobileHeaderContainer>
 
-      <MediaQuery minDeviceWidth={481}>
-        <HeaderContainer style={{ marginBottom: '20px' }}>
-          <h1> Housing </h1>
+          <CardList>
+            {data.map((houseListing, i) => (
+              <MobileHouseCard key={i} {...houseListing} />
+            ))}
+          </CardList>
+        </ MediaQuery>
 
-          <Icon
-            onClick={showFilters}
-            type="filter"
-            style={{ display: 'flex', textTransform: 'uppercase', fontWeight: 'bold', marginRight: '10px', cursor: 'pointer' }}
-          >
-            Filter
-          </Icon>
-        </HeaderContainer>
-        <CardList>
-          {data.map((houseListing, i) => (
-            <HouseCard key={i} {...houseListing} />
-          ))}
-        </CardList>
-      </MediaQuery>
+        <MediaQuery minDeviceWidth={481}>
+          <HeaderContainer style={{ marginBottom: '20px' }}>
+            <h1> Housing </h1>
+
+            <Icon
+              onClick={showFilters}
+              type="filter"
+              style={{ display: 'flex', textTransform: 'uppercase', fontWeight: 'bold', marginRight: '10px', justifyContent: 'space-between', width: '75px', cursor: 'pointer' }}
+            >
+              Filter
+            </Icon>
+          </HeaderContainer>
+          <CardList>
+            {data.map((houseListing, i) => (
+              <HouseCard key={i} {...houseListing} />
+            ))}
+          </CardList>
+        </MediaQuery>
+      </Loader>
     </Container>
   </Layout>
 )

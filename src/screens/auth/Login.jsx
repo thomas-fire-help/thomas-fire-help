@@ -6,7 +6,7 @@ import { connectModule } from 'redux-modules'
 import authModule from '../../modules/auth';
 import Layout from '../../components/Layout'
 import AuthErrorBanner from './AuthErrorBanner'
-import { Container, HeaderContainer, MobileHeaderContainer } from '../../components/atoms'
+import { MobileContainer, Container, HeaderContainer, MobileHeaderContainer } from '../../components/atoms'
 import { hasSignUpErrors } from '../../utils/authUtils'
 
 const AuthInputContainer = styled.div`
@@ -114,8 +114,8 @@ class Login extends Component {
 
     return (
       <Layout onBack={goBack}>
-        <Container>
-          <MediaQuery minDeviceWidth={320} maxDeviceWidth={480}>
+        <MediaQuery minDeviceWidth={320} maxDeviceWidth={480}>
+          <MobileContainer>
             {hasSignUpErrors(errors) &&
               <AuthErrorBanner errors={errors} />
             }
@@ -140,9 +140,11 @@ class Login extends Component {
                 Login
               </MobileLoginButton>
             </AuthInputContainer>
-          </MediaQuery>
+          </MobileContainer>
+        </MediaQuery>
 
-          <MediaQuery minDeviceWidth={481}>
+        <MediaQuery minDeviceWidth={481}>
+          <Container>
             {hasSignUpErrors(errors) &&
               <AuthErrorBanner errors={errors} />
             }
@@ -172,8 +174,8 @@ class Login extends Component {
                 <div>{JSON.stringify(loginErrors)}</div>
               }
             </AuthInputContainer>
-          </MediaQuery>
-        </Container>
+          </Container>
+        </MediaQuery>
       </Layout>
     );
   }

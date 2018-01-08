@@ -11,15 +11,6 @@ const fadeIn = keyframes`
 }
 `;
 
-const fadeOut = keyframes`
-0% {
-  opacity: 1;
-}
-100% {
-  opacity: 0;
-}
-`;
-
 const dropIn = keyframes`
   0% {
     transform: translateY(-100px);
@@ -52,7 +43,6 @@ const AuthErrorBanner = ({ errors }) => {
         }
         </Banner.Body>
       </Banner.Content>
-      {/* <Banner.Dismiss onClick={() => alert('dismiss clicked')} /> */}
     </ErrorBannerContainer>
   )
 }
