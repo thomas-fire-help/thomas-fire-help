@@ -60,6 +60,7 @@ const Button = styled.button`
   padding: 15px 30px;
   cursor: pointer;
   width: 100%;
+  user-select: none;
 `
 
 const TagList = styled.ul`

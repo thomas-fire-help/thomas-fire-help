@@ -58,6 +58,7 @@ const ContactButton = styled.button`
   margin-top: 20px;
   outline: none;
   padding: 15px 30px;
+  user-select: none;
 `
 
 const DetailsButton = styled.button`
@@ -70,6 +71,7 @@ const DetailsButton = styled.button`
   margin-top: 20px;
   outline: none;
   padding: 15px 30px;
+  user-select: none;
 `
 
 const TagList = styled.ul`

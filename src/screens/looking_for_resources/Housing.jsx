@@ -177,7 +177,7 @@ const Housing = ({
 
         <MediaQuery minDeviceWidth={481}>
           <Container style={{ padding: '15px 25px', width: '100%'}}>
-            <HeaderContainer style={{ marginBottom: '20px' }}>
+            <HeaderContainer>
               <h1> Housing </h1>
 
               <Icon
