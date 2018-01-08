@@ -110,6 +110,7 @@ const LFVolunteerForm = ({
                   <div>
                     <StackInput required label="Organization's name:">
                       <Input
+                        style={{ fontSize: '16px' }}
                         onChange={ e => update('organization', e.target.value)}
                         value={formData.organization}
                       />
@@ -117,8 +118,18 @@ const LFVolunteerForm = ({
 
                     <StackInput required label="Number of volunteers:">
                       <Input
+                        style={{ fontSize: '16px' }}
                         onChange={ e => update('number_of_volunteers', e.target.value)}
                         value={formData.number_of_volunteers}
+                      />
+                    </StackInput>
+
+                    <StackInput required label="Describe what you need (be specific):">
+                      <TextArea
+                        style={{ fontSize: '16px' }}
+                        autosize={{ minRows: 3 }}
+                        onChange={ e => update('volunteers_notes', e.target.value)}
+                        value={formData.volunteers_notes}
                       />
                     </StackInput>
                   </div>
@@ -126,16 +137,9 @@ const LFVolunteerForm = ({
               }
             })(path.split('/').pop())}
 
-            <StackInput required label="Describe what you need (be specific):">
-              <TextArea
-                autosize={{ minRows: 3 }}
-                onChange={ e => update('volunteers_notes', e.target.value)}
-                value={formData.volunteers_notes}
-              />
-            </StackInput>
-
             <StackInput required label="Your name:">
               <Input
+                style={{ fontSize: '16px' }}
                 onChange={ e => update('contact_name', e.target.value)}
                 value={formData.contact_name}
               />
@@ -143,6 +147,7 @@ const LFVolunteerForm = ({
 
             <StackInput required label="Phone number:">
               <Input
+                style={{ fontSize: '16px' }}
                 onChange={ e => update('phone_number', e.target.value)}
                 value={formData.phone_number}
               />
@@ -150,6 +155,7 @@ const LFVolunteerForm = ({
 
             <StackInput required label="Email address:">
               <Input
+                style={{ fontSize: '16px' }}
                 onChange={ e => update('email_address', e.target.value)}
                 value={formData.email_address}
               />
@@ -157,8 +163,11 @@ const LFVolunteerForm = ({
 
             <StackInput required label="Street address:">
               <Input
-                onChange={ e => update('address', e.target.value)}
-                value={formData.address}
+                style={{ fontSize: '16px' }}
+                onChange={ e => update(
+                  formData.volunteerType === 'organization' ? 'address' : 'location', e.target.value)
+                }
+                value={formData.volunteerType === 'organization' ? formData.address : formData.location}
               />
             </StackInput>
 
@@ -183,6 +192,7 @@ const LFVolunteerForm = ({
 
             <StackInput required label="Required Skills:">
               <TextArea
+                style={{ fontSize: '16px' }}
                 autosize={{ minRows: 3 }}
                 onChange={ e => update('skills', e.target.value)}
                 value={formData.skills}
@@ -245,6 +255,7 @@ const LFVolunteerForm = ({
                   <div>
                     <StackInput required label="Organization's name:">
                       <Input
+                        style={{ fontSize: '16px' }}
                         onChange={ e => update('organization', e.target.value)}
                         value={formData.organization}
                       />
@@ -252,6 +263,7 @@ const LFVolunteerForm = ({
 
                     <StackInput required label="Number of volunteers:">
                       <Input
+                        style={{ fontSize: '16px' }}
                         onChange={ e => update('number_of_volunteers', e.target.value)}
                         value={formData.number_of_volunteers}
                       />
@@ -263,6 +275,7 @@ const LFVolunteerForm = ({
 
             <StackInput required label="Describe what you need (be specific):">
               <TextArea
+                style={{ fontSize: '16px' }}
                 autosize={{ minRows: 3 }}
                 onChange={ e => update('volunteers_notes', e.target.value)}
                 value={formData.volunteers_notes}
@@ -271,6 +284,7 @@ const LFVolunteerForm = ({
 
             <StackInput required label="Your name:">
               <Input
+                style={{ fontSize: '16px' }}
                 onChange={ e => update('contact_name', e.target.value)}
                 value={formData.contact_name}
               />
@@ -278,6 +292,7 @@ const LFVolunteerForm = ({
 
             <StackInput required label="Phone number:">
               <Input
+                style={{ fontSize: '16px' }}
                 onChange={ e => update('phone_number', e.target.value)}
                 value={formData.phone_number}
               />
@@ -285,6 +300,7 @@ const LFVolunteerForm = ({
 
             <StackInput required label="Email address:">
               <Input
+                style={{ fontSize: '16px' }}
                 onChange={ e => update('email_address', e.target.value)}
                 value={formData.email_address}
               />
@@ -292,6 +308,7 @@ const LFVolunteerForm = ({
 
             <StackInput required label="Street address:">
               <Input
+                style={{ fontSize: '16px' }}
                 onChange={ e => update('address', e.target.value)}
                 value={formData.address}
               />
@@ -318,8 +335,10 @@ const LFVolunteerForm = ({
 
             <StackInput required label="Required Skills:">
               <TextArea
+                style={{ fontSize: '16px' }}
                 autosize={{ minRows: 3 }}
                 onChange={ e => update('skills', e.target.value)}
+                value={formData.skills}
               />
             </StackInput>
 
