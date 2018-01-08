@@ -55,7 +55,7 @@ export const MobileContainer = styled.div`
   flex-direction: column;
   animation: ${fadeIn} 1s forwards;
   opacity: 0;
-  width: 80vw;
+  width: 85vw;
 `
 
 export const Card = styled.div`
