@@ -165,9 +165,9 @@ const LFVolunteerForm = ({
               <Input
                 style={{ fontSize: '16px' }}
                 onChange={ e => update(
-                  formData.volunteerType === 'organization' ? 'address' : 'location', e.target.value)
+                  formData.volunteer_type === 'organization' ? 'address' : 'location', e.target.value)
                 }
-                value={formData.volunteerType === 'organization' ? formData.address : formData.location}
+                value={formData.volunteer_type === 'organization' ? formData.address : formData.location}
               />
             </StackInput>
 
