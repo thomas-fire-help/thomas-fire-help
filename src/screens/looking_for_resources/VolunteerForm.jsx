@@ -181,10 +181,10 @@ const LFVolunteerForm = ({
               />
             </StackInput>
 
-            <div style={{ margin: '20px 0px' }}>
+            <div style={{ margin: '20px 0px', width: '100%' }}>
               <Button
                 size="large"
-                style={{ width: '100%' }}
+                style={{ backgroundColor: '#6D6D6D', color: '#FFF', width: '100%' }}
                 onClick={() => {
                   actions.create(formData)
                   resetForm()
@@ -222,10 +222,14 @@ const LFVolunteerForm = ({
           </SuccessBannerContainer>
         }
 
+        {Boolean(Object.keys(errors).length) &&
+          <ErrorBanner errors={formatErrors(errors)}/>
+        }
+
         {isLoggedIn ? (
           <Loader loaded={!loading} lines={13} length={10} width={2}>
             <HeaderContainer>
-              I need volunteer help...
+              <h1>I need volunteer help...</h1>
             </HeaderContainer>
 
             {(formType => {
@@ -305,28 +309,17 @@ const LFVolunteerForm = ({
               />
             </StackInput>
 
-            <div style={{ paddingTop: '1em' }}>
-              <MediaQuery minDeviceWidth={320} maxDeviceWidth={480}>
-                <Button
-                  size="large"
-                  style={{ width: '100%' }}
-                  onClick={() => {
-                    actions.create(formData)
-                    resetForm()
-                  }}
-                >
-                  Submit
-                </Button>
-              </MediaQuery>
+            <div style={{ marginTop: '20px', marginBottom: '30px' }}>
               <Button
                 size="large"
+                style={{ backgroundColor: '#6D6D6D', color: '#FFF', width: '100%' }}
                 onClick={() => {
                   actions.create(formData)
                   resetForm()
                 }}
               >
                 Submit
-                </Button>
+              </Button>
             </div>
           </Loader>
         ) : (

@@ -11,7 +11,6 @@ const create = (params) => {
   const formattedParams = { ...params, number_of_volunteers: Number(params.number_of_volunteers)}
   return fetch(endpoint, { headers: fetchConfig(), method: 'POST', body: JSON.stringify(params) })
     .then(res => {
-      console.log(res)
       if (!res.ok) {
         throw res;
       } else {
@@ -52,7 +51,7 @@ const volunteersModule = createModule ({
           ? Object.assign(
               {},
               state,
-              { data: state.data.concat(payload), loading: false, successMessage: 'Save successful!' }
+              { data: state.data.concat(payload), loading: false, successMessage: 'Save successful!', errors: {} }
             )
           : Object.assign(
               {},

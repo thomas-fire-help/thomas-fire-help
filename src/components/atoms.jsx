@@ -87,6 +87,10 @@ export const HeaderContainer = styled.div`
   font-weight: 600px
   padding-bottom: 20px;
   width: 100%;
+
+  h1 {
+    margin: 0;
+  }
 `
 
 export const MobileHeaderContainer = styled.div`
