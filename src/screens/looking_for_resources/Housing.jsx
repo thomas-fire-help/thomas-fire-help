@@ -37,7 +37,7 @@ const Button = styled.div`
   margin-top: 30px;
 `
 
-const MobileButton = styled.div`
+const MobileFilterButton = styled.div`
   border: 1px solid #47ABFC;
   border-radius: 2px;
   padding: 5px 10px;
@@ -144,12 +144,12 @@ const Housing = ({
             />
           </StackInput>
 
-          <MobileButton
+          <MobileFilterButton
             onClick={hideFilters}
           >
             <Icon type="search" style={{ marginRight: '10px' }}/>
             Filter
-          </MobileButton>
+          </MobileFilterButton>
         </OverlayLayout>
       }
       <LoadingSpinner loading={loading}>

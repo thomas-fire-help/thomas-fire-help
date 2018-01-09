@@ -125,7 +125,7 @@ class SignUp extends Component {
     const { email: username, phoneNumber: phone_number, password, errors } = this.state;
 
     actions.signup(
-      { username, phone_number, password },
+      { username: username.toLowerCase(), phone_number, password },
       { onSuccess: () => history.push('/') }
     )
   }

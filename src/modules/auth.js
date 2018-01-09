@@ -22,13 +22,18 @@ const login = ({ login, password }, onSuccess) =>
     method: 'post', body: JSON.stringify({ login, password }),
     headers: fetchConfig(),
   })
-  .then(res =>
-    res.json().then(json => Object.assign({}, json, { status: res.status }))
-  )
-  .then(data => {
-    if (data.status >= 200 && data.status < 299) { onSuccess(data) }
-    return data
+  .then(res => {
+    if (!res.ok) {
+      throw res;
+    } else {
+      return res.json();
+    }
   })
+  .then(data => {
+    onSuccess(data)
+    return { data, status: 'success' }
+  })
+  .catch(res => res.json().then(err => ({ errors: err.error, status: 'failure' })))
 
 const verifyPhone = ({ userId, pin }, onSuccess = () => {}) =>
   fetch(`${getHost()}/users/${userId}/verify`, {
@@ -69,6 +74,7 @@ const authModule = createModule({
     loggedIn: false,
     accessToken: '',
     user: {},
+    errors: {},
   },
   composes: [liftState],
   selector: s => s.auth,
@@ -114,27 +120,24 @@ const authModule = createModule({
     signupError: (state, { payload: { status, ...errors } }) =>
       Object.assign({}, state, { loading: false, signupErrors: formatErrors(errors) }),
     login: (state, { payload, meta }) => [
-      Object.assign({}, state, { loading: true, loginErrors: false, signupErrors: false }),
+      Object.assign({}, state, { loading: true, loginErrors: false, errors: {} }),
       Cmd.run(login, {
         successActionCreator: authModule.actions.loginSuccess,
         failActionCreator: authModule.actions.loginError,
         args: [payload, meta.onSuccess]
       })
     ],
-    loginSuccess: (state, { payload }) => [
-      Object.assign({}, state, {
-        loading: false,
-        loginErrors: payload.error,
-        loggedIn: !!payload.access_token,
-        accessToken: payload.access_token,
-        user: payload.user
-      }),
-      Cmd.run(persist, {
-        successActionCreator: authModule.noop,
-        failActionCreator: authModule.noop,
-        args: ['auth', { accessToken: payload.access_token, user: payload.user }]
-      })
-    ],
+    loginSuccess: (state, { payload }) => {
+      payload.status === 'success' && persist(['auth'], { accessToken: payload.data.access_token, user: payload.data.user })
+      return payload.status === 'success'
+        ? Object.assign({}, state, {
+            loading: false,
+            loggedIn: !!payload.data.access_token,
+            accessToken: payload.data.access_token,
+            user: payload.data.user
+          })
+        : Object.assign({}, state, { loading: false, errors: payload.errors })
+    },
     loginError: (state, { payload }) =>
       Object.assign({}, state, { loading: false, loginErrors: payload }),
     logout: (state, { payload }) => [

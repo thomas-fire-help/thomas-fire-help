@@ -78,6 +78,12 @@ const LoginButton = styled.button`
   cursor: pointer;
 `
 
+const formatErrors = (errors) => {
+  return Object.keys(errors).reduce((acc, category) => {
+    return { ...acc, [category]: { label: `${errors[category][0]}. Either the username or password was incorrect.` } }
+  }, {})
+}
+
 class Login extends Component {
   constructor() {
     super()
@@ -87,8 +93,7 @@ class Login extends Component {
   handleOnClick = () => {
     const { history, actions } = this.props
     const { user: login, password } = this.state
-
-    actions.login({ login, password }, { onSuccess: () => history.push('/') })
+    actions.login({ login: login.toLowerCase(), password }, { onSuccess: () => history.push('/') })
   }
 
   handleUsernameInput = (e) => {
@@ -110,14 +115,21 @@ class Login extends Component {
   }
 
   render() {
-    const { errors = {}, history: { goBack, push }, loginErrors} = this.props;
+    const {
+      errors = {},
+      history: { goBack, push },
+      loginErrors
+    } = this.props;
+
+    console.log(errors);
+    console.log(Boolean(Object.keys(errors).length))
 
     return (
       <Layout onBack={goBack}>
         <MediaQuery minDeviceWidth={320} maxDeviceWidth={480}>
           <MobileContainer>
-            {hasSignUpErrors(errors) &&
-              <ErrorBanner errors={errors} />
+            {Boolean(Object.keys(errors).length) &&
+              <ErrorBanner errors={formatErrors(errors)} />
             }
             <MobileHeaderContainer style={{ marginBottom: '40px', textAlign: 'left' }}>
               <h1> Login </h1>
@@ -145,8 +157,8 @@ class Login extends Component {
 
         <MediaQuery minDeviceWidth={481}>
           <Container>
-            {hasSignUpErrors(errors) &&
-              <ErrorBanner errors={errors} />
+            {Boolean(Object.keys(errors).length) &&
+              <ErrorBanner errors={formatErrors(errors)} />
             }
             <HeaderContainer>
               <h1> Login </h1>
@@ -167,9 +179,9 @@ class Login extends Component {
               <LoginButton onClick={this.handleOnClick}>
                 Login
               </LoginButton>
-              <LoginButton onClick={() => push('/sign_up')}>
+              {/* <LoginButton onClick={() => push('/sign_up')}>
                 Signup
-              </LoginButton>
+              </LoginButton> */}
               {loginErrors &&
                 <div>{JSON.stringify(loginErrors)}</div>
               }

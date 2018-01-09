@@ -28,10 +28,10 @@ const Housing = ({ loading, data, history: { goBack }}) => (
           <HeaderContainer>
             <h1> I am... </h1>
           </HeaderContainer>
-          <Category to="/looking_for_resources/volunteers/organization">
+          <Category to="/looking_for_resources/volunteers/organization" style={{ height: '80px' }}>
             <h2> 🏩 An Organization </h2>
           </Category>
-          <Category to="/looking_for_resources/volunteers/personal">
+          <Category to="/looking_for_resources/volunteers/personal" style={{ height: '80px' }}>
             <h2> 🙋 An Individual </h2>
           </Category>
         </Container>
