@@ -122,11 +122,15 @@ export const NavigationCard = styled.section`
 `
 
 export const Category = styled(Link)`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   color: #000;
   font-size: 18px;
-  padding: 25px 25px;
+  padding: 20px;
   text-decoration: none;
   margin-bottom: 20px;
+  height: 125px;
 
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 3px 0 rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.2s ease-in-out;
@@ -143,6 +147,7 @@ export const Category = styled(Link)`
 
   p {
     color: grey;
+    margin: 0px;
   }
 `
 
@@ -175,11 +180,15 @@ export const MobileCategory = styled(Link)`
 `
 
 export const External = styled.a`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   color: #000;
   font-size: 18px;
   padding: 25px 25px;
   text-decoration: none;
   margin-bottom: 20px;
+  height: 125px;
 
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 3px 0 rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.2s ease-in-out;
@@ -196,6 +205,7 @@ export const External = styled.a`
 
   p {
     color: grey;
+    margin: 0px;
   }
 `
 
