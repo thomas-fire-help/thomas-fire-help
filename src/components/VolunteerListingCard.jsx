@@ -59,7 +59,6 @@ const ContactButton = styled.button`
   flex: 1;
   outline: none;
   padding: 15px 30px;
-  transition: background-color 0.3s ease-in-out;
   margin-top: 20px;
   user-select: none;
 `
@@ -73,7 +72,6 @@ const DetailsButton = styled.button`
   flex: 1;
   outline: none;
   padding: 15px 30px;
-  transition: background-color 0.3s ease-in-out;
   margin-top: 20px;
   user-select: none;
 `
@@ -131,7 +129,7 @@ const VolunteerListingCard = ({
   showDetails,
   volunteers_notes,
 }) => (
-  <Card style={{ marginTop: '50px' }}>
+  <Card style={{ marginBottom: '30px' }}>
     <Body>
       <HeaderContainer onClick={() => setShowDetails(!showDetails)}>
         <h2>

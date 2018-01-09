@@ -127,10 +127,10 @@ export const Category = styled(Link)`
   justify-content: center;
   color: #000;
   font-size: 18px;
-  padding: 20px;
+  padding: 30px;
   text-decoration: none;
   margin-bottom: 20px;
-  height: 110px;
+  height: 130px;
 
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 3px 0 rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.2s ease-in-out;
@@ -142,6 +142,7 @@ export const Category = styled(Link)`
     text-transform: uppercase;
     letter-spacing: 2px;
     margin: 0px;
+    margin-bottom: 5px;
     font-size: 22px;
   }
 
@@ -185,10 +186,10 @@ export const External = styled.a`
   justify-content: center;
   color: #000;
   font-size: 18px;
-  padding: 25px 25px;
+  padding: 30px;
   text-decoration: none;
   margin-bottom: 20px;
-  height: 110px;
+  height: 130px;
 
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 3px 0 rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.2s ease-in-out;
@@ -201,6 +202,7 @@ export const External = styled.a`
     letter-spacing: 2px;
     margin: 0px;
     font-size: 22px;
+    margin-bottom: 5px;
   }
 
   p {
