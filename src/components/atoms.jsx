@@ -130,7 +130,7 @@ export const Category = styled(Link)`
   padding: 20px;
   text-decoration: none;
   margin-bottom: 20px;
-  height: 125px;
+  height: 110px;
 
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 3px 0 rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.2s ease-in-out;
@@ -188,7 +188,7 @@ export const External = styled.a`
   padding: 25px 25px;
   text-decoration: none;
   margin-bottom: 20px;
-  height: 125px;
+  height: 110px;
 
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 3px 0 rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.2s ease-in-out;
