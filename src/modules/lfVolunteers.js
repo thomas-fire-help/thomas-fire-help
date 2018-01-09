@@ -38,7 +38,7 @@ const volunteersModule = createModule ({
   transformations: {
     create: (state, { payload }) => {
       return loop(
-      Object.assign({}, state, { loading: true, successMessage: '' }),
+      Object.assign({}, state, { loading: true, successMessage: '', errors: {} }),
       Cmd.run(create, {
         successActionCreator: volunteersModule.actions.createSuccess,
         failActionCreator: volunteersModule.actions.createError,
