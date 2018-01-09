@@ -93,8 +93,7 @@ class Login extends Component {
   handleOnClick = () => {
     const { history, actions } = this.props
     const { user: login, password } = this.state
-
-    actions.login({ login, password }, { onSuccess: () => history.push('/') })
+    actions.login({ login: login.toLowerCase(), password }, { onSuccess: () => history.push('/') })
   }
 
   handleUsernameInput = (e) => {
