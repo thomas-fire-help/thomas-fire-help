@@ -30,7 +30,6 @@ const dropIn = keyframes`
   }
 `;
 
-
 const MobileErrorBannerContainer = styled(ErrorBanner)`
   animation: ${fadeIn} 1s, ${mobileDropIn} .7s forwards;
 `
@@ -43,6 +42,13 @@ const ErrorMessage = styled.span`
   display: block;
   animation: ${fadeIn} 1s forwards;
 `
+
+// Expects data in the format of:
+// Ex. {
+//        password: { label: 'Password must be at least 8 characters' },
+//        email: { label: 'Must be a valid email' },
+//        phoneNumber: { label: 'Must be a valid phone number' },
+//     }
 
 const GeneralErrorBanner = ({ errors }) => {
   return (

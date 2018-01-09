@@ -1,4 +1,4 @@
-import { Banner, SuccessBanner, ActionBanner } from '@procore/core-react'
+import { Banner, ActionBanner } from '@procore/core-react'
 import { compose, withStateHandlers, lifecycle } from 'recompose'
 import { connectModule } from 'redux-modules'
 import Loader from 'react-loader'
@@ -11,6 +11,7 @@ import { Input, Button, Select } from 'antd'
 import Layout from '../../components/Layout'
 import lfVolunteersModule from '../../modules/lfVolunteers'
 import ErrorBanner from '../../components/ErrorBanner'
+import SuccessBanner from '../../components/SuccessBanner'
 
 const Option = Select.Option
 const { TextArea } = Input
@@ -25,28 +26,6 @@ const Label = styled.h2`
 
 const StackContainer = styled.div`
   margin: 40px 0;
-`
-
-const fadeIn = keyframes`
-0% {
-  opacity: 0;
-}
-100% {
-  opacity: 1;
-}
-`;
-
-const dropIn = keyframes`
-  0% {
-    transform: translateY(-100px);
-  }
-  100% {
-    transform: translateY(20px);
-  }
-`;
-
-const SuccessBannerContainer = styled(SuccessBanner)`
-  animation: ${fadeIn} 1s, ${dropIn} .7s forwards;
 `
 
 const StackInput = ({ required, children, label }) => (
@@ -85,12 +64,7 @@ const LFVolunteerForm = ({
     <MediaQuery minDeviceWidth={320} maxDeviceWidth={480}>
       <MobileContainer>
         {successMessage &&
-          <SuccessBannerContainer>
-            <Banner.Content>
-              <Banner.Title style={{ fontSize: '17px' }}>Success!</Banner.Title>
-              <Banner.Body style={{ fontSize: '15px' }}>Save Successful</Banner.Body>
-            </Banner.Content>
-          </SuccessBannerContainer>
+          <SuccessBanner />
         }
 
         {Boolean(Object.keys(errors).length) &&
@@ -231,12 +205,7 @@ const LFVolunteerForm = ({
     <MediaQuery minDeviceWidth={481}>
       <Container>
         {successMessage &&
-          <SuccessBannerContainer>
-            <Banner.Content>
-              <Banner.Title style={{ fontSize: '17px' }}>Success!</Banner.Title>
-              <Banner.Body style={{ fontSize: '15px' }}>Save Successful</Banner.Body>
-            </Banner.Content>
-          </SuccessBannerContainer>
+          <SuccessBanner />
         }
 
         {Boolean(Object.keys(errors).length) &&

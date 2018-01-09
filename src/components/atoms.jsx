@@ -83,9 +83,10 @@ export const HeaderContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   flex: 1;
-  font-size: 20px;
-  font-weight: 600px
-  padding-bottom: 20px;
+  font-size: 17px;
+  font-weight: 600px;
+  margin-top: 20px;
+  margin-bottom: 30px;
   width: 100%;
 
   h1 {
@@ -137,6 +138,7 @@ export const Category = styled(Link)`
     text-transform: uppercase;
     letter-spacing: 2px;
     margin: 0px;
+    font-size: 22px;
   }
 
   p {
@@ -189,6 +191,7 @@ export const External = styled.a`
     text-transform: uppercase;
     letter-spacing: 2px;
     margin: 0px;
+    font-size: 22px;
   }
 
   p {
