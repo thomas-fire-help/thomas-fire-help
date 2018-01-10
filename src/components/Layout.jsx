@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import MediaQuery from 'react-responsive'
+import { Link } from 'react-router-dom'
 import { Icon } from 'antd'
 
 import { MobileContainer, Container } from './atoms'
@@ -87,9 +88,9 @@ const Layout = ({ onBack, children, header }) => (
             {'Back'}
           </MobileLeftButton>
           <Title>
-            <h2>
+            <Link to="/">
               <img src={require('../assets/logo.svg')} style={{ height: '40px', width: 'auto' }}/>
-            </h2>
+            </Link>
           </Title>
           <RightButton>
             {/* <a href="mailto:help@thomasfirehelp.com">

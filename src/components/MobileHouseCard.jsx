@@ -10,11 +10,19 @@ const Body = styled.div`
 const Summary = styled.div`
   margin-left: 2px;
   margin-top: 6px;
+  margin-bottom: 5px;
   font-size: 14px;
   text-transform: uppercase;
-  font-weight: 600;
+  font-weight: 500;
   font-color: #6D6D6D;
   letter-spacing: 1px;
+`
+
+const Price = styled.div`
+  padding-left: 2px;
+  font-size: 16px;
+  font-weight: 500;
+  font-color: #3A3A3A;
 `
 
 const Location = styled.div`
@@ -135,8 +143,14 @@ const prettyPrint = (key, value) => wordMap[key][value] || value
 const MobileHouseCard = ({ showContact, setShowContact, showDetails, setShowDetails, ...houseListing }) => (
   <MobileCard>
     <Body>
-      <MobileHouseCardHeader onClick={() => setShowDetails(!showDetails)}>
-        <h2>
+      <Summary>
+        <div>
+          {`${houseListing.beds} beds`} &middot; {prettyPrint('length_of_stay', houseListing.length_of_stay)}
+        </div>
+      </Summary>
+
+      <MobileHouseCardHeader onClick={() => setShowDetails(!showDetails)} style={{ marginBottom: '5px' }}>
+        <h2 style={{ fontWeight: '600' }}>
           {`${prettyPrint('housing_type', houseListing.housing_type)} in ${prettyPrint('city', houseListing.city)}`}
         </h2>
         <aside>
@@ -144,11 +158,12 @@ const MobileHouseCard = ({ showContact, setShowContact, showDetails, setShowDeta
         </aside>
       </MobileHouseCardHeader>
 
-      <Summary>
-        <div>
-          {`${houseListing.beds} beds`} &middot; {prettyPrint('length_of_stay', houseListing.length_of_stay)}
-        </div>
-      </Summary>
+      <Price>
+        {houseListing.price
+          ? houseListing.price
+          : 'No price listed'
+        }
+      </Price>
 
       <TagList>
         <Tag>{prettyPrint('paid', houseListing.paid)}</Tag>
@@ -159,12 +174,12 @@ const MobileHouseCard = ({ showContact, setShowContact, showDetails, setShowDeta
       </TagList>
 
       <DetailPane active={showContact}>
-          <div>
-            <b>Contact Name</b>
-            <p>
-              {houseListing.contact_name}
-            </p>
-          </div>
+        <div>
+          <b>Contact Name</b>
+          <p>
+            {houseListing.contact_name}
+          </p>
+        </div>
         {houseListing.email_address &&
           <div>
             <b>Email</b>
@@ -201,6 +216,14 @@ const MobileHouseCard = ({ showContact, setShowContact, showDetails, setShowDeta
             <b>Notes</b>
             <p>
               {houseListing.notes}
+            </p>
+          </div>
+        }
+        {houseListing.price &&
+          <div>
+            <b>Price</b>
+            <p>
+              {houseListing.price}
             </p>
           </div>
         }
