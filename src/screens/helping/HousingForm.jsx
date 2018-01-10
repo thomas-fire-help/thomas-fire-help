@@ -7,7 +7,7 @@ import { withAuth } from '../../utils/authUtils'
 import housingModule from '../../modules/housing'
 import Layout from '../../components/Layout'
 import { MobileContainer, Container, HeaderContainer } from '../../components/atoms'
-import { Input, Radio, Checkbox, Select } from 'antd'
+import { Input, Radio, Checkbox, Select, InputNumber } from 'antd'
 import styled from 'styled-components'
 import SegmentedController from '../../components/SegmentedController'
 const RadioGroup = Radio.Group
@@ -146,8 +146,11 @@ const Housing = ({ loggedIn, actions, update, formData, history }) => (
 
           {formData.paid &&
             <StackInput required label="Monthly Payment">
-              <Input
-                onChange={({ target }) => update('price', target.value)}
+              <InputNumber
+                formatter={value => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                style={{ fontSize: '16px', width: '100%' }}
+                onChange={ value => update('price', value)}
+                value={formData.price}
                 placeholder="Enter a price..."
               />
             </StackInput>
@@ -324,9 +327,12 @@ const Housing = ({ loggedIn, actions, update, formData, history }) => (
 
           {formData.paid &&
             <StackInput required label="Monthly Payment">
-              <Input
-                onChange={({ target }) => update('price', target.value)}
+              <InputNumber
+                formatter={value => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                onChange={value => update('price', value)}
                 placeholder="Enter a price..."
+                style={{ fontSize: '16px', width: '100%' }}
+                value={formData.price}
               />
             </StackInput>
           }

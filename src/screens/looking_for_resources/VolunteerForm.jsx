@@ -7,7 +7,7 @@ import React from 'react'
 import styled, { keyframes } from 'styled-components'
 
 import { MobileContainer, Container, MobileHeaderContainer, HeaderContainer } from '../../components/atoms'
-import { Input, Button, Select } from 'antd'
+import { Input, Button, Select, InputNumber } from 'antd'
 import Layout from '../../components/Layout'
 import lfVolunteersModule from '../../modules/lfVolunteers'
 import ErrorBanner from '../../components/ErrorBanner'
@@ -91,9 +91,10 @@ const LFVolunteerForm = ({
                     </StackInput>
 
                     <StackInput required label="Number of volunteers:">
-                      <Input
-                        style={{ fontSize: '16px' }}
-                        onChange={ e => update('number_of_volunteers', e.target.value)}
+                      <InputNumber
+                        defaultValue={1}
+                        style={{ fontSize: '16px', width: '100%' }}
+                        onChange={ value => update('number_of_volunteers', value)}
                         value={formData.number_of_volunteers}
                       />
                     </StackInput>
@@ -231,9 +232,10 @@ const LFVolunteerForm = ({
                     </StackInput>
 
                     <StackInput required label="Number of volunteers:">
-                      <Input
-                        style={{ fontSize: '16px' }}
-                        onChange={ e => update('number_of_volunteers', e.target.value)}
+                      <InputNumber
+                        defaultValue={1}
+                        style={{ fontSize: '16px', width: '100%' }}
+                        onChange={ value => update('number_of_volunteers', value)}
                         value={formData.number_of_volunteers}
                       />
                     </StackInput>
