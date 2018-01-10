@@ -20,6 +20,7 @@ export const SingleSelect = ({ value = [], options, onChange }) => (
   <Container>
     {options.map(option => (
       <Button
+        key={`${option.label}`}
         selected={value.includes(option.value)}
         onClick={() => value.includes(option.value)
           ? onChange(value.filter(val => option.value !== val))
@@ -32,10 +33,11 @@ export const SingleSelect = ({ value = [], options, onChange }) => (
   </Container>
 )
 
-const MultiSelect = ({ value = [], options, onChange }) => (
+export const MultiSelect = ({ value = [], options, onChange }) => (
   <Container>
     {options.map(option => (
       <Button
+        key={`${option.label}`}
         selected={value.includes(option.value)}
         onClick={() => value.includes(option.value)
           ? onChange(value.filter(val => option.value !== val))
