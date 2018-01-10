@@ -4,15 +4,15 @@ import styled from 'styled-components'
 import { Card } from './atoms'
 
 const Body = styled.div`
-  padding: 15px;
+  padding: 30px 20px;
 `
 
 const Summary = styled.div`
   padding-left: 2px;
   margin-bottom: 5px;
-  font-size: 18px;
+  font-size: 16px;
   text-transform: uppercase;
-  font-weight: 600;
+  font-weight: 500;
   font-color: #6D6D6D;
   letter-spacing: .03em;
 `
@@ -20,7 +20,7 @@ const Summary = styled.div`
 const Price = styled.div`
   padding-left: 2px;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   font-color: #3A3A3A;
 `
 
@@ -120,7 +120,7 @@ const HouseCard = ({ showContact, setShowContact, showDetails, setShowDetails, .
       </Summary>
 
       <HeaderContainer onClick={() => setShowDetails(!showDetails)} style={{ marginBottom: '10px' }}>
-        <h2 style={{ lineHeight: '36px' }}>
+        <h2 style={{ lineHeight: '36px', fontWeight: '600' }}>
           {`${prettyPrint('housing_type', houseListing.housing_type)} in ${prettyPrint('city', houseListing.city)}`}
         </h2>
         <aside>

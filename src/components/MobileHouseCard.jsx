@@ -13,7 +13,7 @@ const Summary = styled.div`
   margin-bottom: 5px;
   font-size: 14px;
   text-transform: uppercase;
-  font-weight: 600;
+  font-weight: 500;
   font-color: #6D6D6D;
   letter-spacing: 1px;
 `
@@ -21,7 +21,7 @@ const Summary = styled.div`
 const Price = styled.div`
   padding-left: 2px;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   font-color: #3A3A3A;
 `
 
@@ -150,7 +150,7 @@ const MobileHouseCard = ({ showContact, setShowContact, showDetails, setShowDeta
       </Summary>
 
       <MobileHouseCardHeader onClick={() => setShowDetails(!showDetails)} style={{ marginBottom: '5px' }}>
-        <h2>
+        <h2 style={{ fontWeight: '600' }}>
           {`${prettyPrint('housing_type', houseListing.housing_type)} in ${prettyPrint('city', houseListing.city)}`}
         </h2>
         <aside>
