@@ -106,13 +106,12 @@ const Home = ({ history: { goBack }}) => (
             <p> Something free to eat. </p>
           </External>
 
-          <External
-            href="https://drive.google.com/open?id=1nUv_bw0IA7KPy_jP5IXEGELd1GF7cfzv_LkJutN_nV4"
-            target="_blank"
+          <Category
+            to="/looking_for_resources/services"
           >
             <h2> ⛑ Services </h2>
             <p> FEMA assistance, disaster recovery & more. </p>
-          </External>
+          </Category>
         </Container>
       </MediaQuery>
   </Layout>

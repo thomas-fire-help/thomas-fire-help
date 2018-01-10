@@ -22,6 +22,7 @@ import LookingForHelp from './screens/looking_for_resources'
 import Housing from './screens/looking_for_resources/Housing'
 import LFVolunteers from './screens/looking_for_resources/Volunteers'
 import LFVolunteerForm from './screens/looking_for_resources/VolunteerForm'
+import Services from './screens/looking_for_resources/Services'
 import VolunteerList from './screens/looking_for_resources/VolunteerList'
 
 import Helping from './screens/helping'
@@ -51,6 +52,7 @@ const App = props => (
         <Route exact path="/" component={Home} />
         <Route exact path="/looking_for_resources" component={LookingForHelp} />
         <Route exact path="/looking_for_resources/housing" component={Housing} />
+        <Route exact path="/looking_for_resources/services" component={Services} />
         <Route exact path="/looking_for_resources/volunteers" component={LFVolunteers} />
         <Route exact path="/looking_for_resources/volunteers/personal" component={LFVolunteerForm} />
         <Route exact path="/looking_for_resources/volunteers/organization" component={LFVolunteerForm} />
