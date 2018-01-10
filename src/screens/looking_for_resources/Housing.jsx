@@ -144,8 +144,44 @@ const Housing = ({
             />
           </StackInput>
 
+          <StackInput dark label="City">
+            <SingleSelect
+              value={filters.city}
+              options={[
+                { label: 'Arroyo Grande', value: 'Arroyo Grande' },
+                { label: 'Atascadero', value: 'Atascadero' },
+                { label: 'Camarillo', value: 'Camarillo' },
+                { label: 'Lompoc', value: 'Lompoc' },
+                { label: 'Los Osos', value: 'Los Osos' },
+                { label: 'Mira monte', value: 'Mira monte' },
+                { label: 'Morro Bay', value: 'Morro Bay' },
+                { label: 'Newbury Park', value: 'Newbury Park' },
+                { label: 'Oak View', value: 'Oak View' },
+                { label: 'Ojai', value: 'Ojai' },
+                { label: 'Orcutt', value: 'Orcutt' },
+                { label: 'Oxnard', value: 'Oxnard' },
+                { label: 'Paso Robles', value: 'Paso Robles' },
+                { label: 'Pismo Beach', value: 'Pismo Beach' },
+                { label: 'Port Hueneme', value: 'Port Hueneme' },
+                { label: 'San Luis Obispo', value: 'San Luis Obispo' },
+                { label: 'Santa Barbara', value: 'Santa Barbara' },
+                { label: 'Santa Margarita', value: 'Santa Margarita' },
+                { label: 'Shell Beach', value: 'Shell Beach' },
+                { label: 'Templeton', value: 'Templeton' },
+                { label: 'Thousand Oaks', value: 'Thousand Oaks' },
+                { label: 'Ventura', value: 'Ventura' },
+                { label: 'West Simi', value: 'West Simi' },
+              ]}
+              onChange={selected =>
+                actions.updateFilters({ key: 'city', value: selected })
+              }
+            />
+          </StackInput>
           <MobileFilterButton
-            onClick={hideFilters}
+            onClick={() => {
+              hideFilters();
+              actions.submitFilters()
+            }}
           >
             <Icon type="search" style={{ marginRight: '10px' }}/>
             Filter

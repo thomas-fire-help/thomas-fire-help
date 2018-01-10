@@ -33,7 +33,7 @@ const serializeForCreate = params => {
   };
 };
 
-const formatParams = ({ filters = {}, page = 0, perPage = 1000 }) => {
+const formatParams = ({ filters = {}, page = 0, perPage = 10 }) => {
   const formattedFilters = Object
     .keys(filters)
     .reduce((string, key) => {
@@ -111,9 +111,14 @@ const housingModule = createModule ({
         Object.assign({}, state, {
           filters: Object.assign({}, state.filters, { [key]: value })
         }),
-        Cmd.action(housingModule.actions.list())
+        Cmd.none
       ]
-    }
+    },
+
+    submitFilters: state => [
+      state,
+      Cmd.action(housingModule.actions.list())
+    ]
   },
 });
 
