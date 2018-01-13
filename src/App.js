@@ -46,14 +46,6 @@ const App = props => (
     <ModuleProvider store={store} combineReducers={combineReducers}>
       <AppContainer>
         <Helmet>
-          <link rel="apple-touch-icon" sizes="72x72" href="/public/favicons/apple-touch-icon.png" />
-          <link rel="icon" type="image/png" sizes="32x32" href="/public/favicons/favicon-32x32.png" />
-          <link rel="icon" type="image/png" sizes="16x16" href="/public/favicons/favicon-16x16.png" />
-          <link rel="manifest" href="/public/favicons/manifest.json" />
-          <link rel="mask-icon" href="/public/favicons/safari-pinned-tab.svg" color="#5bbad5" />
-          <link rel="shortcut icon" href="/public/favicons/favicon.ico" />
-          <meta name="msapplication-config" content="/public/favicons/browserconfig.xml" />
-          <meta name="theme-color" content="#ffffff" />
           <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         </Helmet>
         <Route exact path="/" component={Home} />
