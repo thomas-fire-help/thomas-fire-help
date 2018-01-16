@@ -3,7 +3,7 @@ import { withStateHandlers } from 'recompose'
 import styled from 'styled-components'
 import { Card } from './atoms'
 
-const Body = styled.div`
+export const Body = styled.div`
   padding: 30px 20px;
 `
 
@@ -28,7 +28,7 @@ const Location = styled.div`
   font-size: 20px;
 `
 
-const DetailPane = styled.aside`
+export const DetailPane = styled.aside`
   padding-top: ${props => props.acive && '15px'};
   max-height: ${props => props.active ? '750px' : '0px'};
   overflow: hidden;
@@ -36,12 +36,12 @@ const DetailPane = styled.aside`
   transition: max-height 0.25s ease-in-out;
 `
 
-const Footer = styled.section`
+export const Footer = styled.section`
   width: 100%;
   display: flex;
 `
 
-const HeaderContainer = styled.div`
+export const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   user-select: none;

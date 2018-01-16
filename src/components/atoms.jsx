@@ -8,6 +8,17 @@ const Label = styled.div`
   color: ${({ dark }) => dark && '#FFF;'}
 `
 
+export const CardList = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  max-width: 720px;
+
+  > div {
+    margin-bottom: 30px;
+  }
+`
+
 export const horizontalSlide = keyframes`
   from { transform: translateX(1000px); }
   to { transform: translateX(0px); }
